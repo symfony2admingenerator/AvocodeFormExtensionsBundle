@@ -17,6 +17,12 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('avocode_form_extensions');
+        
+        $rootNode
+            ->children()
+                ->booleanNode('use_genemu_form')->defaultFalse()->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
