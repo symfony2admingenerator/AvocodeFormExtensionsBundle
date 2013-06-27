@@ -8,6 +8,27 @@
 
 {% block field_stylesheet "" %}
 
+{% block bootstrap_collection_stylesheet %}
+{% spaceless %}
+{% if sortable is not null %}
+    <style type="text/css">
+    /* Hide sortable field */
+    {{ ('#'~id~' > .collection > .collection-item > div > div.control-group.'~sortable)|raw }},
+    {{ ('#'~id~' > .collection > .collection-item > td > div > div.control-group.'~sortable)|raw }}
+    { visibility: hidden; position: absolute; }
+    </style>
+{% endif %}
+{% endspaceless %}
+{% endblock bootstrap_collection_stylesheet %}
+
+{% block collection_fieldset_stylesheet %}
+    {{ block('bootstrap_collection_stylesheet') }}
+{% endblock collection_fieldset_stylesheet %}
+    
+{% block collection_table_stylesheet %}
+    {{ block('bootstrap_collection_stylesheet') }}
+{% endblock collection_table_stylesheet %}
+    
 {% block color_stylesheet %}
 {% spaceless %}
 {% if widget == "image" %}
