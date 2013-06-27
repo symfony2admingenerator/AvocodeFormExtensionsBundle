@@ -1,0 +1,34 @@
+{% block form_stylesheet %}
+{% spaceless %}
+    {% for child in form %}
+        {{ form_stylesheet(child) }}
+    {% endfor %}
+{% endspaceless %}
+{% endblock form_stylesheet %}
+
+{% block field_stylesheet "" %}
+
+{% block color_stylesheet %}
+{% spaceless %}
+{% if widget == "image" %}
+    <style type="text/css" media="screen">
+        #{{ id }}_color {
+            background: url({{ asset('bundles/avocodeformextensions/color/img/select.png') }});
+            width: 36px;
+            height: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #{{ id }}_color div {
+            background: url({{ asset('bundles/avocodeformextensions/color/img/select.png') }}) center center;
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+{% endif %}
+{% endspaceless %}
+{% endblock color_stylesheet %}

@@ -1,0 +1,27 @@
+Avocode FormExtensions Bundle
+-------------------------------------------------
+This bundle includes various third-party software assets each distributed 
+under it's own license. Bundle files which are not subject to any of these 
+licenses are released under MIT license included in file: 
+/Resources/meta/MIT-LICENSE
+
+List of third-party software and their licenses
+=================================================
+
+Note: all files in Location directory are subject to corresonding License.
+
+Select2
+---------------------
+Version:  3.4.0
+Location: /Resources/public/select2
+License:  /Resources/public/select2/LICENSE
+
+Select2 is licensed under the Apache Software Foundation License Version 2.0 
+and GPL Version 2.0.
+
+Colorpicker
+-----------
+Location: /Resources/public/colorpicker
+License:  /Resources/public/colorpicker/LICENSE
+
+Dual licensed under the MIT and GPL licenses.

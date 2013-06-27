@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="avocode.form.extensions.color.options" type="collection" />
+    </parameters>
+
+    <services>
+        <service id="avocode.form.extensions.type.select2" class="Avocode\FormExtensionsBundle\Form\Type\Select2Type" abstract="true" />
+
+        <service id="avocode.form.extensions.type.color" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ColorType">
+            <tag name="form.type" alias="color" />
+            <argument>%avocode.form.extensions.color.options%</argument>
+        </service>
+    </services>
+
+</container>
