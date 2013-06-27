@@ -8,8 +8,8 @@
             "role": "Symfony2 bundle author"
         }
     ],
-    "require": {
-        "cedriclombardot/admingenerator-generator-bundle": "*"
+    "suggest": {
+        "cedriclombardot/admingenerator-generator-bundle": "The missing symfony2 admin generator"
     },
     "autoload": {
         "psr-0": {
