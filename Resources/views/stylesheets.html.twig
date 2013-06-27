@@ -1,8 +1,9 @@
 {% block avocode_form_stylesheets %}
 
     {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/avocodeformextensions/form-extensions.min.css'
-        'bundles/avocodeformextensions/select2/css/select2.css'
+        'bundles/avocodeformextensions/bootstrap-collection/css/bootstrap-collection.css'
         'bundles/avocodeformextensions/colorpicker/css/colorpicker.css'
+        'bundles/avocodeformextensions/select2/css/select2.css'
     %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
     {% endstylesheets %}

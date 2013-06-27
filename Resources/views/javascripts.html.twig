@@ -1,9 +1,10 @@
 {% block avocode_form_javascripts %}
 
     {% javascripts filter='?yui_js' output='assetic/js/compiled/avocodeformextensions/form-extensions.min.js'
+        'bundles/avocodeformextensions/bootstrap-collection/js/bootstrap-collection.js'
+        'bundles/avocodeformextensions/colorpicker/js/colorpicker.js'
         'bundles/avocodeformextensions/select2/js/select2.js'
         'bundles/avocodeformextensions/select2/js/i18n/*.js'
-        'bundles/avocodeformextensions/colorpicker/js/colorpicker.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
