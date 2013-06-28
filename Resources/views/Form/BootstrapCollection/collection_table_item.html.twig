@@ -1,30 +1,6 @@
-{% if prototype is defined %}
-    {% set item = prototype %}
-    {% set attr = attr|merge({'data-prototype': block('table_collection_item') }) %}
-{% endif %}
-{% set attr = attr|merge({'class': 'table table-striped' }) %}
-<table {{ block('widget_container_attributes') }}>
-    {% if form.parent is empty %}
-        <caption>
-            {{ form_errors(form) }}
-        </caption>
-    {% endif %}
-    <thead>
-      <tr>
-        <td id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed" colspan="4">
-            {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig" %}
-            {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig" %}
-        </td>
-      </tr>
-    </thead>
-    <tbody class="collection">
-        {% for item in form %}
-            {{ block('table_collection_item') }}
-        {% endfor %}
-    </tbody>
-</table>
+{% use "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig"  %}
 
-{% block table_collection_item %}
+{% block collection_table_item %}
 <tr class="collection-item">
 {% if item.vars.compound %}
     <td class="collection-item-compound">
@@ -36,7 +12,7 @@
                         <i class="icon-chevron-right"></i>
                         {{ form_label(item) }}
                     </a>
-                    {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" %}
+                    {{ block('collection_delete') }}
                 </div>
                 <div id="{{ 'accordion_body_' ~ item.vars.id }}" class="accordion-body collapse in">
                     <div class="accordion-inner">
@@ -50,7 +26,7 @@
 {% else %}
     <td class="collection-item-simple">
         <div class="form-horizontal">
-            {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" %}
+            {{ block('collection_delete') }}
             <div class="control-group">
                 {{ form_label(item) }}
                 <div class="controls">
@@ -64,4 +40,4 @@
     </td>
 {% endif %}
 </tr>
-{% endblock table_collection_item %}
+{% endblock collection_table_item %}
