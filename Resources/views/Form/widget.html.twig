@@ -37,7 +37,7 @@
         <legend>{{ form_label(item) }}</legend>
         {{ form_widget(item) }}
         {{ form_errors(item) }}
-        {{ block('collection_delete' }}
+        {{ block('collection_delete') }}
     </fieldset>
 {% endspaceless %}
 {% endblock collection_fieldset_item %}
@@ -55,7 +55,7 @@
         {% endif %}
         <div id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed">
             {{ block('collection_add') }}
-            {{ block('collection_batch_delete' }}
+            {{ block('collection_batch_delete') }}
         </div>
         <div class="collection">
             {% for item in form %}
@@ -80,7 +80,7 @@
                             <i class="icon-chevron-right"></i>
                             {{ form_label(item) }}
                         </a>
-                        {{ block('collection_delete' }}
+                        {{ block('collection_delete') }}
                     </div>
                     <div id="{{ 'accordion_body_' ~ item.vars.id }}" class="accordion-body collapse in">
                         <div class="accordion-inner">
@@ -94,7 +94,7 @@
         {% else %}
         <td class="collection-item-simple">
             <div class="form-horizontal">
-                {{ block('collection_delete' }}
+                {{ block('collection_delete') }}
                 <div class="control-group">
                     {{ form_label(item) }}
                     <div class="controls">
@@ -128,7 +128,7 @@
           <tr>
             <td id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed" colspan="4">
                 {{ block('collection_add') }}
-                {{ block('collection_batch_delete' }}
+                {{ block('collection_batch_delete') }}
             </td>
           </tr>
         </thead>
@@ -145,7 +145,7 @@
 {% spaceless %}
     {% if widget == "image" %}
         <div id="{{ id }}_color" {{ block("widget_container_attributes") }}>
-            <div{% if value %} style="background-color: #{{ value }};"{% endif %}>&nbsp;</div>
+            <div{% if value %} style="{{ 'background-color: #' ~ value ~';' }}"{% endif %}>&nbsp;</div>
             {{ block("hidden_widget") }}
         </div>
     {% else %}
