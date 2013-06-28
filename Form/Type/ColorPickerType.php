@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  *
  * @author Olivier Chauvel <olivier@generation-multiple.com>
  */
-class ColorType extends AbstractType
+class ColorPickerType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -56,6 +56,6 @@ class ColorType extends AbstractType
      */
     public function getName()
     {
-        return 'color';
+        return 'color_picker';
     }
 }
