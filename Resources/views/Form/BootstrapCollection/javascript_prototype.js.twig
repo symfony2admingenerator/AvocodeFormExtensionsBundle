@@ -1,0 +1,23 @@
+$field.bootstrapCollection({
+    allow_add:        {{ allow_add }},
+    allow_delete:     {{ allow_delete }},
+    sortable:         {{ sortable }},
+    sortable_name:    '{{ sortable_name }}',
+    prototype_name:   '{{ prototype_name }}',
+    trans: {
+        new_label:      '{{ new_label|trans({}, translation_domain) }}',
+        confirm:        '{{ 'action.object.delete.confirm'|trans({}, 'Admingenerator') }}',
+        confirm_batch:  '{{ 'action.batch.delete.confirm'|trans({}, 'Admingenerator') }}'
+    },
+    javascript: function(id) {
+        {% if prototype.vars.compound %}
+            {% for child in prototype %}
+                $field = $('#' + id + '_{{ child.vars.name }}');
+                {{ form_javascript(child, true) }}
+            {% endfor %}
+        {% else %}
+            $field = $('#' + id);
+            {{ form_javascript(prototype, true) }}
+        {% endif %}
+    }
+});
