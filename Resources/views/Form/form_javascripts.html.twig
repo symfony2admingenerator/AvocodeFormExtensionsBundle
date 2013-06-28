@@ -9,6 +9,32 @@
 
 {% block field_javascript "" %}
 
+{% block bootstrap_collection_javascript_prototype %}
+$field.bootstrapCollection({
+    allow_add:        {{ allow_add }},
+    allow_delete:     {{ allow_delete }},
+    sortable:         {{ sortable }},
+    sortable_name:    '{{ sortable_name }}',
+    prototype_name:   '{{ prototype_name }}',
+    trans: {
+        new_label:      '{{ new_label|trans({}, translation_domain) }}',
+        confirm:        '{{ 'action.object.delete.confirm'|trans({}, 'Admingenerator') }}',
+        confirm_batch:  '{{ 'action.batch.delete.confirm'|trans({}, 'Admingenerator') }}'
+    },
+    javascript: function(id) {
+        {% if prototype.vars.compound %}
+            {% for child in prototype %}
+                $field = $('#' + id + '_{{ child.vars.name }}');
+                {{ form_javascript(child, true) }}
+            {% endfor %}
+        {% else %}
+            $field = $('#' + id);
+            {{ form_javascript(prototype, true) }}
+        {% endif %}
+    }
+});
+{% endblock bootstrap_collection_javascript_prototype %}
+
 {% block collection_fieldset_javascript %}
 {% spaceless %}
 <script type="text/javascript">
@@ -16,7 +42,7 @@
         var $field = $('#{{ id }}');
         
     {% block collection_fieldset_javascript_prototype %}
-        {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:javascript_prototype.js.twig" %}
+        {{ block('bootstrap_collection_javascript_prototype') }}
     {% endblock collection_fieldset_javascript_prototype %}
     });
 </script>
@@ -34,7 +60,7 @@
         var $field = $('#{{ id }}');
         
     {% block collection_table_javascript_prototype %}
-        {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:javascript_prototype.js.twig" %}
+        {{ block('bootstrap_collection_javascript_prototype') }}
     {% endblock collection_table_javascript_prototype %}
     });
 </script>
@@ -52,7 +78,34 @@
         var $field = $('#{{ id }}');
         
     {% block color_javascript_prototype %}
-        {% include "AvocodeFormExtensionsBundle:Form/ColorPicker:javascript_prototype.html.twig" %}
+        var $configs = $.extend({
+            color: '#' + $field.val(),
+            onBeforeShow: function() {
+                $(this).ColorPickerSetColor($field.val());
+            }
+        }, {{ configs|json_encode|raw }});
+
+        {% if widget == "image" %}
+        $picker = $('#{{ id }}_color');
+
+        $picker.ColorPicker($.extend({
+            onChange: function(hsb, hex, rgb) {
+                $field.val(hex);
+
+                $('div', $picker).css({
+                    backgroundColor: '#' + hex
+                });
+            }
+        }, $configs));
+        {% else %}
+        $field.ColorPicker($.extend({
+            onChange: function(hsb, hex, rgb) {
+                $field.val(hex).css({
+                    backgroundColor: '#' + hex
+                });
+            }
+        }, $configs));
+        {% endif %}
     {% endblock color_javascript_prototype %}
     });
 </script>
@@ -72,4 +125,3 @@
 </script>
 {% endspaceless %}
 {% endblock select2_javascript %}
-
