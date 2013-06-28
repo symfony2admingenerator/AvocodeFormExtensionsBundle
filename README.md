@@ -9,10 +9,6 @@ This bundle provides new form types for Symfony2:
 - Color Picker
 - Select2
 
-At the moment this bundle only copies some of GenemuFormBundle's forms with 
-already downloaded and configured assets. In nearest future Admingenerator forms 
-will be moved from Symfony2Admingenerator project to this bundle.
-
 Forms that will be moved to this bundle:
 - Upload
 - Single Upload
