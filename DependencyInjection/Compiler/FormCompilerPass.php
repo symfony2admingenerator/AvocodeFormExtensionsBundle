@@ -15,9 +15,9 @@ class FormCompilerPass implements CompilerPassInterface
         $resources = $container->getParameter('twig.form.resources');
         
         $resources = array_merge($resources, array(
-            'AvocodeFormExtensionsBundle:Form:widget.html.twig', 
-            'AvocodeFormExtensionsBundle:Form:javascript.html.twig', 
-            'AvocodeFormExtensionsBundle:Form:stylesheet.html.twig'
+            'AvocodeFormExtensionsBundle:Form:form_widgets.html.twig', 
+            'AvocodeFormExtensionsBundle:Form:form_javascripts.html.twig', 
+            'AvocodeFormExtensionsBundle:Form:form_stylesheets.html.twig'
         ));
 
         $container->setParameter('twig.form.resources', $resources);
