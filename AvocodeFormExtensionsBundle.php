@@ -3,6 +3,7 @@
 namespace Avocode\FormExtensionsBundle;
 
 use Avocode\FormExtensionsBundle\DependencyInjection\Compiler\FormCompilerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
