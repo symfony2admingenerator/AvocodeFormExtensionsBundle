@@ -60,7 +60,14 @@
 
 {% block color_picker_widget %}
 {% spaceless %}
-    {% include "AvocodeFormExtensionsBundle:Form/ColorPicker:widget.html.twig" %}
+{% if widget == "image" %}
+    <div id="{{ id }}_color" {{ block("widget_container_attributes") }}>
+        <div{% if value %} style="{{ 'background-color: #' ~ value ~';' }}"{% endif %}>&nbsp;</div>
+        {{ block("hidden_widget") }}
+    </div>
+{% else %}
+    {{ block("form_widget_simple") }}
+{% endif %}
 {% endspaceless %}
 {% endblock color_picker_widget %}
 
