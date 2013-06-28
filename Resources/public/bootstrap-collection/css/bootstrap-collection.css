@@ -14,7 +14,8 @@ tr.collection-item th.new-label {
     padding-right: 20px;
 }
 
-tr.collection-item > td {
+td.collection-item-simple, 
+td.collection-item-compound {
     width: 100%;
 }
 
