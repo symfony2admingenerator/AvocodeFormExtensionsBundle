@@ -5,15 +5,15 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="avocode.form.extensions.color.options" type="collection" />
+        <parameter key="avocode.form.extensions.color_picker.options" type="collection" />
     </parameters>
 
     <services>
         <service id="avocode.form.extensions.type.bootstrap_collection" class="Avocode\FormExtensionsBundle\Form\Type\BootstrapCollectionType" abstract="true" />
 
-        <service id="avocode.form.extensions.type.color" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ColorType">
-            <tag name="form.type" alias="color" />
-            <argument>%avocode.form.extensions.color.options%</argument>
+        <service id="avocode.form.extensions.type.color_picker" class="Avocode\FormExtensionsBundle\Form\Type\ColorPickerType">
+            <tag name="form.type" alias="color_picker" />
+            <argument>%avocode.form.extensions.color_picker.options%</argument>
         </service>
 
         <service id="avocode.form.extensions.type.select2" class="Avocode\FormExtensionsBundle\Form\Type\Select2Type" abstract="true" />

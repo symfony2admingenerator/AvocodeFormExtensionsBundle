@@ -31,6 +31,7 @@ class BootstrapCollectionType extends AbstractType
         $builder->setAttribute('sortable', $options['sortable']);
         $builder->setAttribute('sortable_name', $options['sortable_name']);
         $builder->setAttribute('new_label', $options['new_label']);
+        $builder->setAttribute('prototype_name', $options['prototype_name']);
     }
 
     /**
@@ -41,6 +42,7 @@ class BootstrapCollectionType extends AbstractType
         $view->vars['sortable'] = $form->getConfig()->getAttribute('sortable');
         $view->vars['sortable_name'] = $form->getConfig()->getAttribute('sortable_name');
         $view->vars['new_label'] = $form->getConfig()->getAttribute('new_label');
+        $view->vars['prototype_name'] = $form->getConfig()->getAttribute('prototype_name');
     }
 
     /**

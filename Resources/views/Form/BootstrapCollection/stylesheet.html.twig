@@ -1,0 +1,10 @@
+{% if sortable %}
+<style type="text/css">
+    /* Hide sortable field */
+    div{{ '#' ~ id }} > .collection > .collection-item > div > {{ 'div.' ~ sortable_name }}.control-group,
+    table{{ '#' ~ id }} > .collection > .collection-item > td > div > {{ 'div.' ~ sortable_name }}.control-group { 
+        visibility: hidden; 
+        position: absolute;
+    }
+</style>
+{% endif %}

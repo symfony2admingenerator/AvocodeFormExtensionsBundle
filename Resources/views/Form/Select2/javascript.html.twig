@@ -1,0 +1,9 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $field = $('#{{ id }}');
+
+    {% block select2_javascript_prototype %}
+        $field.select2({{ configs|json_encode|raw }});
+    {% endblock %}
+    });
+</script>
