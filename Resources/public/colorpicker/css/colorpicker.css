@@ -109,6 +109,18 @@
     width: 62px;
     background-position: top;
     position: absolute;
+    overflow: hidden;
+}
+
+.colorpicker_field input,
+.colorpicker_field input:active, 
+.colorpicker_field input:focus,
+.colorpicker_field input:hover,
+.colorpicker_field input::-moz-focus-inner { 
+    width: 30px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; 
 }
 
 .colorpicker_field span {
