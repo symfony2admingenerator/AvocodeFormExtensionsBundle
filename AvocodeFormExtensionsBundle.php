@@ -2,6 +2,7 @@
 
 namespace Avocode\FormExtensionsBundle;
 
+use Avocode\FormExtensionsBundle\DependencyInjection\Compiler\FormCompilerPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -11,4 +12,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class AvocodeFormExtensionsBundle extends Bundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new FormCompilerPass());
+    }
 }
