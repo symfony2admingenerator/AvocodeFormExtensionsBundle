@@ -19,8 +19,8 @@ td.collection-item-compound {
     width: 100%;
 }
 
-td.collection-item-simple > div, 
-td.collection-item-compound > div {
+td.collection-item-simple div.form-horizontal, 
+td.collection-item-compound div.form-horizontal {
     display: block;
 }
 
