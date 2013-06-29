@@ -63,7 +63,7 @@
             this.$filesContainer = $('#' + this.element.id + '_files_list');
             
             // Init fileupload
-            $widgetContainer.fileupload({
+            this.$widgetContainer.fileupload({
                 fileInput:          this.$element,
                 replaceFileInput:   false,
                 uploadTemplateId:   this.element.id + '_upload_template',
