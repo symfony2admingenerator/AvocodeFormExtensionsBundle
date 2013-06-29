@@ -11,9 +11,9 @@
 
 {% block bootstrap_collection_javascript_prototype %}
 $field.bootstrapCollection({
-    allow_add:        {{ allow_add }},
-    allow_delete:     {{ allow_delete }},
-    sortable:         {{ sortable }},
+    allow_add:        {{ allow_add|default(0) }},
+    allow_delete:     {{ allow_delete|default(0) }},
+    sortable:         {{ sortable|default(0) }},
     sortable_name:    '{{ sortable_name }}',
     prototype_name:   '{{ prototype_name }}',
     trans: {
@@ -79,14 +79,14 @@ $field.bootstrapCollection({
         
     {% block collection_upload_javascript_prototype %}
         $field.uploadCollection({
-            sortable:                 {{ sortable }},
+            sortable:                 {{ sortable|default(0) }},
             sortable_field:           {{ sortable_field }},
             maxNumberOfFiles:         {{ maxNumberOfFiles|default('undefined') }},
             maxFileSize:              {{ maxFileSize|default('undefined') }},
             minFileSize:              {{ minFileSize|default('undefined') }},
             acceptFileTypes:          {{ acceptFileTypes|default('undefined') }},
-            previewAsCanvas:          {{ previewAsCanvas }},
-            prependFiles:             {{ prependFiles }},
+            previewAsCanvas:          {{ previewAsCanvas|default(0) }},
+            prependFiles:             {{ prependFiles|default(0) }},
             previewSourceFileTypes:   {{ previewSourceFileTypes }},
             previewSourceMaxFileSize: {{ previewSourceMaxFileSize }},
             previewMaxWidth:          {{ previewMaxWidth }},

@@ -15,7 +15,8 @@ tr.collection-item th.new-label {
 }
 
 td.collection-item-simple, 
-td.collection-item-compound {
+td.collection-item-compound,
+td.collection-item-compound .accordion{
     width: 100%;
 }
 
