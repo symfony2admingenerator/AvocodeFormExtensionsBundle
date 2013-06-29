@@ -120,7 +120,7 @@
         },
         
         loadFiles: function(files) {
-            this.$widgetContainer.fileupload('option', 'done').call(fileupload, null, {result: files});
+            this.$widgetContainer.fileupload('option', 'done').call(this.$widgetContainer, null, {result: files});
         },
                 
         _extendBlueImpWidget: function() {
