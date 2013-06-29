@@ -1,7 +1,7 @@
 {
     "name": "avocode/form-extensions-bundle",
     "type": "symfony-bundle",
-    "license": "(MIT and (Apache-2.0 or GPL-2.0) and (MIT or GPL-1.0))",
+    "license": "MIT and (Apache-2.0 or GPL-2.0)",
     "authors": [
         {
             "name": "Piotr Gołębiewski",
