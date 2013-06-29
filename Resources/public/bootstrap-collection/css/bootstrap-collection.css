@@ -15,9 +15,13 @@ tr.collection-item th.new-label {
 }
 
 td.collection-item-simple, 
-td.collection-item-compound,
-td.collection-item-compound .accordion{
+td.collection-item-compound {
     width: 100%;
+}
+
+td.collection-item-simple > div, 
+td.collection-item-compound > div {
+    display: block;
 }
 
 tr.collection-item > td .accordion {
