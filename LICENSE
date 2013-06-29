@@ -10,6 +10,31 @@ List of third-party software and their licenses
 
 Note: all files in Location directory are subject to corresonding License.
 
+Bootstrap Collection
+---------------------
+Location: /Resources/public/bootstrap-collection
+License:  /Resources/public/bootstrap-collection/LICENSE
+
+Bootstrap Collection is licensed under the MIT license.
+
+Collection Upload
+---------------------
+Location: /Resources/public/collection-upload
+License:  /Resources/public/collection-upload/LICENSE
+
+Collection Upload is licensed under the MIT license and uses 
+blueimp/jQuery-File-Upload which is also licensed under MIT license.
+
+For more information on blueimp/jQuery-File-Upload read 
+/Resources/public/collection-upload/README.md
+
+Colorpicker
+---------------------
+Location: /Resources/public/colorpicker
+License:  /Resources/public/colorpicker/LICENSE
+
+Dual licensed under the MIT and GPL licenses.
+
 Select2
 ---------------------
 Version:  3.4.0
@@ -18,10 +43,3 @@ License:  /Resources/public/select2/LICENSE
 
 Select2 is licensed under the Apache Software Foundation License Version 2.0 
 and GPL Version 2.0.
-
-Colorpicker
------------
-Location: /Resources/public/colorpicker
-License:  /Resources/public/colorpicker/LICENSE
-
-Dual licensed under the MIT and GPL licenses.
