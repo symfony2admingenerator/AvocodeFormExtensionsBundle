@@ -11,7 +11,7 @@
             <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
             <td class="error" colspan="2">
                 <span class="label label-important">
-                {{- 'upload_collection.error'|trans({}, 'AvocodeFormExtensions') -}}
+                {{- 'collection_upload.error'|trans({}, 'AvocodeFormExtensions') -}}
                 </span> {% raw %}{%=file.error%}{% endraw %}
             </td>
         {% raw %}
@@ -59,11 +59,11 @@
             <div class="btn-toolbar">
                 <a class="btn btn-info" target="_blank" {% raw %}href="{%=file.url%}"{% endraw %}>
                     <i class="icon-download icon-white"></i>
-                    <span> {{ 'upload_collection.download'|trans({}, 'AvocodeFormExtensions') }}</span>
+                    <span> {{ 'collection_upload.download'|trans({}, 'AvocodeFormExtensions') }}</span>
                 </a>
                 <button class="btn btn-danger">
                     <i class="icon-trash icon-white"></i>
-                    <span> {{ 'upload_collection.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
+                    <span> {{ 'collection_upload.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
                 </button>
                 <span class="btn btn-toggle disabled input-append">
                     <input type="checkbox" name="delete" value="1">

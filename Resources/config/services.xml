@@ -17,6 +17,12 @@
         </service>
 
         <service id="avocode.form.extensions.type.select2" class="Avocode\FormExtensionsBundle\Form\Type\Select2Type" abstract="true" />
+        
+        <service id="avocode.form.extensions.type.collection_upload" class="Avocode\FormExtensionsBundle\Form\Type\CollectionUploadType">
+            <tag name="form.type" alias="collection_upload" />
+            <argument type="service" id="service_container" />
+        </service>
+        
     </services>
 
 </container>

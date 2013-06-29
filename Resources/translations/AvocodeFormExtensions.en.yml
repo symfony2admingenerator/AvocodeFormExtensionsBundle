@@ -5,7 +5,7 @@ bootstrap_collection:
         delete:           Are you sure you want to delete this element?
         batchDelete:      Are you sure you want to delete all selected elements?
 
-upload_collection:
+collection_upload:
     file.add:     Add file...
     error:        Error
     cancel:       Cancel

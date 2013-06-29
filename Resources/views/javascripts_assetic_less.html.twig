@@ -1,12 +1,12 @@
 {% block avocode_form_javascripts %}
     <!-- blueimp.jquery-file-upload.min.js  -->
-    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/upload-collection/blueimp/blueimp.javascript-templates.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/upload-collection/blueimp/blueimp.javascript-load-image.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/upload-collection/blueimp/blueimp.canvas-to-blob.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/upload-collection/blueimp/jquery.iframe-transport.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/upload-collection/blueimp/jquery.fileupload.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/upload-collection/blueimp/jquery.fileupload-fp.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/upload-collection/blueimp/jquery.fileupload-ui.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/blueimp/blueimp.javascript-templates.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/blueimp/blueimp.javascript-load-image.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/blueimp/blueimp.canvas-to-blob.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/blueimp/jquery.iframe-transport.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/blueimp/jquery.fileupload.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/blueimp/jquery.fileupload-fp.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/blueimp/jquery.fileupload-ui.js') }}"></script>
 
     <!-- form-extensions.min.js -->
     <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/bootstrap-collection/js/bootstrap-collection.js') }}" type="text/css" media="all" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/select2/js/select2.js') }}" type="text/css" media="all" />
     {% if app.request.locale in ['ca', 'cs', 'da', 'de', 'es', 'et', 'eu', 'fr', 'gl', 'he', 'hr', 'hu', 'is', 'it', 'ja', 'lt', 'lv', 'mk', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'tr', 'ua', 'vi', 'zh-CN', 'zh-TW'] %}
     <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/select2/js/i18n/select2_locale_' ~ app.request.locale ~ '.js') }}" type="text/css" media="all" />
-    <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/upload-collection/js/upload-collection.js') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/collection-upload/js/collection-upload.js') }}" type="text/css" media="all" />
     {% endif %}
     
 {% endblock avocode_form_javascripts %}

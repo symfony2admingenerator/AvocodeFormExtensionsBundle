@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Avocode\FormExtensionsBundle\Form\EventListener\CaptureUploadListener;
 
-class UploadCollectionType extends AbstractType
+class CollectionUploadType extends AbstractType
 {
     protected $container;
 

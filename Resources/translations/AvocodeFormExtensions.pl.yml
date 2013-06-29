@@ -5,7 +5,7 @@ bootstrap_collection:
         delete:           Czy potwierdzasz usunięcie elementu?
         batchDelete:      Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
 
-upload_collection:
+collection_upload:
     file.add:     Dodaj plik...
     error:        Błąd
     cancel:       Anuluj
