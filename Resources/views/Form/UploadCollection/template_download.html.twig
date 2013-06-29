@@ -23,11 +23,11 @@
             {% endraw %}
             {% if thumbnailFilter %}
                 {% raw %}
-                <a href="{%=file.url%}"><img src="{%=file.thumbnail_url%}" /></a>
+                <a href="{%=file.url%}" target="_blank"><img src="{%=file.thumbnail_url%}" /></a>
                 {% endraw %}
             {% else %}
                 {% raw %}
-                <a href="{%=file.url%}">
+                <a href="{%=file.url%}" target="_blank">
                 {% endraw %}
                     <img src="{% raw %}{%=file.thumbnail_url%}{% endraw %}"
                          width="{{ previewMaxWidth }}" height="{{ previewMaxHeight }}" />
