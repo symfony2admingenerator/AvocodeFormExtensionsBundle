@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Avocode\FormExtensionsBundle\Form\EventListener\CaptureUploadListener;
+use Avocode\FormExtensionsBundle\Form\EventListener\CaptureCollectionUploadListener;
 
 class CollectionUploadType extends AbstractType
 {
@@ -24,7 +24,7 @@ class CollectionUploadType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $captureListener = new CaptureUploadListener($builder->getName(), $options);
+        $captureListener = new CaptureCollectionUploadListener($builder->getName(), $options);
         $builder->addEventSubscriber($captureListener);
 
         $builder->setAttribute('thumbnail_generator', $this->container->getParameter('avocode.form.thumbnail_generator'));

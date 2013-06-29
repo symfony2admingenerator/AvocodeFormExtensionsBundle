@@ -9,7 +9,7 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class CaptureUploadCollectionListener implements EventSubscriberInterface
+class CaptureCollectionUploadListener implements EventSubscriberInterface
 {
     /**
      * @var string Name of property holding collection
