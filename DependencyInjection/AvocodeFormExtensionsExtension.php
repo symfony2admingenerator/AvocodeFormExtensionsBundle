@@ -49,6 +49,8 @@ class AvocodeFormExtensionsExtension extends Extension
             $loader->load('form.xml');
         }
         
+        $container->setParameter('avocode.form.thumbnail_generator', $config['thumbnail_generator']);
+        
         $this->loadBootstrapCollectionTypes($container);
         $this->loadSelect2Types($container);
     }

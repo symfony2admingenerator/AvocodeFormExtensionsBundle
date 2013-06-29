@@ -21,6 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->booleanNode('use_genemu_form')->defaultFalse()->end()
+                ->scalarNode('thumbnail_generator')->defaultNull()->end()
             ->end()
         ;
 

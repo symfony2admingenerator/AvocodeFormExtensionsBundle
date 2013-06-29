@@ -18,8 +18,8 @@ $field.bootstrapCollection({
     prototype_name:   '{{ prototype_name }}',
     trans: {
         new_label:      '{{ new_label|trans({}, translation_domain) }}',
-        confirm:        '{{ 'action.object.delete.confirm'|trans({}, 'Admingenerator') }}',
-        confirm_batch:  '{{ 'action.batch.delete.confirm'|trans({}, 'Admingenerator') }}'
+        confirm:        '{{ 'bootstrap_collection.confirm.delete'|trans({}, 'AvocodeFormExtensions') }}',
+        confirm_batch:  '{{ 'bootstrap_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
     },
     javascript: function(id) {
         {% if prototype.vars.compound %}
@@ -70,6 +70,74 @@ $field.bootstrapCollection({
 {% endfor %}
 {% endspaceless %}
 {% endblock collection_table_javascript %}
+
+{% block collection_upload_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        var $field = $('#{{ id }}');
+        
+    {% block collection_upload_javascript_prototype %}
+        $field.uploadCollection({
+            sortable:                 {{ sortable }},
+            sortable_field:           {{ sortable_field }},
+            maxNumberOfFiles:         {{ maxNumberOfFiles|default('undefined') }},
+            maxFileSize:              {{ maxFileSize|default('undefined') }},
+            minFileSize:              {{ minFileSize|default('undefined') }},
+            acceptFileTypes:          {{ acceptFileTypes|default('undefined') }},
+            previewAsCanvas:          {{ previewAsCanvas }},
+            prependFiles:             {{ prependFiles }},
+            previewSourceFileTypes:   {{ previewSourceFileTypes }},
+            previewSourceMaxFileSize: {{ previewSourceMaxFileSize }},
+            previewMaxWidth:          {{ previewMaxWidth }},
+            previewMaxHeight:         {{ previewMaxHeight }},
+            trans: {
+                maxNumFiles:        '{{ 'upload_collection.errors.maxNumFiles'|trans({}, 'AvocodeFormExtensions') }}',
+                typeNotAllowed:     '{{ 'upload_collection.errors.typeNotAllowed'|trans({}, 'AvocodeFormExtensions') }}',
+                maxFileSize:        '{{ 'upload_collection.errors.maxFileSize'|trans({}, 'AvocodeFormExtensions') }}',
+                minFileSize:        '{{ 'upload_collection.errors.minFileSize'|trans({}, 'AvocodeFormExtensions') }}',
+                confirmBatchDelete: '{{ 'upload_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
+            }
+        });
+    {% endblock collection_upload_javascript_prototype %}
+
+        // Create JSON array for existing files
+        var files = [
+        {% for key, item in form.vars.data -%}
+            {
+            {% if nameable %}
+                "{{ nameable_field }}": "{{ attribute(item, nameable_field) }}",
+            {% endif %}
+            {% if sortable %}
+                "{{ sortable_field }}": "{{ attribute(item, sortable_field) }}",
+            {% endif %}
+            {% if editable %}
+            {% for field in editable %}
+                "{{ field }}": "{{ attribute(item, field) }}",
+            {% endfor %}
+            {% endif %}
+                "size": {{ item.size }},
+                "url": "{{ vich_uploader_asset(item, 'file') }}",
+            {% if item.preview %}
+                {% if thumbnailGenerator is sameas('avalanche') and thumbnailFilter %}
+                "thumbnail_url": "{{ vich_uploader_asset(item, 'file')|apply_filter(thumbnailFilter) }}",
+                {% elseif item.size < previewSourceMaxFileSize %}
+                "thumbnail_url": "{{ vich_uploader_asset(item, 'file') }}",
+                {% endif %}
+            {% endif %}
+                "count": "{{ key }}",
+            }
+            {%- if not loop.last %},{% endif %}
+        {% endfor %}
+        ]; // end of JSON array
+
+        // Load existing files:
+        $field.uploadCollection('loadFiles', files);
+    });
+</script>
+
+{% endspaceless %}
+{% endblock collection_upload_javascript %}
 
 {% block color_picker_javascript %}
 {% spaceless %}

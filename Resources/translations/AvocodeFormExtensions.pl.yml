@@ -1,0 +1,20 @@
+bootstrap_collection:
+    add:          Dodaj
+    delete:       Usuń
+    confirm:
+        delete:           Czy potwierdzasz usunięcie elementu?
+        batchDelete:      Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
+
+upload_collection:
+    file.add:     Dodaj plik...
+    error:        Błąd
+    cancel:       Anuluj
+    delete:       Usuń
+    download:     Ściągnij
+    confirm:
+        batchDelete:      Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
+    errors:
+        maxNumFiles:      Maksymalna liczba plików przekroczona
+        typeNotAllowed:   Niedozwolony typ pliku
+        maxFileSize:      Plik jest za duży
+        minFileSize:      Plik jest za mały

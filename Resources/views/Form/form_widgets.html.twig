@@ -104,6 +104,35 @@
 </tr>
 {% endblock collection_table_item %}
 
+{% block collection_upload_widget %}
+{% spaceless %}
+    {% set full_name = full_name ~ '[uploads][]' %}
+    <div id="{{ id ~ '_widget_container' }}">
+        <div class="btn-toolbar form-actions form-actions-condensed fileupload-buttonbar">
+            <span class="btn btn-success fileinput">
+                <i class="icon-plus icon-white"></i>
+                <span>{{ 'upload_collection.file.add'|trans({}, 'AvocodeFormExtensions') }}</span>
+                <input type="file" {{ block('widget_attributes') }} multiple />
+            </span>
+            <button type="reset" class="btn btn-warning cancel">
+                <i class="icon-ban-circle icon-white"></i>
+                <span> {{ 'upload_collection.cancel'|trans({}, 'AvocodeFormExtensions') }}</span>
+            </button>
+            <button type="button" class="btn btn-danger delete">
+                <i class="icon-trash icon-white"></i>
+                <span> {{ 'upload_collection.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
+            </button>
+            <label class="btn btn-toggle disabled input-append">
+                <input type="checkbox" class="toggle">
+            </label>
+        </div>
+        {% include "AvocodeFormExtensionsBundle:Form/UploadCollection:presentation_table.html.twig" %}
+        {% include "AvocodeFormExtensionsBundle:Form/UploadCollection:template_download.html.twig" %}
+        {% include "AvocodeFormExtensionsBundle:Form/UploadCollection:template_upload.html.twig" %}
+    </div>
+{% endspaceless %}
+{% endblock collection_upload_widget %}
+
 {% block color_picker_widget %}
 {% spaceless %}
 {% if widget == "image" %}
