@@ -37,6 +37,7 @@ class CollectionUploadType extends AbstractType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['multipart']                =   true;
+        $view->vars['primary_key']              =   $options['primary_key'];
         $view->vars['nameable']                 =   $options['nameable'];
         $view->vars['nameable_field']           =   $options['nameable_field'];
         $view->vars['sortable']                 =   $options['sortable'];
@@ -64,6 +65,7 @@ class CollectionUploadType extends AbstractType
         parent::setDefaultOptions($resolver);
 
         $resolver->setDefaults(array(
+            'primary_key'               =>  'id',
             'nameable'                  =>  true,
             'nameable_field'            =>  'name',
             'sortable'                  =>  false,
@@ -83,6 +85,7 @@ class CollectionUploadType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
+            'primary_key'               =>  array('string'),
             'nameable'                  =>  array('bool'),
             'nameable_field'            =>  array('string'),
             'sortable'                  =>  array('bool'),

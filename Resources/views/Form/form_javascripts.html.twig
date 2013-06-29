@@ -105,6 +105,7 @@ $field.bootstrapCollection({
         var files = [
         {% for key, item in form.vars.data -%}
             {
+                "{{ primary_key }}": "{{ attribute(item, primary_key) }}",
             {% if nameable %}
                 "{{ nameable_field }}": "{{ attribute(item, nameable_field) }}",
             {% endif %}

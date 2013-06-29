@@ -1,6 +1,6 @@
 <script id="{{ id ~ '_download_template' }}" type="text/x-tmpl">
 {% raw %}
- {% for (var i=0, file; file=o.files[i]; i++) { %}
+{% for (var i=0, file; file=o.files[i]; i++) { %}
 {% endraw %}
     <tr class="template-download fade">
         {% raw %}
@@ -38,6 +38,7 @@
             {% endraw %}
             </td>
             <td class="form">
+            {{ form_row(prototype[primary_key],{'value': '{%=file.'~primary_key~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
             {% if nameable %}
                 {{ form_row(prototype[nameable_field],{'value': '{%=file.'~nameable_field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
             {% endif %}
