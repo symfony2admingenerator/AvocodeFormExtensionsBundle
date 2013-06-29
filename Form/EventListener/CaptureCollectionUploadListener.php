@@ -86,7 +86,9 @@ class CaptureCollectionUploadListener implements EventSubscriberInterface
 
         // create file entites for each file
         foreach ($this->uploads as $upload) {
-            if($upload === null) return;
+            if ($upload === null) {
+                continue;
+            }
 
             $file = new $this->dataClass();
             if (!$file instanceof UploadCollectionFileInterface) {
