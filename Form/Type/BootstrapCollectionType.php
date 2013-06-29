@@ -28,7 +28,7 @@ class BootstrapCollectionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->setAttribute('sortable', $options['sortable']);
-        $builder->setAttribute('sortable_name', $options['sortable_name']);
+        $builder->setAttribute('sortable_field', $options['sortable_field']);
         $builder->setAttribute('new_label', $options['new_label']);
         $builder->setAttribute('prototype_name', $options['prototype_name']);
     }
@@ -39,7 +39,7 @@ class BootstrapCollectionType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['sortable'] = $form->getConfig()->getAttribute('sortable');
-        $view->vars['sortable_name'] = $form->getConfig()->getAttribute('sortable_name');
+        $view->vars['sortable_field'] = $form->getConfig()->getAttribute('sortable_field');
         $view->vars['new_label'] = $form->getConfig()->getAttribute('new_label');
         $view->vars['prototype_name'] = $form->getConfig()->getAttribute('prototype_name');
     }
@@ -51,13 +51,13 @@ class BootstrapCollectionType extends AbstractType
     {
         $resolver->setDefaults(array(
             'sortable' => false,
-            'sortable_name' => 'position',
+            'sortable_field' => 'position',
             'new_label' => 'collection.new_label'
         ));
 
         $resolver->setAllowedTypes(array(
             'sortable' => array('bool'),
-            'sortable_name' => array('string'),
+            'sortable_field' => array('string'),
             'new_label' => array('string'),
         ));
     }

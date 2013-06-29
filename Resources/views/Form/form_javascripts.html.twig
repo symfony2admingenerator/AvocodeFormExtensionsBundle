@@ -14,7 +14,7 @@ $field.bootstrapCollection({
     allow_add:        {{ allow_add|default(0) }},
     allow_delete:     {{ allow_delete|default(0) }},
     sortable:         {{ sortable|default(0) }},
-    sortable_name:    '{{ sortable_name }}',
+    sortable_field:   '{{ sortable_field }}',
     prototype_name:   '{{ prototype_name }}',
     trans: {
         new_label:      '{{ new_label|trans({}, translation_domain) }}',
@@ -80,7 +80,7 @@ $field.bootstrapCollection({
     {% block collection_upload_javascript_prototype %}
         $field.uploadCollection({
             sortable:                 {{ sortable|default(0) }},
-            sortable_field:           {{ sortable_field }},
+            sortable_field:           '{{ sortable_field }}',
             maxNumberOfFiles:         {{ maxNumberOfFiles|default('undefined') }},
             maxFileSize:              {{ maxFileSize|default('undefined') }},
             minFileSize:              {{ minFileSize|default('undefined') }},
