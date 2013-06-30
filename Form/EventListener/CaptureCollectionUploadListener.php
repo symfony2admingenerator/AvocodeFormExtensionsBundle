@@ -2,7 +2,7 @@
 
 namespace Avocode\FormExtensionsBundle\Form\EventListener;
 
-use Avocode\FormExtensionsBundle\Model\UploadCollectionFileInterface;
+use Avocode\FormExtensionsBundle\Form\Model\UploadCollectionFileInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
@@ -20,6 +20,11 @@ class CaptureCollectionUploadListener implements EventSubscriberInterface
      * @var string Collection data class
      */
     protected $dataClass;
+
+    /**
+     * @var boolean Primary Key field
+     */
+    protected $primary_key;
 
     /**
      * @var boolean Is file nameable
@@ -42,13 +47,32 @@ class CaptureCollectionUploadListener implements EventSubscriberInterface
      */
     protected $uploads;
 
+    /**
+     * @var array Submitted primary keys
+     */
+    protected $submitted_pk;
+
+    /**
+     * @var boolean
+     */
+    protected $allow_add;
+
+    /**
+     * @var boolean
+     */
+    protected $allow_delete;
+
     public function __construct($propertyName, $options)
     {
         $this->propertyName     = $propertyName;
         $this->dataClass        = $options['options']['data_class'];
+        $this->primary_key      = $options['primary_key'];
         $this->nameable         = $options['nameable'];
         $this->nameable_field   = $options['nameable_field'];
         $this->uploads          = array();
+        $this->submitted_pk     = array();
+        $this->allow_add        = $options['allow_add'];
+        $this->allow_delete     = $options['allow_delete'];
     }
 
     public static function getSubscribedEvents()
@@ -66,10 +90,15 @@ class CaptureCollectionUploadListener implements EventSubscriberInterface
         $data = $event->getData();
 
         if (array_key_exists('uploads', $data)) {
-            // capture uploads and store them for onBind event
+            // capture uploads and store them for onSubmit event
             $this->uploads = $data['uploads'];
             // unset additional form data to prevent errors
             unset($data['uploads']);
+        }
+        
+        // save submitted primary keys for onSubmit event
+        foreach ($data as $file) {
+            $this->submitted_pk[] = $file[$this->primary_key];
         }
 
         $event->setData($data);
@@ -80,36 +109,49 @@ class CaptureCollectionUploadListener implements EventSubscriberInterface
         $form = $event->getForm();
         $data = $form->getParent()->getData();
 
-        // save original files collection for postBind event
+        // save original files collection for postSubmit event
         $getter = 'get'.ucfirst($this->propertyName);
         $this->originalFiles = $data->$getter();
-
-        // create file entites for each file
-        foreach ($this->uploads as $upload) {
-            if ($upload === null) {
-                continue;
+        
+        if ($this->allow_delete) {
+            // remove files not present in submitted pk
+            $pkGetter = 'get'.ucfirst($this->primary_key);
+            foreach ($data->$getter() as $file) {
+                if (!in_array($file->$pkGetter(), $this->submitted_pk)) {
+                    $data->$getter()->removeElement($file);
+                }
             }
+        }
+        
+        if ($this->allow_add) {
+            // create file entites for each file
+            foreach ($this->uploads as $upload) {
+                if ($upload === null) {
+                    continue;
+                }
 
-            $file = new $this->dataClass();
-            if (!$file instanceof UploadCollectionFileInterface) {
-                throw new UnexpectedTypeException($file, '\Avocode\FormExtensionsBundle\Model\UploadCollectionFileInterface');
+                $file = new $this->dataClass();
+                if (!$file instanceof UploadCollectionFileInterface) {
+                    throw new UnexpectedTypeException($file, '\Avocode\FormExtensionsBundle\Form\Model\UploadCollectionFileInterface');
+                }
+
+                $file->setFile($upload);
+                $file->setParent($data);
+
+                // if nameable field specified - set normalized name
+                if ($this->nameable_field) {
+                    $setNameable = 'set'.ucfirst($this->nameable_field);
+
+                    // this value is unsafe
+                    $name = $upload->getClientOriginalName();
+                    // normalize string
+                    $safeName = $this->normalizeUtf8String($name);
+
+                    $file->$setNameable($safeName);
+                }
+
+                $data->$getter()->add($file);
             }
-
-            $file->setFile($upload);
-            $file->setParent($data);
-
-            // if nameable field specified - set normalized name
-            if ($this->nameable) {
-                $setNameable = 'set'.ucfirst($this->nameable_field);
-
-                // this value is unsafe
-                $name = $upload->getClientOriginalName();
-                // normalize string
-                $safeName = $this->normalizeUtf8String($name);
-
-                $file->$setNameable($safeName);
-            }
-            $data->$getter()->add($file);
         }
 
         $event->setData($data->$getter());
@@ -119,7 +161,7 @@ class CaptureCollectionUploadListener implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $data = $form->getParent()->getData();
-
+        
         $getter = 'get'.ucfirst($this->propertyName);
         if (!$form->isValid() && $data->$getter() instanceof ArrayCollection) {
             // remove files absent in the original collection
@@ -128,7 +170,7 @@ class CaptureCollectionUploadListener implements EventSubscriberInterface
             foreach ($this->originalFiles as $file) {
                 $data->$getter()->add($file);
             }
-            // TODO: find a way to restore $this->uploads to the form
+            
             $event->setData($data->$getter());
         }
     }

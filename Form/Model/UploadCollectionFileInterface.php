@@ -1,6 +1,6 @@
 <?php
 
-namespace Avocode\FormExtensionsBundle\Model;
+namespace Avocode\FormExtensionsBundle\Form\Model;
 
 /**
  * Interface for UploadCollectionType files.
