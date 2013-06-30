@@ -1,8 +1,11 @@
 {% if allow_delete %}
-    <a class="btn btn-danger batch-delete">
-        <i class="icon-trash icon-white"></i> {{ 'bootstrap_collection.delete'|trans({}, 'AvocodeFormExtensions') }}
-    </a>
-    <label class="btn btn-toggle disabled input-append">
-        <input type="checkbox" name="toggle">
-    </label>
+{% spaceless %}
+<a class="btn btn-danger batch-delete">
+    <i class="icon-trash icon-white"></i>
+    {{- ' ' ~ 'bootstrap_collection.delete'|trans({}, 'AvocodeFormExtensions') -}}
+</a>
+<label class="btn btn-toggle disabled input-append">
+    <input type="checkbox" name="toggle">
+</label>
+{% endspaceless %}
 {% endif %}

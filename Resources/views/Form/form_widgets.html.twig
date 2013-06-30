@@ -10,8 +10,8 @@
         {{ form_errors(form) }}
     {% endif %}
     <div id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed">
-        {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig"  %}
-        {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig"  %}
+        {%- include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig" -%}
+        {%- include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig" -%}
     </div>
     <div class="collection">
         {% for item in form %}
@@ -28,7 +28,7 @@
     <legend>{{ form_label(item) }}</legend>
     {{ form_widget(item) }}
     {{ form_errors(item) }}
-    {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig"  %}
+    {%- include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
 </fieldset>
 {% endblock collection_fieldset_item %}
 
@@ -48,8 +48,8 @@
     <thead>
       <tr>
         <td id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed" colspan="4">
-            {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig"  %}
-            {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig"  %}
+            {%- include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig" -%}
+            {%- include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig" -%}
         </td>
       </tr>
     </thead>
@@ -72,9 +72,9 @@
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="{{ '#accordion_' ~ item.vars.id }}" href="{{ '#accordion_body_' ~ item.vars.id }}">
                         <i class="icon-chevron-down"></i>
                         <i class="icon-chevron-right"></i>
-                        {{ form_label(item) }}
+                        {{- form_label(item) -}}
                     </a>
-                    {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig"  %}
+                    {%- include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
                 </div>
                 <div id="{{ 'accordion_body_' ~ item.vars.id }}" class="accordion-body collapse in">
                     <div class="accordion-inner">
@@ -88,7 +88,7 @@
 {% else %}
     <td class="collection-item-simple">
         <div class="form-horizontal">
-            {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig"  %}
+            {%- include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
             <div class="control-group">
                 {{ form_label(item) }}
                 <div class="controls">
