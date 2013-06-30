@@ -188,7 +188,16 @@ $field.bootstrapCollection({
         $field = $('#{{ id }}');
 
     {% block select2_javascript_prototype %}
-        $field.select2({{ configs|json_encode|raw }});
+        $field.select2({
+        {% for key,val in configs %}
+            {% if val[:8] is sameas('function') %}
+                {{ key }}: {{ val|raw }}
+            {% else %}
+                {{ key }}: "{{ val|raw }}"
+            {%- endif -%}
+            {%- if not loop.last %},{% endif %}
+        {% endfor %}
+        });
     {% endblock %}
     });
 </script>
