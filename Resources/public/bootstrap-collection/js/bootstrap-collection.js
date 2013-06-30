@@ -97,7 +97,7 @@
                     update: function(e, ui) {
                         that._onChange();
                     },
-                    cancel: "a, button, img, input, textarea, select",
+                    cancel: "a, button, img, input, textarea, select, iframe, .cke div, .cke span",
                     start:function (event,ui) {
                         that.ckeConfigs = [];
                         $('textarea', ui.item).each(function(){
