@@ -1,0 +1,14 @@
+<style type="text/css">
+    /* Hide primary_key field */
+    tbody{{ '#' ~ id ~ '_files_list' }} > tr > td.form > div{{ '.' ~ primary_key }} {
+        visibility: hidden; 
+        position: absolute;     
+    }
+    {% if sortable %}
+    /* Hide sortable field */
+    tbody{{ '#' ~ id ~ '_files_list' }} > tr > td.form > div{{ '.' ~ sortable_field }} {
+        visibility: hidden; 
+        position: absolute;     
+    }
+    {% endif %}
+</style>

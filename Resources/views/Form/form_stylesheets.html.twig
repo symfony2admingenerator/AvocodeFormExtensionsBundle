@@ -20,6 +20,12 @@
 {% endspaceless %}
 {% endblock collection_table_stylesheet %}
     
+{% block collection_upload_stylesheet %}
+{% spaceless %}
+    {% include "AvocodeFormExtensionsBundle:Form/CollectionUpload:stylesheet.html.twig" %}
+{% endspaceless %}
+{% endblock collection_upload_stylesheet %}
+    
 {% block color_picker_stylesheet %}
 {% spaceless %}
     {% include "AvocodeFormExtensionsBundle:Form/ColorPicker:stylesheet.html.twig" %}
