@@ -96,6 +96,28 @@
                 $('#' + this.element.id + ' > .collection').sortable({
                     update: function(e, ui) {
                         that._onChange();
+                    },
+                    cancel: "a, button, img, input, textarea, select",
+                    start:function (event,ui) {
+                        that.ckeConfigs = [];
+                        $('textarea', ui.item).each(function(){
+                            var tagId = $(this).attr('id');
+                            if (CKEDITOR.instances[tagId]) {
+                                var ckeClone = $(this).next('.cke').clone().addClass('cloned');
+                                that.ckeConfigs[tagId] = CKEDITOR.instances[tagId].config;
+                                CKEDITOR.instances[tagId].destroy();
+                                $(this).hide().after(ckeClone);
+                            }
+                        });
+                    },
+                    stop: function(event, ui) {
+                        $('textarea', ui.item).each(function(){
+                            var tagId = $(this).attr('id');
+                            if (that.ckeConfigs[tagId]) {
+                                CKEDITOR.replace(tagId, that.ckeConfigs[tagId]);
+                                $(this).next('.cloned').remove();
+                            }
+                        });
                     }
                 });
             }
