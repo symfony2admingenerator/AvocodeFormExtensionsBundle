@@ -160,3 +160,21 @@ fieldset.collection-item > .btn-toggle {
 fieldset.collection-item > .btn-toggle > input[type="checkbox"] {
     opacity: 0.65;
 }
+
+/* Add grab cursor when hovering over sortable element */
+.collection.sortable > .collection-item:hover {
+    cursor: url('../cur/openhand.cur'), move;
+    cursor: url('../cur/openhand.cur') 4 4, move;
+    cursor: -webkit-grab; 
+    cursor: -moz-grab;
+    cursor: move\9; /* fallback cursor for IE */
+}
+
+/* Add grabbing cursor when sorting */
+.collection.sortable > .collection-item.ui-sortable-helper:hover {
+    cursor: url('../cur/closedhand.cur'), move;
+    cursor: url('../cur/closedhand.cur') 4 4, move;
+    cursor: -webkit-grabbing; 
+    cursor: -moz-grabbing;
+    cursor: move\9; /* fallback cursor for IE */
+}
