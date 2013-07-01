@@ -190,7 +190,9 @@ $field.bootstrapCollection({
     {% block select2_javascript_prototype %}
         $field.select2({
         {% for key,val in configs %}
-            {% if val[:8] is sameas('function') or (val[:1] is sameas('{') and val|reverse[:1] is sameas('}')) %}
+            {% if val[:1] is sameas('{') and val|reverse[:1] is sameas('}') %}
+                {{ key }}: {{ val|raw }}
+            {% elseif val[:8] is sameas('function') %}
                 {{ key }}: {{ val|raw }}
             {% else %}
                 {{ key }}: "{{ val|raw }}"
