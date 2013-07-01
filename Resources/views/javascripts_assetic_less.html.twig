@@ -9,12 +9,12 @@
     <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/blueimp/jquery.fileupload-ui.js') }}"></script>
     
     <!-- form-extensions.min.js -->
-    <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/bootstrap-collection/js/bootstrap-collection.min.js') }}" type="text/css" media="all" />
-    <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/colorpicker/js/colorpicker.min.js') }}" type="text/css" media="all" />
-    <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/select2/js/select2.min.js') }}" type="text/css" media="all" />
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/bootstrap-collection/js/bootstrap-collection.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/colorpicker/js/colorpicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/select2/js/select2.min.js') }}"></script>
     {% if app.request.locale in ['ca', 'cs', 'da', 'de', 'es', 'et', 'eu', 'fr', 'gl', 'he', 'hr', 'hu', 'is', 'it', 'ja', 'lt', 'lv', 'mk', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'tr', 'ua', 'vi', 'zh-CN', 'zh-TW'] %}
-    <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/select2/js/i18n/select2_locale_' ~ app.request.locale ~ '.js') }}" type="text/css" media="all" />
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/select2/js/i18n/select2_locale_' ~ app.request.locale ~ '.js') }}"></script>
     {% endif %}
-    <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/collection-upload/js/collection-upload.min.js') }}" type="text/css" media="all" />
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/js/collection-upload.min.js') }}"></script>
     
 {% endblock avocode_form_javascripts %}
