@@ -16,10 +16,13 @@
         'bundles/avocodeformextensions/bootstrap-collection/js/bootstrap-collection.js'
         'bundles/avocodeformextensions/colorpicker/js/colorpicker.js'
         'bundles/avocodeformextensions/select2/js/select2.js'
-        'bundles/avocodeformextensions/select2/js/i18n/*.js'
         'bundles/avocodeformextensions/collection-upload/js/collection-upload.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+        
+    {% if app.request.locale in ['ca', 'cs', 'da', 'de', 'es', 'et', 'eu', 'fr', 'gl', 'he', 'hr', 'hu', 'is', 'it', 'ja', 'lt', 'lv', 'mk', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'tr', 'ua', 'vi', 'zh-CN', 'zh-TW'] %}
+    <link rel="stylesheet" href="{{ asset('bundles/avocodeformextensions/select2/js/i18n/select2_locale_' ~ app.request.locale ~ '.js') }}" type="text/css" media="all" />
+    {% endif %}
         
 {% endblock avocode_form_javascripts %}
