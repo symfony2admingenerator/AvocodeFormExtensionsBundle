@@ -102,35 +102,37 @@ $field.bootstrapCollection({
     {% endblock collection_upload_javascript_prototype %}
 
         // Create JSON array for existing files
-        var files = [
-        {% for key, item in form.vars.data -%}
-            {
-                "{{ primary_key }}": "{{ attribute(item, primary_key) }}",
-            {% if nameable %}
-                "{{ nameable_field }}": "{{ attribute(item, nameable_field) }}",
-            {% endif %}
-            {% if sortable %}
-                "{{ sortable_field }}": "{{ attribute(item, sortable_field) }}",
-            {% endif %}
-            {% if editable %}
-            {% for field in editable %}
-                "{{ field }}": "{{ attribute(item, field) }}",
-            {% endfor %}
-            {% endif %}
-                "size": {{ item.size }},
-                "url": "{{ vich_uploader_asset(item, 'file') }}",
-            {% if item.preview %}
-                {% if thumbnailGenerator is sameas('avalanche') and thumbnailFilter %}
-                "thumbnail_url": "{{ vich_uploader_asset(item, 'file')|apply_filter(thumbnailFilter) }}",
-                {% elseif item.size < previewSourceMaxFileSize %}
-                "thumbnail_url": "{{ vich_uploader_asset(item, 'file') }}",
+        var files = { 
+            'files': [
+            {% for key, item in form.vars.data -%}
+                {
+                    "{{ primary_key }}": "{{ attribute(item, primary_key) }}",
+                {% if nameable %}
+                    "{{ nameable_field }}": "{{ attribute(item, nameable_field) }}",
                 {% endif %}
-            {% endif %}
-                "count": "{{ key }}",
-            }
-            {%- if not loop.last %},{% endif %}
-        {% endfor %}
-        ]; // end of JSON array
+                {% if sortable %}
+                    "{{ sortable_field }}": "{{ attribute(item, sortable_field) }}",
+                {% endif %}
+                {% if editable %}
+                {% for field in editable %}
+                    "{{ field }}": "{{ attribute(item, field) }}",
+                {% endfor %}
+                {% endif %}
+                    "size": {{ item.size }},
+                    "url": "{{ vich_uploader_asset(item, 'file') }}",
+                {% if item.preview %}
+                    {% if thumbnailGenerator is sameas('avalanche') and thumbnailFilter %}
+                    "thumbnail_url": "{{ vich_uploader_asset(item, 'file')|apply_filter(thumbnailFilter) }}",
+                    {% elseif item.size < previewSourceMaxFileSize %}
+                    "thumbnail_url": "{{ vich_uploader_asset(item, 'file') }}",
+                    {% endif %}
+                {% endif %}
+                    "count": "{{ key }}",
+                }
+                {%- if not loop.last %},{% endif %}
+            {% endfor %}
+            ] // end of files array
+        }; // end of files object
 
         // Load existing files:
         $field.uploadCollection('loadFiles', files);

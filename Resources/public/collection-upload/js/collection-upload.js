@@ -4,7 +4,75 @@
  *  Author:         loostro <loostro@gmail.com>
  *  License:        MIT
  */
-
+// Extend fileupload plugin
+$.widget('blueimp.fileupload', $.blueimp.fileupload, {
+    options: {
+        trans: {
+            maxNumFiles:        'Maximum number of files exceeded',
+            typeNotAllowed:     'File type not allowed',
+            maxFileSize:        'File is too big',
+            minFileSize:        'File is too small',
+            confirmBatchDelete: 'Are you sure you want to delete all selected elements?'
+        },
+    },
+    _hasError: function (file) {
+        if (file.error) {
+            return file.error;
+        }
+        if (this.options.maxNumberOfFiles < 0) {
+            return this.options.trans.maxNumFiles;
+        }
+        if (!(this.options.acceptFileTypes.test(file.type) ||
+                this.options.acceptFileTypes.test(file.name))) {
+            return this.options.trans.typeNotAllowed;
+        }
+        if (this.options.maxFileSize &&
+                file.size > this.options.maxFileSize) {
+            return this.options.trans.maxFileSize;
+        }
+        if (typeof file.size === 'number' &&
+                file.size < this.options.minFileSize) {
+            return this.options.trans.minFileSize;
+        }
+        return null;
+    },
+    _initButtonBarEventHandlers: function () {
+        var that = this;
+        var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
+            filesList = this.options.filesContainer;
+        this._on(fileUploadButtonBar.find('.start'), {
+            click: function (e) {
+                e.preventDefault();
+                filesList.find('.start button').click();
+            }
+        });
+        this._on(fileUploadButtonBar.find('.cancel'), {
+            click: function (e) {
+                e.preventDefault();
+                filesList.find('.cancel button').click();
+            }
+        });
+        this._on(fileUploadButtonBar.find('.delete'), {
+            click: function (e) {
+                e.preventDefault();
+                if(confirm(that.options.trans.confirmBatchDelete)) {
+                    filesList.find('.delete input:checked')
+                        .parent().siblings('button').click();
+                    fileUploadButtonBar.find('.toggle')
+                        .prop('checked', false);
+                }
+            }
+        });
+        this._on(fileUploadButtonBar.find('.toggle'), {
+            change: function (e) {
+                filesList.find('.delete input').prop(
+                    'checked',
+                    $(e.currentTarget).is(':checked')
+                );
+            }
+        });
+    },
+});
 // the semi-colon before function invocation is a safety net against concatenated
 // scripts and/or other plugins which may not be closed properly.
 ;(function ( $, window, undefined ) {
@@ -47,7 +115,6 @@
         this._defaults = defaults;
         this._name = pluginName;
         
-        this._extendBlueImpWidget();
         this._init();
     }
     
@@ -64,6 +131,7 @@
             
             // Init fileupload
             this.$widgetContainer.fileupload({
+                trans:              this.options.trans,
                 fileInput:          this.$element,
                 replaceFileInput:   false,
                 uploadTemplateId:   this.element.id + '_upload_template',
@@ -120,71 +188,9 @@
         },
         
         loadFiles: function(files) {
+            console.log('load files is called');
             this.$widgetContainer.fileupload('option', 'done').call(this.$widgetContainer, null, {result: files});
-        },
-                
-        _extendBlueImpWidget: function() {
-            var that = this;
             
-            $.widget('blueimp.fileupload', $.blueimp.fileupload, {
-                options: {},
-                _hasError: function (file) {
-                    if (file.error) {
-                        return file.error;
-                    }
-                    if (this.options.maxNumberOfFiles < 0) {
-                        return that.options.trans.maxNumFiles;
-                    }
-                    if (!(this.options.acceptFileTypes.test(file.type) ||
-                            this.options.acceptFileTypes.test(file.name))) {
-                        return that.options.trans.typeNotAllowed;
-                    }
-                    if (this.options.maxFileSize &&
-                            file.size > this.options.maxFileSize) {
-                        return that.options.trans.maxFileSize;
-                    }
-                    if (typeof file.size === 'number' &&
-                            file.size < this.options.minFileSize) {
-                        return that.options.trans.minFileSize;
-                    }
-                    return null;
-                },
-                _initButtonBarEventHandlers: function () {
-                    var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
-                        filesList = this.options.filesContainer;
-                    this._on(fileUploadButtonBar.find('.start'), {
-                        click: function (e) {
-                            e.preventDefault();
-                            filesList.find('.start button').click();
-                        }
-                    });
-                    this._on(fileUploadButtonBar.find('.cancel'), {
-                        click: function (e) {
-                            e.preventDefault();
-                            filesList.find('.cancel button').click();
-                        }
-                    });
-                    this._on(fileUploadButtonBar.find('.delete'), {
-                        click: function (e) {
-                            e.preventDefault();
-                            if(confirm(that.options.trans.confirmBatchDelete)) {
-                                filesList.find('.delete input:checked')
-                                    .parent().siblings('button').click();
-                                fileUploadButtonBar.find('.toggle')
-                                    .prop('checked', false);
-                            }
-                        }
-                    });
-                    this._on(fileUploadButtonBar.find('.toggle'), {
-                        change: function (e) {
-                            filesList.find('.delete input').prop(
-                                'checked',
-                                $(e.currentTarget).is(':checked')
-                            );
-                        }
-                    });
-                },
-            });
         }
         
     };
