@@ -188,9 +188,7 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
         },
         
         loadFiles: function(files) {
-            console.log('load files is called');
             this.$widgetContainer.fileupload('option', 'done').call(this.$widgetContainer, null, {result: files});
-            
         }
         
     };
