@@ -43,6 +43,7 @@ class Select2Type extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['configs'] = $options['configs'];
+        $view->vars['hidden'] = $options['hidden'];
 
         // Adds a custom block prefix
         array_splice(
@@ -66,6 +67,7 @@ class Select2Type extends AbstractType
         );
         $resolver
             ->setDefaults(array(
+                'hidden'        => false,
                 'configs'       => $defaults,
                 'transformer'   => null,
             ))

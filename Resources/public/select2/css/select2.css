@@ -373,7 +373,14 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
 }
 
 .select2-results .select2-highlighted {
-    background: #3875d7;
+    background: #0088CC;
+    color: #fff;
+}
+
+.select2-highlighted div,
+.select2-highlighted p,
+.select2-highlighted span,
+.select2-highlighted small {
     color: #fff;
 }
 
