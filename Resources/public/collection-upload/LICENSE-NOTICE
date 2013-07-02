@@ -1,0 +1,29 @@
+Collection Upload widget uses third party software licensed under the MIT license:
+
+blueimp/JavaScript-Canvas-to-Blob
+---------------------------------
+version:  2.0.6
+author:   Sebastian Tschan
+website:  https://github.com/blueimp/JavaScript-Canvas-to-Blob
+license:  MIT (https://github.com/blueimp/JavaScript-Canvas-to-Blob#license)
+
+blueimp/JavaScript-Load-Image
+-----------------------------
+version:  1.7.3
+author:   Sebastian Tschan
+website:  https://github.com/blueimp/JavaScript-Load-Image
+license:  MIT (https://github.com/blueimp/JavaScript-Load-Image#license)
+
+blueimp/JavaScript-Templates
+----------------------------
+version:  2.2.1 
+author:   Sebastian Tschan
+website:  https://github.com/blueimp/JavaScript-Templates
+license:  MIT (https://github.com/blueimp/JavaScript-Templates#license)
+
+blueimp/jQuery-File-Upload
+--------------------------
+version:  8.4.2
+author:   Sebastian Tschan
+website:  https://github.com/blueimp/jQuery-File-Upload
+license:  MIT (https://github.com/blueimp/jQuery-File-Upload#license)

@@ -23,10 +23,10 @@ Location: /Resources/public/collection-upload
 License:  /Resources/public/collection-upload/LICENSE
 
 Collection Upload is licensed under the MIT license and uses 
-blueimp/jQuery-File-Upload which is also licensed under MIT license.
+third party software also licensed under MIT license.
 
-For more information on blueimp/jQuery-File-Upload read 
-/Resources/public/collection-upload/README.md
+For more information read 
+/Resources/public/collection-upload/LICENSE-NOTICE
 
 Colorpicker
 ---------------------
