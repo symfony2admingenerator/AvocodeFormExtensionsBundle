@@ -154,38 +154,6 @@
 {% endif %}
 {% endblock %}
 
-{% block select2_language_widget %}
-{% if hidden %}
-    {{ block('hidden_widget') }}
-{% else %}
-    {{ block('language_widget') }}
-{% endif %}
-{% endblock %}
-
-{% block select2_country_widget %}
-{% if hidden %}
-    {{ block('hidden_widget') }}
-{% else %}
-    {{ block('country_widget') }}
-{% endif %}
-{% endblock %}
-
-{% block select2_timezone_widget %}
-{% if hidden %}
-    {{ block('hidden_widget') }}
-{% else %}
-    {{ block('timezone_widget') }}
-{% endif %}
-{% endblock %}
-
-{% block select2_locale_widget %}
-{% if hidden %}
-    {{ block('hidden_widget') }}
-{% else %}
-    {{ block('locale_widget') }}
-{% endif %}
-{% endblock %}
-
 {% block select2_entity_widget %}
 {% if hidden %}
     {{ block('hidden_widget') }}
