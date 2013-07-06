@@ -150,7 +150,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ block('choice_widget') }}
+    {{ form_row(form) }}
 {% endif %}
 {% endblock %}
 
@@ -158,7 +158,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ block('entity_widget') }}
+    {{ form_row(form) }}
 {% endif %}
 {% endblock %}
 
@@ -166,7 +166,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ block('document_widget') }}
+    {{ form_row(form) }}
 {% endif %}
 {% endblock %}
 
@@ -174,7 +174,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ block('model_widget') }}
+    {{ form_row(form) }}
 {% endif %}
 {% endblock %}
 
