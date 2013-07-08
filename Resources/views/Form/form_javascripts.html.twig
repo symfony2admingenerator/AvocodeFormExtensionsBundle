@@ -22,7 +22,7 @@ $field.bootstrapCollection({
         confirm_batch:  '{{ 'bootstrap_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
     },
     javascript: function(id) {
-    {% if prototype|default(false) %}
+    {% if prototype is defined %}
         {% if prototype.vars.compound %}
             {% for child in prototype %}
                 $field = $('#' + id + '_{{ child.vars.name }}');
