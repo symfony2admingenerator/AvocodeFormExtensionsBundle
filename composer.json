@@ -12,6 +12,9 @@
     "require": {
         "cedriclombardot/admingenerator-generator-bundle": "*"
     },
+    "conflict": {
+        "genemu/form-bundle": "*"
+    },
     "autoload": {
         "psr-0": {
             "Avocode\\FormExtensionsBundle": ""

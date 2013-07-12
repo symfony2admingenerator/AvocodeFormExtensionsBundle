@@ -7,6 +7,8 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Validates and merges configuration
+ * 
+ * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class Configuration implements ConfigurationInterface
 {
@@ -20,8 +22,7 @@ class Configuration implements ConfigurationInterface
         
         $rootNode
             ->children()
-                ->booleanNode('use_genemu_form')->defaultFalse()->end()
-                ->scalarNode('thumbnail_generator')->defaultNull()->end()
+                ->scalarNode('image_manipulator')->defaultNull()->end()
             ->end()
         ;
 

@@ -5,6 +5,11 @@ namespace Avocode\FormExtensionsBundle\DependencyInjection\Compiler;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
+/**
+ * Processes twig configuration
+ * 
+ * @author Piotr Gołębiewski <loostro@gmail.com>
+ */
 class FormCompilerPass implements CompilerPassInterface
 {
     /**

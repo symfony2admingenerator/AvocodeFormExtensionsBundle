@@ -1,6 +1,6 @@
 <?php
 
-namespace  Avocode\FormExtensionsBundle\Twig\Extension;
+namespace Avocode\FormExtensionsBundle\Twig\Extension;
 
 use Symfony\Component\Form\FormView;
 use Symfony\Bridge\Twig\Form\TwigRendererInterface;
@@ -56,6 +56,6 @@ class FormExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'genemu.twig.extension.form';
+        return 'avocode.twig.extension.form';
     }
 }
