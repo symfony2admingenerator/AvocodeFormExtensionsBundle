@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "cedriclombardot/admingenerator-generator-bundle": "dev-master"
+        "cedriclombardot/admingenerator-generator-bundle": "*"
     },
     "autoload": {
         "psr-0": {
