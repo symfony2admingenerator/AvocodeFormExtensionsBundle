@@ -32,7 +32,15 @@
         <!-- Form extensions -->
         <service id="form.type_extension.single_upload" class="Avocode\FormExtensionsBundle\Form\Extension\SingleUploadExtension">
             <tag name="form.type_extension" alias="form" />
-        </service>        
+        </service>
+        
+        <service id="form.type_extension.autocomplete" class="Avocode\FormExtensionsBundle\Form\Extension\AutocompleteExtension">
+            <tag name="form.type_extension" alias="form" />
+        </service>
+
+        <service id="form.type_extension.help_message" class="Avocode\FormExtensionsBundle\Form\Extension\HelpMessageExtension">
+            <tag name="form.type_extension" alias="form" />
+        </service>
     </services>
 
 </container>
