@@ -18,3 +18,23 @@ collection_upload:
         typeNotAllowed:   Filetype not allowed
         maxFileSize:      File is too big
         minFileSize:      File is too small
+        
+single_upload:
+    display.name:         Displayed name
+    button:
+        add:              Add file...
+        replace:          Replace file...
+        cancel:           Cancel
+        delete:           Delete
+    type:
+        audio:            Audio
+        archive:          Archive
+        html:             HTML
+        image:            Image
+        pdf-document:     PDF<br />Document
+        plain-text:       Plain<br />Text
+        presentation:     Presentation
+        spreadsheet:      Spreadsheet
+        text-document:    Text<br />Document
+        unknown:          Unknown<br />Filetype
+        video:            Video

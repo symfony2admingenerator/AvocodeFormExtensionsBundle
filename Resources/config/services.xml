@@ -9,6 +9,7 @@
     </parameters>
 
     <services>
+        <!-- Form types -->
         <service id="avocode.form.extensions.type.bootstrap_collection" class="Avocode\FormExtensionsBundle\Form\Type\BootstrapCollectionType" abstract="true" />
 
         <service id="avocode.form.extensions.type.color_picker" class="Avocode\FormExtensionsBundle\Form\Type\ColorPickerType">
@@ -22,7 +23,16 @@
             <tag name="form.type" alias="collection_upload" />
             <argument type="service" id="service_container" />
         </service>
-        
+
+        <service id="avocode.form.extensions.type.single_upload" class="Avocode\FormExtensionsBundle\Form\Type\SingleUploadType">
+            <tag name="form.type" alias="single_upload" />
+            <argument type="service" id="service_container" />
+        </service>
+
+        <!-- Form extensions -->
+        <service id="form.type_extension.single_upload" class="Avocode\FormExtensionsBundle\Form\Extension\SingleUploadExtension">
+            <tag name="form.type_extension" alias="form" />
+        </service>        
     </services>
 
 </container>

@@ -133,6 +133,24 @@
 {% endspaceless %}
 {% endblock collection_upload_widget %}
 
+{% block single_upload_widget %}
+{% spaceless %}
+    <div id="{{ id ~ '_widget_container' }}" class="single-upload">
+        <div class="btn-toolbar form-actions form-actions-condensed singleupload-buttonbar">
+            <span class="btn btn-success fileinput">
+                {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:upload.html.twig" %}
+                <input type="file" {{ block('widget_attributes') }} />
+            </span>
+            {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:controls.html.twig" %}
+        </div>
+        <div id="{{ id ~ '_preview' }}" class="single-upload-preview">
+            {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:nameable.html.twig" %}
+            {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:preview.html.twig" %}
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock single_upload_widget %}
+
 {% block color_picker_widget %}
 {% spaceless %}
 {% if widget == "image" %}

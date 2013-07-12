@@ -2,6 +2,7 @@
 
 namespace Avocode\FormExtensionsBundle\Form\Type;
 
+use Avocode\FormExtensionsBundle\Form\EventListener\CollectionUploadSubscriber;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -9,8 +10,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Avocode\FormExtensionsBundle\Form\EventListener\CaptureCollectionUploadListener;
-
+/**
+ * @author Piotr Gołębiewski <loostro@gmail.com>
+ */
 class CollectionUploadType extends AbstractType
 {
     protected $container;
@@ -25,8 +27,10 @@ class CollectionUploadType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $captureListener = new CaptureCollectionUploadListener($builder->getName(), $options);
-        $builder->addEventSubscriber($captureListener);
+        $builder->addEventSubscriber(new CollectionUploadSubscriber(
+            $builder->getName(), 
+            $options
+        ));
 
         $builder->setAttribute('thumbnail_generator', $this->container->getParameter('avocode.form.thumbnail_generator'));
     }

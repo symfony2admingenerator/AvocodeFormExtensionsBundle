@@ -1,0 +1,12 @@
+{% if nameable %}
+    {% set entity = form.parent.vars.value %}
+    {% set value = attribute(entity, nameable_field) %}
+    {% set file = form.vars.data %}
+    <div class="row-fluid">
+        <label>{{ 'singleupload.display.name'|trans({}, 'AvocodeFormExtensions') }}</label>
+        <input type="text"
+               id="{{ id ~ '_name' }}" value="{{ value }}"
+               name="{{ form.parent.vars.full_name ~ '['~name~'_name]' }}"
+               {% if file is empty %}disabled="disabled"{% endif %} />
+    </div>
+{% endif %}

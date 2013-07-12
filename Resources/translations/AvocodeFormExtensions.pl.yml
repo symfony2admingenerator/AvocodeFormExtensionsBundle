@@ -18,3 +18,23 @@ collection_upload:
         typeNotAllowed:   Niedozwolony typ pliku
         maxFileSize:      Plik jest za duży
         minFileSize:      Plik jest za mały
+        
+single_upload:
+    display.name:     Wyświetlana nazwa
+    button:
+        add:              Dodaj plik...
+        replace:          Zamień plik...
+        cancel:           Anuluj
+        delete:           Usuń
+    type:
+        audio:            Audio
+        archive:          Archiwum
+        html:             HTML
+        image:            Obraz
+        pdf-document:     Dokument<br />PDF
+        plain-text:       Tekst
+        presentation:     Prezentacja
+        spreadsheet:      Arkusz<br />Kalkulacyjny
+        text-document:    Dokument<br />Tekstowy
+        unknown:          Nieznany<br />Typ Pliku
+        video:            Wideo
