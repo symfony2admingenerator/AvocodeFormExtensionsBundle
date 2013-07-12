@@ -32,7 +32,7 @@ class CollectionUploadType extends AbstractType
             $options
         ));
 
-        $builder->setAttribute('thumbnail_generator', $this->container->getParameter('avocode.form.thumbnail_generator'));
+//        $builder->setAttribute('thumbnail_generator', $this->container->getParameter('avocode.form.thumbnail_generator'));
     }
 
     /**
