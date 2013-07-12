@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "cedriclombardot/admingenerator-generator-bundle": "The missing symfony2 admin generator",
+        "cedriclombardot/admingenerator-generator-bundle": "dev-master",
         "components/jquery": ">= 1.9.0",
         "components/jqueryui": ">= 1.9.0",
         "twitter/bootstrap": ">= 2.0.0"
