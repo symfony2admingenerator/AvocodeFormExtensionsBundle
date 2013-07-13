@@ -37,6 +37,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                 
                 $this->configs[$child->getName()] = array(
                     'nameable'        =>  $options['nameable'],
+                    'nameable_field'  =>  $options['nameable_field'],
                     'deleteable'      =>  $options['deleteable'],
                 );
 
@@ -45,7 +46,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                     $this->configs[$child->getName()]['captured_name'] = $post[$child->getName().'_name'];
 
                     // unset additional form data to prevent errors
-                    unset($post[$child->getName().'_nameable']);
+                    unset($post[$child->getName().'_name']);
                 }
 
                 if ($options['deleteable'] && array_key_exists($child->getName().'_delete', $post)) {
@@ -53,7 +54,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                     $this->configs[$child->getName()]['delete'] = $post[$child->getName().'_delete'];
 
                     // unset additional form data to prevent errors
-                    unset($post[$child->getName().'_deleteable']);
+                    unset($post[$child->getName().'_delete']);
                 }
             }
         
@@ -69,8 +70,8 @@ class SingleUploadSubscriber implements EventSubscriberInterface
             
             foreach ($this->configs as $field => $config) {
                 if ($config['nameable']) {
-                    $getterName = 'get'.ucfirst($config['nameable']);
-                    $setterName = 'set'.ucfirst($config['nameable']);
+                    $getterName = 'get'.ucfirst($config['nameable_field']);
+                    $setterName = 'set'.ucfirst($config['nameable_field']);
 
                     // save original name for postSubmit event
                     $config['original_name'] = $data->$getterName();
@@ -94,7 +95,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                 foreach ($this->configs as $field => $config) {
                     if ($config['nameable']) {
                         // revert to original name
-                        $setter = 'set'.ucfirst($config['nameable']);
+                        $setter = 'set'.ucfirst($config['nameable_field']);
                         $data->$setter($config['original_name']);
                     }
                 }
