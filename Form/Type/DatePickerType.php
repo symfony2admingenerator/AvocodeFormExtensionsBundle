@@ -76,51 +76,48 @@ class DatePickerType extends AbstractType
             'format' => $options['format']
         ));
         
-        if (!array_key_exists('attr', $view->vars) || !is_array($view->vars['attr'])) {
-            $view->vars['attr'] = array();
-        }
-        
-        $view->vars['attr'] = array_merge($view->vars['attr'], array(
-            'data-week-start'             =>  $options['week_start'],
-            'data-calendar-weeks'         =>  json_encode($options['calendar_weeks']),
-            'data-start-date'             =>  $options['start_date'],
-            'data-end-date'               =>  $options['end_date'],
-            'data-days-of-week-disabled'  =>  $options['days_of_week_disabled'],
-            'data-autoclose'              =>  json_encode($options['autoclose']),
-            'data-start-view'             =>  $options['start_view'],
-            'data-min-view-mode'          =>  $options['min_view_mode'],
-            'data-today-btn'              =>  $today_btn,
-            'data-today-highlight'        =>  json_encode($options['today_highlight']),
-            'data-clear-btn'              =>  json_encode($options['clear_btn']),
-            'data-language'               =>  $language,
-        ));
+        $view->vars['week_start']             = $options['week_start'];
+        $view->vars['calendar_weeks']         = json_encode($options['calendar_weeks']);
+        $view->vars['start_date']             = $options['start_date'];
+        $view->vars['end_date']               = $options['end_date'];
+        $view->vars['days_of_week_disabled']  = $options['days_of_week_disabled'];
+        $view->vars['autoclose']              = json_encode($options['autoclose']);
+        $view->vars['start_view']             = $options['start_view'];
+        $view->vars['view_mode']              = $options['view_mode'];
+        $view->vars['min_view_mode']          = $options['min_view_mode'];
+        $view->vars['today_btn']              = $today_btn;
+        $view->vars['today_highlight']        = json_encode($options['today_highlight']);
+        $view->vars['clear_btn']              = json_encode($options['clear_btn']);
+        $view->vars['language']               = $language;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'input'                 =>  'datetime',
-            'format'                =>  'yyyy-MM-dd',
-            'week_start'            =>  1,
-            'calendar_weeks'        =>  false,
-            'start_date'            =>  date('Y-m-d', strtotime('-20 years')),
-            'end_date'              =>  date('Y-m-d', strtotime('+20 years')),
-            'days_of_week_disabled' =>  '',
-            'autoclose'             =>  true,
-            'start_view'            =>  0,
-            'min_view_mode'         =>  0,
-            'today_btn'             =>  false,
-            'today_highlight'       =>  false,
-            'clear_btn'             =>  false,
-            'language'              =>  false,
-            'attr'                  =>  array(
-                'class'   =>  'input-small'
+            'input'                 => 'datetime',
+            'format'                => 'yyyy-MM-dd',
+            'week_start'            => 1,
+            'calendar_weeks'        => false,
+            'start_date'            => date('Y-m-d', strtotime('-20 years')),
+            'end_date'              => date('Y-m-d', strtotime('+20 years')),
+            'days_of_week_disabled' => '',
+            'autoclose'             => true,
+            'start_view'            => 0,
+            'view_mode'             => 0,
+            'min_view_mode'         => 0,
+            'today_btn'             => false,
+            'today_highlight'       => false,
+            'clear_btn'             => false,
+            'language'              => false,
+            'attr'                  => array(
+                'class' => 'input-small'
             ),
         ));
 
         $resolver->setAllowedValues(array(
             'week_start'      => range(0, 6),
             'start_view'      => array(0, 'month', 1, 'year', 2, 'decade'),
+            'view_mode'       => array(0, 'days', 1, 'months', 2, 'years'),
             'min_view_mode'   => array(0, 'days', 1, 'months', 2, 'years'),
             'calendar_weeks'  => array(true, false),
             'autoclose'       => array(true, false),
