@@ -14,21 +14,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class SingleUploadType extends AbstractType
 {
-    protected $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->setAttribute('thumbnail_generator', $this->container->getParameter('avocode.form.thumbnail_generator'));
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -57,9 +42,8 @@ class SingleUploadType extends AbstractType
         $view->vars['minHeight']          =   $options['minHeight'];
         $view->vars['previewImages']      =   $options['previewImages'];
         $view->vars['previewAsCanvas']    =   $options['previewAsCanvas'];
-        $view->vars['thumbnailFilter']    =   $options['thumbnailFilter'];
-        $view->vars['thumbnailGenerator'] =   $form->getConfig()->getAttribute('thumbnail_generator');
-        $view->vars['downloadType']       =   $this->_checkFileType($data);
+        $view->vars['previewFilter']      =   $options['previewFilter'];
+        $view->vars['fileType']           =   $this->_checkFileType($data);
     }
 
     /**
@@ -79,7 +63,7 @@ class SingleUploadType extends AbstractType
             'minHeight'         => 16,
             'previewImages'     => true,
             'previewAsCanvas'   => true,
-            'thumbnailFilter'   => null,
+            'previewFilter'     => null,
         ));
 
         $resolver->setAllowedTypes(array(
@@ -92,7 +76,7 @@ class SingleUploadType extends AbstractType
             'minHeight'         => array('integer'),
             'previewImages'     => array('bool'),
             'previewAsCanvas'   => array('bool'),
-            'thumbnailFilter'   => array('string', 'null'),
+            'previewFilter'     => array('string', 'null'),
         ));
     }
 

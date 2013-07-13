@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
         
         $rootNode
             ->children()
+                ->scalarNode('asset_provider')->defaultNull()->end()
                 ->scalarNode('image_manipulator')->defaultNull()->end()
             ->end()
         ;

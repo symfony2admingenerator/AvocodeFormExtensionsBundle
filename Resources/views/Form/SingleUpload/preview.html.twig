@@ -1,17 +1,13 @@
 {% import "AvocodeFormExtensionsBundle:Form/SingleUpload:macros.html.twig" as macros %}
 
 {% set file = form.vars.data %}
-{% set entity = form.parent.vars.value %}
-{% set property = form.vars.name %}
+{% set object = form.parent.vars.value %}
+{% set field = form.vars.name %}
 
 <div class="{{ id ~ '_preview_image' }} download active">
 {% if file|default is not empty %}
-    {% if previewImages and downloadType == 'image' and false %}
-        {% if thumbnailGenerator is sameas('avalanche') and thumbnailFilter %}
-            {% set src = vich_uploader_asset(entity, property)|apply_filter(thumbnailFilter) %}
-        {% else %}
-            {% set src = vich_uploader_asset(entity, property) %}
-        {% endif %}
+    {% if previewImages and fileType == 'image' %}
+        {% set src = image_asset(object, field)|image_filter(previewFilter) %}
         <img class="img-polaroid"
              src="{{ src }}"
              style="{{- 'max-width:'  ~ maxWidth   ~'px;' -}}
@@ -19,10 +15,10 @@
                     {{- 'min-width:'  ~ minWidth   ~'px;' -}}
                     {{- 'min-height:' ~ minHeight  ~'px;' -}}" />
     {% else %}
-        <div class="fileicon {{ downloadType }}">{{ ('single_upload.type.'~downloadType)|trans({}, 'AvocodeFormExtensions')|raw }}</div>
+        <div class="fileicon {{ fileType }}">{{ ('single_upload.type.'~fileType)|trans({}, 'AvocodeFormExtensions')|raw }}</div>
     {% endif %}
     {% if nameable %}
-        <div class="row-fluid">{{ attribute(entity, nameable_field) }}</div>
+        <div class="row-fluid">{{ attribute(object, nameable_field) }}</div>
     {% else %}
         <div class="row-fluid">{{ file.filename }}</div>
     {% endif %}

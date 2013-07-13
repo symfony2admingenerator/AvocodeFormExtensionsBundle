@@ -15,13 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class CollectionUploadType extends AbstractType
 {
-    protected $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -31,8 +24,6 @@ class CollectionUploadType extends AbstractType
             $builder->getName(), 
             $options
         ));
-
-        $builder->setAttribute('thumbnail_generator', $this->container->getParameter('avocode.form.thumbnail_generator'));
     }
 
     /**
@@ -56,9 +47,8 @@ class CollectionUploadType extends AbstractType
         $view->vars['previewMaxWidth']          =   $options['previewMaxWidth'];
         $view->vars['previewMaxHeight']         =   $options['previewMaxHeight'];
         $view->vars['previewAsCanvas']          =   $options['previewAsCanvas'];
+        $view->vars['previewFilter']            =   $options['previewFilter'];
         $view->vars['prependFiles']             =   $options['prependFiles'];
-        $view->vars['thumbnailFilter']          =   $options['thumbnailFilter'];
-        $view->vars['thumbnailGenerator']       =   $form->getConfig()->getAttribute('thumbnail_generator');
     }
 
     /**
@@ -84,8 +74,8 @@ class CollectionUploadType extends AbstractType
             'previewMaxWidth'           =>  80,
             'previewMaxHeight'          =>  80,
             'previewAsCanvas'           =>  true,
+            'previewFilter'             =>  null,
             'prependFiles'              =>  false,
-            'thumbnailFilter'           =>  null,
         ));
 
         $resolver->setAllowedTypes(array(
@@ -104,8 +94,8 @@ class CollectionUploadType extends AbstractType
             'previewMaxWidth'           =>  array('integer'),
             'previewMaxHeight'          =>  array('integer'),
             'previewAsCanvas'           =>  array('bool'),
+            'previewFilter'             =>  array('string', 'null'),
             'prependFiles'              =>  array('bool'),
-            'thumbnailFilter'           =>  array('string', 'null'),
         ));
     }
 
