@@ -33,8 +33,8 @@
             previewAsCanvas:  true,
             isEmpty:          true,
             nameable:         false,
-            nameable_name:    null,
             deleteable:       false,
+            widget_name:      null,
             filetypes:  {
                 'audio':            "Audio",
                 'archive':          "Archive",
@@ -213,7 +213,7 @@
             });
             
             // Set deletable flag
-            this.$deleteFlag.val(true);
+            this.$deleteFlag.val(1);
             
             // Disable delete button animation
             this.isDeletable = false;
@@ -237,7 +237,7 @@
                         $activePreview.find('.nameable').attr('disabled', 'disabled');
                         var $filelabel = $('<div/>').addClass('row-fluid').html(
                             $('<input/>').attr('type', 'text').addClass('nameable')
-                                .attr('name', that.options.nameable_name).val(file.name)
+                                .attr('name', that.options.widget_name+'[name]').val(file.name)
                         );
                     } else {
                         var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);
@@ -290,7 +290,7 @@
                 $activePreview.find('.nameable').attr('disabled', 'disabled');
                 var $filelabel = $('<div/>').addClass('row-fluid').html(
                     $('<input/>').attr('type', 'text').addClass('nameable')
-                        .attr('name', this.options.nameable_name).val(file.name)
+                        .attr('name', this.options.widget_name+'[name]').val(file.name)
                 );
             } else {
                 var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);

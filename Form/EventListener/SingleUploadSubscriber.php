@@ -32,30 +32,27 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         
         foreach ($form->all() as $child) {
             if ($child->getConfig()->getType()->getName() === 'single_upload') {
-              
+                $childPost = $post[$child->getName()];
                 $options = $child->getConfig()->getOptions();
                 
                 $this->configs[$child->getName()] = array(
-                    'nameable'        =>  $options['nameable'],
-                    'nameable_field'  =>  $options['nameable_field'],
-                    'deleteable'      =>  $options['deleteable'],
+                    'nameable'   => $options['nameable'],
+                    'deleteable' => $options['deleteable'],
                 );
 
-                if ($options['nameable'] && array_key_exists($child->getName().'_name', $post)) {
+                if ($options['nameable'] && array_key_exists('name', $childPost)) {
                     // capture name and store it for onSubmit event
-                    $this->configs[$child->getName()]['captured_name'] = $post[$child->getName().'_name'];
-
-                    // unset additional form data to prevent errors
-                    unset($post[$child->getName().'_name']);
+                    $this->configs[$child->getName()]['captured_name'] = $childPost['name'];
                 }
 
-                if ($options['deleteable'] && array_key_exists($child->getName().'_delete', $post)) {
+                if ($options['deleteable'] && array_key_exists('delete', $childPost)) {
                     // capture name and store it for onSubmit event
-                    $this->configs[$child->getName()]['delete'] = $post[$child->getName().'_delete'];
-
-                    // unset additional form data to prevent errors
-                    unset($post[$child->getName().'_delete']);
+                    $this->configs[$child->getName()]['delete'] = $childPost['delete'];
                 }
+                
+                // remove additional data to prevent errors
+                // by overwriting them with posted file
+                $post[$child->getName()] = $childPost['file'];
             }
         
             $event->setData($post);
@@ -69,15 +66,26 @@ class SingleUploadSubscriber implements EventSubscriberInterface
             $data = $form->getData();
             
             foreach ($this->configs as $field => $config) {
-                if ($config['nameable']) {
-                    $getterName = 'get'.ucfirst($config['nameable_field']);
-                    $setterName = 'set'.ucfirst($config['nameable_field']);
+                if ($config['nameable'] && array_key_exists('captured_name', $config)) {
+                    $getterName = 'get'.ucfirst($config['nameable']);
+                    $setterName = 'set'.ucfirst($config['nameable']);
 
                     // save original name for postSubmit event
                     $config['original_name'] = $data->$getterName();
 
                     // set captured name
                     $data->$setterName($config['captured_name']);
+                }
+                
+                if ($config['deleteable'] && array_key_exists('delete', $config)) {
+                    $getterPath = 'get'.ucfirst($config['deleteable']);
+                    $setterPath = 'set'.ucfirst($config['deleteable']);
+
+                    // save original file for postSubmit event
+                    $config['original_path'] = $data->$getterPath();
+                    
+                    // remove file
+                    $data->$setterPath(null);
                 }
             }
             
@@ -93,10 +101,16 @@ class SingleUploadSubscriber implements EventSubscriberInterface
 
             if (!$form->isValid()) {
                 foreach ($this->configs as $field => $config) {
-                    if ($config['nameable']) {
+                    if ($config['nameable'] && array_key_exists('original_name', $config)) {
                         // revert to original name
-                        $setter = 'set'.ucfirst($config['nameable_field']);
-                        $data->$setter($config['original_name']);
+                        $setterName = 'set'.ucfirst($config['nameable']);
+                        $data->$setterName($config['original_name']);
+                    }
+                
+                    if ($config['deleteable'] && array_key_exists('original_path', $config)) {
+                        $setterPath = 'set'.ucfirst($config['deleteable']);
+                        // revert to original name
+                        $data->$setterPath($config['original_path']);
                     }
                 }
 

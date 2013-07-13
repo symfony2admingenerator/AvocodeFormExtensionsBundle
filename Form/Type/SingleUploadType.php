@@ -34,7 +34,6 @@ class SingleUploadType extends AbstractType
         
         $view->vars['multipart']          =   true;
         $view->vars['nameable']           =   $options['nameable'];
-        $view->vars['nameable_field']     =   $options['nameable_field'];
         $view->vars['deleteable']         =   $options['deleteable'];
         $view->vars['maxWidth']           =   $options['maxWidth'];
         $view->vars['maxHeight']          =   $options['maxHeight'];
@@ -55,7 +54,6 @@ class SingleUploadType extends AbstractType
 
         $resolver->setDefaults(array(
             'nameable'          => false,
-            'nameable_field'    => null,
             'deleteable'        => false,
             'maxWidth'          => 320,
             'maxHeight'         => 180,
@@ -67,9 +65,8 @@ class SingleUploadType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
-            'nameable'          => array('bool'),
-            'nameable_field'    => array('string', 'null'),
-            'deleteable'        => array('bool'),
+            'nameable'          => array('string', 'bool'),
+            'deleteable'        => array('string', 'bool'),
             'maxWidth'          => array('integer'),
             'maxHeight'         => array('integer'),
             'minWidth'          => array('integer'),

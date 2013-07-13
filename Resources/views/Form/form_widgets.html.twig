@@ -139,7 +139,7 @@
         <div class="btn-toolbar form-actions form-actions-condensed singleupload-buttonbar">
             <span class="btn btn-success fileinput">
                 {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:upload.html.twig" %}
-                <input type="file" {{ block('widget_attributes') }} />
+                <input type="file" id="{{ id }}" name="{{ form.parent.vars.full_name ~ '['~name~'][file]' }}" />
             </span>
             {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:controls.html.twig" %}
         </div>

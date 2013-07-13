@@ -158,9 +158,9 @@
             previewImages:    {{ previewImages }},
             previewAsCanvas:  {{ previewAsCanvas }},
             isEmpty:          {{ (form.vars.data is empty)|default(0) }},
-            nameable:         {{ nameable }},
-            nameable_name:    "{{ form.parent.vars.full_name ~ '['~name~'_name]' }}",
-            deleteable:       {{ deleteable }},
+            nameable:         {{ (nameable is not empty)|default(0) }},
+            deleteable:       {{ (deleteable is not empty)|default(0) }},
+            widget_name:      "{{ form.parent.vars.full_name ~ '['~name~']' }}",
             filetypes:  {
                 'audio':            "{{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|raw }}",
                 'archive':          "{{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|raw }}",

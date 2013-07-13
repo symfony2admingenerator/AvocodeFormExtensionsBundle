@@ -17,10 +17,10 @@
     {% else %}
         <div class="fileicon {{ fileType }}">{{ ('single_upload.type.'~fileType)|trans({}, 'AvocodeFormExtensions')|raw }}</div>
     {% endif %}
-    {% if nameable %}
+    {% if nameable is not empty %}
     <div class="row-fluid">
-        {% set nName = form.parent.vars.full_name ~ '['~name~'_name]' %}
-        {% set nValue = attribute(object, nameable_field) %}
+        {% set nName = form.parent.vars.full_name ~ '_'~name~'[name]' %}
+        {% set nValue = attribute(object, nameable) %}
         <input type="text" class="nameable" name="{{ nName }}" value="{{ nValue }}" />
     </div>
     {% else %}
