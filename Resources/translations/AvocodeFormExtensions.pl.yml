@@ -20,7 +20,6 @@ collection_upload:
         minFileSize:      Plik jest za mały
         
 single_upload:
-    display_name:     Wyświetlana nazwa
     button:
         add:              Dodaj plik...
         replace:          Zamień plik...
