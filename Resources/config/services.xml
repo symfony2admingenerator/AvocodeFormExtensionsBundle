@@ -46,7 +46,7 @@
             <argument type="service" id="twig.form.renderer" />
         </service>
         
-        <service id="avocode.twig.extension.image_filter" class="Avocode\FormExtensionsBundle\Twig\Extension\ImageFilterExtension">
+        <service id="avocode.twig.extension.image_assets" class="Avocode\FormExtensionsBundle\Twig\Extension\ImageAssetsExtension">
             <tag name="twig.extension" />
             <argument type="service" id="service_container" />
         </service>

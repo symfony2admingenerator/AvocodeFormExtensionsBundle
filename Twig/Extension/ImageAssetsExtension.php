@@ -5,8 +5,13 @@ namespace Avocode\FormExtensionsBundle\Twig\Extension;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * This extension adds common twig filter for various image manipulation 
- * bundles. Depending on %avocode.form.image_manipulator% setting a diffrent 
+ * This extension adds common twig function for various asset provider 
+ * bundles and common twig filter image manipulation bundles. 
+ * 
+ * Depending on %avocode.form.asset_provider% setting a diffrent 
+ * asset provider bundle is used.
+ * 
+ * Depending on %avocode.form.image_manipulator% setting a diffrent 
  * image manipulation bundle is used.
  * 
  * @author Piotr Gołębiewski <loostro@gmail.com>
