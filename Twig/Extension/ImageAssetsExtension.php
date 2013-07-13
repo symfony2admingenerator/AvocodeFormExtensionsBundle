@@ -35,6 +35,9 @@ class ImageAssetsExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilters()
     {
         return array(
@@ -52,13 +55,16 @@ class ImageAssetsExtension extends \Twig_Extension
         $params = func_get_args();
         
         if ('vich_uploader' === $this->getAssetProvider()) {
-            $ext = $this->container->get('vich_uploader.twig.extension.uploader'); 
+            $ext = new \Vich\UploaderBundle\Twig\Extension\UploaderExtension(
+                $this->container->get('vich_uploader.templating.helper.uploader_helper')  
+            );
+            
             return call_user_func_array(array($ext, "asset"), $params);
         }
         
         // In case no asset provider is used we expect object to have
         // a special method returning file's path
-        $getter = "get".ucfirst($field)."Path";
+        $getter = "get".ucfirst($field)."WebPath";
         
         return $object->$getter();
     }
@@ -74,12 +80,18 @@ class ImageAssetsExtension extends \Twig_Extension
         $path = $params[0];
         
         if ('liip_imagine' === $this->getImageManipulator()) {
-            $ext = $this->container->get('liip_imagine.twig.extension'); 
+            $ext = new \Liip\ImagineBundle\Templating\ImagineExtension(
+                $this->container->get('liip_imagine.cache.manager')
+            );
+            
             return call_user_func_array(array($ext, "filter"), $params);
         }
         
         if ('avalanche_imagine' === $this->getImageManipulator()) {
-            $ext = $this->container->get('imagine.twig.extension'); 
+            $ext = new \Avalanche\Bundle\ImagineBundle\Templating\ImagineExtension(
+                $this->container->get('imagine.cache.path.resolver')
+            );
+            
             return call_user_func_array(array($ext, "applyFilter"), $params);
         }
         
