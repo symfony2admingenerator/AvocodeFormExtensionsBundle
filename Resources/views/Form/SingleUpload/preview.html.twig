@@ -18,7 +18,11 @@
         <div class="fileicon {{ fileType }}">{{ ('single_upload.type.'~fileType)|trans({}, 'AvocodeFormExtensions')|raw }}</div>
     {% endif %}
     {% if nameable %}
-        <div class="row-fluid">{{ attribute(object, nameable_field) }}</div>
+    <div class="row-fluid">
+        {% set nName = form.parent.vars.full_name ~ '['~name~'_name]' %}
+        {% set nValue = attribute(object, nameable_field) %}
+        <input type="text" class="nameable" name="{{ nName }}" value="{{ nValue }}" />
+    </div>
     {% else %}
         <div class="row-fluid">{{ file.filename }}</div>
     {% endif %}

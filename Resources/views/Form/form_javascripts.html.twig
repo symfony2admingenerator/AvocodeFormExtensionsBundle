@@ -159,6 +159,7 @@
             previewAsCanvas:  {{ previewAsCanvas }},
             isEmpty:          {{ (form.vars.data|default is empty) }},
             nameable:         {{ nameable }},
+            nameable_name:    "{{ form.parent.vars.full_name ~ '['~name~'_name]' }}",
             filetypes:  {
                 'audio':            "{{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|raw }}",
                 'archive':          "{{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|raw }}",

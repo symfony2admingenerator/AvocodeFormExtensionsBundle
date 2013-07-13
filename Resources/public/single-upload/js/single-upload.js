@@ -33,6 +33,7 @@
             previewAsCanvas:  true,
             isEmpty:          true,
             nameable:         false,
+            nameable_name:    null,
             deleteable:       false,
             filetypes:  {
                 'audio':            "Audio",
@@ -137,11 +138,6 @@
                 );
             }
             
-            // change name
-            if (this.options.nameable) {
-                this.$nameableInput.removeAttr('disabled').val(file.name);
-            }
-            
             // trigger preview
             (this.options.previewImages && this._isImage(file))
             ?   this._onPreviewImage()
@@ -171,16 +167,17 @@
                 ); 
             }
             
-            // revert name
-            if (this.options.nameable) {
-                this.$nameableInput.val(this.originalName);
-            }
-            
             var $activePreview    = $('.'+this.element.id+'_preview_image.active');
             var $previewDownload  = $('.'+this.element.id+'_preview_image.download');
             
             // sanity-check
             if ($activePreview.hasClass('download')) return;
+            
+            // unlock original name
+            if (this.options.nameable) {
+                $activePreview.find('.nameable').removeAttr('name');
+                $previewDownload.find('.nameable').removeAttr('disabled');
+            }
             
             // reset input
             this._resetInput();
@@ -205,11 +202,6 @@
             
             // sanity check
             if (!this.isDeletable) return;
-            
-            // clear name
-            if (this.options.nameable) {
-                this.$nameableInput.attr('disabled', 'disabled').val('');
-            }
             
             // hide and remove delete button
             this.$deleteButton.parent().addClass('removed').end()
@@ -249,8 +241,23 @@
                     var $previewUpload = $activePreview.clone().empty().hide()
                         .removeClass('download').addClass('upload');
 
-                    var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);
+                    if (this.options.nameable) {
+                        $activePreview.find('.nameable').attr('disabled', 'disabled');
+                        var $filelabel = $('<div/>').addClass('row-fluid').html(
+                            $('<input/>').attr('type', 'text').addClass('nameable')
+                                .attr('name', this.options.nameable_name).val(file.name)
+                        );
+                    } else {
+                        var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);
+                    }
                     var $filesize = $('<div/>').addClass('row-fluid').text(that._bytesToSize(file.size));
+                    
+                    
+            
+                    // set name
+                    if (this.options.nameable) {
+                        this.$nameableInput.val(file.name);
+                    }
                     
                     // create and insert new preview node
                     $previewUpload.appendTo($activePreview.parent()).html(
@@ -294,7 +301,16 @@
             var $fileicon = $('<div/>').addClass('fileicon').addClass(filetype)
                                        .html(this.options.filetypes[filetype]);
             
-            var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);
+            if (this.options.nameable) {
+                $activePreview.find('.nameable').attr('disabled', 'disabled');
+                var $filelabel = $('<div/>').addClass('row-fluid').html(
+                    $('<input/>').attr('type', 'text').addClass('nameable')
+                        .attr('name', this.options.nameable_name).val(file.name)
+                );
+            } else {
+                var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);
+            }
+            
             var $filesize = $('<div/>').addClass('row-fluid').text(this._bytesToSize(file.size));
                                    
             // create and insert new preview node
