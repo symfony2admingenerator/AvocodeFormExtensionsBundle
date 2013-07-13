@@ -241,7 +241,7 @@
                     var $previewUpload = $activePreview.clone().empty().hide()
                         .removeClass('download').addClass('upload');
 
-                    if (this.options.nameable) {
+                    if (that.options.nameable) {
                         $activePreview.find('.nameable').attr('disabled', 'disabled');
                         var $filelabel = $('<div/>').addClass('row-fluid').html(
                             $('<input/>').attr('type', 'text').addClass('nameable')
