@@ -245,19 +245,12 @@
                         $activePreview.find('.nameable').attr('disabled', 'disabled');
                         var $filelabel = $('<div/>').addClass('row-fluid').html(
                             $('<input/>').attr('type', 'text').addClass('nameable')
-                                .attr('name', this.options.nameable_name).val(file.name)
+                                .attr('name', that.options.nameable_name).val(file.name)
                         );
                     } else {
                         var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);
                     }
                     var $filesize = $('<div/>').addClass('row-fluid').text(that._bytesToSize(file.size));
-                    
-                    
-            
-                    // set name
-                    if (this.options.nameable) {
-                        this.$nameableInput.val(file.name);
-                    }
                     
                     // create and insert new preview node
                     $previewUpload.appendTo($activePreview.parent()).html(
