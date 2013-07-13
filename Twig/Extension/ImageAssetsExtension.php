@@ -65,7 +65,7 @@ class ImageAssetsExtension extends \Twig_Extension
         // In case no asset provider is used we expect object to have
         // a special method returning file's path
         $getter = "get".ucfirst($field)."WebPath";
-        
+            
         return $object->$getter();
     }
 

@@ -11,11 +11,15 @@
     <!-- form-extensions.min.js -->
     <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/bootstrap-collection/js/bootstrap-collection.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/colorpicker/js/colorpicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/datepicker/js/bootstrap-datepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/select2/js/select2.min.js') }}"></script>
     {% if app.request.locale in ['ca', 'cs', 'da', 'de', 'es', 'et', 'eu', 'fr', 'gl', 'he', 'hr', 'hu', 'is', 'it', 'ja', 'lt', 'lv', 'mk', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'tr', 'ua', 'vi', 'zh-CN', 'zh-TW'] %}
     <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/select2/js/i18n/select2_locale_' ~ app.request.locale ~ '.js') }}"></script>
     {% endif %}
     <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/collection-upload/js/collection-upload.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/single-upload/js/single-upload.min.js') }}"></script>
+    {% if app.request.locale in ['bg', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'he', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'kr', 'lt', 'lv', 'mk', 'ms', 'nb', 'nl', 'pl', 'pt-BR', 'pt', 'ro', 'rs-latin', 'rs', 'ru', 'sk', 'sl', 'sq', 'sv', 'sw', 'th', 'tr', 'uk', 'zh-CN', 'zh-TW'] %}
+    <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/datepicker/js/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>
+    {% endif %}
     
 {% endblock avocode_form_javascripts %}

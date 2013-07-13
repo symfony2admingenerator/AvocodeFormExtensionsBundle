@@ -16,7 +16,14 @@
             <tag name="form.type" alias="color_picker" />
             <argument>%avocode.form.extensions.color_picker.options%</argument>
         </service>
-
+        
+        <service id="avocode.form.extensions.type.date_picker" class="Avocode\FormExtensionsBundle\Form\Type\DatePickerType">
+            <tag name="form.type" alias="date_picker" />
+            <call method="setLocale">
+                <argument>%locale%</argument>
+            </call>
+        </service>
+        
         <service id="avocode.form.extensions.type.select2" class="Avocode\FormExtensionsBundle\Form\Type\Select2Type" abstract="true" />
         
         <service id="avocode.form.extensions.type.collection_upload" class="Avocode\FormExtensionsBundle\Form\Type\CollectionUploadType">
