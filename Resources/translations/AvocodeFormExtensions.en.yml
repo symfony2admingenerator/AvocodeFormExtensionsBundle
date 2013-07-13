@@ -21,8 +21,8 @@ collection_upload:
         
 single_upload:
     button:
-        add:              Add file...
-        replace:          Replace file...
+        add:              Upload file
+        replace:          Replace file
         cancel:           Cancel
         delete:           Delete
     type:

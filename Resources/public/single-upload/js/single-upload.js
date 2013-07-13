@@ -78,19 +78,17 @@
             this.$replaceButton   = this.$widgetContainer.find('.singleupload-buttonbar .replace');
             this.$cancelButton    = this.$widgetContainer.find('.singleupload-buttonbar .cancel');
             this.$deleteButton    = this.$widgetContainer.find('.singleupload-buttonbar .delete');
-            
-            // Prepare nameable behavior if enabled
-            if (this.options.nameable) {
-                this.$nameableInput    = $('#'+this.element.id+'_name');
-                this.originalName     = this.$nameableInput.val();
-            }
-            
+                        
             // Set isDeletable
             this.isDeletable = (!this.options.isEmpty && this.options.deleteable);
             
             // Add deletable behaviour
+            if (this.options.deleteable) {
+                this.$deleteFlag = $('#'+this.element.id+'_delete');
+            }
+            
+            // Show delete button
             if (this.isDeletable) {
-                this.$deleteableInput = $('#'+this.element.id+'_delete');
                 this.$deleteButton.show();
             }            
             
@@ -122,13 +120,8 @@
             );
             
             if (this.isEmpty) {
-                // show replace button/hide add button
-                this.$replaceButton.show(
-                    'slide', { direction: 'left' }, 'slow'
-                );
-                this.$addButton.hide(
-                  'slide', { direction: 'right' }, 'slow'
-                );
+                this.$addButton.hide();
+                this.$replaceButton.show();
             }
               
             // hide delete button
@@ -152,12 +145,8 @@
             
             if (this.isEmpty) {
                 // show add button/hide replace button
-                this.$replaceButton.hide(
-                  'slide', { direction: 'right' }, 'slow'
-                );
-                this.$addButton.show(
-                    'slide', { direction: 'left' }, 'slow'
-                );
+                this.$replaceButton.hide();
+                this.$addButton.show();
             }
             
             // show delete button
@@ -203,6 +192,9 @@
             // sanity check
             if (!this.isDeletable) return;
             
+            this.$replaceButton.hide();
+            this.$addButton.show();
+            
             // hide and remove delete button
             this.$deleteButton.parent().addClass('removed').end()
             this.$deleteButton.addClass('disabled').hide('slide', {
@@ -221,7 +213,7 @@
             });
             
             // Set deletable flag
-            this.$deletableInput.val(true);
+            this.$deleteFlag.val(true);
             
             // Disable delete button animation
             this.isDeletable = false;

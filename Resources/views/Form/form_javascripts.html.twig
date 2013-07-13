@@ -157,9 +157,10 @@
             minHeight:        {{ minHeight }},
             previewImages:    {{ previewImages }},
             previewAsCanvas:  {{ previewAsCanvas }},
-            isEmpty:          {{ form.vars.data|default ? 'true' : 'false' }},
+            isEmpty:          {{ (form.vars.data is empty)|default(0) }},
             nameable:         {{ nameable }},
             nameable_name:    "{{ form.parent.vars.full_name ~ '['~name~'_name]' }}",
+            deleteable:       {{ deleteable }},
             filetypes:  {
                 'audio':            "{{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|raw }}",
                 'archive':          "{{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|raw }}",
