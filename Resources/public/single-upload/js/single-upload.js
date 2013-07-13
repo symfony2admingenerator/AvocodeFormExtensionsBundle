@@ -292,7 +292,7 @@
             var file = this.element.files[0];
             var filetype = this._checkFileType(file);
             var $fileicon = $('<div/>').addClass('fileicon').addClass(filetype)
-                                       .html(that.options.filetypes[filetype]);
+                                       .html(this.options.filetypes[filetype]);
             
             var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);
             var $filesize = $('<div/>').addClass('row-fluid').text(this._bytesToSize(file.size));
