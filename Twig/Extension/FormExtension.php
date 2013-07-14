@@ -54,7 +54,9 @@ class FormExtension extends \Twig_Extension
      */
     public function export_for_js($var)
     {
-        $functionPattern = "%^\\s*function\\s*\\(%i";
+        $functionPattern = "%^\\s*function\\s*\\(%is";
+        $jsonPattern = "%^\\s*\\{.*\\}\\s*$%is";
+        $arrayPattern = "%^\\s*\\[.*\\]\\s*$%is";
         
         if (is_bool($var)) {
             return $var ? 'true' : 'false';
@@ -68,23 +70,24 @@ class FormExtension extends \Twig_Extension
             return 'undefined';
         }
         
-        if (is_string($var) && !preg_match($functionPattern, $var)) {
+        if (is_string($var) && !preg_match($functionPattern, $var) && !preg_match($jsonPattern, $var) && !preg_match($arrayPattern, $var)) {
             return '"'.$var.'"';
         }
         
         if (is_array($var)) {
-            $functions = array();     // array to store function strings
-            $replacements = array();  // array to store replacement keys
+            $is_assoc = function ($array) {
+                return (bool)count(array_filter(array_keys($array), 'is_string'));
+            };
             
-            foreach ($var as $key => &$value) {
-                // search for values starting with "function("
-                if (preg_match($functionPattern, $value)) {
-                    $functions[] = $value;
-                    $replacements[] = '"%'.$key.'%"';
+            if ($is_assoc($var)) {
+                $items = array();
+                foreach($var as $key => $val) {
+                    $items[] = '"'.$key.'": '.$this->export_for_js($val);
                 }
+                return '{'.implode(',', $items).'}';
+            } else {
+                return '['.implode(',', $var).']';
             }
-            
-            return str_replace($replacements, $functions, json_encode($var));
         }
         
         return $var;

@@ -252,15 +252,17 @@
 
 {% block select2_javascript %}
 {% spaceless %}
+{% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
 
     {% block select2_javascript_prototype %}
-        $field.select2({{ configs|e4js|raw }});
+        $field.select2({{ configs|e4js }});
     {% endblock %}
     });
 </script>
+{% endautoescape %}
 {% endspaceless %}
 {% endblock select2_javascript %}
 
