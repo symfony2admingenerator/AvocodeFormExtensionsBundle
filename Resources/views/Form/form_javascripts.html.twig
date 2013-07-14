@@ -233,7 +233,7 @@
             maxDate:          {{ max_date|raw }},
         {% endif %}
         {% if ranges %}
-            ranges:           {{ ranges }},
+            ranges:           {{ ranges|raw }},
         {% endif %}
         });
     {% endblock daterange_picker_javascript_prototype %}

@@ -128,7 +128,7 @@ class DateRangePickerType extends AbstractType
                     "last-30-days",   "last-month", 
                     "last-365-days",  "last-year"
                 ))) {
-                    $key_tr = $this->translator->trans(''.$key, array(), $options['drp_translation_domain']);
+                    $key_tr = $this->translator->trans('date_range.ranges.'.$key, array(), $options['drp_translation_domain']);
                     $ranges[$key_tr] = $value;
                 } else {
                     $ranges[$key] = $value;
