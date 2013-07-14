@@ -11,16 +11,17 @@
 
 {% block bootstrap_collection_javascript_prototype %}
 {% spaceless %}
+{% autoescape false %}
     $field.bootstrapCollection({
-        allow_add:        {{ allow_add|raw }},
-        allow_delete:     {{ allow_delete|raw }},
-        sortable:         {{ sortable|raw }},
-        sortable_field:   "{{ sortable_field }}",
-        prototype_name:   "{{ prototype_name }}",
+        allow_add:        {{ allow_add|e4js }},
+        allow_delete:     {{ allow_delete|e4js }},
+        sortable:         {{ sortable|e4js }},
+        sortable_field:   {{ sortable_field|e4js }},
+        prototype_name:   {{ prototype_name|e4js }},
         trans: {
-            new_label:      "{{ new_label|trans({}, translation_domain) }}",
-            confirm:        "{{ 'bootstrap_collection.confirm.delete'|trans({}, 'AvocodeFormExtensions') }}",
-            confirm_batch:  "{{ 'bootstrap_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}"
+            new_label:      {{ new_label|trans({}, translation_domain)|e4js }},
+            confirm:        {{ 'bootstrap_collection.confirm.delete'|trans({}, 'AvocodeFormExtensions')|e4js }},
+            confirm_batch:  {{ 'bootstrap_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions')|e4js }}
         },
         javascript: function(id) {
         {% if prototype is defined %}
@@ -36,6 +37,7 @@
         {% endif %}
         }
     });
+{% endautoescape %}
 {% endspaceless %}
 {% endblock bootstrap_collection_javascript_prototype %}
 
@@ -77,25 +79,25 @@
 
 {% block collection_upload_javascript %}
 {% spaceless %}
+{% autoescape false %}
 <script type="text/javascript">
     $(document).ready(function(){
         var $field = $('#{{ id }}');
         
     {% block collection_upload_javascript_prototype %}
-    {% autoescape 'html_attr' %}
         $field.uploadCollection({
-            sortable:                 {{ sortable|raw }},
-            sortable_field:           "{{ sortable_field }}",
-            maxNumberOfFiles:         {{ maxNumberOfFiles|default('undefined') }},
-            maxFileSize:              {{ maxFileSize|default('undefined') }},
-            minFileSize:              {{ minFileSize|default('undefined') }},
-            acceptFileTypes:          {{ acceptFileTypes|default('undefined') }},
-            previewAsCanvas:          {{ previewAsCanvas|raw }},
-            prependFiles:             {{ prependFiles|raw }},
-            previewSourceFileTypes:   {{ previewSourceFileTypes|raw }},
-            previewSourceMaxFileSize: {{ previewSourceMaxFileSize|raw }},
-            previewMaxWidth:          {{ previewMaxWidth|raw }},
-            previewMaxHeight:         {{ previewMaxHeight|raw }},
+            sortable:                 {{ sortable|e4js }},
+            sortable_field:           {{ sortable_field|e4js }},
+            maxNumberOfFiles:         {{ maxNumberOfFiles|e4js }},
+            maxFileSize:              {{ maxFileSize|e4js }},
+            minFileSize:              {{ minFileSize|e4js }},
+            acceptFileTypes:          {{ acceptFileTypes|e4js }},
+            previewAsCanvas:          {{ previewAsCanvas|e4js }},
+            prependFiles:             {{ prependFiles|e4js }},
+            previewSourceFileTypes:   {{ previewSourceFileTypes|e4js }},
+            previewSourceMaxFileSize: {{ previewSourceMaxFileSize|e4js }},
+            previewMaxWidth:          {{ previewMaxWidth|e4js }},
+            previewMaxHeight:         {{ previewMaxHeight|e4js }},
             trans: {
                 maxNumFiles:        '{{ 'upload_collection.errors.maxNumFiles'|trans({}, 'AvocodeFormExtensions') }}',
                 typeNotAllowed:     '{{ 'upload_collection.errors.typeNotAllowed'|trans({}, 'AvocodeFormExtensions') }}',
@@ -104,7 +106,6 @@
                 confirmBatchDelete: '{{ 'upload_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
             }
         });
-    {% endautoescape %}
     {% endblock collection_upload_javascript_prototype %}
 
         // Create JSON array for existing files
@@ -112,26 +113,26 @@
             'files': [
             {% for key, item in form.vars.data -%}
                 {
-                    "{{ primary_key }}": "{{ attribute(item, primary_key) }}",
+                    {{ primary_key|e4js }}: {{ attribute(item, primary_key)|e4js }},
                     {% if nameable %}
-                        "{{ nameable_field }}": "{{ attribute(item, nameable_field) }}",
+                        {{ nameable_field|e4js }}: {{ attribute(item, nameable_field)|e4js }},
                     {% endif %}
                     {% if sortable %}
-                        "{{ sortable_field }}": "{{ attribute(item, sortable_field) }}",
+                        {{ sortable_field|e4js }}: {{ attribute(item, sortable_field)|e4js }},
                     {% endif %}
                     {% if editable %}
                         {% for field in editable %}
-                        "{{ field }}": "{{ attribute(item, field) }}",
+                        {{ field|e4js }}: {{ attribute(item, field)|e4js }},
                         {% endfor %}
                     {% endif %}
                     "size": {{ item.size }},
                     "url": "{{ image_asset(item, 'file') }}",
                     {% if item.preview and previewFilter and item.size < previewSourceMaxFileSize %}
-                        "thumbnail_url": "{{ image_asset(item, 'file')|image_filter(previewFilter) }}",
+                        "thumbnail_url": {{ image_asset(item, 'file')|image_filter(previewFilter)|e4js }},
                     {% elseif item.preview and item.size < previewSourceMaxFileSize %}
-                        "thumbnail_url": "{{ image_asset(item, 'file') }}",
+                        "thumbnail_url": {{ image_asset(item, 'file')|e4js }},
                     {% endif %}
-                    "count": "{{ key }}",
+                    "count": {{ key }},
                 }
                 {%- if not loop.last %},{% endif %}
             {% endfor %}
@@ -142,6 +143,7 @@
         $field.uploadCollection('loadFiles', files);
     });
 </script>
+{% endautoescape %}
 {% endspaceless %}
 {% endblock collection_upload_javascript %}
 
@@ -157,7 +159,7 @@
             onBeforeShow: function() {
                 $(this).ColorPickerSetColor($field.val());
             }
-        }, {{ configs|json_encode|raw }});
+        }, {{ configs|e4js|raw }});
 
         {% if widget == "image" %}
         $picker = $('#{{ id }}_color');
@@ -188,33 +190,36 @@
 
 {% block date_picker_javascript %}
 {% spaceless %}
+{% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
         
     {% block date_picker_javascript_prototype %}
         $field.datepicker({
-            weekStart:            {{ week_start }},
-            calendarWeeks:        {{ calendar_weeks|raw }},
-            daysOfWeekDisabled:   {{ days_of_week_disabled|raw }},
-            autoclose:            {{ autoclose|raw }},
-            viewMode:             {{ view_mode|json_encode()|raw }},
-            minViewMode:          {{ min_view_mode|json_encode()|raw }},
-            todayBtn:             {{ today_btn|json_encode()|raw }},
-            todayHighlight:       {{ today_highlight|raw }},
-            clearBtn:             {{ clear_btn|raw }},
-            language:             "{{ language }}",
-            startDate:            new Date("{{ start_date }}"),
-            endDate:              new Date("{{ end_date }}"),
+            weekStart:            {{ week_start|e4js }},
+            calendarWeeks:        {{ calendar_weeks|e4js }},
+            daysOfWeekDisabled:   {{ days_of_week_disabled|e4js }},
+            autoclose:            {{ autoclose|e4js }},
+            viewMode:             {{ view_mode|e4js }},
+            minViewMode:          {{ min_view_mode|e4js }},
+            todayBtn:             {{ today_btn|e4js }},
+            todayHighlight:       {{ today_highlight|e4js }},
+            clearBtn:             {{ clear_btn|e4js }},
+            language:             {{ language|e4js }},
+            startDate:            new Date({{ start_date|e4js }}),
+            endDate:              new Date({{ end_date|e4js }}),
         });
     {% endblock date_picker_javascript_prototype %}
     });
 </script>
+{% endautoescape %}
 {% endspaceless %}
 {% endblock date_picker_javascript %}
 
 {% block daterange_picker_javascript %}
 {% spaceless %}
+{% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -222,25 +227,26 @@
     {% block daterange_picker_javascript_prototype %}
         $field.daterangepicker({
             format:           "yyyy-MM-dd",
-            opens:            "{{ opens }}",
-            separator:        "{{ separator }}",
-            showWeekNumbers:  {{ show_week_numbers|raw }},
-            showDropdowns:    {{ show_dropdowns|raw }},
-            dateLimit:        "{{ date_limit }}",
-            locale:           "{{ locale }}",
+            opens:            {{ opens|e4js }},
+            separator:        {{ separator|e4js }},
+            showWeekNumbers:  {{ show_week_numbers|e4js }},
+            showDropdowns:    {{ show_dropdowns|e4js }},
+            dateLimit:        {{ date_limit|e4js }},
+            locale:           {{ locale|e4js }},
         {% if min_date is not empty %}
-            minDate:          "{{ min_date }}",
+            minDate:          {{ min_date|e4js }},
         {% endif %}
         {% if max_date is not empty %}
-            maxDate:          "{{ max_date }}",
+            maxDate:          {{ max_date|e4js }},
         {% endif %}
         {% if ranges %}
-            ranges:           {{ ranges|raw }},
+            ranges:           {{ ranges|e4js }},
         {% endif %}
         });
     {% endblock daterange_picker_javascript_prototype %}
     });
 </script>
+{% endautoescape %}
 {% endspaceless %}
 {% endblock daterange_picker_javascript %}
 
@@ -251,18 +257,7 @@
         $field = $('#{{ id }}');
 
     {% block select2_javascript_prototype %}
-        $field.select2({
-        {% for key,val in configs %}
-            {% if val[:1] is sameas('{') and val|reverse[:1] is sameas('}') %}
-                {{ key }}: {{ val|raw }}
-            {% elseif val[:8] is sameas('function') %}
-                {{ key }}: {{ val|raw }}
-            {% else %}
-                {{ key }}: "{{ val|raw }}"
-            {%- endif -%}
-            {%- if not loop.last %},{% endif %}
-        {% endfor %}
-        });
+        $field.select2({{ configs|e4js|raw }});
     {% endblock %}
     });
 </script>
@@ -271,59 +266,63 @@
 
 {% block single_upload_javascript %}
 {% spaceless %}
+{% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
         
     {% block single_upload_javascript_prototype %}
         $('#{{ id }}').singleUpload({
-            maxWidth:         {{ maxWidth }},
-            maxHeight:        {{ maxHeight }},
-            minWidth:         {{ minWidth }},
-            minHeight:        {{ minHeight }},
-            previewImages:    {{ previewImages|raw }},
-            previewAsCanvas:  {{ previewAsCanvas|raw }},
-            isEmpty:          {{ (form.vars.data is empty)|raw }},
-            nameable:         {{ nameable|raw }},
-            deleteable:       {{ deleteable|raw }},
-            widget_name:      "{{ form.parent.vars.full_name ~ '['~name~']' }}",
+            maxWidth:         {{ maxWidth|e4js }},
+            maxHeight:        {{ maxHeight|e4js }},
+            minWidth:         {{ minWidth|e4js }},
+            minHeight:        {{ minHeight|e4js }},
+            previewImages:    {{ previewImages|e4js }},
+            previewAsCanvas:  {{ previewAsCanvas|e4js }},
+            isEmpty:          {{ (form.vars.data is empty)|e4js }},
+            nameable:         {{ nameable|e4js }},
+            deleteable:       {{ deleteable|e4js }},
+            widget_name:      {{ (form.parent.vars.full_name ~ '['~name~']')|e4js }},
             filetypes:  {
-                'audio':            "{{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'archive':          "{{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'html':             "{{ 'single_upload.type.html'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'image':            "{{ 'single_upload.type.image'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'pdf-document':     "{{ 'single_upload.type.pdf-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'plain-text':       "{{ 'single_upload.type.plain-text'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'presentation':     "{{ 'single_upload.type.presentation'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'spreadsheet':      "{{ 'single_upload.type.spreadsheet'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'text-document':    "{{ 'single_upload.type.text-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'unknown':          "{{ 'single_upload.type.unknown'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'video':            "{{ 'single_upload.type.video'|trans({}, 'AvocodeFormExtensions')|raw }}"
+                'audio':            {{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'archive':          {{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'html':             {{ 'single_upload.type.html'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'image':            {{ 'single_upload.type.image'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'pdf-document':     {{ 'single_upload.type.pdf-document'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'plain-text':       {{ 'single_upload.type.plain-text'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'presentation':     {{ 'single_upload.type.presentation'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'spreadsheet':      {{ 'single_upload.type.spreadsheet'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'text-document':    {{ 'single_upload.type.text-document'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'unknown':          {{ 'single_upload.type.unknown'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'video':            {{ 'single_upload.type.video'|trans({}, 'AvocodeFormExtensions')|e4js }}
             }
         });
     {% endblock single_upload_javascript_prototype %}
     });
 </script>
+{% endautoescape %}
 {% endspaceless %}
 {% endblock single_upload_javascript %}
 
 {% block time_picker_javascript %}
 {% spaceless %}
+{% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
         
     {% block time_picker_javascript_prototype %}
         $field.timepicker({
-            minuteStep:     {{ minute_step }},
-            showSeconds:    {{ with_seconds|raw }},
-            secondStep:     {{ second_step }},
-            defaultTime:    {{ default_time|raw }},
-            showMeridian:   {{ show_meridian|raw }},
-            disableFocus:   {{ disable_focus|raw }},
+            minuteStep:     {{ minute_step|e4js }},
+            showSeconds:    {{ with_seconds|e4js }},
+            secondStep:     {{ second_step|e4js }},
+            defaultTime:    {{ default_time|e4js }},
+            showMeridian:   {{ show_meridian|e4js }},
+            disableFocus:   {{ disable_focus|e4js }},
         });
     {% endblock time_picker_javascript_prototype %}
     });
 </script>
+{% endautoescape %}
 {% endspaceless %}
 {% endblock time_picker_javascript %}

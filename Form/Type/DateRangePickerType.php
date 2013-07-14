@@ -119,7 +119,7 @@ class DateRangePickerType extends AbstractType
         $view->vars['min_date']          = $options['min_date'];
         $view->vars['max_date']          = $options['max_date'];
         $view->vars['date_limit']        = $options['date_limit'];
-        $view->vars['ranges']            = json_encode($ranges);
+        $view->vars['ranges']            = $ranges;
         $view->vars['locale']            = $locale;
     }
 

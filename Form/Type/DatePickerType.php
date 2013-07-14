@@ -78,7 +78,7 @@ class DatePickerType extends AbstractType
         $view->vars['calendar_weeks']         = $options['calendar_weeks'];
         $view->vars['start_date']             = $options['start_date'];
         $view->vars['end_date']               = $options['end_date'];
-        $view->vars['days_of_week_disabled']  = json_encode($options['days_of_week_disabled']);
+        $view->vars['days_of_week_disabled']  = $options['days_of_week_disabled'];
         $view->vars['autoclose']              = $options['autoclose'];
         $view->vars['start_view']             = $options['start_view'];
         $view->vars['view_mode']              = $options['view_mode'];

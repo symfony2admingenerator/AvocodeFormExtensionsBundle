@@ -22,7 +22,7 @@ class TimePickerType extends AbstractType
             'minute_step'   => $options['minute_step'],
             'with_seconds'  => $options['with_seconds'],
             'second_step'   => $options['second_step'],
-            'default_time'  => json_encode($options['default_time']),
+            'default_time'  => $options['default_time'],
             'show_meridian' => $options['show_meridian'],
             'disable_focus' => $options['disable_focus'],
         ));
