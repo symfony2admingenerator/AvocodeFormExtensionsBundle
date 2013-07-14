@@ -455,6 +455,7 @@
 }
 
 .datepicker .add-on,
+.datepicker .add-on > [class^="icon-"]:before, 
 .datepicker .add-on > [class*=" icon-"]:before {
     cursor: pointer;
 }

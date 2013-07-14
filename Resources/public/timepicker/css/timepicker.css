@@ -29,6 +29,7 @@
 }
 
 .timepicker .add-on,
+.timepicker .add-on > [class^="icon-"]:before, 
 .timepicker .add-on > [class*=" icon-"]:before {
     cursor: pointer;
 }
