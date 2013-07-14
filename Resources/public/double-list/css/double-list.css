@@ -1,0 +1,17 @@
+.double-list .list-selected,
+.double-list .list-unselected,
+.double-list .list-controls {
+    float: left;
+}
+
+.double-list .list-controls {
+    margin-top: 2em;
+}
+
+.double-list {
+    clear: both;
+}
+
+.double-list .hidden-select {
+    visibility: hidden;
+}

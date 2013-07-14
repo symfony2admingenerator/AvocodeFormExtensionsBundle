@@ -39,6 +39,8 @@
             <tag name="form.type" alias="datetime_picker" />
         </service>
         
+        <service id="avocode.form.extensions.type.double_list" class="Avocode\FormExtensionsBundle\Form\Type\DoubleListType" abstract="true" />
+        
         <service id="avocode.form.extensions.type.select2" class="Avocode\FormExtensionsBundle\Form\Type\Select2Type" abstract="true" />
         
         <service id="avocode.form.extensions.type.single_upload" class="Avocode\FormExtensionsBundle\Form\Type\SingleUploadType">

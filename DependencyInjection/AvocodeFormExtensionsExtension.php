@@ -30,6 +30,7 @@ class AvocodeFormExtensionsExtension extends Extension
         $container->setParameter('avocode.form.image_manipulator', $config['image_manipulator']);
         
         $this->loadBootstrapCollectionTypes($container);
+        $this->loadDoubleListTypes($container);
         $this->loadSelect2Types($container);
     }
     
@@ -44,6 +45,25 @@ class AvocodeFormExtensionsExtension extends Extension
             $typeDef
                 ->addArgument($type)
                 ->addTag('form.type', array('alias' => 'collection_'.$type))
+            ;
+
+            $container->setDefinition($serviceId.'.'.$type, $typeDef);
+        }
+    }
+    
+    private function loadDoubleListTypes(ContainerBuilder $container)
+    {
+        $serviceId = 'avocode.form.extensions.type.double_list';
+        
+        $doubleListTypes = array(
+            'entity', 'document', 'model'
+        );
+        
+        foreach ($doubleListTypes as $type) {
+            $typeDef = new DefinitionDecorator($serviceId);
+            $typeDef
+                ->addArgument($type)
+                ->addTag('form.type', array('alias' => 'double_list_'.$type))
             ;
 
             $container->setDefinition($serviceId.'.'.$type, $typeDef);

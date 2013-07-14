@@ -19,25 +19,6 @@ collection_upload:
         maxFileSize:      Plik jest za duży
         minFileSize:      Plik jest za mały
         
-single_upload:
-    button:
-        add:              Wgraj plik
-        replace:          Zamień plik
-        cancel:           Anuluj
-        delete:           Usuń
-    type:
-        audio:            Audio
-        archive:          Archiwum
-        html:             HTML
-        image:            Obraz
-        pdf-document:     Dokument<br />PDF
-        plain-text:       Tekst
-        presentation:     Prezentacja
-        spreadsheet:      Arkusz<br />Kalkulacyjny
-        text-document:    Dokument<br />Tekstowy
-        unknown:          Nieznany<br />Typ Pliku
-        video:            Wideo
-        
 date_range:
     label:
         apply:          Zastosuj
@@ -73,3 +54,26 @@ date_range:
         last-week:      Ostatni tydzień
         last-month:     Ostatni miesiąc
         last-year:      Ostatni rok
+        
+double_list:
+    selected:           Wybrane
+    unselected:         Nie wybrane
+        
+single_upload:
+    button:
+        add:              Wgraj plik
+        replace:          Zamień plik
+        cancel:           Anuluj
+        delete:           Usuń
+    type:
+        audio:            Audio
+        archive:          Archiwum
+        html:             HTML
+        image:            Obraz
+        pdf-document:     Dokument<br />PDF
+        plain-text:       Tekst
+        presentation:     Prezentacja
+        spreadsheet:      Arkusz<br />Kalkulacyjny
+        text-document:    Dokument<br />Tekstowy
+        unknown:          Nieznany<br />Typ Pliku
+        video:            Wideo

@@ -164,6 +164,38 @@
 {% endspaceless %}
 {% endblock daterange_picker_widget %}
 
+{% block double_list_prototype %}
+{% spaceless %}
+    <div id="{{ id ~ '_widget_container' }}" class="double-list">
+        <div class="list-unselected dropdown">
+            {% include "AvocodeFormExtensionsBundle:Form/DoubleList:unselected_list.html.twig" %}
+        </div>
+        <div class="list-controls">
+            <div class="btn-group btn-group-vertical">
+                <button class="btn btn-large"><i class="icon-chevron-left icon-large"></i></button>
+                <button class="btn btn-large"><i class="icon-chevron-right icon-large"></i></button>
+            </div>
+        </div>
+        <div class="list-selected dropdown">
+            {% include "AvocodeFormExtensionsBundle:Form/DoubleList:selected_list.html.twig" %}
+        </div>
+        {{ form_row(form) }}
+    </div>
+{% endspaceless %}
+{% endblock double_list_prototype %}
+    
+{% block double_list_document_widget %}
+    {{ block('double_list_prototype') }}
+{% endblock double_list_document_widget %}
+    
+{% block double_list_entity_widget %}
+    {{ block('double_list_prototype') }}
+{% endblock double_list_entity_widget %}
+    
+{% block double_list_model_widget %}
+    {{ block('double_list_prototype') }}
+{% endblock double_list_model_widget %}
+
 {% block single_upload_widget %}
 {% spaceless %}
     <div id="{{ id ~ '_widget_container' }}" class="single-upload">

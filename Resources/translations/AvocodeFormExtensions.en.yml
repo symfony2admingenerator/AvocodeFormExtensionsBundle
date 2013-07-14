@@ -19,25 +19,6 @@ collection_upload:
         maxFileSize:      File is too big
         minFileSize:      File is too small
         
-single_upload:
-    button:
-        add:              Upload file
-        replace:          Replace file
-        cancel:           Cancel
-        delete:           Delete
-    type:
-        audio:            Audio
-        archive:          Archive
-        html:             HTML
-        image:            Image
-        pdf-document:     PDF<br />Document
-        plain-text:       Plain<br />Text
-        presentation:     Presentation
-        spreadsheet:      Spreadsheet
-        text-document:    Text<br />Document
-        unknown:          Unknown<br />Filetype
-        video:            Video
-        
 date_range:
     label:
         apply:          Submit
@@ -73,3 +54,26 @@ date_range:
         last-week:      Last week
         last-month:     Last month
         last-year:      Last year
+        
+double_list:
+    selected:           Selected
+    unselected:         Unselected
+        
+single_upload:
+    button:
+        add:              Upload file
+        replace:          Replace file
+        cancel:           Cancel
+        delete:           Delete
+    type:
+        audio:            Audio
+        archive:          Archive
+        html:             HTML
+        image:            Image
+        pdf-document:     PDF<br />Document
+        plain-text:       Plain<br />Text
+        presentation:     Presentation
+        spreadsheet:      Spreadsheet
+        text-document:    Text<br />Document
+        unknown:          Unknown<br />Filetype
+        video:            Video
