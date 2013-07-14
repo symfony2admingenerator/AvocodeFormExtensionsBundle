@@ -6,7 +6,7 @@
 * @license: Licensed under Apache License v2.0. See http://www.apache.org/licenses/LICENSE-2.0
 * @website: http://www.improvely.com/
 */
-!function ($) {
+;!function ($) {
 
     var DateRangePicker = function (element, options, cb) {
         var hasOptions = typeof options == 'object';

@@ -454,6 +454,11 @@
     background-color: transparent;
 }
 
+.datepicker .add-on,
+.datepicker .add-on > [class*=" icon-"]:before {
+    cursor: pointer;
+}
+
 .input-append.date .add-on i,
 .input-prepend.date .add-on i {
     display: block;
