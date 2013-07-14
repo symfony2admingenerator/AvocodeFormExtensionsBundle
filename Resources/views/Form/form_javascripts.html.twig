@@ -282,12 +282,12 @@
         
     {% block time_picker_javascript_prototype %}
         $field.timepicker({
-            showMeridian:   false,
-            defaultTime:    false,
-            minute-step:    {{ minute_step }},
-            second-step:    {{ second_step }},
-            disable-focus:  {{ disable_focus }},
-            show-seconds:   {{ with_seconds }},
+            minuteStep:     {{ minute_step }},
+            showSeconds:    {{ with_seconds }},
+            secondStep:     {{ second_step }},
+            defaultTime:    {{ default_time is empty ? '0' : '"'~default_time~'"' }},
+            showMeridian:   {{ show_meridian }},
+            disableFocus:   {{ disable_focus }},
         });
     {% endblock time_picker_javascript_prototype %}
     });

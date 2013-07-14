@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * @author Vincent Touzet <vincent.touzet@gmail.com>
+ * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class DatePickerType extends AbstractType
 {
@@ -114,16 +115,19 @@ class DatePickerType extends AbstractType
             ),
         ));
 
+        $resolver->setAllowedTypes(array(
+            'calendar_weeks'  => array('bool'),
+            'autoclose'       => array('bool'),
+            'today_highlight' => array('bool'),
+            'clear_btn'       => array('bool'),
+        ));
+
         $resolver->setAllowedValues(array(
             'week_start'      => range(0, 6),
             'start_view'      => array(0, 'month', 1, 'year', 2, 'decade'),
             'view_mode'       => array(0, 'days', 1, 'months', 2, 'years'),
             'min_view_mode'   => array(0, 'days', 1, 'months', 2, 'years'),
-            'calendar_weeks'  => array(true, false),
-            'autoclose'       => array(true, false),
             'today_btn'       => array(true, false, 'linked'),
-            'today_highlight' => array(true, false),
-            'clear_btn'       => array(true, false),
         ));
     }
 

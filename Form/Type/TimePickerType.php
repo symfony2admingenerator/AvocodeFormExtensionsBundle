@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * @author Vincent Touzet <vincent.touzet@gmail.com>
+ * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class TimePickerType extends AbstractType
 {
@@ -21,6 +22,7 @@ class TimePickerType extends AbstractType
             'minute_step'   => $options['minute_step'],
             'second_step'   => $options['second_step'],
             'disable_focus' => $options['disable_focus'],
+            'show_meridian' => $options['show_meridian'],
         ));
     }
 
@@ -30,10 +32,20 @@ class TimePickerType extends AbstractType
             'widget'        => 'single_text',
             'minute_step'   => 15,
             'second_step'   => 15,
+            'default_time'  => 'current',
+            'show_meridian' => false,
             'disable_focus' => false,
             'attr'          => array(
                 'class' => 'input-small',
             ),
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'minute_step'     => array('integer'),
+            'second_step'     => array('integer'),
+            'default_time'    => array('string', 'bool'),
+            'show_meridian'   => array('bool'),
+            'disable_focus'   => array('bool'),
         ));
     }
 

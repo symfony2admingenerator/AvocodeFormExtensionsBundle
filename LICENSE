@@ -28,6 +28,30 @@ third party software also licensed under MIT license.
 For more information read 
 /Resources/public/collection-upload/LICENSE-NOTICE
 
+Color Picker
+---------------------
+Location: /Resources/public/colorpicker
+License:  /Resources/public/colorpicker/LICENSE
+
+Dual licensed under the MIT and GPL licenses.
+
+Date Picker
+---------------------
+Version:  1.1.0
+Location: /Resources/public/datepicker
+License:  /Resources/public/datepicker/LICENSE
+
+Date Picker is licensed under the Apache Software Foundation License Version 2.0.
+
+Select2
+---------------------
+Version:  3.4.0
+Location: /Resources/public/select2
+License:  /Resources/public/select2/LICENSE
+
+Select2 is licensed under the Apache Software Foundation License Version 2.0 
+and GPL Version 2.0.
+
 Single Upload
 ---------------------
 Location: /Resources/public/single-upload
@@ -39,26 +63,10 @@ third party assets licensed under Creative Commons Attribution-ShareAlike 3.0 Ho
 For more information read 
 /Resources/public/single-upload/LICENSE-NOTICE
 
-Colorpicker
+Time Picker
 ---------------------
-Location: /Resources/public/colorpicker
-License:  /Resources/public/colorpicker/LICENSE
+Version:  0.2.3
+Location: /Resources/public/timepicker
+License:  /Resources/public/timepicker/LICENSE
 
-Dual licensed under the MIT and GPL licenses.
-
-Datepicker
----------------------
-Version:  1.1.0
-Location: /Resources/public/datepicker
-License:  /Resources/public/datepicker/LICENSE
-
-Datepicker is licensed under the Apache Software Foundation License Version 2.0.
-
-Select2
----------------------
-Version:  3.4.0
-Location: /Resources/public/select2
-License:  /Resources/public/select2/LICENSE
-
-Select2 is licensed under the Apache Software Foundation License Version 2.0 
-and GPL Version 2.0.
+Time Picker is licensed under the MIT license.
