@@ -226,13 +226,13 @@
             showDropdowns:    {{ show_dropdowns|raw }},
             dateLimit:        {{ date_limit|raw }},
             locale:           {{ locale|raw }},
-        {% if minDate is not empty %}
+        {% if min_date %}
             minDate:          {{ min_date|raw }},
         {% endif %}
-        {% if maxDate is not empty %}
+        {% if max_date %}
             maxDate:          {{ max_date|raw }},
         {% endif %}
-        {% if ranges is not empty %}
+        {% if ranges %}
             ranges:           {{ ranges }},
         {% endif %}
         });

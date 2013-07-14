@@ -68,27 +68,20 @@ class DateRangePickerType extends AbstractType
         $ranges = array();
         if (is_array($options['ranges'])) {
             foreach ($options['ranges'] as $key => $value) {
-                // translate default ranges
-                if (in_array($key, array(
-                    'today', 'yesterday', 'last-7-days', 'last-week', 'last-month', 'last-year',
-                ))) {
-                    $key_tr = $this->translator->trans('date_range.ranges.'.$key, array(), $options['drp_translation_domain']);
-                    $ranges[$key_tr] = $value;
-                }
+                $key_tr = $this->translator->trans($key, array(), $options['drp_translation_domain']);
+                $ranges[$key_tr] = $value;
             }
         }
         
-        $view->vars = array_replace($view->vars, array(
-            'opens'             => json_encode($options['opens']),
-            'separator'         => json_encode($options['separator']),
-            'show_week_numbers' => json_encode($options['show_week_numbers']),
-            'show_dropdowns'    => json_encode($options['show_dropdowns']),
-            'min_date'          => json_encode($options['min_date']),
-            'max_date'          => json_encode($options['max_date']),
-            'date_limit'        => json_encode($options['date_limit']),
-            'ranges'            => json_encode($ranges),
-            'locale'            => json_encode($locale),
-        ));
+        $view->vars['opens']             = json_encode($options['opens']);
+        $view->vars['separator']         = json_encode($options['separator']);
+        $view->vars['show_week_numbers'] = json_encode($options['show_week_numbers']);
+        $view->vars['show_dropdowns']    = json_encode($options['show_dropdowns']);
+        $view->vars['min_date']          = json_encode($options['min_date']);
+        $view->vars['max_date']          = json_encode($options['max_date']);
+        $view->vars['date_limit']        = json_encode($options['date_limit']);
+        $view->vars['ranges']            = json_encode($ranges);
+        $view->vars['locale']            = json_encode($locale);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -100,10 +93,10 @@ class DateRangePickerType extends AbstractType
             'separator'               => ' - ',   // separator used between the two dates
             'show_week_numbers'       => true,
             'show_dropdowns'          => false,   // show dropdowns for the months and year
-            'min_date'                => null,    // null or string in format dd/mm/yyyy
-            'max_date'                => null,    // null or string in format dd/mm/yyyy
+            'min_date'                => false,    // null or string in format dd/mm/yyyy
+            'max_date'                => false,    // null or string in format dd/mm/yyyy
             'date_limit'              => false,   // date limit: false or array('days'=>5)
-            'ranges'                  => null,
+            'ranges'                  => false,    // ranges null or array
             'locale' => array(
                 'applyLabel'        => 'date_range.label.apply',
                 'clearLabel'        => 'date_range.label.clear',
@@ -141,9 +134,9 @@ class DateRangePickerType extends AbstractType
         $resolver->setAllowedTypes(array(
             'show_week_numbers' => array('bool'),
             'show_dropdowns'    => array('bool'),
-            'min_date'          => array('null', 'string'),
-            'max_date'          => array('null', 'string'),
-            'ranges'            => array('array'),
+            'min_date'          => array('bool', 'string'),
+            'max_date'          => array('bool', 'string'),
+            'ranges'            => array('bool', 'array'),
         ));
 
         $resolver->setAllowedValues(array(
