@@ -73,20 +73,20 @@ class DatePickerType extends AbstractType
             $language = $this->getLocale();
         }
         
-        $view->vars['format']                 = json_encode($options['format']);        
-        $view->vars['week_start']             = json_encode($options['week_start']);
-        $view->vars['calendar_weeks']         = json_encode($options['calendar_weeks']);
-        $view->vars['start_date']             = json_encode($options['start_date']);
-        $view->vars['end_date']               = json_encode($options['end_date']);
+        $view->vars['format']                 = $options['format'];        
+        $view->vars['week_start']             = $options['week_start'];
+        $view->vars['calendar_weeks']         = $options['calendar_weeks'];
+        $view->vars['start_date']             = $options['start_date'];
+        $view->vars['end_date']               = $options['end_date'];
         $view->vars['days_of_week_disabled']  = json_encode($options['days_of_week_disabled']);
-        $view->vars['autoclose']              = json_encode($options['autoclose']);
-        $view->vars['start_view']             = json_encode($options['start_view']);
-        $view->vars['view_mode']              = json_encode($options['view_mode']);
-        $view->vars['min_view_mode']          = json_encode($options['min_view_mode']);
-        $view->vars['today_btn']              = json_encode($today_btn);
-        $view->vars['today_highlight']        = json_encode($options['today_highlight']);
-        $view->vars['clear_btn']              = json_encode($options['clear_btn']);
-        $view->vars['language']               = json_encode($language);
+        $view->vars['autoclose']              = $options['autoclose'];
+        $view->vars['start_view']             = $options['start_view'];
+        $view->vars['view_mode']              = $options['view_mode'];
+        $view->vars['min_view_mode']          = $options['min_view_mode'];
+        $view->vars['today_btn']              = $today_btn;
+        $view->vars['today_highlight']        = $options['today_highlight'];
+        $view->vars['clear_btn']              = $options['clear_btn'];
+        $view->vars['language']               = $language;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -98,7 +98,7 @@ class DatePickerType extends AbstractType
             'calendar_weeks'        => false,
             'start_date'            => date('Y-m-d', strtotime('-20 years')),
             'end_date'              => date('Y-m-d', strtotime('+20 years')),
-            'days_of_week_disabled' => '',
+            'days_of_week_disabled' => array(),
             'autoclose'             => true,
             'start_view'            => 0,
             'view_mode'             => 0,
@@ -113,10 +113,11 @@ class DatePickerType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
-            'calendar_weeks'  => array('bool'),
-            'autoclose'       => array('bool'),
-            'today_highlight' => array('bool'),
-            'clear_btn'       => array('bool'),
+            'calendar_weeks'        => array('bool'),
+            'days_of_week_disabled' => array('array'),
+            'autoclose'             => array('bool'),
+            'today_highlight'       => array('bool'),
+            'clear_btn'             => array('bool'),
         ));
 
         $resolver->setAllowedValues(array(

@@ -112,15 +112,15 @@ class DateRangePickerType extends AbstractType
             }
         }
         
-        $view->vars['opens']             = json_encode($options['opens']);
-        $view->vars['separator']         = json_encode($options['separator']);
-        $view->vars['show_week_numbers'] = json_encode($options['show_week_numbers']);
-        $view->vars['show_dropdowns']    = json_encode($options['show_dropdowns']);
-        $view->vars['min_date']          = json_encode($options['min_date']);
-        $view->vars['max_date']          = json_encode($options['max_date']);
-        $view->vars['date_limit']        = json_encode($options['date_limit']);
+        $view->vars['opens']             = $options['opens'];
+        $view->vars['separator']         = $options['separator'];
+        $view->vars['show_week_numbers'] = $options['show_week_numbers'];
+        $view->vars['show_dropdowns']    = $options['show_dropdowns'];
+        $view->vars['min_date']          = $options['min_date'];
+        $view->vars['max_date']          = $options['max_date'];
+        $view->vars['date_limit']        = $options['date_limit'];
         $view->vars['ranges']            = json_encode($ranges);
-        $view->vars['locale']            = json_encode($locale);
+        $view->vars['locale']            = $locale;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

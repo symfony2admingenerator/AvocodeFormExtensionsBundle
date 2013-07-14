@@ -31,24 +31,24 @@ class CollectionUploadType extends AbstractType
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['multipart']                = json_encode(true);
+        $view->vars['multipart']                = true;
         $view->vars['primary_key']              = $options['primary_key'];
-        $view->vars['nameable']                 = json_encode($options['nameable']);
+        $view->vars['nameable']                 = $options['nameable'];
         $view->vars['nameable_field']           = $options['nameable_field'];
-        $view->vars['sortable']                 = json_encode($options['sortable']);
+        $view->vars['sortable']                 = $options['sortable'];
         $view->vars['sortable_field']           = $options['sortable_field'];
-        $view->vars['editable']                 = json_encode($options['editable']);
-        $view->vars['maxNumberOfFiles']         = json_encode($options['maxNumberOfFiles']);
-        $view->vars['maxFileSize']              = json_encode($options['maxFileSize']);
-        $view->vars['minFileSize']              = json_encode($options['minFileSize']);
-        $view->vars['acceptFileTypes']          = json_encode($options['acceptFileTypes']);
-        $view->vars['previewSourceFileTypes']   = json_encode($options['previewSourceFileTypes']);
-        $view->vars['previewSourceMaxFileSize'] = json_encode($options['previewSourceMaxFileSize']);
-        $view->vars['previewMaxWidth']          = json_encode($options['previewMaxWidth']);
-        $view->vars['previewMaxHeight']         = json_encode($options['previewMaxHeight']);
-        $view->vars['previewAsCanvas']          = json_encode($options['previewAsCanvas']);
-        $view->vars['previewFilter']            = json_encode($options['previewFilter']);
-        $view->vars['prependFiles']             = json_encode($options['prependFiles']);
+        $view->vars['editable']                 = $options['editable'];
+        $view->vars['maxNumberOfFiles']         = $options['maxNumberOfFiles'];
+        $view->vars['maxFileSize']              = $options['maxFileSize'];
+        $view->vars['minFileSize']              = $options['minFileSize'];
+        $view->vars['acceptFileTypes']          = $options['acceptFileTypes'];
+        $view->vars['previewSourceFileTypes']   = $options['previewSourceFileTypes'];
+        $view->vars['previewSourceMaxFileSize'] = $options['previewSourceMaxFileSize'];
+        $view->vars['previewMaxWidth']          = $options['previewMaxWidth'];
+        $view->vars['previewMaxHeight']         = $options['previewMaxHeight'];
+        $view->vars['previewAsCanvas']          = $options['previewAsCanvas'];
+        $view->vars['previewFilter']            = $options['previewFilter'];
+        $view->vars['prependFiles']             = $options['prependFiles'];
     }
 
     /**

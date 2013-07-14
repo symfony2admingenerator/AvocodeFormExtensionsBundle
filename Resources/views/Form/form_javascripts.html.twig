@@ -12,9 +12,9 @@
 {% block bootstrap_collection_javascript_prototype %}
 {% spaceless %}
     $field.bootstrapCollection({
-        allow_add:        {{ allow_add }},
-        allow_delete:     {{ allow_delete }},
-        sortable:         {{ sortable }},
+        allow_add:        {{ allow_add|raw }},
+        allow_delete:     {{ allow_delete|raw }},
+        sortable:         {{ sortable|raw }},
         sortable_field:   "{{ sortable_field }}",
         prototype_name:   "{{ prototype_name }}",
         trans: {
@@ -82,13 +82,14 @@
         var $field = $('#{{ id }}');
         
     {% block collection_upload_javascript_prototype %}
+    {% autoescape 'html_attr' %}
         $field.uploadCollection({
             sortable:                 {{ sortable|raw }},
             sortable_field:           "{{ sortable_field }}",
-            maxNumberOfFiles:         {{ maxNumberOfFiles|default('undefined')|raw }},
-            maxFileSize:              {{ maxFileSize|default('undefined')|raw }},
-            minFileSize:              {{ minFileSize|default('undefined')|raw }},
-            acceptFileTypes:          {{ acceptFileTypes|default('undefined')|raw }},
+            maxNumberOfFiles:         {{ maxNumberOfFiles|default('undefined') }},
+            maxFileSize:              {{ maxFileSize|default('undefined') }},
+            minFileSize:              {{ minFileSize|default('undefined') }},
+            acceptFileTypes:          {{ acceptFileTypes|default('undefined') }},
             previewAsCanvas:          {{ previewAsCanvas|raw }},
             prependFiles:             {{ prependFiles|raw }},
             previewSourceFileTypes:   {{ previewSourceFileTypes|raw }},
@@ -103,6 +104,7 @@
                 confirmBatchDelete: '{{ 'upload_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
             }
         });
+    {% endautoescape %}
     {% endblock collection_upload_javascript_prototype %}
 
         // Create JSON array for existing files
@@ -192,18 +194,18 @@
         
     {% block date_picker_javascript_prototype %}
         $field.datepicker({
-            weekStart:            {{ week_start|raw }},
+            weekStart:            {{ week_start }},
             calendarWeeks:        {{ calendar_weeks|raw }},
             daysOfWeekDisabled:   {{ days_of_week_disabled|raw }},
             autoclose:            {{ autoclose|raw }},
-            viewMode:             {{ view_mode|raw }},
-            minViewMode:          {{ min_view_mode|raw }},
-            todayBtn:             {{ today_btn|raw }},
+            viewMode:             {{ view_mode|json_encode()|raw }},
+            minViewMode:          {{ min_view_mode|json_encode()|raw }},
+            todayBtn:             {{ today_btn|json_encode()|raw }},
             todayHighlight:       {{ today_highlight|raw }},
             clearBtn:             {{ clear_btn|raw }},
-            language:             {{ language|raw }},
-            startDate:            new Date({{ start_date|raw }}),
-            endDate:              new Date({{ end_date|raw }}),
+            language:             "{{ language }}",
+            startDate:            new Date("{{ start_date }}"),
+            endDate:              new Date("{{ end_date }}"),
         });
     {% endblock date_picker_javascript_prototype %}
     });
@@ -220,17 +222,17 @@
     {% block daterange_picker_javascript_prototype %}
         $field.daterangepicker({
             format:           "yyyy-MM-dd",
-            opens:            {{ opens|raw }},
-            separator:        {{ separator|raw }},
+            opens:            "{{ opens }}",
+            separator:        "{{ separator }}",
             showWeekNumbers:  {{ show_week_numbers|raw }},
             showDropdowns:    {{ show_dropdowns|raw }},
-            dateLimit:        {{ date_limit|raw }},
-            locale:           {{ locale|raw }},
-        {% if min_date %}
-            minDate:          {{ min_date|raw }},
+            dateLimit:        "{{ date_limit }}",
+            locale:           "{{ locale }}",
+        {% if min_date is not empty %}
+            minDate:          "{{ min_date }}",
         {% endif %}
-        {% if max_date %}
-            maxDate:          {{ max_date|raw }},
+        {% if max_date is not empty %}
+            maxDate:          "{{ max_date }}",
         {% endif %}
         {% if ranges %}
             ranges:           {{ ranges|raw }},
@@ -275,13 +277,13 @@
         
     {% block single_upload_javascript_prototype %}
         $('#{{ id }}').singleUpload({
-            maxWidth:         {{ maxWidth|raw }},
-            maxHeight:        {{ maxHeight|raw }},
-            minWidth:         {{ minWidth|raw }},
-            minHeight:        {{ minHeight|raw }},
+            maxWidth:         {{ maxWidth }},
+            maxHeight:        {{ maxHeight }},
+            minWidth:         {{ minWidth }},
+            minHeight:        {{ minHeight }},
             previewImages:    {{ previewImages|raw }},
             previewAsCanvas:  {{ previewAsCanvas|raw }},
-            isEmpty:          {{ (form.vars.data is empty)|default(0) }},
+            isEmpty:          {{ (form.vars.data is empty)|raw }},
             nameable:         {{ nameable|raw }},
             deleteable:       {{ deleteable|raw }},
             widget_name:      "{{ form.parent.vars.full_name ~ '['~name~']' }}",
@@ -313,9 +315,9 @@
         
     {% block time_picker_javascript_prototype %}
         $field.timepicker({
-            minuteStep:     {{ minute_step|raw }},
+            minuteStep:     {{ minute_step }},
             showSeconds:    {{ with_seconds|raw }},
-            secondStep:     {{ second_step|raw }},
+            secondStep:     {{ second_step }},
             defaultTime:    {{ default_time|raw }},
             showMeridian:   {{ show_meridian|raw }},
             disableFocus:   {{ disable_focus|raw }},

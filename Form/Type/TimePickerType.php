@@ -19,12 +19,12 @@ class TimePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'minute_step'   => json_encode($options['minute_step']),
-            'with_seconds'  => json_encode($options['with_seconds']),
-            'second_step'   => json_encode($options['second_step']),
+            'minute_step'   => $options['minute_step'],
+            'with_seconds'  => $options['with_seconds'],
+            'second_step'   => $options['second_step'],
             'default_time'  => json_encode($options['default_time']),
-            'show_meridian' => json_encode($options['show_meridian']),
-            'disable_focus' => json_encode($options['disable_focus']),
+            'show_meridian' => $options['show_meridian'],
+            'disable_focus' => $options['disable_focus'],
         ));
     }
 
