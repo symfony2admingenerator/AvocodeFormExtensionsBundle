@@ -179,7 +179,7 @@
         <div class="list-selected dropdown">
             {% include "AvocodeFormExtensionsBundle:Form/DoubleList:selected_list.html.twig" %}
         </div>
-        {{ form_row(form) }}
+        {{ block('form_row') }}
     </div>
 {% endspaceless %}
 {% endblock double_list_prototype %}
@@ -217,7 +217,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ form_widget(form) }}
+    {{ block('form_row') }}
 {% endif %}
 {% endblock %}
 
@@ -225,7 +225,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ form_widget(form) }}
+    {{ block('form_row') }}
 {% endif %}
 {% endblock %}
 
@@ -233,7 +233,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ form_widget(form) }}
+    {{ block('form_row') }}
 {% endif %}
 {% endblock %}
 
@@ -247,7 +247,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ form_widget(form) }}
+    {{ block('form_row') }}
 {% endif %}
 {% endblock %}
 

@@ -57,7 +57,7 @@ class FormExtension extends \Twig_Extension
         $functionPattern = "%^\\s*function\\s*\\(%i";
         
         if (is_bool($var)) {
-            return $var ? '1' : '0';
+            return $var ? 'true' : 'false';
         }
         
         if (is_null($var)) {
@@ -68,7 +68,7 @@ class FormExtension extends \Twig_Extension
             return 'undefined';
         }
         
-        if (is_string($var) && false === preg_match($functionPattern, $var)) {
+        if (is_string($var) && !preg_match($functionPattern, $var)) {
             return '"'.$var.'"';
         }
         
