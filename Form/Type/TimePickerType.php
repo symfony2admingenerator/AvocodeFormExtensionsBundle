@@ -20,6 +20,7 @@ class TimePickerType extends AbstractType
     {
         $view->vars = array_replace($view->vars, array(
             'minute_step'   => json_encode($options['minute_step']),
+            'with_seconds'  => json_encode($options['with_seconds']),
             'second_step'   => json_encode($options['second_step']),
             'default_time'  => json_encode($options['default_time']),
             'show_meridian' => json_encode($options['show_meridian']),

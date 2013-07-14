@@ -15,6 +15,9 @@
     "conflict": {
         "genemu/form-bundle": "*"
     },
+    "replace": {
+        "vincet/bootstrap-form-bundle": "*"
+    },
     "suggest": {
         "liip/imagine-bundle": "Apply filters on preview images"
     },

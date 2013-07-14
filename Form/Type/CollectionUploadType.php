@@ -32,11 +32,11 @@ class CollectionUploadType extends AbstractType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['multipart']                = json_encode(true);
-        $view->vars['primary_key']              = json_encode($options['primary_key']);
+        $view->vars['primary_key']              = $options['primary_key'];
         $view->vars['nameable']                 = json_encode($options['nameable']);
-        $view->vars['nameable_field']           = json_encode($options['nameable_field']);
+        $view->vars['nameable_field']           = $options['nameable_field'];
         $view->vars['sortable']                 = json_encode($options['sortable']);
-        $view->vars['sortable_field']           = json_encode($options['sortable_field']);
+        $view->vars['sortable_field']           = $options['sortable_field'];
         $view->vars['editable']                 = json_encode($options['editable']);
         $view->vars['maxNumberOfFiles']         = json_encode($options['maxNumberOfFiles']);
         $view->vars['maxFileSize']              = json_encode($options['maxFileSize']);

@@ -27,7 +27,7 @@ class BootstrapCollectionType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['sortable']       = json_encode($options['sortable']);
-        $view->vars['sortable_field'] = json_encode($options['sortable_field']);
+        $view->vars['sortable_field'] = $options['sortable_field'];
         $view->vars['new_label']      = $options['new_label'];
         $view->vars['prototype_name'] = $options['prototype_name'];
     }
