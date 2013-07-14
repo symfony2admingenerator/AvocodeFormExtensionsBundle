@@ -74,12 +74,12 @@ class DateRangePickerType extends AbstractType
         }
         
         $view->vars = array_replace($view->vars, array(
-            'opens'             => $options['opens'],
-            'separator'         => $options['separator'],
+            'opens'             => json_encode($options['opens']),
+            'separator'         => json_encode($options['separator']),
             'show_week_numbers' => json_encode($options['show_week_numbers']),
             'show_dropdowns'    => json_encode($options['show_dropdowns']),
-            'min_date'          => $options['min_date'],
-            'max_date'          => $options['max_date'],
+            'min_date'          => json_encode($options['min_date']),
+            'max_date'          => json_encode($options['max_date']),
             'date_limit'        => json_encode($options['date_limit']),
             'ranges'            => json_encode($ranges),
             'locale'            => json_encode($locale),

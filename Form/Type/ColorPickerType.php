@@ -20,8 +20,8 @@ class ColorPickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['widget'] = $options['widget'];
-        $view->vars['configs'] = $options['configs'];
+        $view->vars['widget']   = $options['widget'];
+        $view->vars['configs']  = $options['configs'];
     }
 
     /**
@@ -29,18 +29,14 @@ class ColorPickerType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver
-            ->setDefaults(array(
-                'widget'  => 'text',
-                'configs' => array(),
-            ))
-            ->setAllowedValues(array(
-                'widget' => array(
-                    'text',
-                    'image',
-                )
-            ))
-        ;
+        $resolver->setDefaults(array(
+            'widget'  => 'text',
+            'configs' => array(),
+        ));
+        
+        $resolver->setAllowedValues(array(
+            'widget' => array('text', 'image')
+        ));
     }
 
     /**

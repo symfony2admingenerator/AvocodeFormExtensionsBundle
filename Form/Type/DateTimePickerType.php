@@ -60,12 +60,12 @@ class DateTimePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'week_start'    => $options['week_start'],
-            'view_mode'     => $options['view_mode'],
-            'min_view_mode' => $options['min_view_mode'],
-            'minute_step'   => $options['minute_step'],
-            'second_step'   => $options['second_step'],
-            'disable_focus' => $options['disable_focus'],
+            'week_start'    => json_encode($options['week_start']),
+            'view_mode'     => json_encode($options['view_mode']),
+            'min_view_mode' => json_encode($options['min_view_mode']),
+            'minute_step'   => json_encode($options['minute_step']),
+            'second_step'   => json_encode($options['second_step']),
+            'disable_focus' => json_encode($options['disable_focus']),
         ));
     }
 

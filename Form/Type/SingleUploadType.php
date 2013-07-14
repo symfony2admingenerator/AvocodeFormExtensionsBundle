@@ -32,17 +32,17 @@ class SingleUploadType extends AbstractType
     {
         $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
         
-        $view->vars['multipart']          =   true;
-        $view->vars['nameable']           =   $options['nameable'];
-        $view->vars['deleteable']         =   $options['deleteable'];
-        $view->vars['maxWidth']           =   $options['maxWidth'];
-        $view->vars['maxHeight']          =   $options['maxHeight'];
-        $view->vars['minWidth']           =   $options['minWidth'];
-        $view->vars['minHeight']          =   $options['minHeight'];
-        $view->vars['previewImages']      =   $options['previewImages'];
-        $view->vars['previewAsCanvas']    =   $options['previewAsCanvas'];
-        $view->vars['previewFilter']      =   $options['previewFilter'];
-        $view->vars['fileType']           =   $this->_checkFileType($data);
+        $view->vars['multipart']        = json_encode(true);
+        $view->vars['nameable']         = json_encode($options['nameable']);
+        $view->vars['deleteable']       = json_encode($options['deleteable']);
+        $view->vars['maxWidth']         = json_encode($options['maxWidth']);
+        $view->vars['maxHeight']        = json_encode($options['maxHeight']);
+        $view->vars['minWidth']         = json_encode($options['minWidth']);
+        $view->vars['minHeight']        = json_encode($options['minHeight']);
+        $view->vars['previewImages']    = json_encode($options['previewImages']);
+        $view->vars['previewAsCanvas']  = json_encode($options['previewAsCanvas']);
+        $view->vars['previewFilter']    = json_encode($options['previewFilter']);
+        $view->vars['fileType']         = json_encode($this->_checkFileType($data));
     }
 
     /**

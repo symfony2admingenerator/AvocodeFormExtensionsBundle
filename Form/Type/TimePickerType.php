@@ -19,10 +19,11 @@ class TimePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'minute_step'   => $options['minute_step'],
-            'second_step'   => $options['second_step'],
-            'disable_focus' => $options['disable_focus'],
-            'show_meridian' => $options['show_meridian'],
+            'minute_step'   => json_encode($options['minute_step']),
+            'second_step'   => json_encode($options['second_step']),
+            'default_time'  => json_encode($options['default_time']),
+            'show_meridian' => json_encode($options['show_meridian']),
+            'disable_focus' => json_encode($options['disable_focus']),
         ));
     }
 
@@ -31,7 +32,6 @@ class TimePickerType extends AbstractType
         $resolver->setDefaults(array(
             'widget'        => 'single_text',
             'minute_step'   => 15,
-            'with_seconds'  => true,
             'second_step'   => 15,
             'default_time'  => 'current',
             'show_meridian' => false,
@@ -43,7 +43,6 @@ class TimePickerType extends AbstractType
 
         $resolver->setAllowedTypes(array(
             'minute_step'     => array('integer'),
-            'with_seconds'    => array('bool'),
             'second_step'     => array('integer'),
             'default_time'    => array('string', 'bool'),
             'show_meridian'   => array('bool'),

@@ -12,15 +12,15 @@
 {% block bootstrap_collection_javascript_prototype %}
 {% spaceless %}
     $field.bootstrapCollection({
-        allow_add:        {{ allow_add|default(0) }},
-        allow_delete:     {{ allow_delete|default(0) }},
-        sortable:         {{ sortable|default(0) }},
-        sortable_field:   '{{ sortable_field }}',
-        prototype_name:   '{{ prototype_name }}',
+        allow_add:        {{ allow_add }},
+        allow_delete:     {{ allow_delete }},
+        sortable:         {{ sortable }},
+        sortable_field:   {{ sortable_field }},
+        prototype_name:   "{{ prototype_name }}",
         trans: {
-            new_label:      '{{ new_label|trans({}, translation_domain) }}',
-            confirm:        '{{ 'bootstrap_collection.confirm.delete'|trans({}, 'AvocodeFormExtensions') }}',
-            confirm_batch:  '{{ 'bootstrap_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
+            new_label:      "{{ new_label|trans({}, translation_domain) }}",
+            confirm:        "{{ 'bootstrap_collection.confirm.delete'|trans({}, 'AvocodeFormExtensions') }}",
+            confirm_batch:  "{{ 'bootstrap_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}"
         },
         javascript: function(id) {
         {% if prototype is defined %}
@@ -83,14 +83,14 @@
         
     {% block collection_upload_javascript_prototype %}
         $field.uploadCollection({
-            sortable:                 {{ sortable|default(0) }},
-            sortable_field:           '{{ sortable_field }}',
+            sortable:                 {{ sortable }},
+            sortable_field:           {{ sortable_field }},
             maxNumberOfFiles:         {{ maxNumberOfFiles|default('undefined') }},
             maxFileSize:              {{ maxFileSize|default('undefined') }},
             minFileSize:              {{ minFileSize|default('undefined') }},
             acceptFileTypes:          {{ acceptFileTypes|default('undefined') }},
-            previewAsCanvas:          {{ previewAsCanvas|default(0) }},
-            prependFiles:             {{ prependFiles|default(0) }},
+            previewAsCanvas:          {{ previewAsCanvas }},
+            prependFiles:             {{ prependFiles }},
             previewSourceFileTypes:   {{ previewSourceFileTypes }},
             previewSourceMaxFileSize: {{ previewSourceMaxFileSize }},
             previewMaxWidth:          {{ previewMaxWidth }},
@@ -194,16 +194,16 @@
         $field.datepicker({
             weekStart:            {{ week_start }},
             calendarWeeks:        {{ calendar_weeks }},
-            daysOfWeekDisabled:   "{{ days_of_week_disabled }}",
+            daysOfWeekDisabled:   {{ days_of_week_disabled }},
             autoclose:            {{ autoclose }},
-            viewMode:             "{{ view_mode }}",
-            minViewMode:          "{{ min_view_mode }}",
-            todayBtn:             "{{ today_btn }}",
+            viewMode:             {{ view_mode }},
+            minViewMode:          {{ min_view_mode }},
+            todayBtn:             {{ today_btn }},
             todayHighlight:       {{ today_highlight }},
             clearBtn:             {{ clear_btn }},
-            language:             "{{ language }}",
-            startDate:            new Date('{{ start_date }}'),
-            endDate:              new Date('{{ end_date }}'),
+            language:             {{ language }},
+            startDate:            new Date({{ start_date }}),
+            endDate:              new Date({{ end_date }}),
         });
     {% endblock date_picker_javascript_prototype %}
     });
@@ -220,17 +220,17 @@
     {% block daterange_picker_javascript_prototype %}
         $field.daterangepicker({
             format:           "yyyy-MM-dd",
-            opens:            "{{ opens }}",
-            separator:        "{{ separator }}",
+            opens:            {{ opens }},
+            separator:        {{ separator }},
             showWeekNumbers:  {{ show_week_numbers }},
             showDropdowns:    {{ show_dropdowns }},
             dateLimit:        {{ date_limit }},
             locale:           {{ locale }},
         {% if minDate is not empty %}
-            minDate:          "{{ min_date }}",
+            minDate:          {{ min_date }},
         {% endif %}
         {% if maxDate is not empty %}
-            maxDate:          "{{ max_date }}",
+            maxDate:          {{ max_date }},
         {% endif %}
         {% if ranges is not empty %}
             ranges:           {{ ranges }},
@@ -241,44 +241,6 @@
 </script>
 {% endspaceless %}
 {% endblock daterange_picker_javascript %}
-
-{% block single_upload_javascript %}
-{% spaceless %}
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        var $field = $('#{{ id }}');
-        
-    {% block single_upload_javascript_prototype %}
-        $('#{{ id }}').singleUpload({
-            maxWidth:         {{ maxWidth }},
-            maxHeight:        {{ maxHeight }},
-            minWidth:         {{ minWidth }},
-            minHeight:        {{ minHeight }},
-            previewImages:    {{ previewImages }},
-            previewAsCanvas:  {{ previewAsCanvas }},
-            isEmpty:          {{ (form.vars.data is empty)|default(0) }},
-            nameable:         {{ (nameable is not empty)|default(0) }},
-            deleteable:       {{ (deleteable is not empty)|default(0) }},
-            widget_name:      "{{ form.parent.vars.full_name ~ '['~name~']' }}",
-            filetypes:  {
-                'audio':            "{{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'archive':          "{{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'html':             "{{ 'single_upload.type.html'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'image':            "{{ 'single_upload.type.image'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'pdf-document':     "{{ 'single_upload.type.pdf-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'plain-text':       "{{ 'single_upload.type.plain-text'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'presentation':     "{{ 'single_upload.type.presentation'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'spreadsheet':      "{{ 'single_upload.type.spreadsheet'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'text-document':    "{{ 'single_upload.type.text-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'unknown':          "{{ 'single_upload.type.unknown'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'video':            "{{ 'single_upload.type.video'|trans({}, 'AvocodeFormExtensions')|raw }}"
-            }
-        });
-    {% endblock single_upload_javascript_prototype %}
-    });
-</script>
-{% endspaceless %}
-{% endblock single_upload_javascript %}
 
 {% block select2_javascript %}
 {% spaceless %}
@@ -305,6 +267,44 @@
 {% endspaceless %}
 {% endblock select2_javascript %}
 
+{% block single_upload_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var $field = $('#{{ id }}');
+        
+    {% block single_upload_javascript_prototype %}
+        $('#{{ id }}').singleUpload({
+            maxWidth:         {{ maxWidth }},
+            maxHeight:        {{ maxHeight }},
+            minWidth:         {{ minWidth }},
+            minHeight:        {{ minHeight }},
+            previewImages:    {{ previewImages }},
+            previewAsCanvas:  {{ previewAsCanvas }},
+            isEmpty:          {{ (form.vars.data is empty)|default(0) }},
+            nameable:         {{ nameable }},
+            deleteable:       {{ deleteable }},
+            widget_name:      "{{ form.parent.vars.full_name ~ '['~name~']' }}",
+            filetypes:  {
+                'audio':            "{{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'archive':          "{{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'html':             "{{ 'single_upload.type.html'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'image':            "{{ 'single_upload.type.image'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'pdf-document':     "{{ 'single_upload.type.pdf-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'plain-text':       "{{ 'single_upload.type.plain-text'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'presentation':     "{{ 'single_upload.type.presentation'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'spreadsheet':      "{{ 'single_upload.type.spreadsheet'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'text-document':    "{{ 'single_upload.type.text-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'unknown':          "{{ 'single_upload.type.unknown'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'video':            "{{ 'single_upload.type.video'|trans({}, 'AvocodeFormExtensions')|raw }}"
+            }
+        });
+    {% endblock single_upload_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock single_upload_javascript %}
+
 {% block time_picker_javascript %}
 {% spaceless %}
 <script type="text/javascript">
@@ -316,7 +316,7 @@
             minuteStep:     {{ minute_step }},
             showSeconds:    {{ with_seconds }},
             secondStep:     {{ second_step }},
-            defaultTime:    {{ default_time is empty ? '0' : '"'~default_time~'"' }},
+            defaultTime:    {{ default_time }},
             showMeridian:   {{ show_meridian }},
             disableFocus:   {{ disable_focus }},
         });
