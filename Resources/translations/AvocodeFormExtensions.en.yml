@@ -67,3 +67,10 @@ date_range:
         october:        October
         november:       November
         december:       December
+    ranges:
+        today:          Today
+        yesterday:      Yesterday
+        last-7-days:    Last 7 days
+        last-week:      Last week
+        last-month:     Last month
+        last-year:      Last year

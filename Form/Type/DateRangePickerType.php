@@ -68,8 +68,13 @@ class DateRangePickerType extends AbstractType
         $ranges = array();
         if (is_array($options['ranges'])) {
             foreach ($options['ranges'] as $key => $value) {
-                $key_tr = $this->translator->trans($key, array(), $options['drp_translation_domain']);
-                $ranges[$key_tr] = $value;
+                // translate default ranges
+                if (in_array($key, array(
+                    'today', 'yesterday', 'last-7-days', 'last-week', 'last-month', 'last-year',
+                ))) {
+                    $key_tr = $this->translator->trans('date_range.ranges.'.$key, array(), $options['drp_translation_domain']);
+                    $ranges[$key_tr] = $value;
+                }
             }
         }
         
@@ -98,7 +103,7 @@ class DateRangePickerType extends AbstractType
             'min_date'                => null,    // null or string in format dd/mm/yyyy
             'max_date'                => null,    // null or string in format dd/mm/yyyy
             'date_limit'              => false,   // date limit: false or array('days'=>5)
-            'ranges'                  => null,    // ranges null or array
+            'ranges'                  => null,
             'locale' => array(
                 'applyLabel'        => 'date_range.label.apply',
                 'clearLabel'        => 'date_range.label.clear',
@@ -138,6 +143,7 @@ class DateRangePickerType extends AbstractType
             'show_dropdowns'    => array('bool'),
             'min_date'          => array('null', 'string'),
             'max_date'          => array('null', 'string'),
+            'ranges'            => array('array'),
         ));
 
         $resolver->setAllowedValues(array(
