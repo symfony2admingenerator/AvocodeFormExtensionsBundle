@@ -12,6 +12,10 @@
         <!-- Form types -->
         <service id="avocode.form.extensions.type.bootstrap_collection" class="Avocode\FormExtensionsBundle\Form\Type\BootstrapCollectionType" abstract="true" />
 
+        <service id="avocode.form.extensions.type.collection_upload" class="Avocode\FormExtensionsBundle\Form\Type\CollectionUploadType">
+            <tag name="form.type" alias="collection_upload" />
+        </service>
+        
         <service id="avocode.form.extensions.type.color_picker" class="Avocode\FormExtensionsBundle\Form\Type\ColorPickerType">
             <tag name="form.type" alias="color_picker" />
             <argument>%avocode.form.extensions.color_picker.options%</argument>
@@ -26,24 +30,24 @@
         
         <service id="avocode.form.extensions.type.select2" class="Avocode\FormExtensionsBundle\Form\Type\Select2Type" abstract="true" />
         
-        <service id="avocode.form.extensions.type.collection_upload" class="Avocode\FormExtensionsBundle\Form\Type\CollectionUploadType">
-            <tag name="form.type" alias="collection_upload" />
-        </service>
-
         <service id="avocode.form.extensions.type.single_upload" class="Avocode\FormExtensionsBundle\Form\Type\SingleUploadType">
             <tag name="form.type" alias="single_upload" />
         </service>
+        
+        <service id="avocode.form.extensions.type.time_picker" class="Avocode\FormExtensionsBundle\Form\Type\TimePickerType">
+            <tag name="form.type" alias="time_picker" />
+        </service>
 
         <!-- Form extensions -->
-        <service id="form.type_extension.single_upload" class="Avocode\FormExtensionsBundle\Form\Extension\SingleUploadExtension">
-            <tag name="form.type_extension" alias="form" />
-        </service>
-        
         <service id="form.type_extension.autocomplete" class="Avocode\FormExtensionsBundle\Form\Extension\AutocompleteExtension">
             <tag name="form.type_extension" alias="form" />
         </service>
 
         <service id="form.type_extension.help_message" class="Avocode\FormExtensionsBundle\Form\Extension\HelpMessageExtension">
+            <tag name="form.type_extension" alias="form" />
+        </service>
+        
+        <service id="form.type_extension.single_upload" class="Avocode\FormExtensionsBundle\Form\Extension\SingleUploadExtension">
             <tag name="form.type_extension" alias="form" />
         </service>
         
