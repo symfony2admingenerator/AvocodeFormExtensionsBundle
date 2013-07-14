@@ -31,6 +31,7 @@ class TimePickerType extends AbstractType
         $resolver->setDefaults(array(
             'widget'        => 'single_text',
             'minute_step'   => 15,
+            'with_seconds'  => true,
             'second_step'   => 15,
             'default_time'  => 'current',
             'show_meridian' => false,
@@ -42,6 +43,7 @@ class TimePickerType extends AbstractType
 
         $resolver->setAllowedTypes(array(
             'minute_step'     => array('integer'),
+            'with_seconds'    => array('bool'),
             'second_step'     => array('integer'),
             'default_time'    => array('string', 'bool'),
             'show_meridian'   => array('bool'),

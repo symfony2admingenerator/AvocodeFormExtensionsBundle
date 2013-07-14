@@ -155,6 +155,15 @@
 {% endspaceless %}
 {% endblock date_picker_widget %}
 
+{% block daterange_picker_widget %}
+{% spaceless %}
+    <div class="input-prepend bootstrap-daterangepicker">
+        <span class="add-on"><i class="icon-calendar"></i></span>
+        <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}"{% endif %} />
+    </div>
+{% endspaceless %}
+{% endblock daterange_picker_widget %}
+
 {% block single_upload_widget %}
 {% spaceless %}
     <div id="{{ id ~ '_widget_container' }}" class="single-upload">

@@ -37,3 +37,33 @@ single_upload:
         text-document:    Dokument<br />Tekstowy
         unknown:          Nieznany<br />Typ Pliku
         video:            Wideo
+        
+date_range:
+    label:
+        apply:          Zastosuj
+        clear:          Wyczyść
+        from:           Od
+        to:             Do
+        week:           T
+        custom_range:   Wybierz zakres
+    days:
+        sunday:         Nie
+        monday:         Pon
+        tuesday:        Wt
+        wednesday:      Śr
+        thursday:       Czw
+        friday:         Pt
+        saturday:       So
+    months:
+        january:        Styczeń
+        february:       Luty
+        march:          Marzec
+        april:          Kwiecień
+        may:            Maj
+        june:           Czerwiec
+        july:           Lipiec
+        august:         Sierpień
+        september:      Wrzesień
+        october:        Październik
+        november:       Listopad
+        december:       Grudzień

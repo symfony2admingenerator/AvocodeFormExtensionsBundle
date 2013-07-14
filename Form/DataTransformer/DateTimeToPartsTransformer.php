@@ -21,10 +21,12 @@ class DateTimeToPartsTransformer implements DataTransformerInterface
             'date' => null,
             'time' => null,
         );
-        if ( $value ) {
+        
+        if ($value) {
             $parts['date'] = new \DateTime($value->format('Y-m-d'));
             $parts['time'] = new \DateTime($value->format('H:i:s'));
         }
+        
         return $parts;
     }
 
@@ -36,25 +38,28 @@ class DateTimeToPartsTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        if ( $value['date'] && $value['time'] ) {
+        if ($value['date'] && $value['time']) {
             return new \DateTime(sprintf(
                 '%s %s',
                 $value['date']->format('Y-m-d'),
                 $value['time']->format('H:i:s')
             ));
         }
-        if ( $value['date'] ) {
+        
+        if ($value['date']) {
             return new \DateTime(sprintf(
                 '%s',
                 $value['date']->format('Y-m-d')
             ));
         }
-        if ( $value['time'] ) {
+        
+        if ($value['time']) {
             return new \DateTime(sprintf(
                 '%s',
                 $value['time']->format('H:i:s')
             ));
         }
+        
         return null;
     }
 }

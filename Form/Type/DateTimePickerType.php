@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * @author Vincent Touzet <vincent.touzet@gmail.com>
+ * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class DateTimePickerType extends AbstractType
 {
@@ -27,6 +28,7 @@ class DateTimePickerType extends AbstractType
             'days_of_week_disabled',
             'autoclose',
             'start_view',
+            'view_mode',
             'min_view_mode',
             'today_btn',
             'today_highlight',
@@ -36,9 +38,11 @@ class DateTimePickerType extends AbstractType
 
         $timeOptions = array_intersect_key($options, array_flip(array(
             'minute_step',
-            'second_step',
-            'disable_focus',
             'with_seconds',
+            'second_step',
+            'default_time',
+            'show_meridian',
+            'disable_focus',
         )));
         
         $builder
@@ -46,8 +50,8 @@ class DateTimePickerType extends AbstractType
             ->remove('date')
             ->remove('time')
             ->addViewTransformer(new DateTimeToPartsTransformer())
-            ->add('date', 'bootstrap_datepicker', $dateOptions)
-            ->add('time', 'bootstrap_timepicker', $timeOptions);
+            ->add('date', 'date_picker', $dateOptions)
+            ->add('time', 'time_picker', $timeOptions);
     }
 
     /**

@@ -43,6 +43,18 @@ License:  /Resources/public/datepicker/LICENSE
 
 Date Picker is licensed under the Apache Software Foundation License Version 2.0.
 
+DateRange Picker
+---------------------
+Version:  1.1
+Location: /Resources/public/daterangepicker
+License:  /Resources/public/daterangepicker/LICENSE
+
+Date Picker is licensed under the Apache Software Foundation License Version 2.0 
+and uses third party software also licensed under MIT license.
+
+For more information read 
+/Resources/public/daterangepicker/LICENSE-NOTICE
+
 Select2
 ---------------------
 Version:  3.4.0
