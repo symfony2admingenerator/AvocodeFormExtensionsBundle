@@ -70,9 +70,6 @@ date_range:
     ranges:
         today:          Today
         yesterday:      Yesterday
-        last-7-days:    Last 7 days
         last-week:      Last week
-        last-30-days:   Last 30 days
         last-month:     Last month
-        last-365-days:  Last 365 days
         last-year:      Last year

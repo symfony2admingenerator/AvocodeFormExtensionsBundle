@@ -80,39 +80,18 @@ class DateRangePickerType extends AbstractType
                     $value = array($yesterday, $yesterday);
                 }
                 
-                if ("last-7-days" === $key || "last-7-days" === $value) {
-                    $key = "last-7-days";
-                    $ago6days = date('Y-m-d', strtotime('-6 days'));
-                    $today = date('Y-m-d');
-                    $value = array($ago6days, $today);
-                }
-                
                 if ("last-week" === $key || "last-week" === $value) {
                     $key = "last-week";
-                    $ago2weeks = date('Y-m-d', strtotime('2 weeks ago'));
-                    $ago1weeks = date('Y-m-d', strtotime('last week'));
-                    $value = array($ago2weeks, $ago1weeks);
-                }
-                
-                if ("last-30-days" === $key || "last-30-days" === $value) {
-                    $key = "last-30-days";
-                    $ago29days = date('Y-m-d', strtotime('-29 days'));
+                    $lastWeek = date('Y-m-d', strtotime('last week'));
                     $today = date('Y-m-d');
-                    $value = array($ago29days, $today);
+                    $value = array($lastWeek, $today);
                 }
                 
                 if ("last-month" === $key || "last-month" === $value) {
                     $key = "last-month";
-                    $ago2months = date('Y-m-d', strtotime('2 months ago'));
-                    $ago1months = date('Y-m-d', strtotime('last month'));
-                    $value = array($ago2months, $ago1months);
-                }
-                
-                if ("last-365-days" === $key || "last-365-days" === $value) {
-                    $key = "last-365-days";
-                    $ago364days = date('Y-m-d', strtotime('-364 days'));
+                    $lastMonth = date('Y-m-d', strtotime('last month'));
                     $today = date('Y-m-d');
-                    $value = array($ago364days, $today);
+                    $value = array($lastMonth, $today);
                 }
                 
                 if ("last-year" === $key || "last-year" === $value) {
@@ -123,10 +102,7 @@ class DateRangePickerType extends AbstractType
                 }
                 
                 if (in_array($key, array(
-                    "today",          "yesterday", 
-                    "last-7-days",    "last-week", 
-                    "last-30-days",   "last-month", 
-                    "last-365-days",  "last-year"
+                    "today", "yesterday", "last-week", "last-month", "last-year"
                 ))) {
                     $key_tr = $this->translator->trans('date_range.ranges.'.$key, array(), $options['drp_translation_domain']);
                     $ranges[$key_tr] = $value;
