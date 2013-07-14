@@ -143,45 +143,6 @@
 {% endspaceless %}
 {% endblock collection_upload_javascript %}
 
-{% block single_upload_javascript %}
-{% spaceless %}
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        var $field = $('#{{ id }}');
-        
-    {% block single_upload_javascript_prototype %}
-        $('#{{ id }}').singleUpload({
-            maxWidth:         {{ maxWidth }},
-            maxHeight:        {{ maxHeight }},
-            minWidth:         {{ minWidth }},
-            minHeight:        {{ minHeight }},
-            previewImages:    {{ previewImages }},
-            previewAsCanvas:  {{ previewAsCanvas }},
-            isEmpty:          {{ (form.vars.data is empty)|default(0) }},
-            nameable:         {{ (nameable is not empty)|default(0) }},
-            deleteable:       {{ (deleteable is not empty)|default(0) }},
-            widget_name:      "{{ form.parent.vars.full_name ~ '['~name~']' }}",
-            filetypes:  {
-                'audio':            "{{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'archive':          "{{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'html':             "{{ 'single_upload.type.html'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'image':            "{{ 'single_upload.type.image'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'pdf-document':     "{{ 'single_upload.type.pdf-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'plain-text':       "{{ 'single_upload.type.plain-text'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'presentation':     "{{ 'single_upload.type.presentation'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'spreadsheet':      "{{ 'single_upload.type.spreadsheet'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'text-document':    "{{ 'single_upload.type.text-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'unknown':          "{{ 'single_upload.type.unknown'|trans({}, 'AvocodeFormExtensions')|raw }}",
-                'video':            "{{ 'single_upload.type.video'|trans({}, 'AvocodeFormExtensions')|raw }}"
-            }
-        });
-    {% endblock single_upload_javascript_prototype %}
-    });
-</script>
-
-{% endspaceless %}
-{% endblock single_upload_javascript %}
-
 {% block color_picker_javascript %}
 {% spaceless %}
 <script type="text/javascript">
@@ -250,6 +211,44 @@
 {% endspaceless %}
 {% endblock date_picker_javascript %}
 
+{% block single_upload_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var $field = $('#{{ id }}');
+        
+    {% block single_upload_javascript_prototype %}
+        $('#{{ id }}').singleUpload({
+            maxWidth:         {{ maxWidth }},
+            maxHeight:        {{ maxHeight }},
+            minWidth:         {{ minWidth }},
+            minHeight:        {{ minHeight }},
+            previewImages:    {{ previewImages }},
+            previewAsCanvas:  {{ previewAsCanvas }},
+            isEmpty:          {{ (form.vars.data is empty)|default(0) }},
+            nameable:         {{ (nameable is not empty)|default(0) }},
+            deleteable:       {{ (deleteable is not empty)|default(0) }},
+            widget_name:      "{{ form.parent.vars.full_name ~ '['~name~']' }}",
+            filetypes:  {
+                'audio':            "{{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'archive':          "{{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'html':             "{{ 'single_upload.type.html'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'image':            "{{ 'single_upload.type.image'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'pdf-document':     "{{ 'single_upload.type.pdf-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'plain-text':       "{{ 'single_upload.type.plain-text'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'presentation':     "{{ 'single_upload.type.presentation'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'spreadsheet':      "{{ 'single_upload.type.spreadsheet'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'text-document':    "{{ 'single_upload.type.text-document'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'unknown':          "{{ 'single_upload.type.unknown'|trans({}, 'AvocodeFormExtensions')|raw }}",
+                'video':            "{{ 'single_upload.type.video'|trans({}, 'AvocodeFormExtensions')|raw }}"
+            }
+        });
+    {% endblock single_upload_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock single_upload_javascript %}
+
 {% block select2_javascript %}
 {% spaceless %}
 <script type="text/javascript">
@@ -274,3 +273,24 @@
 </script>
 {% endspaceless %}
 {% endblock select2_javascript %}
+
+{% block time_picker_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var $field = $('#{{ id }}');
+        
+    {% block time_picker_javascript_prototype %}
+        $field.timepicker({
+            showMeridian:   false,
+            defaultTime:    false,
+            minute-step:    {{ minute_step }},
+            second-step:    {{ second_step }},
+            disable-focus:  {{ disable_focus }},
+            show-seconds:   {{ with_seconds }},
+        });
+    {% endblock time_picker_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock time_picker_javascript %}

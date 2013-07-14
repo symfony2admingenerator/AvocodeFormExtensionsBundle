@@ -133,23 +133,6 @@
 {% endspaceless %}
 {% endblock collection_upload_widget %}
 
-{% block single_upload_widget %}
-{% spaceless %}
-    <div id="{{ id ~ '_widget_container' }}" class="single-upload">
-        <div class="btn-toolbar form-actions form-actions-condensed singleupload-buttonbar">
-            <span class="btn btn-success fileinput">
-                {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:upload.html.twig" %}
-                <input type="file" id="{{ id }}" name="{{ form.parent.vars.full_name ~ '['~name~'][file]' }}" />
-            </span>
-            {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:controls.html.twig" %}
-        </div>
-        <div id="{{ id ~ '_preview' }}" class="single-upload-preview">
-            {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:preview.html.twig" %}
-        </div>
-    </div>
-{% endspaceless %}
-{% endblock single_upload_widget %}
-
 {% block color_picker_widget %}
 {% spaceless %}
 {% if widget == "image" %}
@@ -170,17 +153,26 @@
         <span class="add-on"><i class="icon-calendar"></i></span>
     </div>
 {% endspaceless %}
-{% endblock %}
+{% endblock date_picker_widget %}
+
+{% block single_upload_widget %}
+{% spaceless %}
+    <div id="{{ id ~ '_widget_container' }}" class="single-upload">
+        <div class="btn-toolbar form-actions form-actions-condensed singleupload-buttonbar">
+            <span class="btn btn-success fileinput">
+                {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:upload.html.twig" %}
+                <input type="file" id="{{ id }}" name="{{ form.parent.vars.full_name ~ '['~name~'][file]' }}" />
+            </span>
+            {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:controls.html.twig" %}
+        </div>
+        <div id="{{ id ~ '_preview' }}" class="single-upload-preview">
+            {% include "AvocodeFormExtensionsBundle:Form/SingleUpload:preview.html.twig" %}
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock single_upload_widget %}
 
 {% block select2_choice_widget %}
-{% if hidden %}
-    {{ block('hidden_widget') }}
-{% else %}
-    {{ form_row(form) }}
-{% endif %}
-{% endblock %}
-
-{% block select2_entity_widget %}
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
@@ -196,7 +188,7 @@
 {% endif %}
 {% endblock %}
 
-{% block select2_model_widget %}
+{% block select2_entity_widget %}
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
@@ -209,3 +201,20 @@
     {{ block('form_row') }}
 {% endspaceless %}
 {% endblock select2_hidden_row %}
+
+{% block select2_model_widget %}
+{% if hidden %}
+    {{ block('hidden_widget') }}
+{% else %}
+    {{ form_row(form) }}
+{% endif %}
+{% endblock %}
+
+{% block time_picker_widget %}
+{% spaceless %}
+    <div class="input-append bootstrap-timepicker">
+        <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}"{% endif %} />
+        <span class="add-on"><i class="icon-time"></i></span>
+    </div>
+{% endspaceless %}
+{% endblock time_picker_widget %}

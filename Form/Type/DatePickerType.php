@@ -12,7 +12,7 @@ use Symfony\Component\Form\ReversedTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * @author   Vincent Touzet <vincent.touzet@gmail.com>
+ * @author Vincent Touzet <vincent.touzet@gmail.com>
  */
 class DatePickerType extends AbstractType
 {
