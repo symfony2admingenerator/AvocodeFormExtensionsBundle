@@ -68,8 +68,71 @@ class DateRangePickerType extends AbstractType
         $ranges = array();
         if (is_array($options['ranges'])) {
             foreach ($options['ranges'] as $key => $value) {
-                $key_tr = $this->translator->trans($key, array(), $options['drp_translation_domain']);
-                $ranges[$key_tr] = $value;
+                if ("today" === $key || "today" === $value) {
+                    $key = "today";
+                    $today = date('Y-m-d');
+                    $value = array($today, $today);
+                }
+                        
+                if ("yesterday" === $key || "yesterday" === $value) {
+                    $key = "yesterday";
+                    $yesterday = date('Y-m-d', strtotime('-1 days'));
+                    $value = array($yesterday, $yesterday);
+                }
+                
+                if ("last-7-days" === $key || "last-7-days" === $value) {
+                    $key = "last-7-days";
+                    $ago6days = date('Y-m-d', strtotime('-6 days'));
+                    $today = date('Y-m-d');
+                    $value = array($ago6days, $today);
+                }
+                
+                if ("last-week" === $key || "last-week" === $value) {
+                    $key = "last-week";
+                    $ago2weeks = date('Y-m-d', strtotime('2 weeks ago'));
+                    $ago1weeks = date('Y-m-d', strtotime('last week'));
+                    $value = array($ago2weeks, $ago1weeks);
+                }
+                
+                if ("last-30-days" === $key || "last-30-days" === $value) {
+                    $key = "last-30-days";
+                    $ago29days = date('Y-m-d', strtotime('-29 days'));
+                    $today = date('Y-m-d');
+                    $value = array($ago29days, $today);
+                }
+                
+                if ("last-month" === $key || "last-month" === $value) {
+                    $key = "last-month";
+                    $ago2months = date('Y-m-d', strtotime('2 months ago'));
+                    $ago1months = date('Y-m-d', strtotime('last month'));
+                    $value = array($ago2months, $ago1months);
+                }
+                
+                if ("last-365-days" === $key || "last-365-days" === $value) {
+                    $key = "last-365-days";
+                    $ago364days = date('Y-m-d', strtotime('-364 days'));
+                    $today = date('Y-m-d');
+                    $value = array($ago364days, $today);
+                }
+                
+                if ("last-year" === $key || "last-year" === $value) {
+                    $key = "last-year";
+                    $ago2years = date('Y-m-d', strtotime('2 years ago'));
+                    $ago1years = date('Y-m-d', strtotime('last year'));
+                    $value = array($ago2years, $ago1years);
+                }
+                
+                if (in_array($key, array(
+                    "today",          "yesterday", 
+                    "last-7-days",    "last-week", 
+                    "last-30-days",   "last-month", 
+                    "last-365-days",  "last-year"
+                ))) {
+                    $key_tr = $this->translator->trans(''.$key, array(), $options['drp_translation_domain']);
+                    $ranges[$key_tr] = $value;
+                } else {
+                    $ranges[$key] = $value;
+                }
             }
         }
         
