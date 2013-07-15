@@ -123,7 +123,6 @@ class DatePickerType extends AbstractType
         $resolver->setAllowedValues(array(
             'week_start'      => range(0, 6),
             'start_view'      => array(0, 'month', 1, 'year', 2, 'decade'),
-            'view_mode'       => array(0, 'days', 1, 'months', 2, 'years'),
             'min_view_mode'   => array(0, 'days', 1, 'months', 2, 'years'),
             'today_btn'       => array(true, false, 'linked'),
         ));

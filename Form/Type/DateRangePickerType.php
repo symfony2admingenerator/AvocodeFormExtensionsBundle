@@ -132,10 +132,10 @@ class DateRangePickerType extends AbstractType
             'separator'               => ' - ',   // separator used between the two dates
             'show_week_numbers'       => true,
             'show_dropdowns'          => false,   // show dropdowns for the months and year
-            'min_date'                => false,    // null or string in format dd/mm/yyyy
-            'max_date'                => false,    // null or string in format dd/mm/yyyy
+            'min_date'                => false,   // null or string in format dd/mm/yyyy
+            'max_date'                => false,   // null or string in format dd/mm/yyyy
             'date_limit'              => false,   // date limit: false or array('days'=>5)
-            'ranges'                  => false,    // ranges null or array
+            'ranges'                  => false,   // ranges null or array
             'locale' => array(
                 'applyLabel'        => 'date_range.label.apply',
                 'clearLabel'        => 'date_range.label.clear',

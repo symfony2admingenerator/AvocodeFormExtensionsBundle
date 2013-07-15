@@ -28,7 +28,6 @@ class DateTimePickerType extends AbstractType
             'days_of_week_disabled',
             'autoclose',
             'start_view',
-            'view_mode',
             'min_view_mode',
             'today_btn',
             'today_highlight',
@@ -61,7 +60,7 @@ class DateTimePickerType extends AbstractType
     {
         $view->vars = array_replace($view->vars, array(
             'week_start'    => $options['week_start'],
-            'view_mode'     => $options['view_mode'],
+            'start_view'    => $options['start_view'],
             'min_view_mode' => $options['min_view_mode'],
             'minute_step'   => $options['minute_step'],
             'second_step'   => $options['second_step'],
@@ -78,7 +77,7 @@ class DateTimePickerType extends AbstractType
         $resolver->setDefaults(array(
             'format'          => 'yyyy-MM-dd',
             'week_start'      => 1,
-            'view_mode'       => 0,
+            'start_view'      => 0,
             'min_view_mode'   => 0,
             'minute_step'     => 15,
             'second_step'     => 15,
@@ -90,7 +89,7 @@ class DateTimePickerType extends AbstractType
 
         $resolver->setAllowedValues(array(
             'week_start'      => range(0, 6),
-            'view_mode'       => array(0, 'days', 1, 'months', 2, 'years'),
+            'start_view'      => array(0, 'month', 1, 'year', 2, 'decade'),
             'min_view_mode'   => array(0, 'days', 1, 'months', 2, 'years'),
         ));
     }
