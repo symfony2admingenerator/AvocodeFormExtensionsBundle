@@ -58,13 +58,20 @@
                 that._onUnselect();
             });
             
+            // prevent default and toggle selected class
+            this.$widgetContainer.find('ul li a').click(function(e){
+                e.preventDefault();
+                
+                $(this).closest('li').toggleClass('selected');
+            });
+            
             // bind onSelect to button click event
             this.$selectedButton.click(function(){
                 that._onSelect();
             });
             
             // bind onSubmit to form submit event
-            this.$form.submit(function(){
+            this.$form.submit(function(){                
                 that._onSubmit();
             });
         },
@@ -72,10 +79,10 @@
         _onUnselect: function() {
             var that = this;  // Plugin-scope helper
             
-            $.each(this.$selectedList, function(key, item) {
-                if (item.hasClass('active')) {
-                    item.removeClass('active');
-                    item.appendTo(that.$unselectedList);
+            $.each(this.$selectedList.children('li'), function(key, item) {
+                if ($(item).hasClass('selected')) {
+                    $(item).removeClass('selected');
+                    $(item).appendTo(that.$unselectedList);
                 }
             });
         },
@@ -83,10 +90,10 @@
         _onSelect: function() {
             var that = this;  // Plugin-scope helper
             
-            $.each(this.$unselectedList, function(key, item) {
-                if (item.hasClass('active')) {
-                    item.removeClass('active');
-                    item.appendTo(that.$selectedList);
+            $.each(this.$unselectedList.children('li'), function(key, item) {
+                if ($(item).hasClass('selected')) {
+                    $(item).removeClass('selected');
+                    $(item).appendTo(that.$selectedList);
                 }
             });
         },
@@ -94,13 +101,13 @@
         _onSubmit: function() {
             var that = this;  // Plugin-scope helper
             
-            $.each(this.$unselectedList, function(key, item) {
-                var value = item.data('value');
+            $.each(this.$unselectedList.children('li'), function(key, item) {
+                var value = $(item).data('value');
                 $(that.element).find('option[value="'+value+'"]').removeAttr('selected');
             });
             
-            $.each(this.$selectedList, function(key, item) {
-                var value = item.data('value');
+            $.each(this.$selectedList.children('li'), function(key, item) {
+                var value = $(item).data('value');
                 $(that.element).find('option[value="'+value+'"]').attr('selected', 'selected');
             });
         }

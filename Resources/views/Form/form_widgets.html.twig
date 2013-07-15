@@ -79,7 +79,7 @@
                 <div id="{{ 'accordion_body_' ~ item.vars.id }}" class="accordion-body collapse in">
                     <div class="accordion-inner">
                     {{ form_errors(item) }}
-                    {{ form_widget(item, { 'attr': {'class': 'form-horizontal'} }) }}
+                    {{ form_widget(item, {'attr': {'class': 'form-horizontal'} }) }}
                     </div>
                 </div>
             </div>
@@ -167,19 +167,16 @@
 {% block double_list_prototype %}
 {% spaceless %}
     <div id="{{ id ~ '_widget_container' }}" class="double-list">
-        <div class="list-unselected dropdown">
+        <div class="list-unselected dropdown open">
             {% include "AvocodeFormExtensionsBundle:Form/DoubleList:unselected_list.html.twig" %}
         </div>
         <div class="list-controls">
-            <div class="btn-group btn-group-vertical">
-                <button class="btn btn-large"><i class="icon-chevron-left icon-large"></i></button>
-                <button class="btn btn-large"><i class="icon-chevron-right icon-large"></i></button>
-            </div>
+            {% include "AvocodeFormExtensionsBundle:Form/DoubleList:controls.html.twig" %}
         </div>
-        <div class="list-selected dropdown">
+        <div class="list-selected dropdown open">
             {% include "AvocodeFormExtensionsBundle:Form/DoubleList:selected_list.html.twig" %}
         </div>
-        {{ block('form_row') }}
+        {{ block('choice_widget') }}
     </div>
 {% endspaceless %}
 {% endblock double_list_prototype %}

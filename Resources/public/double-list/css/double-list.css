@@ -1,15 +1,37 @@
 .double-list .list-selected,
 .double-list .list-unselected,
 .double-list .list-controls {
-    float: left;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .double-list .list-controls {
-    margin-top: 2em;
+    margin: 0 10px;
 }
 
-.double-list {
-    clear: both;
+.double-list .list-controls .double-list-controls {
+    margin: 1px 10px;
+    padding: 7px 0px;
+    height: 100px;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.double-list .list-selected .double-list-dropdown,
+.double-list .list-unselected .double-list-dropdown {
+    overflow-y: scroll; 
+    height: 100px;
+    position: static;
+    min-width: 180px;
+}
+
+.double-list-dropdown li i {
+    visibility: hidden;
+    margin-left: -1em;
+}
+
+.double-list-dropdown li.selected i {
+    visibility: visible;
 }
 
 .double-list .hidden-select {

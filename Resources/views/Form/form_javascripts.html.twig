@@ -250,6 +250,56 @@
 {% endspaceless %}
 {% endblock daterange_picker_javascript %}
 
+{% block double_list_javascript_prototype %}
+{% spaceless %}
+{% autoescape false %}
+    $field.doubleList();
+{% endautoescape %}
+{% endspaceless %}
+{% endblock double_list_javascript_prototype %}
+
+{% block double_list_document_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $field = $('#{{ id }}');
+
+    {% block double_list_document_javascript_prototype %}
+        {{ block('double_list_javascript_prototype') }}
+    {% endblock double_list_document_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock double_list_document_javascript %}
+
+{% block double_list_entity_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $field = $('#{{ id }}');
+
+    {% block double_list_entity_javascript_prototype %}
+        {{ block('double_list_javascript_prototype') }}
+    {% endblock double_list_entity_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock double_list_entity_javascript %}
+
+{% block double_list_model_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $field = $('#{{ id }}');
+
+    {% block double_list_model_javascript_prototype %}
+        {{ block('double_list_javascript_prototype') }}
+    {% endblock double_list_model_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock double_list_model_javascript %}
+
 {% block select2_javascript %}
 {% spaceless %}
 {% autoescape false %}
@@ -259,7 +309,7 @@
 
     {% block select2_javascript_prototype %}
         $field.select2({{ configs|e4js }});
-    {% endblock %}
+    {% endblock select2_javascript_prototype %}
     });
 </script>
 {% endautoescape %}
