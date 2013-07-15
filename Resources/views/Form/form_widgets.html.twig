@@ -79,7 +79,7 @@
                 <div id="{{ 'accordion_body_' ~ item.vars.id }}" class="accordion-body collapse in">
                     <div class="accordion-inner">
                     {{ form_errors(item) }}
-                    {{ form_widget(item, {'attr': {'class': 'form-horizontal'} }) }}
+                    {{ form_widget(item, { 'attr': {'class': 'form-horizontal'} }) }}
                     </div>
                 </div>
             </div>
@@ -214,7 +214,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ block('form_row') }}
+    {{ block('choice_widget') }}
 {% endif %}
 {% endblock %}
 
@@ -222,7 +222,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ block('form_row') }}
+    {{ block('choice_widget') }}
 {% endif %}
 {% endblock %}
 
@@ -230,7 +230,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ block('form_row') }}
+    {{ block('choice_widget') }}
 {% endif %}
 {% endblock %}
 
@@ -244,7 +244,7 @@
 {% if hidden %}
     {{ block('hidden_widget') }}
 {% else %}
-    {{ block('form_row') }}
+    {{ block('choice_widget') }}
 {% endif %}
 {% endblock %}
 
