@@ -78,11 +78,10 @@
                 });
                 
                 // select/deselect all
-                this.$selectAll = $('#'+ this.element.id + '_toolbar > .btn-toggle > input[name="toggle"]');
+                this.$toggleAll = $('#'+ this.element.id + '_toolbar > .btn-toggle > input[name="toggle"]');
                 
-                this.$selectAll.on('change', function(e) {
-                    e.preventDefault();
-                    that._onSelectAll();
+                this.$toggleAll.on('change', function(e) {
+                    that._onToggleAll();
                 });
 
                 // delete selected
@@ -164,21 +163,19 @@
             });
         },
                 
-        _onSelectAll: function() {
-            if (this.$selectAll.is(':checked')) {
-                $('.'+ this.element.id + '_actions > .btn-toggle > input[name="delete"]').attr('checked', true);
+        _onToggleAll: function() {
+            if (this.$toggleAll.is(':checked')) {
+                this.$toggleAll.prop('checked', true);
+                $('.'+ this.element.id +'_actions > .btn-toggle > input[name="delete"]').prop('checked', true);
             } else {
-                $('.'+ this.element.id + '_actions > .btn-toggle > input[name="delete"]').attr('checked', false);
+                this.$toggleAll.prop('checked', false);
+                $('.'+ this.element.id +'_actions > .btn-toggle > input[name="delete"]').prop('checked', false);
             }
-        },
-                
-        _onUnselectAll: function() {
-            $('.'+ this.element.id + '_toolbar > .btn-toggle > input[name="toggle"]').attr('checked', false);
         },
                 
         _onDeleteAll: function() {
             if (confirm(this.options.trans.confirm_batch)) {
-                $('.'+ this.element.id + '_actions > .btn-toggle > input[name="delete"]:checked').each(function(){
+                $('.'+ this.element.id +'_actions > .btn-toggle > input[name="delete"]:checked').each(function(){
                       $(this).closest('.collection-item').remove();
                 });
 
@@ -186,7 +183,7 @@
                     this._onChange();
                 }
 
-                this._onUnselectAll();
+                this.$toggleAll.prop('checked', false);
             }
         }
         
