@@ -1,6 +1,13 @@
 FormExtensions
 ==============
 
+### Translators needed!
+
+We need your support to translate forms messages :) 
+If you want to help open a pull request and submit a package for your language.
+
+--------------
+
 Symfony2 form extensions for Admingenerator project inspired by 
 [genemu/GenemuFormBundle](https://github.com/genemu/GenemuFormBundle).
 
