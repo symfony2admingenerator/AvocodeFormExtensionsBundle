@@ -86,7 +86,11 @@ class FormExtension extends \Twig_Extension
                 }
                 return '{'.implode(',', $items).'}';
             } else {
-                return '['.implode(',', $var).']';
+                $items = array();
+                foreach($var as $val) {
+                    $items[] = $this->export_for_js($val);
+                }
+                return '['.implode(',', $items).']';
             }
         }
         
