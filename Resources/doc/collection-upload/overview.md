@@ -3,7 +3,7 @@
 
 [go back to Table of contents][back-to-index]
 
-[back-to-index]: https://github.com/avocode/FormExtensionsBundle/blob/master/Resources/doc/documentation.md
+[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
 
 ### 1. Overview
 
@@ -418,7 +418,7 @@ If set, given filter will be applied on uploaded file to generate a thumbnail.
 
 > **Note:** Requires instaling and configureing image manipulator. See 
 [How to use image manipulator with this bundle?]
-(https://github.com/avocode/FormExtensionsBundle/blob/master/Resources/doc/cookbook/image-manipulator.md) 
+(https://github.com/avocode/FormExtensions/blob/master/Resources/doc/cookbook/image-manipulator.md) 
 cookbook entry.
 
 #### prependFiles
