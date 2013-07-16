@@ -5,11 +5,11 @@ namespace Avocode\FormExtensionsBundle\Twig\Extension;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * This extension adds common twig function for various asset provider 
+ * This extension adds common twig function for various upload manager 
  * bundles and common twig filter image manipulation bundles. 
  * 
- * Depending on %avocode.form.asset_provider% setting a diffrent 
- * asset provider bundle is used.
+ * Depending on %avocode.form.upload_manager% setting a diffrent 
+ * upload manager bundle is used.
  * 
  * Depending on %avocode.form.image_manipulator% setting a diffrent 
  * image manipulation bundle is used.
@@ -54,7 +54,7 @@ class ImageAssetsExtension extends \Twig_Extension
     {
         $params = func_get_args();
         
-        if ('vich_uploader' === $this->getAssetProvider()) {
+        if ('vich_uploader' === $this->getUploadManager()) {
             $ext = new \Vich\UploaderBundle\Twig\Extension\UploaderExtension(
                 $this->container->get('vich_uploader.templating.helper.uploader_helper')  
             );
@@ -62,7 +62,7 @@ class ImageAssetsExtension extends \Twig_Extension
             return call_user_func_array(array($ext, "asset"), $params);
         }
         
-        // In case no asset provider is used we expect object to have
+        // In case no upload manager is used we expect object to have
         // a special method returning file's path
         $getter = "get".ucfirst($field)."WebPath";
             
@@ -101,13 +101,13 @@ class ImageAssetsExtension extends \Twig_Extension
     }
 
     /**
-     * Get asset provider name
+     * Get upload manager name
      *
      * @return string|null Parameter value
      */
-    public function getAssetProvider()
+    public function getUploadManager()
     {
-        return $this->container->getParameter('avocode.form.asset_provider');
+        return $this->container->getParameter('avocode.form.upload_manager');
     }
 
     /**

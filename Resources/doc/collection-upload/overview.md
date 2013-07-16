@@ -121,6 +121,10 @@ class GalleryImage implements UploadCollectionFileInterface
 
 > **Note:** In this example we use Doctrine ORM, replace it's mappings with your ORM.
 
+To use VichUploaderBundle you have to configure the `upload_manager` option. Read more in
+cookbook entry [How to use upload manager with this bundle?]
+(https://github.com/avocode/FormExtensions/blob/master/Resources/doc/cookbook/upload-manager.md) 
+
 #### Without dependencies
 
 Follow symfony's cookbook on [How to handle File Uploads with Doctrine]
