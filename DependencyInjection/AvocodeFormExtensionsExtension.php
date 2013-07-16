@@ -26,7 +26,7 @@ class AvocodeFormExtensionsExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
         
-        $container->setParameter('avocode.form.asset_provider', $config['asset_provider']);
+        $container->setParameter('avocode.form.upload_manager', $config['upload_manager']);
         $container->setParameter('avocode.form.image_manipulator', $config['image_manipulator']);
         
         $this->loadBootstrapCollectionTypes($container);
