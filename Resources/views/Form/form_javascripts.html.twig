@@ -227,7 +227,7 @@
         
     {% block daterange_picker_javascript_prototype %}
         $field.daterangepicker({
-            format:           "yyyy-MM-dd",
+            format:           {{ format|e4js }},
             opens:            {{ opens|e4js }},
             separator:        {{ separator|e4js }},
             showWeekNumbers:  {{ show_week_numbers|e4js }},

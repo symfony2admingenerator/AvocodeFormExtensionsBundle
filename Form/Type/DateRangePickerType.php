@@ -112,6 +112,7 @@ class DateRangePickerType extends AbstractType
             }
         }
         
+        $view->vars['format']            = $options['format'];
         $view->vars['opens']             = $options['opens'];
         $view->vars['separator']         = $options['separator'];
         $view->vars['show_week_numbers'] = $options['show_week_numbers'];
@@ -128,6 +129,7 @@ class DateRangePickerType extends AbstractType
         $resolver->setDefaults(array(
             'drp_translation_domain'  => 'AvocodeFormExtensions', // translation domain
             'use_daterange_entity'    => false,   // set to true if DateRange object is used
+            'format'                  => 'yyyy-MM-dd',
             'opens'                   => 'right', // open on the left or right
             'separator'               => ' - ',   // separator used between the two dates
             'show_week_numbers'       => true,
