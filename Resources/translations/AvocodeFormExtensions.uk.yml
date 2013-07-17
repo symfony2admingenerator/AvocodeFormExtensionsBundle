@@ -1,0 +1,79 @@
+bootstrap_collection:
+    add:          Додати
+    delete:       Видалити
+    confirm:
+        delete:           Ви впевнені, що хочете видалити обраний елемент?
+        batchDelete:      Ви впевнені, що хочете видалити всі обрані елементи?
+
+collection_upload:
+    file.add:     Додати файл...
+    error:        Помилка
+    cancel:       Скасувати
+    delete:       Видалити
+    download:     Завантажити
+    confirm:
+        batchDelete:      Ви впевнені, що хочете видалити всі обрані елементи?
+    errors:
+        maxNumFiles:      Допустима кількість файлів перевищена
+        typeNotAllowed:   Тип файлу не дозволений
+        maxFileSize:      Файл надто великий
+        minFileSize:      Файл надто малий
+        
+date_range:
+    label:
+        apply:          Підтвердити
+        clear:          Очистити
+        from:           Від
+        to:             До
+        week:           тиждень
+        custom_range:   Користувальницький діапазон
+    days:
+        sunday:         Нд
+        monday:         Пн
+        tuesday:        Вт
+        wednesday:      Ср
+        thursday:       Чт
+        friday:         Пт
+        saturday:       Сб
+    months:
+        january:        Січень
+        february:       Лютий
+        march:          Березень
+        april:          Квітень
+        may:            Травень
+        june:           Червень
+        july:           Липень
+        august:         Серпень
+        september:      Вересень
+        october:        Жовтень
+        november:       Листопад
+        december:       Грудень
+    ranges:
+        today:          Сьогодні
+        yesterday:      Вчора
+        last-week:      Останній тиждень
+        last-month:     Останній місяця
+        last-year:      Останній рік
+        
+double_list:
+    selected:           Вибрані
+    unselected:         Не вибраний
+        
+single_upload:
+    button:
+        add:              Завантажити файл
+        replace:          Замінити файл
+        cancel:           Скасувати
+        delete:           Видалити
+    type:
+        audio:            Аудіор
+        archive:          Архів
+        html:             HTML
+        image:            Зображення
+        pdf-document:     PDF<br />Документ
+        plain-text:       Звичайний<br />Текст
+        presentation:     Презентація
+        spreadsheet:      Таблиця
+        text-document:    Текстовий<br />Документ
+        unknown:          Невідомий<br />Тип
+        video:            Відео

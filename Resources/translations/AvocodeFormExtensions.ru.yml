@@ -1,0 +1,79 @@
+bootstrap_collection:
+    add:          добавить
+    delete:       удалить
+    confirm:
+        delete:           Вы уверены, что хотите удалить этот элемент?
+        batchDelete:      Вы уверены, что хотите удалить все выбранные элементы?
+
+collection_upload:
+    file.add:     Добавить файл...
+    error:        Ошибка
+    cancel:       Отменить
+    delete:       Удалить
+    download:     Загрузить
+    confirm:
+        batchDelete:      Вы уверены, что хотите удалить все выбранные элементы?
+    errors:
+        maxNumFiles:      Превышено допустимое количество файлов
+        typeNotAllowed:   Тип файла не допускается
+        maxFileSize:      Файл слишком большой
+        minFileSize:      Файл слишком мал
+        
+date_range:
+    label:
+        apply:          Отправить
+        clear:          Очистить
+        from:           От
+        to:             До
+        week:           Н
+        custom_range:   Произвольный диапазон
+    days:
+        sunday:         Вс
+        monday:         Пн
+        tuesday:        Вт
+        wednesday:      Ср
+        thursday:       Чт
+        friday:         Пт
+        saturday:       Сб
+    months:
+        january:        Январь
+        february:       Февраль
+        march:          Март
+        april:          Апрель
+        may:            Май
+        june:           Июнь
+        july:           Июль
+        august:         Август
+        september:      Сентябрь
+        october:        Октябрь
+        november:       Ноябрь
+        december:       Декабрь
+    ranges:
+        today:          Сегодня
+        yesterday:      Вчера
+        last-week:      Последняя неделя
+        last-month:     Прошлый месяц
+        last-year:      Прошлый год
+        
+double_list:
+    selected:           Выбранный
+    unselected:         Не выбран
+        
+single_upload:
+    button:
+        add:              Загрузить файл
+        replace:          Заменить файл
+        cancel:           Отменить
+        delete:           Удалить
+    type:
+        audio:            Аудио
+        archive:          Архив
+        html:             HTML
+        image:            Изображение
+        pdf-document:     PDF<br />Документ
+        plain-text:       Обычный<br />Текст
+        presentation:     Презентация
+        spreadsheet:      Таблица
+        text-document:    Текстовой<br />Документ
+        unknown:          Неизвестный<br />Файл
+        video:            Видео
