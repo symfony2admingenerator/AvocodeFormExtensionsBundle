@@ -21,6 +21,7 @@ class DateTimePickerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $dateOptions = array_intersect_key($options, array_flip(array(
+            'format',
             'week_start',
             'calendar_weeks',
             'start_date',
