@@ -197,6 +197,7 @@
         
     {% block date_picker_javascript_prototype %}
         $field.datepicker({
+            format:               {{ format|e4js }},
             weekStart:            {{ week_start|e4js }},
             calendarWeeks:        {{ calendar_weeks|e4js }},
             daysOfWeekDisabled:   {{ days_of_week_disabled|e4js }},
