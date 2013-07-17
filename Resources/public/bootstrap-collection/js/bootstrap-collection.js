@@ -38,6 +38,7 @@
     // The actual plugin constructor
     function Plugin( element, options ) {
         this.element = element;
+        this.$element = $('#' + element.id);
 
         // jQuery has an extend method which merges the contents of two or
         // more objects, storing the result in the first object. The first object
@@ -60,11 +61,16 @@
             // Configure allow add
             if (this.options.allow_add) {
                 this.$new   = $('#'+ this.element.id +'_toolbar > .new');
-                this.nextId = $('#'+ this.element.id +' > .collection > .collection-item').length;
+                this.nextId = this.$element.children(' .collection > .collection-item').length;
                 
                 this.$new.on('click', function(e) {
                     e.preventDefault();
-                    that._onAdd();
+                    var addingEvent = $.Event('adding');
+                    that.$element.trigger(addingEvent);
+                    if (!addingEvent.isDefaultPrevented()) {
+                    	that._onAdd();
+                    	that.$element.trigger('added');
+                    }
                 });
             }
             
@@ -74,7 +80,13 @@
                 // remove item
                 $('.'+ this.element.id + '_actions .delete').click(function(e){
                     e.preventDefault();
-                    that._onDelete(this);
+                    var deletingEvent = $.Event('deleting');
+                    var $targetedElement = $(this).closest('.collection-item');
+                    that.$element.trigger(deletingEvent, [ $targetedElement ]);
+                    if (!deletingEvent.isDefaultPrevented()) {
+                    	that._onDelete(this);
+                    	that.$element.trigger('deleted', [ $targetedElement ]);
+                    }
                 });
                 
                 // select/deselect all
@@ -86,7 +98,12 @@
 
                 // delete selected
                 $('#'+ this.element.id + '_toolbar > .batch-delete').click(function() {
-                    that._onDeleteAll();
+                	var deletingAllEvent = $.Event('deleting-all');
+                    that.$element.trigger(deletingAllEvent);
+                    if (!deletingAllEvent.isDefaultPrevented()) {
+                    	that._onDeleteAll();
+                    	that.$element.trigger('deleted-all');
+                    }
                 });
             }
             
@@ -132,7 +149,13 @@
             if (this.options.allow_delete) {
                 var that = this;
                 $new_item.find('.delete').click(function(){
-                    that._onDelete(this);
+                	var deletingEvent = $.Event('deleting');
+                    var $targetedElement = $(this).closest('.collection-item');
+                    that.$element.trigger(deletingEvent, [ $targetedElement ]);
+                    if (!deletingEvent.isDefaultPrevented()) {
+                    	that._onDelete(this);
+                    	that.$element.trigger('deleted', [ $targetedElement ]);
+                    }
                 });
             }
 
