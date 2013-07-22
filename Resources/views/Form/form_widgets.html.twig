@@ -133,19 +133,6 @@
 {% endspaceless %}
 {% endblock collection_upload_widget %}
 
-{% block color_picker_widget %}
-{% spaceless %}
-{% if widget == "image" %}
-    <div id="{{ id }}_color" {{ block("widget_container_attributes") }}>
-        <div{% if value %} style="{{ 'background-color: #' ~ value ~';' }}"{% endif %}>&nbsp;</div>
-        {{ block("hidden_widget") }}
-    </div>
-{% else %}
-    {{ block("form_widget_simple") }}
-{% endif %}
-{% endspaceless %}
-{% endblock color_picker_widget %}
-
 {% block date_picker_widget %}
 {% spaceless %}
     <div class="input-append date datepicker" data-date="{{ value }}" data-date-format="{{ format|lower }}">
@@ -180,15 +167,15 @@
     </div>
 {% endspaceless %}
 {% endblock double_list_prototype %}
-    
+
 {% block double_list_document_widget %}
     {{ block('double_list_prototype') }}
 {% endblock double_list_document_widget %}
-    
+
 {% block double_list_entity_widget %}
     {{ block('double_list_prototype') }}
 {% endblock double_list_entity_widget %}
-    
+
 {% block double_list_model_widget %}
     {{ block('double_list_prototype') }}
 {% endblock double_list_model_widget %}

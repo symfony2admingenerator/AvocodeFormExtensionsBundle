@@ -9,9 +9,10 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * ColorType
+ * ColorType working with jQuery MiniColors 2.0 :
+ *     http://labs.abeautifulsite.net/jquery-miniColors/
  *
- * @author Olivier Chauvel <olivier@generation-multiple.com>
+ * @author Escandell Stéphane <stephane.escandell@gmail.com>
  */
 class ColorPickerType extends AbstractType
 {
@@ -20,7 +21,6 @@ class ColorPickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['widget']   = $options['widget'];
         $view->vars['configs']  = $options['configs'];
     }
 
@@ -29,13 +29,9 @@ class ColorPickerType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        // TODO: expose configuration?
         $resolver->setDefaults(array(
-            'widget'  => 'text',
             'configs' => array(),
-        ));
-        
-        $resolver->setAllowedValues(array(
-            'widget' => array('text', 'image')
         ));
     }
 
