@@ -15,7 +15,7 @@
     {% javascripts filter='?yui_js' output='assetic/js/compiled/avocodeformextensions/form-extensions.min.js'
         'bundles/avocodeformextensions/bootstrap-collection/js/bootstrap-collection.js'
         'bundles/avocodeformextensions/collection-upload/js/collection-upload.js'
-        'bundles/avocodeformextensions/colorpicker/js/colorpicker.js'
+        'bundles/avocodeformextensions/colorpicker/js/jquery.minicolors.js'
         'bundles/avocodeformextensions/datepicker/js/datepicker.js'
         'bundles/avocodeformextensions/daterangepicker/js/date.js'
         'bundles/avocodeformextensions/daterangepicker/js/daterangepicker.js'
@@ -26,14 +26,14 @@
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    
+
     <!-- locale -->
     {% if app.request.locale in ['ca', 'cs', 'da', 'de', 'es', 'et', 'eu', 'fr', 'gl', 'he', 'hr', 'hu', 'is', 'it', 'ja', 'lt', 'lv', 'mk', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'tr', 'ua', 'vi', 'zh-CN', 'zh-TW'] %}
     <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/select2/js/i18n/select2_locale_' ~ app.request.locale ~ '.js') }}"></script>
     {% endif %}
-        
+
     {% if app.request.locale in ['bg', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'he', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'kr', 'lt', 'lv', 'mk', 'ms', 'nb', 'nl', 'pl', 'pt-BR', 'pt', 'ro', 'rs-latin', 'rs', 'ru', 'sk', 'sl', 'sq', 'sv', 'sw', 'th', 'tr', 'uk', 'zh-CN', 'zh-TW'] %}
     <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/datepicker/js/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>
     {% endif %}
-        
+
 {% endblock avocode_form_javascripts %}
