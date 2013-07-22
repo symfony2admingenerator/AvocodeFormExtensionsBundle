@@ -20,9 +20,6 @@
         "components/bootstrap": ">= 2.3.1",
         "components/font-awesome": ">= 3.2.0"
     },
-    "conflict": {
-        "genemu/form-bundle": "*"
-    },
     "suggest": {
         "cedriclombardot/admingenerator-generator-bundle": "The missing symfony2 admin generator",
         "liip/imagine-bundle": "Apply filters on preview images"
