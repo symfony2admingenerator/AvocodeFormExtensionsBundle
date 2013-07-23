@@ -31,6 +31,22 @@ Forms that will be added to this bundle:
 * Knob
 * Rate
 
+#### Installation
+
+##### Composer
+Add this to your composer.json
+```
+      "avocode/form-extensions-bundle": "dev-master"
+```
+
+Then activate it on the appkernel.php
+
+```
+            new Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle(),
+```
+
+
+That's all
 #### Note
 
 Documentation for all form types will be gradually filled. You can find it 
