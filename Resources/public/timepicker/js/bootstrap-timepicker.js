@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-;(function($, window, document, undefined) {
+(function($, window, document, undefined) {
   'use strict';
 
   // TIMEPICKER PUBLIC CLASS DEFINITION
@@ -258,15 +258,15 @@
         templateContent;
 
       if (this.showInputs) {
-        hourTemplate = '<input type="text" name="hour" class="timepicker-hour" maxlength="2"/>';
-        minuteTemplate = '<input type="text" name="minute" class="timepicker-minute" maxlength="2"/>';
-        secondTemplate = '<input type="text" name="second" class="timepicker-second" maxlength="2"/>';
-        meridianTemplate = '<input type="text" name="meridian" class="timepicker-meridian" maxlength="2"/>';
+        hourTemplate = '<input type="text" name="hour" class="bootstrap-timepicker-hour" maxlength="2"/>';
+        minuteTemplate = '<input type="text" name="minute" class="bootstrap-timepicker-minute" maxlength="2"/>';
+        secondTemplate = '<input type="text" name="second" class="bootstrap-timepicker-second" maxlength="2"/>';
+        meridianTemplate = '<input type="text" name="meridian" class="bootstrap-timepicker-meridian" maxlength="2"/>';
       } else {
-        hourTemplate = '<span class="timepicker-hour"></span>';
-        minuteTemplate = '<span class="timepicker-minute"></span>';
-        secondTemplate = '<span class="timepicker-second"></span>';
-        meridianTemplate = '<span class="timepicker-meridian"></span>';
+        hourTemplate = '<span class="bootstrap-timepicker-hour"></span>';
+        minuteTemplate = '<span class="bootstrap-timepicker-minute"></span>';
+        secondTemplate = '<span class="bootstrap-timepicker-second"></span>';
+        meridianTemplate = '<span class="bootstrap-timepicker-meridian"></span>';
       }
 
       templateContent = '<table>'+
@@ -313,7 +313,7 @@
 
       switch(this.template) {
       case 'modal':
-        template = '<div class="timepicker-widget modal hide fade in" data-backdrop="'+ (this.modalBackdrop ? 'true' : 'false') +'">'+
+        template = '<div class="bootstrap-timepicker-widget modal hide fade in" data-backdrop="'+ (this.modalBackdrop ? 'true' : 'false') +'">'+
           '<div class="modal-header">'+
             '<a href="#" class="close" data-dismiss="modal">×</a>'+
             '<h3>Pick a Time</h3>'+
@@ -327,7 +327,7 @@
         '</div>';
         break;
       case 'dropdown':
-        template = '<div class="timepicker-widget dropdown-menu">'+ templateContent +'</div>';
+        template = '<div class="bootstrap-timepicker-widget dropdown-menu">'+ templateContent +'</div>';
         break;
       }
 
@@ -664,7 +664,7 @@
       var self = this;
       $(document).on('mousedown.timepicker', function (e) {
         // Clicked outside the timepicker, hide it
-        if ($(e.target).closest('.timepicker-widget').length === 0) {
+        if ($(e.target).closest('.bootstrap-timepicker-widget').length === 0) {
           self.hideWidget();
         }
       });
@@ -740,24 +740,24 @@
           second = this.second < 10 ? '0' + this.second : this.second;
 
       if (this.showInputs) {
-        this.$widget.find('input.timepicker-hour').val(hour);
-        this.$widget.find('input.timepicker-minute').val(minute);
+        this.$widget.find('input.bootstrap-timepicker-hour').val(hour);
+        this.$widget.find('input.bootstrap-timepicker-minute').val(minute);
 
         if (this.showSeconds) {
-          this.$widget.find('input.timepicker-second').val(second);
+          this.$widget.find('input.bootstrap-timepicker-second').val(second);
         }
         if (this.showMeridian) {
-          this.$widget.find('input.timepicker-meridian').val(this.meridian);
+          this.$widget.find('input.bootstrap-timepicker-meridian').val(this.meridian);
         }
       } else {
-        this.$widget.find('span.timepicker-hour').text(hour);
-        this.$widget.find('span.timepicker-minute').text(minute);
+        this.$widget.find('span.bootstrap-timepicker-hour').text(hour);
+        this.$widget.find('span.bootstrap-timepicker-minute').text(minute);
 
         if (this.showSeconds) {
-          this.$widget.find('span.timepicker-second').text(second);
+          this.$widget.find('span.bootstrap-timepicker-second').text(second);
         }
         if (this.showMeridian) {
-          this.$widget.find('span.timepicker-meridian').text(this.meridian);
+          this.$widget.find('span.bootstrap-timepicker-meridian').text(this.meridian);
         }
       }
     },
@@ -766,10 +766,10 @@
       if (this.$widget === false) {
         return;
       }
-      var time = $('input.timepicker-hour', this.$widget).val() + ':' +
-        $('input.timepicker-minute', this.$widget).val() +
-        (this.showSeconds ? ':' + $('input.timepicker-second', this.$widget).val() : '') +
-        (this.showMeridian ? ' ' + $('input.timepicker-meridian', this.$widget).val() : '');
+      var time = $('input.bootstrap-timepicker-hour', this.$widget).val() + ':' +
+        $('input.bootstrap-timepicker-minute', this.$widget).val() +
+        (this.showSeconds ? ':' + $('input.bootstrap-timepicker-second', this.$widget).val() : '') +
+        (this.showMeridian ? ' ' + $('input.bootstrap-timepicker-meridian', this.$widget).val() : '');
 
       this.setTime(time);
     },
@@ -880,7 +880,7 @@
     showInputs: true,
     showMeridian: true,
     template: 'dropdown',
-    appendWidgetTo: '.timepicker'
+    appendWidgetTo: '.bootstrap-timepicker'
   };
 
   $.fn.timepicker.Constructor = Timepicker;
