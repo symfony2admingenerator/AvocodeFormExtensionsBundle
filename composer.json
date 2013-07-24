@@ -7,6 +7,10 @@
             "name": "Piotr Gołębiewski",
             "email": "loostro@gmail.com",
             "role": "Symfony2 bundle author"
+        },
+        {
+            "name": "Symfony community",
+            "homepage": "https://github.com/avocode/FormExtensions/graphs/contributors"
         }
     ],
     "require": {
