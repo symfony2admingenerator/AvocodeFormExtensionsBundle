@@ -73,7 +73,7 @@ class DatePickerType extends AbstractType
             $language = $this->getLocale();
         }
         
-        $view->vars['format']                 = $options['format'];        
+        $view->vars['format']                 = strtolower($options['format']);        
         $view->vars['week_start']             = $options['week_start'];
         $view->vars['calendar_weeks']         = $options['calendar_weeks'];
         $view->vars['start_date']             = $options['start_date'];
