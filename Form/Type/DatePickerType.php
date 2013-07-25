@@ -73,7 +73,7 @@ class DatePickerType extends AbstractType
             $language = $this->getLocale();
         }
         
-        $view->vars['format']                 = strtolower($options['format']);        
+        $view->vars['format']                 = $this->transform($options['format']);    
         $view->vars['week_start']             = $options['week_start'];
         $view->vars['calendar_weeks']         = $options['calendar_weeks'];
         $view->vars['start_date']             = $options['start_date'];
@@ -159,5 +159,41 @@ class DatePickerType extends AbstractType
         $this->locale = $locale;
         
         return $this;
+    }
+    
+    /**
+     * Transforms ISO 8601 Date Output format into
+     * bootstrap-datepicker format
+     */
+    private function transform($format)
+    {
+        $output = $format;
+        
+        if (preg_match('%E+%', $format)) {
+            // Full weekday names, eg: Monday
+            $output = str_replace("EEEE", "DD", $output);
+            // Abbreviated weekday names, eg: Mon
+            $output = str_replace("EEE", "D", $output);
+        }
+        
+        if (preg_match('%M+%', $format)) {
+            // Full month names, eg: January
+            $output = str_replace("MMMM", "MM", $output);
+            // Abbreviated month names, eg: Jan
+            $output = str_replace("MMM", "M", $output);
+            // Numeric month with leading zero, eg: 01
+            $output = str_replace("MM", "mm", $output);
+            // Numeric month no leading zero, eg: 1
+            $output = str_replace("m", "m", $output);
+        }
+        
+        if (preg_match('%Y+%', $format)) {
+            // 4-digit years, eg: 2012
+            $output = str_replace("YYYY", "yyyy", $output);
+            // 2-digit years, eg: 12
+            $output = str_replace("YY", "yy", $output);
+        }
+        
+        return $output;
     }
 }
