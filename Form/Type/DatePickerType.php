@@ -93,7 +93,7 @@ class DatePickerType extends AbstractType
     {
         $resolver->setDefaults(array(
             'input'                 => 'datetime',
-            'format'                => 'yyyy-mm-dd',
+            'format'                => 'yyyy-MM-dd',
             'week_start'            => 1,
             'calendar_weeks'        => false,
             'start_date'            => date('Y-m-d', strtotime('-20 years')),
