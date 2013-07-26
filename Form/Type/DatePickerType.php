@@ -169,27 +169,35 @@ class DatePickerType extends AbstractType
     {
         $output = $format;
         
-        if (preg_match('%E+%', $format)) {
+        // Transform days
+        if (preg_match('%E{4}%', $format)) {
             // Full weekday names, eg: Monday
             $output = str_replace("EEEE", "DD", $output);
+        } else if (preg_match('%E{3}%', $format)) {
             // Abbreviated weekday names, eg: Mon
             $output = str_replace("EEE", "D", $output);
         }
         
-        if (preg_match('%M+%', $format)) {
+        // Transform months
+        if (preg_match('%M{4}%', $format)) {
             // Full month names, eg: January
             $output = str_replace("MMMM", "MM", $output);
+        } else if (preg_match('%M{3}%', $format)) {
             // Abbreviated month names, eg: Jan
             $output = str_replace("MMM", "M", $output);
+        } else if (preg_match('%M{2}%', $format)) {
             // Numeric month with leading zero, eg: 01
             $output = str_replace("MM", "mm", $output);
+        } else if (preg_match('%M{1}%', $format)) {
             // Numeric month no leading zero, eg: 1
             $output = str_replace("m", "m", $output);
         }
         
-        if (preg_match('%Y+%', $format)) {
+        // Transform years
+        if (preg_match('%Y{4}%', $format)) {
             // 4-digit years, eg: 2012
             $output = str_replace("YYYY", "yyyy", $output);
+        } else if (preg_match('%Y{2}%', $format)) {
             // 2-digit years, eg: 12
             $output = str_replace("YY", "yy", $output);
         }
