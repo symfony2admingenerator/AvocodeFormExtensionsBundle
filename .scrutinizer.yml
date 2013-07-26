@@ -1,6 +1,4 @@
 tools:
-
-    php_code_coverage: true
     
     # Runs the PHP CS Fixer (http://http://cs.sensiolabs.org/).
     php_cs_fixer:
