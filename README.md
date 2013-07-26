@@ -34,15 +34,50 @@ Forms that will be added to this bundle:
 #### Installation
 
 ##### Composer
-Add this to your composer.json
-```bash
-"avocode/form-extensions-bundle": "dev-master"
+Add this to your `composer.json`:
+
+```json
+    "require": {
+        // ...
+        "avocode/form-extensions-bundle": "dev-master"
+    }
 ```
 
-Then activate it on the appkernel.php
+And then enable the bundle in your `AppKernel.php`:
 
 ```php
-new Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle(),
+<?php
+    // AppKernel.php
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle(),
+        );
+    }
+```
+
+To make `avocode/form-extensions-bundle` forms work, you need to edit your base 
+template, and include static and dynamic stylesheets and javascripts. 
+
+```html+django
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% include 'AvocodeFormExtensionsBundle::stylesheets.html.twig' %}
+    {% if form is defined %}
+        {{ form_stylesheet(form) }}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AvocodeFormExtensionsBundle::javascripts.html.twig' %}
+    {% if form is defined %}
+        {{ form_javascript(form) }}
+    {% endif %}
+{% endblock %}
 ```
 
 #### Note
