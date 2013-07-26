@@ -38,7 +38,13 @@ tools:
             warning_severity:     ~
             tab_width:            ~
             encoding:             ~
-            config:    
-              
+            config:               ~
+
+    # Collects code coverage information about the changeset.
     php_code_coverage:
-        only_changesets: true
+        # Whether code coverage information should only be generated for changesets.
+        only_changesets:      true
+        enabled:              true
+        filter:
+            paths:                []
+            excluded_paths:       []
