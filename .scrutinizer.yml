@@ -1,5 +1,7 @@
 tools:
 
+    php_code_coverage: true
+    
     # Runs the PHP CS Fixer (http://http://cs.sensiolabs.org/).
     php_cs_fixer:
         extensions:
@@ -39,12 +41,3 @@ tools:
             tab_width:            ~
             encoding:             ~
             config:               ~
-
-    # Collects code coverage information about the changeset.
-    php_code_coverage:
-        # Whether code coverage information should only be generated for changesets.
-        only_changesets:      true
-        enabled:              true
-        filter:
-            paths:                []
-            excluded_paths:       []
