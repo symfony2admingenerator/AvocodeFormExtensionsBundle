@@ -33,7 +33,6 @@ Forms that will be added to this bundle:
 
 #### Installation
 
-##### Composer
 Add this to your `composer.json`:
 
 ```json
