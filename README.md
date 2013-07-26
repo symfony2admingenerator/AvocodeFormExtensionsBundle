@@ -36,7 +36,7 @@ Forms that will be added to this bundle:
 ##### Composer
 Add this to your composer.json
 ```bash
-avocode/form-extensions-bundle": "dev-master"
+"avocode/form-extensions-bundle": "dev-master"
 ```
 
 Then activate it on the appkernel.php
