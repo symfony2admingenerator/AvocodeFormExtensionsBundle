@@ -39,3 +39,6 @@ tools:
             tab_width:            ~
             encoding:             ~
             config:    
+              
+    php_code_coverage:
+        only_changesets: true
