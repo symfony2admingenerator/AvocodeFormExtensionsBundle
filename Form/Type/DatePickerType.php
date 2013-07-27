@@ -106,6 +106,8 @@ class DatePickerType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
+            'format'          => array('string'),
+            'formatSubmit'    => array('string'),
             'calendarWeeks'   => array('bool'),
             'disabled'        => array('array'),
             'autoclose'       => array('bool'),
