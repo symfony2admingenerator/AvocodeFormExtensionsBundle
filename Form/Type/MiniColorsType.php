@@ -9,9 +9,8 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * ColorType working with jQuery MiniColors 2.0 :
- *     http://labs.abeautifulsite.net/jquery-miniColors/
- *
+ * See `Resources/doc/mini-colors/overview.md` for documentation
+ * 
  * @author Escandell Stéphane <stephane.escandell@gmail.com>
  */
 class ColorPickerType extends AbstractType
@@ -21,25 +20,23 @@ class ColorPickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['configs'] = array();
-
-        foreach (array(
-            'animationSpeed',
-            'animationEasing',
-            'changeDelay',
-            'control',
-            'hideSpeed',
-            'inline',
-            'letterCase',
-            'opacity',
-            'position',
-            'showSpeed',
-            'swatchPosition',
-            'textfield',
-            'theme'
-        ) as $option) {
-            $view->vars['configs'][$option] = $options[$option];
-        }
+        $view->vars = array_merge($view->vars, array(
+            'configs' => array(
+                'animationSpeed'  => $options['animationSpeed'],
+                'animationEasing' => $options['animationEasing'],
+                'changeDelay'     => $options['changeDelay'],
+                'control'         => $options['control'],
+                'hideSpeed'       => $options['hideSpeed'],
+                'inline'          => $options['inline'],
+                'letterCase'      => $options['letterCase'],
+                'opacity'         => $options['opacity'],
+                'position'        => $options['position'],
+                'showSpeed'       => $options['showSpeed'],
+                'swatchPosition'  => $options['swatchPosition'],
+                'textfield'       => $options['textfield'],
+                'theme'           => $options['theme'],
+            )
+        ));
     }
 
     /**
@@ -48,19 +45,19 @@ class ColorPickerType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'animationSpeed'  => 100,           // The animation speed of the sliders when the user taps or clicks a new color. Set to 0 for no animation.
-            'animationEasing' => 'swing',       // The easing to use when animating the sliders.
-            'changeDelay'     => 0,             // The time, in milliseconds, to defer the change event from firing while the user makes a selection
-            'control'         => 'hue',         // Determines the type of control.
-            'hideSpeed'       => 100,           // The speed at which to hide the color picker.
-            'inline'          => false,         // Set to true to force the color picker to appear inline.
-            'letterCase'      => 'lowercase',   // Determines the letter case of the hex code value.
-            'opacity'         => false,         // Set to true to enable the opacity slider.
-            'position'        => 'default',     // Sets the position of the dropdown.
-            'showSpeed'       => 100,           // The speed at which to show the color picker.
-            'swatchPosition'  => 'left',        // Determines which side of the textfield the color swatch will appear.
-            'textfield'       => true,          // Whether or not to show the textfield.
-            'theme'           => 'bootstrap'    // A string containing the name of the custom theme to be applied.
+            'animationSpeed'  => 100,
+            'animationEasing' => 'swing',
+            'changeDelay'     => 0,
+            'control'         => 'hue',
+            'hideSpeed'       => 100,
+            'inline'          => false,
+            'letterCase'      => 'lowercase',
+            'opacity'         => false,
+            'position'        => 'default',
+            'showSpeed'       => 100,
+            'swatchPosition'  => 'left',
+            'textfield'       => true,
+            'theme'           => 'bootstrap'
         ));
 
         $resolver->setAllowedValues(array(
@@ -96,6 +93,6 @@ class ColorPickerType extends AbstractType
      */
     public function getName()
     {
-        return 'color_picker';
+        return 'mini_colors';
     }
 }
