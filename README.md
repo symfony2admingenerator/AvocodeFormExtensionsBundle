@@ -1,13 +1,16 @@
 FormExtensions
 ==============
 
+[![Latest Stable Version](https://poser.pugx.org/avocode/form-extensions-bundle/v/stable.png)](https://packagist.org/packages/avocode/form-extensions-bundle)
+[![Total Downloads](https://poser.pugx.org/avocode/form-extensions-bundle/downloads.png)](https://packagist.org/packages/avocode/form-extensions-bundle)
+
 Symfony2 form extensions for Admingenerator project inspired by 
 [genemu/GenemuFormBundle](https://github.com/genemu/GenemuFormBundle).
 
 ### Documentation
 
 For a full list of form types and extensions (and related notes)
-see [documentation](Resouces/documentation.md).
+see [documentation](Resources/doc/documentation.md).
 
 --------------
 
@@ -16,24 +19,23 @@ see [documentation](Resouces/documentation.md).
 Add this to your `composer.json`:
 
 ```json
-    "require": {
-        // ...
-        "avocode/form-extensions-bundle": "dev-master"
-    }
+"require": {
+    "avocode/form-extensions-bundle": "dev-master"
+}
 ```
 
 And then enable the bundle in your `AppKernel.php`:
 
 ```php
 <?php
-    // AppKernel.php
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle(),
-        );
-    }
+// AppKernel.php
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle(),
+    );
+}
 ```
 
 To make `avocode/form-extensions-bundle` forms work, you need to edit your base 
