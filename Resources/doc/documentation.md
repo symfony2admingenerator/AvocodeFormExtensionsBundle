@@ -2,8 +2,8 @@
 
 ##### Bootstrap Collection family: 
 
-* `collection_fieldset` [documentation](Resources/doc/bootstrap-collection/overview.md)
-* `collection_table` [documentation](Resources/doc/bootstrap-collection/overview.md)
+* `collection_fieldset` [documentation](bootstrap-collection/overview.md)
+* `collection_table` [documentation](bootstrap-collection/overview.md)
 
 ##### Blueimp Upload family: 
 
