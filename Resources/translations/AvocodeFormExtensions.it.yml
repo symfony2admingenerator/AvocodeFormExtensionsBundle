@@ -1,0 +1,79 @@
+bootstrap_collection:
+    add:          Aggiungi
+    delete:       Cancella
+    confirm:
+        delete:           Sei sicuro di voler cancellare questo elemento?
+        batchDelete:      Sei sicuro di voler cancellare gli elementi selezionati?
+
+collection_upload:
+    file.add:     Aggiungi file...
+    error:        Errore
+    cancel:       Cancella
+    delete:       Elimina
+    download:     Download
+    confirm:
+        batchDelete:      Sei sicuro di voler cancellare gli elementi selezionati?
+    errors:
+        maxNumFiles:      Massimo numero di file superato
+        typeNotAllowed:   Tipo di file non permesso
+        maxFileSize:      Il file è troppo grande
+        minFileSize:      Il file è troppo piccolo
+        
+date_range:
+    label:
+        apply:          Invia
+        clear:          Clear
+        from:           Da
+        to:             A
+        week:           W
+        custom_range:   Custom Range
+    days:
+        sunday:         Do
+        monday:         Lu
+        tuesday:        Ma
+        wednesday:      Me
+        thursday:       Gi
+        friday:         Ve
+        saturday:       Sa
+    months:
+        january:        Gennaio
+        february:       Febbraio
+        march:          Marzo
+        april:          Aprile
+        may:            Maggio
+        june:           Giugno
+        july:           Luglio
+        august:         Agosto
+        september:      Settmbre
+        october:        Ottobre
+        november:       Novembre
+        december:       Dicembre
+    ranges:
+        today:          Oggi
+        yesterday:      Ieri
+        last-week:      Ultima settimana
+        last-month:     Ultimo mese
+        last-year:      Ultimo anno
+        
+double_list:
+    selected:           Selezionati
+    unselected:         Non selezionati
+        
+single_upload:
+    button:
+        add:              Upload file
+        replace:          Sostituisci file
+        cancel:           Cancella
+        delete:           Elimina
+    type:
+        audio:            Audio
+        archive:          Archivio
+        html:             HTML
+        image:            Immagine
+        pdf-document:     Documento<br />PDF
+        plain-text:       Plain<br />Text
+        presentation:     Presentazione
+        spreadsheet:      Foglio di Calcolo
+        text-document:    Documento<br />di testo
+        unknown:          File<br />Sconosciuto
+        video:            Video
