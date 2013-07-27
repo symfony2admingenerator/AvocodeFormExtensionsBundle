@@ -19,10 +19,10 @@ see [documentation](Resources/doc/documentation.md).
 Add this to your `composer.json`:
 
 ```json
-    "require": {
-        // ...
-        "avocode/form-extensions-bundle": "dev-master"
-    }
+"require": {
+    // ...
+    "avocode/form-extensions-bundle": "dev-master"
+}
 ```
 
 And then enable the bundle in your `AppKernel.php`:
