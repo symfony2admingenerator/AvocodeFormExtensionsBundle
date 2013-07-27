@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * @author havvg <tuebernickel@gmail.com>
+ * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class HelpMessageExtension extends AbstractTypeExtension
 {
@@ -27,6 +28,10 @@ class HelpMessageExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(array(
             'help' => null,
+        ));
+        
+        $resolver->setAllowedTypes(array(
+            'help' => array('null', 'string')
         ));
     }
 

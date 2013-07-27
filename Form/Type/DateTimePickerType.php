@@ -10,6 +10,8 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
+ * See `Resources/doc/datetime-picker/overview.md` for documentation
+ * 
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -22,17 +24,17 @@ class DateTimePickerType extends AbstractType
     {
         $dateOptions = array_intersect_key($options, array_flip(array(
             'format',
-            'week_start',
-            'calendar_weeks',
-            'start_date',
-            'end_date',
-            'days_of_week_disabled',
+            'weekStart',
+            'calendarWeeks',
+            'startDate',
+            'endDate',
+            'disabled',
             'autoclose',
-            'start_view',
-            'min_view_mode',
-            'today_btn',
-            'today_highlight',
-            'clear_btn',
+            'startView',
+            'minViewMode',
+            'todayButton',
+            'todayHighlight',
+            'clearButton',
             'language',
         )));
 
@@ -60,9 +62,9 @@ class DateTimePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'week_start'    => $options['week_start'],
-            'start_view'    => $options['start_view'],
-            'min_view_mode' => $options['min_view_mode'],
+            'weekStart'     => $options['weekStart'],
+            'startView'     => $options['startView'],
+            'minViewMode'   => $options['minViewMode'],
             'minute_step'   => $options['minute_step'],
             'second_step'   => $options['second_step'],
             'disable_focus' => $options['disable_focus'],
@@ -77,9 +79,10 @@ class DateTimePickerType extends AbstractType
 
         $resolver->setDefaults(array(
             'format'          => 'yyyy-MM-dd',
-            'week_start'      => 1,
-            'start_view'      => 0,
-            'min_view_mode'   => 0,
+            'formatSubmit'    => 'yyyy-mm-dd',
+            'weekStart'       => 1,
+            'startView'       => 'month',
+            'minViewMode'     => 'days',
             'minute_step'     => 15,
             'second_step'     => 15,
             'disable_focus'   => false,
@@ -89,9 +92,14 @@ class DateTimePickerType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'week_start'      => range(0, 6),
-            'start_view'      => array(0, 'month', 1, 'year', 2, 'decade'),
-            'min_view_mode'   => array(0, 'days', 1, 'months', 2, 'years'),
+            'weekStart'   => range(0, 6),
+            'startView'   => array(0, 'month', 1, 'year', 2, 'decade'),
+            'minViewMode' => array(0, 'days', 1, 'months', 2, 'years'),
+        ));
+        
+        $resolver->setAllowedTypes(array(
+            'format'          => array('string'),
+            'formatSubmit'    => array('string'),
         ));
     }
 

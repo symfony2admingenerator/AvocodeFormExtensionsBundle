@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
+ * See `Resources/doc/daterange-picker/overview.md` for documentation
+ * 
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -112,32 +114,35 @@ class DateRangePickerType extends AbstractType
             }
         }
         
-        $view->vars['format']            = $options['format'];
-        $view->vars['opens']             = $options['opens'];
-        $view->vars['separator']         = $options['separator'];
-        $view->vars['show_week_numbers'] = $options['show_week_numbers'];
-        $view->vars['show_dropdowns']    = $options['show_dropdowns'];
-        $view->vars['min_date']          = $options['min_date'];
-        $view->vars['max_date']          = $options['max_date'];
-        $view->vars['date_limit']        = $options['date_limit'];
-        $view->vars['ranges']            = $ranges;
-        $view->vars['locale']            = $locale;
+        $view->vars = array_merge($view->vars, array(
+            'formatSubmit'    => $options['formatSubmit'],
+            'opens'           => $options['opens'],
+            'separator'       => $options['separator'],
+            'showWeekNumbers' => $options['showWeekNumbers'],
+            'showDropdowns'   => $options['showDropdowns'],
+            'minDate'         => $options['minDate'],
+            'maxDate'         => $options['maxDate'],
+            'dateLimit'       => $options['dateLimit'],
+            'ranges'          => $ranges,
+            'locale'          => $locale,
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'drp_translation_domain'  => 'AvocodeFormExtensions', // translation domain
-            'use_daterange_entity'    => false,   // set to true if DateRange object is used
+            'drp_translation_domain'  => 'AvocodeFormExtensions',
+            'use_daterange_entity'    => false,
             'format'                  => 'yyyy-MM-dd',
-            'opens'                   => 'right', // open on the left or right
-            'separator'               => ' - ',   // separator used between the two dates
-            'show_week_numbers'       => true,
-            'show_dropdowns'          => false,   // show dropdowns for the months and year
-            'min_date'                => false,   // null or string in format dd/mm/yyyy
-            'max_date'                => false,   // null or string in format dd/mm/yyyy
-            'date_limit'              => false,   // date limit: false or array('days'=>5)
-            'ranges'                  => false,   // ranges null or array
+            'formatSubmit'            => 'yyyy-mm-dd',
+            'opens'                   => 'right',
+            'separator'               => ' - ',
+            'showWeekNumbers'         => true,
+            'showDropdowns'           => false,
+            'minDate'                 => false,
+            'maxDate'                 => false,
+            'dateLimit'               => false,
+            'ranges'                  => false,
             'locale' => array(
                 'applyLabel'        => 'date_range.label.apply',
                 'clearLabel'        => 'date_range.label.clear',
@@ -173,15 +178,15 @@ class DateRangePickerType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
-            'show_week_numbers' => array('bool'),
-            'show_dropdowns'    => array('bool'),
-            'min_date'          => array('bool', 'string'),
-            'max_date'          => array('bool', 'string'),
-            'ranges'            => array('bool', 'array'),
+            'showWeekNumbers' => array('bool'),
+            'showDropdowns'   => array('bool'),
+            'minDate'         => array('bool', 'string'),
+            'maxDate'         => array('bool', 'string'),
+            'ranges'          => array('bool', 'array'),
         ));
 
         $resolver->setAllowedValues(array(
-            'opens'             => array('left', 'right'),
+            'opens' => array('left', 'right'),
         ));
     }
 

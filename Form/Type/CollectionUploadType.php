@@ -11,6 +11,8 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
+ * See `Resources/doc/collection-upload/overview.md` for documentation
+ * 
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class CollectionUploadType extends AbstractType

@@ -12,6 +12,8 @@ use Symfony\Component\Form\ReversedTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
+ * See `Resources/doc/date-picker/overview.md` for documentation
+ * 
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -61,70 +63,65 @@ class DatePickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $today_btn = $options['today_btn'];
-        
-        if (is_bool($today_btn)) {
-            $today_btn = json_encode($today_btn);
-        }
-        
-        $language = $options['language'];
-        
-        if ($language === false) {
-            $language = $this->getLocale();
-        }
-        
-        $view->vars['format']                 = $this->transform($options['format']);    
-        $view->vars['week_start']             = $options['week_start'];
-        $view->vars['calendar_weeks']         = $options['calendar_weeks'];
-        $view->vars['start_date']             = $options['start_date'];
-        $view->vars['end_date']               = $options['end_date'];
-        $view->vars['days_of_week_disabled']  = $options['days_of_week_disabled'];
-        $view->vars['autoclose']              = $options['autoclose'];
-        $view->vars['start_view']             = $options['start_view'];
-        $view->vars['view_mode']              = $options['view_mode'];
-        $view->vars['min_view_mode']          = $options['min_view_mode'];
-        $view->vars['today_btn']              = $today_btn;
-        $view->vars['today_highlight']        = $options['today_highlight'];
-        $view->vars['clear_btn']              = $options['clear_btn'];
-        $view->vars['language']               = $language;
+        $view->vars = array_merge($view->vars, array(
+            'formatSubmit'    => $options['formatSubmit'],
+            'weekStart'       => $options['weekStart'],
+            'calendarWeeks'   => $options['calendarWeeks'],
+            'startDate'       => $options['startDate'],
+            'endDate'         => $options['endDate'],
+            'disabled'        => $options['disabled'],
+            'autoclose'       => $options['autoclose'],
+            'startView'       => $options['startView'],
+            'minViewMode'     => $options['minViewMode'],
+            'todayButton'     => is_bool($options['todayButton']) 
+                                 ? json_encode($options['todayButton']) 
+                                 : $options['todayButton'],
+            'todayHighlight'  => $options['todayHighlight'],
+            'clearButton'     => $options['clearButton'],
+            'language'        => !$options['language'] 
+                                 ? $this->getLocale() 
+                                 : $options['language'],
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'input'                 => 'datetime',
-            'format'                => 'yyyy-MM-dd',
-            'week_start'            => 1,
-            'calendar_weeks'        => false,
-            'start_date'            => date('Y-m-d', strtotime('-20 years')),
-            'end_date'              => date('Y-m-d', strtotime('+20 years')),
-            'days_of_week_disabled' => array(),
-            'autoclose'             => true,
-            'start_view'            => 0,
-            'view_mode'             => 0,
-            'min_view_mode'         => 0,
-            'today_btn'             => false,
-            'today_highlight'       => false,
-            'clear_btn'             => false,
-            'language'              => false,
-            'attr'                  => array(
+            'input'           => 'datetime',
+            'format'          => 'yyyy-MM-dd',
+            'formatSubmit'    => 'yyyy-mm-dd',
+            'weekStart'       => 1,
+            'calendarWeeks'   => false,
+            'startDate'       => date('Y-m-d', strtotime('-20 years')),
+            'endDate'         => date('Y-m-d', strtotime('+20 years')),
+            'disabled'        => array(),
+            'autoclose'       => true,
+            'startView'       => 'month',
+            'minViewMode'     => 'days',
+            'todayButton'     => false,
+            'todayHighlight'  => false,
+            'clearButton'     => false,
+            'language'        => false,
+            'attr'            => array(
                 'class' => 'input-small'
             ),
         ));
 
         $resolver->setAllowedTypes(array(
-            'calendar_weeks'        => array('bool'),
-            'days_of_week_disabled' => array('array'),
-            'autoclose'             => array('bool'),
-            'today_highlight'       => array('bool'),
-            'clear_btn'             => array('bool'),
+            'format'          => array('string'),
+            'formatSubmit'    => array('string'),
+            'calendarWeeks'   => array('bool'),
+            'disabled'        => array('array'),
+            'autoclose'       => array('bool'),
+            'todayHighlight'  => array('bool'),
+            'clearButton'     => array('bool'),
         ));
 
         $resolver->setAllowedValues(array(
-            'week_start'      => range(0, 6),
-            'start_view'      => array(0, 'month', 1, 'year', 2, 'decade'),
-            'min_view_mode'   => array(0, 'days', 1, 'months', 2, 'years'),
-            'today_btn'       => array(true, false, 'linked'),
+            'weekStart'     => range(0, 6),
+            'startView'     => array(0, 'month', 1, 'year', 2, 'decade'),
+            'minViewMode'   => array(0, 'days', 1, 'months', 2, 'years'),
+            'todayButton'   => array(true, false, 'linked'),
         ));
     }
 
@@ -159,49 +156,5 @@ class DatePickerType extends AbstractType
         $this->locale = $locale;
         
         return $this;
-    }
-    
-    /**
-     * Transforms ISO 8601 Date Output format into
-     * bootstrap-datepicker format
-     */
-    private function transform($format)
-    {
-        $output = $format;
-        
-        // Transform days
-        if (preg_match('%E{4}%', $format)) {
-            // Full weekday names, eg: Monday
-            $output = str_replace("EEEE", "DD", $output);
-        } else if (preg_match('%E{3}%', $format)) {
-            // Abbreviated weekday names, eg: Mon
-            $output = str_replace("EEE", "D", $output);
-        }
-        
-        // Transform months
-        if (preg_match('%M{4}%', $format)) {
-            // Full month names, eg: January
-            $output = str_replace("MMMM", "MM", $output);
-        } else if (preg_match('%M{3}%', $format)) {
-            // Abbreviated month names, eg: Jan
-            $output = str_replace("MMM", "M", $output);
-        } else if (preg_match('%M{2}%', $format)) {
-            // Numeric month with leading zero, eg: 01
-            $output = str_replace("MM", "mm", $output);
-        } else if (preg_match('%M{1}%', $format)) {
-            // Numeric month no leading zero, eg: 1
-            $output = str_replace("m", "m", $output);
-        }
-        
-        // Transform years
-        if (preg_match('%Y{4}%', $format)) {
-            // 4-digit years, eg: 2012
-            $output = str_replace("YYYY", "yyyy", $output);
-        } else if (preg_match('%Y{2}%', $format)) {
-            // 2-digit years, eg: 12
-            $output = str_replace("YY", "yy", $output);
-        }
-        
-        return $output;
     }
 }

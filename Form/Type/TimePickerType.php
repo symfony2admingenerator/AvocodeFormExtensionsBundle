@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
+ * See `Resources/doc/time-picker/overview.md` for documentation
+ * 
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -18,10 +20,10 @@ class TimePickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars = array_replace($view->vars, array(
+        $view->vars = array_merge($view->vars, array(
             'minute_step'   => $options['minute_step'],
-            'with_seconds'  => $options['with_seconds'],
             'second_step'   => $options['second_step'],
+            'with_seconds'  => $options['with_seconds'],
             'default_time'  => $options['default_time'],
             'show_meridian' => $options['show_meridian'],
             'disable_focus' => $options['disable_focus'],

@@ -28,13 +28,6 @@ third party software also licensed under MIT license.
 For more information read 
 /Resources/public/collection-upload/LICENSE-NOTICE
 
-Color Picker
----------------------
-Location: /Resources/public/colorpicker
-License:  /Resources/public/colorpicker/LICENSE
-
-Dual licensed under the MIT and GPL licenses.
-
 Date Picker
 ---------------------
 Version:  1.1.0
@@ -54,6 +47,13 @@ and uses third party software also licensed under MIT license.
 
 For more information read 
 /Resources/public/daterangepicker/LICENSE-NOTICE
+
+Mini Colors
+---------------------
+Location: /Resources/public/minicolors
+License:  /Resources/public/minicolors/LICENSE
+
+Dual licensed under the MIT and GPL licenses.
 
 Select2
 ---------------------

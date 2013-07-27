@@ -147,28 +147,6 @@
 {% endspaceless %}
 {% endblock collection_upload_javascript %}
 
-{% block color_picker_javascript %}
-{% spaceless %}
-<script type="text/javascript">
-    jQuery(function($) {
-    {% block color_javascript_prototype %}
-        var $field = $('#{{ id }}');
-        var $configs = $.extend({
-            defaultValue: $field.val(),
-            theme: 'bootstrap',
-            change: function(hex, opacity) {
-            	var changeEvent = $.Event('colored');
-            	$field.trigger(changeEvent, [ this, hex, opacity ]);
-            }
-        }, {{ configs|e4js|raw }});
-
-        $field.minicolors($configs);
-    {% endblock color_javascript_prototype %}
-    });
-</script>
-{% endspaceless %}
-{% endblock color_picker_javascript %}
-
 {% block date_picker_javascript %}
 {% spaceless %}
 {% autoescape false %}
@@ -178,19 +156,19 @@
 
     {% block date_picker_javascript_prototype %}
         $field.datepicker({
-            format:               {{ format|e4js }},
-            weekStart:            {{ week_start|e4js }},
-            calendarWeeks:        {{ calendar_weeks|e4js }},
-            daysOfWeekDisabled:   {{ days_of_week_disabled|e4js }},
+            format:               {{ formatSubmit|e4js }},
+            weekStart:            {{ weekStart|e4js }},
+            calendarWeeks:        {{ calendarWeeks|e4js }},
+            daysOfWeekDisabled:   {{ disabled|e4js }},
             autoclose:            {{ autoclose|e4js }},
-            startView:            {{ start_view|e4js }},
-            minViewMode:          {{ min_view_mode|e4js }},
-            todayBtn:             {{ today_btn|e4js }},
-            todayHighlight:       {{ today_highlight|e4js }},
-            clearBtn:             {{ clear_btn|e4js }},
+            startView:            {{ startView|e4js }},
+            minViewMode:          {{ minViewMode|e4js }},
+            todayBtn:             {{ todayButton|e4js }},
+            todayHighlight:       {{ todayHighlight|e4js }},
+            clearBtn:             {{ clearButton|e4js }},
             language:             {{ language|e4js }},
-            startDate:            new Date({{ start_date|e4js }}),
-            endDate:              new Date({{ end_date|e4js }}),
+            startDate:            new Date({{ startDate|e4js }}),
+            endDate:              new Date({{ endDate|e4js }}),
         });
     {% endblock date_picker_javascript_prototype %}
     });
@@ -208,18 +186,18 @@
 
     {% block daterange_picker_javascript_prototype %}
         $field.daterangepicker({
-            format:           {{ format|e4js }},
+            format:           {{ formatSubmit|e4js }},
             opens:            {{ opens|e4js }},
             separator:        {{ separator|e4js }},
-            showWeekNumbers:  {{ show_week_numbers|e4js }},
-            showDropdowns:    {{ show_dropdowns|e4js }},
-            dateLimit:        {{ date_limit|e4js }},
+            showWeekNumbers:  {{ showWeekNumbers|e4js }},
+            showDropdowns:    {{ showDropdowns|e4js }},
+            dateLimit:        {{ dateLimit|e4js }},
             locale:           {{ locale|e4js }},
-        {% if min_date is not empty %}
-            minDate:          {{ min_date|e4js }},
+        {% if minDate is not empty %}
+            minDate:          {{ minDate|e4js }},
         {% endif %}
-        {% if max_date is not empty %}
-            maxDate:          {{ max_date|e4js }},
+        {% if maxDate is not empty %}
+            maxDate:          {{ maxDate|e4js }},
         {% endif %}
         {% if ranges %}
             ranges:           {{ ranges|e4js }},
@@ -281,6 +259,28 @@
 </script>
 {% endspaceless %}
 {% endblock double_list_model_javascript %}
+
+{% block mini_colors_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(function($) {
+    {% block mini_colors_javascript_prototype %}
+        var $field = $('#{{ id }}');
+        var $configs = $.extend({
+            defaultValue: $field.val(),
+            theme: 'bootstrap',
+            change: function(hex, opacity) {
+            	var changeEvent = $.Event('colored');
+            	$field.trigger(changeEvent, [ this, hex, opacity ]);
+            }
+        }, {{ configs|e4js|raw }});
+
+        $field.minicolors($configs);
+    {% endblock mini_colors_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock mini_colors_javascript %}
 
 {% block select2_javascript %}
 {% spaceless %}

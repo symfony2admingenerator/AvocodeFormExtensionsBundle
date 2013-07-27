@@ -5,11 +5,11 @@
 
 [back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
 
+[symfony-filetype]: http://symfony.com/doc/current/reference/forms/types/file.html
+
 ### 1. Overview
 
-Single Upload extends the standard [file form type]
-(http://symfony.com/doc/current/reference/forms/types/file.html) 
-with additional features and nice twitter-boostrap style.
+Single Upload adds twitter-boostrap GUI wrapper for [FileType][symfony-filetype].
 
 #### Features:
 

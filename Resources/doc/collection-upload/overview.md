@@ -5,13 +5,14 @@
 
 [back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
 
+[symfony-collectiontype]: http://symfony.com/doc/current/reference/forms/types/collection.html
+[symfony-filetype]: http://symfony.com/doc/current/reference/forms/types/file.html
+
 ### 1. Overview
 
-Collection Upload extends the standard [collection form type]
-(http://symfony.com/doc/current/reference/forms/types/collection.html) 
-with additional features and nice twitter-boostrap style.
-
-For each uploaded file a new entity will be created.
+Collection Upload adds twitter-boostrap GUI wrapper for a [collection][symfony-collectiontype]
+of entities associated with files. Entities hold a [FileType][symfony-filetype] field and must
+implement `Avocode\FormExtensionsBundle\Form\Model\UploadCollectionFileInterface`.
 
 #### Features:
 
