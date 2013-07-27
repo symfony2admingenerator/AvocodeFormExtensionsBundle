@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * 
  * @author Escandell Stéphane <stephane.escandell@gmail.com>
  */
-class ColorPickerType extends AbstractType
+class MiniColorsType extends AbstractType
 {
     /**
      * {@inheritdoc}
