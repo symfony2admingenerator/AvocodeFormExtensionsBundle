@@ -147,28 +147,6 @@
 {% endspaceless %}
 {% endblock collection_upload_javascript %}
 
-{% block color_picker_javascript %}
-{% spaceless %}
-<script type="text/javascript">
-    jQuery(function($) {
-    {% block color_javascript_prototype %}
-        var $field = $('#{{ id }}');
-        var $configs = $.extend({
-            defaultValue: $field.val(),
-            theme: 'bootstrap',
-            change: function(hex, opacity) {
-            	var changeEvent = $.Event('colored');
-            	$field.trigger(changeEvent, [ this, hex, opacity ]);
-            }
-        }, {{ configs|e4js|raw }});
-
-        $field.minicolors($configs);
-    {% endblock color_javascript_prototype %}
-    });
-</script>
-{% endspaceless %}
-{% endblock color_picker_javascript %}
-
 {% block date_picker_javascript %}
 {% spaceless %}
 {% autoescape false %}
@@ -281,6 +259,28 @@
 </script>
 {% endspaceless %}
 {% endblock double_list_model_javascript %}
+
+{% block mini_colors_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(function($) {
+    {% block mini_colors_javascript_prototype %}
+        var $field = $('#{{ id }}');
+        var $configs = $.extend({
+            defaultValue: $field.val(),
+            theme: 'bootstrap',
+            change: function(hex, opacity) {
+            	var changeEvent = $.Event('colored');
+            	$field.trigger(changeEvent, [ this, hex, opacity ]);
+            }
+        }, {{ configs|e4js|raw }});
+
+        $field.minicolors($configs);
+    {% endblock mini_colors_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock mini_colors_javascript %}
 
 {% block select2_javascript %}
 {% spaceless %}
