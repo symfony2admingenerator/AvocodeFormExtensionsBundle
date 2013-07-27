@@ -215,10 +215,10 @@
             showDropdowns:    {{ showDropdowns|e4js }},
             dateLimit:        {{ dateLimit|e4js }},
             locale:           {{ locale|e4js }},
-        {% if min_date is not empty %}
+        {% if minDate is not empty %}
             minDate:          {{ minDate|e4js }},
         {% endif %}
-        {% if max_date is not empty %}
+        {% if maxDate is not empty %}
             maxDate:          {{ maxDate|e4js }},
         {% endif %}
         {% if ranges %}
