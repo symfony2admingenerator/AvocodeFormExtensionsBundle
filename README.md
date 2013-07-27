@@ -7,7 +7,7 @@ Symfony2 form extensions for Admingenerator project inspired by
 ### Documentation
 
 For a full list of form types and extensions (and related notes)
-see [documentation](Resouces/doc/documentation.md).
+see [documentation](Resources/doc/documentation.md).
 
 --------------
 
