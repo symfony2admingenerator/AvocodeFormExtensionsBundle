@@ -1,6 +1,10 @@
 # Time Picker
 ---------------------------------------
 
+[go back to Table of contents][back-to-index]
+
+[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+
 [symfony-timetype]: http://symfony.com/doc/current/reference/forms/types/time.html
 [jdewit-timepicker]: https://github.com/jdewit/bootstrap-timepicker
 

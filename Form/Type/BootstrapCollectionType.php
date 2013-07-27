@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Bootstrap Collection type
+ * See `Resources/doc/bootstrap-collection/overview.md` for documentation
  *
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */

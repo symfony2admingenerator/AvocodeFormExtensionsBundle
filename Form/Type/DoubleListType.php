@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
+ * See `Resources/doc/double-list/overview.md` for documentation
+ * 
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class DoubleListType extends AbstractType

@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
+ * See `Resources/doc/daterange-picker/overview.md` for documentation
+ * 
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -129,18 +131,18 @@ class DateRangePickerType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'drp_translation_domain'  => 'AvocodeFormExtensions', // translation domain
-            'use_daterange_entity'    => false,   // set to true if DateRange object is used
+            'drp_translation_domain'  => 'AvocodeFormExtensions',
+            'use_daterange_entity'    => false,
             'format'                  => 'yyyy-MM-dd',
             'formatSubmit'            => 'yyyy-mm-dd',
-            'opens'                   => 'right', // open on the left or right
-            'separator'               => ' - ',   // separator used between the two dates
+            'opens'                   => 'right',
+            'separator'               => ' - ',
             'showWeekNumbers'         => true,
-            'showDropdowns'           => false,   // show dropdowns for the months and year
-            'minDate'                 => false,   // false or string in format dd/mm/yyyy
-            'maxDate'                 => false,   // false or string in format dd/mm/yyyy
-            'dateLimit'               => false,   // date limit: false or array('days'=>5)
-            'ranges'                  => false,   // ranges null or array
+            'showDropdowns'           => false,
+            'minDate'                 => false,
+            'maxDate'                 => false,
+            'dateLimit'               => false,
+            'ranges'                  => false,
             'locale' => array(
                 'applyLabel'        => 'date_range.label.apply',
                 'clearLabel'        => 'date_range.label.clear',

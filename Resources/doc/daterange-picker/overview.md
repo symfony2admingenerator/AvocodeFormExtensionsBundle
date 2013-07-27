@@ -1,13 +1,17 @@
 # DateRange Picker
 ---------------------------------------
 
+[go back to Table of contents][back-to-index]
+
+[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+
 [symfony-datetype]: http://symfony.com/doc/current/reference/forms/types/date.html
 [dangrossman-daterangepicker]: https://github.com/dangrossman/bootstrap-daterangepicker
 
 ### Description
 
 Use [dangrossman/bootstrap-daterangepicker][dangrossman-daterangepicker] as GUI
-wrapper for two [DatType][symfony-datetype] fields (start date and end date).
+wrapper for two [DateType][symfony-datetype] fields (start date and end date).
 
 ### Options
 

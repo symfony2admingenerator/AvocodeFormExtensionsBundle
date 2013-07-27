@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
+ * See `Resources/doc/single-upload/overview.md` for documentation
+ * 
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class SingleUploadType extends AbstractType

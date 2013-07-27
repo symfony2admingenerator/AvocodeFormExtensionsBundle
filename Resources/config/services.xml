@@ -4,21 +4,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="avocode.form.extensions.color_picker.options" type="collection" />
-    </parameters>
-
     <services>
         <!-- Form types -->
         <service id="avocode.form.extensions.type.bootstrap_collection" class="Avocode\FormExtensionsBundle\Form\Type\BootstrapCollectionType" abstract="true" />
 
         <service id="avocode.form.extensions.type.collection_upload" class="Avocode\FormExtensionsBundle\Form\Type\CollectionUploadType">
             <tag name="form.type" alias="collection_upload" />
-        </service>
-        
-        <service id="avocode.form.extensions.type.color_picker" class="Avocode\FormExtensionsBundle\Form\Type\ColorPickerType">
-            <tag name="form.type" alias="color_picker" />
-            <argument>%avocode.form.extensions.color_picker.options%</argument>
         </service>
         
         <service id="avocode.form.extensions.type.date_picker" class="Avocode\FormExtensionsBundle\Form\Type\DatePickerType">
@@ -41,6 +32,10 @@
         
         <service id="avocode.form.extensions.type.double_list" class="Avocode\FormExtensionsBundle\Form\Type\DoubleListType" abstract="true" />
         
+        <service id="avocode.form.extensions.type.mini_colors" class="Avocode\FormExtensionsBundle\Form\Type\MiniColorsType">
+            <tag name="form.type" alias="mini_colors" />
+        </service>
+
         <service id="avocode.form.extensions.type.select2" class="Avocode\FormExtensionsBundle\Form\Type\Select2Type" abstract="true" />
         
         <service id="avocode.form.extensions.type.single_upload" class="Avocode\FormExtensionsBundle\Form\Type\SingleUploadType">

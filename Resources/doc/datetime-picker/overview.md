@@ -1,6 +1,10 @@
 # DateTime Picker
 ---------------------------------------
 
+[go back to Table of contents][back-to-index]
+
+[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+
 [symfony-datetimetype]: http://symfony.com/doc/current/reference/forms/types/datetime.html
 [eternicode-datepicker]: https://github.com/eternicode/bootstrap-datepicker
 [jdewit-timepicker]: https://github.com/jdewit/bootstrap-timepicker

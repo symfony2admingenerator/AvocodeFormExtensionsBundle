@@ -1,6 +1,10 @@
 # Date Picker
 ---------------------------------------
 
+[go back to Table of contents][back-to-index]
+
+[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+
 [symfony-datetype]: http://symfony.com/doc/current/reference/forms/types/date.html
 [eternicode-datepicker]: https://github.com/eternicode/bootstrap-datepicker
 

@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Select2Type to JQueryLib
+ * See `Resources/doc/select2/overview.md` for documentation
  *
  * @author Bilal Amarni <bilal.amarni@gmail.com>
  * @author Chris Tickner <chris.tickner@gmail.com>
@@ -65,6 +65,7 @@ class Select2Type extends AbstractType
             'minimumInputLength' => 0,
             'width'              => 'element',
         );
+        
         $resolver
             ->setDefaults(array(
                 'hidden'        => false,
