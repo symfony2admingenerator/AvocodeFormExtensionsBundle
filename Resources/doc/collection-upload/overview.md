@@ -320,17 +320,35 @@ other methods cannot direcly access the `file` property, becouse it would be `nu
 
 ### 5. Options
 
+#### primary_key
+
+**type:** `string` **default:** `id`
+
+File related object must have a unique primary key field. 
+
 #### nameable
 
-**type:** `string` **default:** `null`
+**type:** `boolean` **default:** `true`
 
-If specified, this field is used to store normalized filenames.
+If true, enables nameable behaviour.
+
+#### nameable_field
+
+**type:** `string` **default:** `name`
+
+Uses this field to store name.
 
 #### sortable
 
-**type:** `string` **default:** `null`
+**type:** `boolean` **default:** `false`
 
-If specified, enables sortable behavior and uses this field to store position.
+If true, enables sortable behaviour.
+
+#### sortable_field
+
+**type:** `string` **default:** `position`
+
+Uses this field to store position.
 
 #### editable
 
