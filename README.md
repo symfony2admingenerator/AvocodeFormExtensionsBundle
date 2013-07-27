@@ -1,6 +1,9 @@
 FormExtensions
 ==============
 
+[![Latest Stable Version](https://poser.pugx.org/avocode/form-extensions-bundle/v/stable.png)](https://packagist.org/packages/avocode/form-extensions-bundle)
+[![Total Downloads](https://poser.pugx.org/avocode/form-extensions-bundle/downloads.png)](https://packagist.org/packages/avocode/form-extensions-bundle)
+
 Symfony2 form extensions for Admingenerator project inspired by 
 [genemu/GenemuFormBundle](https://github.com/genemu/GenemuFormBundle).
 
