@@ -20,8 +20,8 @@ class TimePickerType extends AbstractType
     {
         $view->vars = array_merge($view->vars, array(
             'minute_step'   => $options['minute_step'],
-            'with_seconds'  => $options['with_seconds'],
             'second_step'   => $options['second_step'],
+            'with_seconds'  => $options['with_seconds'],
             'default_time'  => $options['default_time'],
             'show_meridian' => $options['show_meridian'],
             'disable_focus' => $options['disable_focus'],

@@ -137,8 +137,8 @@ class DateRangePickerType extends AbstractType
             'separator'               => ' - ',   // separator used between the two dates
             'showWeekNumbers'         => true,
             'showDropdowns'           => false,   // show dropdowns for the months and year
-            'minDate'                 => false,   // null or string in format dd/mm/yyyy
-            'maxDate'                 => false,   // null or string in format dd/mm/yyyy
+            'minDate'                 => false,   // false or string in format dd/mm/yyyy
+            'maxDate'                 => false,   // false or string in format dd/mm/yyyy
             'dateLimit'               => false,   // date limit: false or array('days'=>5)
             'ranges'                  => false,   // ranges null or array
             'locale' => array(
