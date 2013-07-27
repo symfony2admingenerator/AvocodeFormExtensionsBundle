@@ -20,7 +20,6 @@ Add this to your `composer.json`:
 
 ```json
 "require": {
-    // ...
     "avocode/form-extensions-bundle": "dev-master"
 }
 ```
@@ -29,14 +28,14 @@ And then enable the bundle in your `AppKernel.php`:
 
 ```php
 <?php
-    // AppKernel.php
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle(),
-        );
-    }
+// AppKernel.php
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle(),
+    );
+}
 ```
 
 To make `avocode/form-extensions-bundle` forms work, you need to edit your base 
