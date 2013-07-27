@@ -135,7 +135,7 @@
 
 {% block date_picker_widget %}
 {% spaceless %}
-    <div class="input-append date datepicker" data-date="{{ value }}" data-date-format="{{ format|lower }}">
+    <div class="input-append date datepicker">
         {{ block('form_widget_simple') }}
         <label for="{{ id }}" class="add-on"><i class="icon-calendar"></i></label>
     </div>

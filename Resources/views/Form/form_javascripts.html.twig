@@ -178,19 +178,19 @@
 
     {% block date_picker_javascript_prototype %}
         $field.datepicker({
-            format:               {{ format|e4js }},
-            weekStart:            {{ week_start|e4js }},
-            calendarWeeks:        {{ calendar_weeks|e4js }},
-            daysOfWeekDisabled:   {{ days_of_week_disabled|e4js }},
+            format:               {{ formatSubmit|e4js }},
+            weekStart:            {{ weekStart|e4js }},
+            calendarWeeks:        {{ calendarWeeks|e4js }},
+            daysOfWeekDisabled:   {{ disabled|e4js }},
             autoclose:            {{ autoclose|e4js }},
-            startView:            {{ start_view|e4js }},
-            minViewMode:          {{ min_view_mode|e4js }},
-            todayBtn:             {{ today_btn|e4js }},
-            todayHighlight:       {{ today_highlight|e4js }},
-            clearBtn:             {{ clear_btn|e4js }},
+            startView:            {{ startView|e4js }},
+            minViewMode:          {{ minViewMode|e4js }},
+            todayBtn:             {{ todayButton|e4js }},
+            todayHighlight:       {{ todayHighlight|e4js }},
+            clearBtn:             {{ clearButton|e4js }},
             language:             {{ language|e4js }},
-            startDate:            new Date({{ start_date|e4js }}),
-            endDate:              new Date({{ end_date|e4js }}),
+            startDate:            new Date({{ startDate|e4js }}),
+            endDate:              new Date({{ endDate|e4js }}),
         });
     {% endblock date_picker_javascript_prototype %}
     });
