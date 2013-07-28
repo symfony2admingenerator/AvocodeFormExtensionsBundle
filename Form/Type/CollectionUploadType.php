@@ -42,6 +42,7 @@ class CollectionUploadType extends AbstractType
             'editable'                  => $options['editable'],
             'maxNumberOfFiles'          => $options['maxNumberOfFiles'],
             'acceptFileTypes'           => $options['acceptFileTypes'],
+            'maxFileSize'               => $options['maxFileSize'],
             'minFileSize'               => $options['minFileSize'],
             'previewSourceFileTypes'    => $options['previewSourceFileTypes'],
             'previewSourceMaxFileSize'  => $options['previewSourceMaxFileSize'],
