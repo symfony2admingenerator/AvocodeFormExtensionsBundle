@@ -46,7 +46,7 @@ class CollectionUploadType extends AbstractType
             'minFileSize'               => $options['minFileSize'],
             'loadImageFileTypes'        => $options['loadImageFileTypes'],
             'loadImageMaxFileSize'      => $options['loadImageMaxFileSize'],
-            'imageMaxWidth'             => $options['imageMaxWidth'],
+            'previewMaxWidth'           => $options['previewMaxWidth'],
             'previewMaxHeight'          => $options['previewMaxHeight'],
             'previewAsCanvas'           => $options['previewAsCanvas'],
             'previewFilter'             => $options['previewFilter'],
