@@ -75,7 +75,7 @@ class CollectionUploadType extends AbstractType
             'maxFileSize'               => null,
             'minFileSize'               => null,
             'acceptFileTypes'           => '/.*$/i',
-            'loadImageFileTypes'        => '/^image\/(gif|jpeg|png)$/',
+            'loadImageFileTypes'        => '/^image\/(gif|jpe?g|png)$/i',
             'loadImageMaxFileSize'      => 5000000,
             'previewMaxWidth'           => 80,
             'previewMaxHeight'          => 80,
