@@ -169,7 +169,7 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
                             $(this).css('width', '');
                         });
                         // update sortable positions
-                        $('[id^="' + this.element.id + '"][id$="' + this.options.sortable_field + '"]').each(function(i){
+                        $('[id^="' + that.element.id + '"][id$="' + that.options.sortable_field + '"]').each(function(i){
                             $(this).val(i);
                         });
                     }
