@@ -131,24 +131,14 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
             
             // Init fileupload
             this.$widgetContainer.fileupload({
-                trans:              this.options.trans,
-                fileInput:          this.$element,
-                replaceFileInput:   false,
-                uploadTemplateId:   this.element.id + '_upload_template',
-                downloadTemplateId: this.element.id + '_download_template',
-                filesContainer:     this.$filesContainer,
-                dropZone:           this.$widgetContainer,
-                pasteZone:          this.$widgetContainer,
-                destroy: function (e, data) {
-                    var that = $(this).data('fileupload');
-                    that._adjustMaxNumberOfFiles(1);
-                    that._transition(data.context).done(
-                        function () {
-                            $(this).remove();
-                            that._trigger('destroyed', e, data);
-                        }
-                    );
-                },
+                trans:                    this.options.trans,
+                fileInput:                this.$element,
+                replaceFileInput:         false,
+                uploadTemplateId:         this.element.id + '_upload_template',
+                downloadTemplateId:       this.element.id + '_download_template',
+                filesContainer:           this.$filesContainer,
+                dropZone:                 this.$widgetContainer,
+                pasteZone:                this.$widgetContainer,
                 maxNumberOfFiles:         this.options.maxNumberOfFiles,
                 maxFileSize:              this.options.maxFileSize,
                 minFileSize:              this.options.minFileSize,

@@ -33,24 +33,27 @@ class CollectionUploadType extends AbstractType
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['multipart']                = true;
-        $view->vars['primary_key']              = $options['primary_key'];
-        $view->vars['nameable']                 = $options['nameable'];
-        $view->vars['nameable_field']           = $options['nameable_field'];
-        $view->vars['sortable']                 = $options['sortable'];
-        $view->vars['sortable_field']           = $options['sortable_field'];
-        $view->vars['editable']                 = $options['editable'];
-        $view->vars['maxNumberOfFiles']         = $options['maxNumberOfFiles'];
-        $view->vars['maxFileSize']              = $options['maxFileSize'];
-        $view->vars['minFileSize']              = $options['minFileSize'];
-        $view->vars['acceptFileTypes']          = $options['acceptFileTypes'];
-        $view->vars['previewSourceFileTypes']   = $options['previewSourceFileTypes'];
-        $view->vars['previewSourceMaxFileSize'] = $options['previewSourceMaxFileSize'];
-        $view->vars['previewMaxWidth']          = $options['previewMaxWidth'];
-        $view->vars['previewMaxHeight']         = $options['previewMaxHeight'];
-        $view->vars['previewAsCanvas']          = $options['previewAsCanvas'];
-        $view->vars['previewFilter']            = $options['previewFilter'];
-        $view->vars['prependFiles']             = $options['prependFiles'];
+        $view->vars = array_merge($view->vars, array(
+            'primary_key'               => $options['primary_key'],
+            'nameable'                  => $options['nameable'],
+            'nameable_field'            => $options['nameable_field'],
+            'sortable'                  => $options['sortable'],
+            'sortable_field'            => $options['sortable_field'],
+            'editable'                  => $options['editable'],
+            'maxNumberOfFiles'          => $options['maxNumberOfFiles'],
+            'acceptFileTypes'           => $options['acceptFileTypes'],
+            'minFileSize'               => $options['minFileSize'],
+            'previewSourceFileTypes'    => $options['previewSourceFileTypes'],
+            'previewSourceMaxFileSize'  => $options['previewSourceMaxFileSize'],
+            'previewMaxWidth'           => $options['previewMaxWidth'],
+            'previewMaxHeight'          => $options['previewMaxHeight'],
+            'previewAsCanvas'           => $options['previewAsCanvas'],
+            'previewFilter'             => $options['previewFilter'],
+            'prependFiles'              => $options['prependFiles'],
+            'novalidate'                => $options['novalidate'],
+            'multipart'                 => $options['multipart'],
+            'required'                  => $options['required'],
+        ));
     }
 
     /**
@@ -61,23 +64,32 @@ class CollectionUploadType extends AbstractType
         parent::setDefaultOptions($resolver);
 
         $resolver->setDefaults(array(
-            'primary_key'               =>  'id',
-            'nameable'                  =>  true,
-            'nameable_field'            =>  'name',
-            'sortable'                  =>  false,
-            'sortable_field'            =>  'position',
-            'editable'                  =>  array(),
-            'maxNumberOfFiles'          =>  null,
-            'maxFileSize'               =>  null,
-            'minFileSize'               =>  null,
-            'acceptFileTypes'           =>  '/.*$/i',
-            'previewSourceFileTypes'    =>  '/^image\/(gif|jpeg|png)$/',
-            'previewSourceMaxFileSize'  =>  5000000,
-            'previewMaxWidth'           =>  80,
-            'previewMaxHeight'          =>  80,
-            'previewAsCanvas'           =>  true,
-            'previewFilter'             =>  null,
-            'prependFiles'              =>  false,
+            'primary_key'               => 'id',
+            'nameable'                  => true,
+            'nameable_field'            => 'name',
+            'sortable'                  => false,
+            'sortable_field'            => 'position',
+            'editable'                  => array(),
+            'maxNumberOfFiles'          => null,
+            'maxFileSize'               => null,
+            'minFileSize'               => null,
+            'acceptFileTypes'           => '/.*$/i',
+            'previewSourceFileTypes'    => '/^image\/(gif|jpeg|png)$/',
+            'previewSourceMaxFileSize'  => 5000000,
+            'previewMaxWidth'           => 80,
+            'previewMaxHeight'          => 80,
+            'previewAsCanvas'           => true,
+            'previewFilter'             => null,
+            'prependFiles'              => false,
+            'multipart'                 => true,
+            'novalidate'                => true,
+            'required'                  => false,
+        ));
+        
+        $resolver->setAllowedValues(array(
+            'multipart'   => array(true),
+            'novalidate'  => array(true),
+            'required'    => array(false),
         ));
 
         $resolver->setAllowedTypes(array(
