@@ -127,9 +127,9 @@
                     {% endif %}
                     "size": {{ item.size }},
                     "url": "{{ image_asset(item, 'file') }}",
-                    {% if item.preview and previewFilter and item.size < previewSourceMaxFileSize %}
+                    {% if item.preview and previewFilter and item.size < loadImageMaxFileSize %}
                         "thumbnail_url": {{ image_asset(item, 'file')|image_filter(previewFilter)|e4js }},
-                    {% elseif item.preview and item.size < previewSourceMaxFileSize %}
+                    {% elseif item.preview and item.size < loadImageMaxFileSize %}
                         "thumbnail_url": {{ image_asset(item, 'file')|e4js }},
                     {% endif %}
                     "count": {{ key }},
