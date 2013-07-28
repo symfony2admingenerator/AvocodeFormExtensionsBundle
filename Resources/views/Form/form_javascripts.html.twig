@@ -99,11 +99,11 @@
             previewMaxWidth:          {{ previewMaxWidth|e4js }},
             previewMaxHeight:         {{ previewMaxHeight|e4js }},
             trans: {
-                maxNumFiles:        '{{ 'upload_collection.errors.maxNumFiles'|trans({}, 'AvocodeFormExtensions') }}',
-                typeNotAllowed:     '{{ 'upload_collection.errors.typeNotAllowed'|trans({}, 'AvocodeFormExtensions') }}',
-                maxFileSize:        '{{ 'upload_collection.errors.maxFileSize'|trans({}, 'AvocodeFormExtensions') }}',
-                minFileSize:        '{{ 'upload_collection.errors.minFileSize'|trans({}, 'AvocodeFormExtensions') }}',
-                confirmBatchDelete: '{{ 'upload_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
+                maxNumFiles:        '{{ 'collection_upload.errors.maxNumFiles'|trans({}, 'AvocodeFormExtensions') }}',
+                typeNotAllowed:     '{{ 'collection_upload.errors.typeNotAllowed'|trans({}, 'AvocodeFormExtensions') }}',
+                maxFileSize:        '{{ 'collection_upload.errors.maxFileSize'|trans({}, 'AvocodeFormExtensions') }}',
+                minFileSize:        '{{ 'collection_upload.errors.minFileSize'|trans({}, 'AvocodeFormExtensions') }}',
+                confirmBatchDelete: '{{ 'collection_upload.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
             }
         });
     {% endblock collection_upload_javascript_prototype %}
