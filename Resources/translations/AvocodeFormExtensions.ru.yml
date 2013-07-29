@@ -14,8 +14,8 @@ collection_upload:
     confirm:
         batchDelete:      Вы уверены, что хотите удалить все выбранные элементы?
     errors:
-        maxNumFiles:      Превышено допустимое количество файлов
-        typeNotAllowed:   Тип файла не допускается
+        maxNumberOfFiles: Превышено допустимое количество файлов
+        acceptFileTypes:  Тип файла не допускается
         maxFileSize:      Файл слишком большой
         minFileSize:      Файл слишком мал
         

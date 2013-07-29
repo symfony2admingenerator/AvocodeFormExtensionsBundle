@@ -5,57 +5,23 @@
  *  License:        MIT
  */
 // Extend fileupload plugin
-$.widget('blueimp.fileupload', $.blueimp.fileupload, {
-    options: {
-        trans: {
-            maxNumFiles:        'Maximum number of files exceeded',
-            typeNotAllowed:     'File type not allowed',
-            maxFileSize:        'File is too big',
-            minFileSize:        'File is too small',
-            confirmBatchDelete: 'Are you sure you want to delete all selected elements?'
-        },
-    },
-    _hasError: function (file) {
-        if (file.error) {
-            return file.error;
-        }
-        if (this.options.maxNumberOfFiles < 0) {
-            return this.options.trans.maxNumFiles;
-        }
-        if (!(this.options.acceptFileTypes.test(file.type) ||
-                this.options.acceptFileTypes.test(file.name))) {
-            return this.options.trans.typeNotAllowed;
-        }
-        if (this.options.maxFileSize &&
-                file.size > this.options.maxFileSize) {
-            return this.options.trans.maxFileSize;
-        }
-        if (typeof file.size === 'number' &&
-                file.size < this.options.minFileSize) {
-            return this.options.trans.minFileSize;
-        }
-        return null;
-    },
-    _initButtonBarEventHandlers: function () {
+;$.widget('blueimp.fileupload', $.blueimp.fileupload, {
+    _initButtonBarEventHandlers: function() {
         var that = this;
         var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
             filesList = this.options.filesContainer;
-        this._on(fileUploadButtonBar.find('.start'), {
-            click: function (e) {
-                e.preventDefault();
-                filesList.find('.start button').click();
-            }
-        });
+    
         this._on(fileUploadButtonBar.find('.cancel'), {
-            click: function (e) {
+            click: function(e) {
                 e.preventDefault();
                 filesList.find('.cancel button').click();
             }
         });
+        
         this._on(fileUploadButtonBar.find('.delete'), {
-            click: function (e) {
+            click: function(e) {
                 e.preventDefault();
-                if(confirm(that.options.trans.confirmBatchDelete)) {
+                if(confirm(that.options.messages.confirmBatchDelete)) {
                     filesList.find('.delete input:checked')
                         .parent().siblings('button').click();
                     fileUploadButtonBar.find('.toggle')
@@ -63,8 +29,9 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
                 }
             }
         });
+        
         this._on(fileUploadButtonBar.find('.toggle'), {
-            change: function (e) {
+            change: function(e) {
                 filesList.find('.delete input').prop(
                     'checked',
                     $(e.currentTarget).is(':checked')
@@ -92,9 +59,9 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
         defaults = {
             sortable:         false,
             sortable_field:   'position',
-            trans: {
-                maxNumFiles:        'Maximum number of files exceeded',
-                typeNotAllowed:     'File type not allowed',
+            messages: {
+                maxNumberOfFiles:   'Maximum number of files exceeded',
+                acceptFileTypes:    'File type not allowed',
                 maxFileSize:        'File is too big',
                 minFileSize:        'File is too small',
                 confirmBatchDelete: 'Are you sure you want to delete all selected elements?'
@@ -131,24 +98,14 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
             
             // Init fileupload
             this.$widgetContainer.fileupload({
-                trans:              this.options.trans,
-                fileInput:          this.$element,
-                replaceFileInput:   false,
-                uploadTemplateId:   this.element.id + '_upload_template',
-                downloadTemplateId: this.element.id + '_download_template',
-                filesContainer:     this.$filesContainer,
-                dropZone:           this.$widgetContainer,
-                pasteZone:          this.$widgetContainer,
-                destroy: function (e, data) {
-                    var that = $(this).data('fileupload');
-                    that._adjustMaxNumberOfFiles(1);
-                    that._transition(data.context).done(
-                        function () {
-                            $(this).remove();
-                            that._trigger('destroyed', e, data);
-                        }
-                    );
-                },
+                messages:                 this.options.messages,
+                fileInput:                this.$element,
+                replaceFileInput:         false,
+                uploadTemplateId:         this.element.id + '_upload_template',
+                downloadTemplateId:       this.element.id + '_download_template',
+                filesContainer:           this.$filesContainer,
+                dropZone:                 this.$widgetContainer,
+                pasteZone:                this.$widgetContainer,
                 maxNumberOfFiles:         this.options.maxNumberOfFiles,
                 maxFileSize:              this.options.maxFileSize,
                 minFileSize:              this.options.minFileSize,
@@ -171,16 +128,51 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
                         });
                         return tr;
                     },
-                    cancel: "a, button, img, input, textarea, select",
+                    handle: ".handle",
+                    cursor: "move",
                     items: "> tr.template-download",
+                    axis: "y",
+                    forceHelperSize: true,
+                    forcePlaceholderSize: true,
+                    placeholder: "sortable-placeholder",
+                    over: function(e, ui) {
+                        var $helper = that.$filesContainer.find('tr.ui-sortable-helper');
+                        var $holder = that.$filesContainer.find('tr.sortable-placeholder');
+                        
+                        // set initial placeholder height
+                        $holder.css('height', $helper.height());
+                    },
                     update: function(e, ui) {
                         // unlock cell widths
                         ui.item.children().each(function() {
                             $(this).css('width', '');
                         });
                         // update sortable positions
-                        $('[id^="' + this.element.id + '"][id$="' + this.options.sortable_field + '"]').each(function(i){
+                        $('[id^="' + that.element.id + '"][id$="' + that.options.sortable_field + '"]').each(function(i){
                             $(this).val(i);
+                        });
+                    },
+                    start: function (event,ui) {
+                        // save configs for dragged instances of ckeditior and destroy them
+                        that.ckeConfigs = [];
+                        $('textarea', ui.item).each(function(){
+                            var tagId = $(this).attr('id');
+                            if (CKEDITOR.instances[tagId]) {
+                                var ckeClone = $(this).next('.cke').clone().addClass('cloned');
+                                that.ckeConfigs[tagId] = CKEDITOR.instances[tagId].config;
+                                CKEDITOR.instances[tagId].destroy();
+                                $(this).hide().after(ckeClone);
+                            }
+                        });
+                    },
+                    stop: function(event, ui) {
+                        // reinitialize dragged instances of ckeditior
+                        $('textarea', ui.item).each(function(){
+                            var tagId = $(this).attr('id');
+                            if (that.ckeConfigs[tagId]) {
+                                CKEDITOR.replace(tagId, that.ckeConfigs[tagId]);
+                                $(this).next('.cloned').remove();
+                            }
                         });
                     }
                 });

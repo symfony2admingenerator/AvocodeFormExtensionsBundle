@@ -14,8 +14,8 @@ collection_upload:
     confirm:
         batchDelete:      Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
     errors:
-        maxNumFiles:      Maksymalna liczba plików przekroczona
-        typeNotAllowed:   Niedozwolony typ pliku
+        maxNumberOfFiles: Maksymalna liczba plików przekroczona
+        acceptFileTypes:  Niedozwolony typ pliku
         maxFileSize:      Plik jest za duży
         minFileSize:      Plik jest za mały
         

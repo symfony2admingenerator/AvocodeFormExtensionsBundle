@@ -1,4 +1,4 @@
-# Autocomplete extension
+# Novalidate extension
 ---------------------------------------
 
 [go back to Table of contents][back-to-index]
@@ -7,12 +7,12 @@
 
 ### Description
 
-Autocomplete extension adds `autocomplete` option to every form.
+Novalidate  extension adds `novalidate` option to every form.
 
 ### Options
 
-##### autocomplete
+##### novalidate
 
 **type**: `boolean`, **default**: `true`
 
-If false adds `autocomplete="off"` attribute to the form.
+If true adds `novalidate="novalidate"` attribute to the form.

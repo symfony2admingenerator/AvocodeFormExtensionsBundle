@@ -31,14 +31,9 @@ tbody.files > tr > td {
     padding-bottom: 10px;
 }
 
-tbody.files > tr > td.delete {
+tbody.files > tr > td.actions {
     padding-top: 0px;
     padding-bottom: 0px;
-}
-
-tbody.files > tr > td > span {
-    line-height: 20px;
-    padding: 4px 0px; 
 }
 
 /* Set fallback background for files_list item */
@@ -46,20 +41,44 @@ tbody.files > tr {
     background-color: #fff;
 }
 
-/* Add grab cursor when hovering over sortable element */
-tbody.files.sortable > tr.template-download:hover {
-    cursor: url('../cur/openhand.cur'), move;
-    cursor: url('../cur/openhand.cur') 4 4, move;
-    cursor: -webkit-grab; 
-    cursor: -moz-grab;
-    cursor: move\9; /* fallback cursor for IE */
+/* Hide the handle by default */
+tbody.files.sortable > tr.template-download .sort .handle {
+    color: rgba(153, 153, 153, 0);
+    cursor: pointer;
+    transition: all 0.35s ease-in 0s;
 }
 
-/* Add grabbing cursor when sorting */
-tbody.files.sortable > tr.template-download.ui-sortable-helper:hover {
-    cursor: url('../cur/closedhand.cur'), move;
-    cursor: url('../cur/closedhand.cur') 4 4, move;
-    cursor: -webkit-grabbing; 
-    cursor: -moz-grabbing;
-    cursor: move\9; /* fallback cursor for IE */
+/* Show muted handle for currently hovered item */
+tbody.files.sortable > tr.template-download:hover .sort .handle {
+    color: rgba(153, 153, 153, 0.25);
+}
+
+/* Fade in handle for currently dragged item  */
+tbody.files.sortable > tr.ui-sortable-helper .sort .handle:hover {
+    color: rgba(153, 153, 153, 1);
+}
+
+/* Fade out currently dragged item */
+tbody.files.sortable > tr.ui-sortable-helper {
+    opacity: 0.35;
+}
+
+/* Add placeholder background */
+tr.sortable-placeholder {
+    background-color: #F5F5F5 !important;
+    background-image: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.25) 25%, 
+        transparent 25%, transparent 50%, 
+        rgba(255, 255, 255, 0.25) 50%, 
+        rgba(255, 255, 255, 0.25) 75%, 
+        transparent 75%, transparent
+    );
+    background-repeat: repeat;
+    background-size: 80px 80px;
+    box-shadow: 0 -1px 0 rgba(153, 153, 153, 0.25) inset, 0 1px 0 rgba(153, 153, 153, 0.25) inset;
+}
+
+tr.sortable-placeholder td {
+    background: none transparent !important;
+    border: none transparent !important;
 }

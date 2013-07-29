@@ -55,6 +55,10 @@
             <tag name="form.type_extension" alias="form" />
         </service>
         
+        <service id="form.type_extension.novalidate" class="Avocode\FormExtensionsBundle\Form\Extension\NoValidateExtension">
+            <tag name="form.type_extension" alias="form" />
+        </service>
+        
         <service id="form.type_extension.single_upload" class="Avocode\FormExtensionsBundle\Form\Extension\SingleUploadExtension">
             <tag name="form.type_extension" alias="form" />
         </service>

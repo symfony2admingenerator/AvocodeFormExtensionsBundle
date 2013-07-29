@@ -1,13 +1,20 @@
 {% block avocode_form_javascripts %}
 
     {% javascripts filter='?yui_js' output='assetic/js/compiled/avocodeformextensions/blueimp.jquery-file-upload.min.js'
-        'bundles/avocodeformextensions/collection-upload/blueimp/tmpl.js'
-        'bundles/avocodeformextensions/collection-upload/blueimp/load-image.js'
-        'bundles/avocodeformextensions/collection-upload/blueimp/canvas-to-blob.js'
-        'bundles/avocodeformextensions/collection-upload/blueimp/jquery.iframe-transport.js'
-        'bundles/avocodeformextensions/collection-upload/blueimp/jquery.fileupload.js'
-        'bundles/avocodeformextensions/collection-upload/blueimp/jquery.fileupload-process.js'
-        'bundles/avocodeformextensions/collection-upload/blueimp/jquery.fileupload-ui.js'
+        'bundles/avocodeformextensions/blueimp-javascript-templates/js/tmpl.js'
+        'bundles/avocodeformextensions/blueimp-load-image/js/load-image.js'
+        'bundles/avocodeformextensions/blueimp-load-image/js/load-image-ios.js'
+        'bundles/avocodeformextensions/blueimp-load-image/js/load-image-orientation.js'
+        'bundles/avocodeformextensions/blueimp-load-image/js/load-image-meta.js'
+        'bundles/avocodeformextensions/blueimp-load-image/js/load-image-exif.js'
+        'bundles/avocodeformextensions/blueimp-load-image/js/load-image-exif-map.js'
+        'bundles/avocodeformextensions/blueimp-canvas-to-blob/js/canvas-to-blob.js'
+        'bundles/avocodeformextensions/blueimp-file-upload/js/jquery.iframe-transport.js'
+        'bundles/avocodeformextensions/blueimp-file-upload/js/jquery.fileupload.js'
+        'bundles/avocodeformextensions/blueimp-file-upload/js/jquery.fileupload-process.js'
+        'bundles/avocodeformextensions/blueimp-file-upload/js/jquery.fileupload-image.js'
+        'bundles/avocodeformextensions/blueimp-file-upload/js/jquery.fileupload-validate.js'
+        'bundles/avocodeformextensions/blueimp-file-upload/js/jquery.fileupload-ui.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}

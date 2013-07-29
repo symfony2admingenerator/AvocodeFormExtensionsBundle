@@ -14,8 +14,8 @@ collection_upload:
     confirm:
         batchDelete:      Sei sicuro di voler cancellare gli elementi selezionati?
     errors:
-        maxNumFiles:      Massimo numero di file superato
-        typeNotAllowed:   Tipo di file non permesso
+        maxNumberOfFiles: Massimo numero di file superato
+        acceptFileTypes:  Tipo di file non permesso
         maxFileSize:      Il file è troppo grande
         minFileSize:      Il file è troppo piccolo
         

@@ -91,19 +91,19 @@
             maxNumberOfFiles:         {{ maxNumberOfFiles|e4js }},
             maxFileSize:              {{ maxFileSize|e4js }},
             minFileSize:              {{ minFileSize|e4js }},
-            acceptFileTypes:          {{ acceptFileTypes|e4js }},
+            acceptFileTypes:          {{ acceptFileTypes }},
             previewAsCanvas:          {{ previewAsCanvas|e4js }},
             prependFiles:             {{ prependFiles|e4js }},
-            previewSourceFileTypes:   {{ previewSourceFileTypes|e4js }},
-            previewSourceMaxFileSize: {{ previewSourceMaxFileSize|e4js }},
+            loadImageFileTypes:       {{ loadImageFileTypes }},
+            loadImageMaxFileSize:     {{ loadImageMaxFileSize|e4js }},
             previewMaxWidth:          {{ previewMaxWidth|e4js }},
             previewMaxHeight:         {{ previewMaxHeight|e4js }},
-            trans: {
-                maxNumFiles:        '{{ 'upload_collection.errors.maxNumFiles'|trans({}, 'AvocodeFormExtensions') }}',
-                typeNotAllowed:     '{{ 'upload_collection.errors.typeNotAllowed'|trans({}, 'AvocodeFormExtensions') }}',
-                maxFileSize:        '{{ 'upload_collection.errors.maxFileSize'|trans({}, 'AvocodeFormExtensions') }}',
-                minFileSize:        '{{ 'upload_collection.errors.minFileSize'|trans({}, 'AvocodeFormExtensions') }}',
-                confirmBatchDelete: '{{ 'upload_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
+            messages: {
+                maxNumberOfFiles:   '{{ 'collection_upload.errors.maxNumberOfFiles'|trans({}, 'AvocodeFormExtensions') }}',
+                acceptFileTypes:    '{{ 'collection_upload.errors.acceptFileTypes'|trans({}, 'AvocodeFormExtensions') }}',
+                maxFileSize:        '{{ 'collection_upload.errors.maxFileSize'|trans({}, 'AvocodeFormExtensions') }}',
+                minFileSize:        '{{ 'collection_upload.errors.minFileSize'|trans({}, 'AvocodeFormExtensions') }}',
+                confirmBatchDelete: '{{ 'collection_upload.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
             }
         });
     {% endblock collection_upload_javascript_prototype %}
@@ -122,14 +122,14 @@
                     {% endif %}
                     {% if editable %}
                         {% for field in editable %}
-                        {{ field|e4js }}: {{ attribute(item, field)|e4js }},
+                        {{ field|e4js }}: {{ attribute(item, field)|default('')|e4js }},
                         {% endfor %}
                     {% endif %}
                     "size": {{ item.size }},
                     "url": "{{ image_asset(item, 'file') }}",
-                    {% if item.preview and previewFilter and item.size < previewSourceMaxFileSize %}
+                    {% if item.preview and previewFilter and item.size < loadImageMaxFileSize %}
                         "thumbnail_url": {{ image_asset(item, 'file')|image_filter(previewFilter)|e4js }},
-                    {% elseif item.preview and item.size < previewSourceMaxFileSize %}
+                    {% elseif item.preview and item.size < loadImageMaxFileSize %}
                         "thumbnail_url": {{ image_asset(item, 'file')|e4js }},
                     {% endif %}
                     "count": {{ key }},
@@ -307,10 +307,10 @@
 
     {% block single_upload_javascript_prototype %}
         $('#{{ id }}').singleUpload({
-            maxWidth:         {{ maxWidth|e4js }},
-            maxHeight:        {{ maxHeight|e4js }},
             minWidth:         {{ minWidth|e4js }},
             minHeight:        {{ minHeight|e4js }},
+            maxWidth:         {{ maxWidth|e4js }},
+            maxHeight:        {{ maxHeight|e4js }},
             previewImages:    {{ previewImages|e4js }},
             previewAsCanvas:  {{ previewAsCanvas|e4js }},
             isEmpty:          {{ (form.vars.data is empty)|e4js }},
