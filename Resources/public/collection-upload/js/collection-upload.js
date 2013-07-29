@@ -159,10 +159,23 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
                         tr.children().each(function() {
                             $(this).css('width', $(this).width());
                         });
+                        
                         return tr;
                     },
-                    cancel: "a, button, img, input, textarea, select",
+                    handle: ".handle",
+                    cursor: "move",
                     items: "> tr.template-download",
+                    axis: "y",
+                    forceHelperSize: true,
+                    forcePlaceholderSize: true,
+                    placeholder: "sortable-placeholder",
+                    over: function(e, ui) {
+                        var $helper = that.$filesContainer.find('tr.ui-sortable-helper');
+                        var $holder = that.$filesContainer.find('tr.sortable-placeholder');
+                        
+                        // set initial placeholder height
+                        $holder.css('height', $helper.height());
+                    },
                     update: function(e, ui) {
                         // unlock cell widths
                         ui.item.children().each(function() {

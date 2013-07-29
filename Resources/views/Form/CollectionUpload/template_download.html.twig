@@ -6,6 +6,7 @@
         {% raw %}
         {% if (file.error) { %}
         {% endraw %}
+            <td class="sort"><icon class="handle icon-sort icon-2x"></i></td>
             <td></td>
             <td class="name"><span>{% raw %}{%=file.name%}{% endraw %}</span></td>
             <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
@@ -17,6 +18,7 @@
         {% raw %}
         {% } else { %}
         {% endraw %}
+            <td class="sort"><icon class="handle icon-sort icon-2x"></i></td>
             <td class="preview">
             {% raw %}
             {% if (file.thumbnail_url) { %}
@@ -56,18 +58,18 @@
         {% raw %}
         {% } %}
         {% endraw %}
-        <td class="delete">
+        <td class="actions">
             <div class="btn-toolbar">
                 <a class="btn btn-info" target="_blank" {% raw %}href="{%=file.url%}"{% endraw %}>
                     <i class="icon-download icon-white"></i>
                     <span> {{ 'collection_upload.download'|trans({}, 'AvocodeFormExtensions') }}</span>
                 </a>
-                <button class="btn btn-danger">
+                <button class="btn btn-danger delete">
                     <i class="icon-trash icon-white"></i>
                     <span> {{ 'collection_upload.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
                 </button>
                 <span class="btn btn-toggle disabled input-append">
-                    <input type="checkbox" name="delete" value="1">
+                    <input class="toggle" type="checkbox" name="delete" value="1">
                 </span>
             </div>
         </td>
