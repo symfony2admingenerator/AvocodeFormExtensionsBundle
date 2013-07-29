@@ -5,27 +5,23 @@
  *  License:        MIT
  */
 // Extend fileupload plugin
-$.widget('blueimp.fileupload', $.blueimp.fileupload, {
-    _initButtonBarEventHandlers: function () {
+;$.widget('blueimp.fileupload', $.blueimp.fileupload, {
+    _initButtonBarEventHandlers: function() {
         var that = this;
         var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
             filesList = this.options.filesContainer;
-        this._on(fileUploadButtonBar.find('.start'), {
-            click: function (e) {
-                e.preventDefault();
-                filesList.find('.start button').click();
-            }
-        });
+    
         this._on(fileUploadButtonBar.find('.cancel'), {
-            click: function (e) {
+            click: function(e) {
                 e.preventDefault();
                 filesList.find('.cancel button').click();
             }
         });
+        
         this._on(fileUploadButtonBar.find('.delete'), {
-            click: function (e) {
+            click: function(e) {
                 e.preventDefault();
-                if(confirm(that.options.trans.confirmBatchDelete)) {
+                if(confirm(that.options.messages.confirmBatchDelete)) {
                     filesList.find('.delete input:checked')
                         .parent().siblings('button').click();
                     fileUploadButtonBar.find('.toggle')
@@ -33,8 +29,9 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
                 }
             }
         });
+        
         this._on(fileUploadButtonBar.find('.toggle'), {
-            change: function (e) {
+            change: function(e) {
                 filesList.find('.delete input').prop(
                     'checked',
                     $(e.currentTarget).is(':checked')
@@ -62,7 +59,7 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
         defaults = {
             sortable:         false,
             sortable_field:   'position',
-            trans: {
+            messages: {
                 maxNumberOfFiles:   'Maximum number of files exceeded',
                 acceptFileTypes:    'File type not allowed',
                 maxFileSize:        'File is too big',
@@ -101,7 +98,7 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
             
             // Init fileupload
             this.$widgetContainer.fileupload({
-                trans:                    this.options.trans,
+                messages:                 this.options.messages,
                 fileInput:                this.$element,
                 replaceFileInput:         false,
                 uploadTemplateId:         this.element.id + '_upload_template',
@@ -129,7 +126,6 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
                         tr.children().each(function() {
                             $(this).css('width', $(this).width());
                         });
-                        
                         return tr;
                     },
                     handle: ".handle",
