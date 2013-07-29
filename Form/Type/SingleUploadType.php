@@ -32,17 +32,21 @@ class SingleUploadType extends AbstractType
     {
         $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
         
-        $view->vars['multipart']        = true;
-        $view->vars['nameable']         = $options['nameable'];
-        $view->vars['deleteable']       = $options['deleteable'];
-        $view->vars['maxWidth']         = $options['maxWidth'];
-        $view->vars['maxHeight']        = $options['maxHeight'];
-        $view->vars['minWidth']         = $options['minWidth'];
-        $view->vars['minHeight']        = $options['minHeight'];
-        $view->vars['previewImages']    = $options['previewImages'];
-        $view->vars['previewAsCanvas']  = $options['previewAsCanvas'];
-        $view->vars['previewFilter']    = $options['previewFilter'];
-        $view->vars['fileType']         = $this->_checkFileType($data);
+        $view->vars = array_merge($view->vars, array(
+            'nameable'        => $options['nameable'],
+            'deleteable'      => $options['deleteable'],
+            'minWidth'        => $options['minWidth'],
+            'minHeight'       => $options['minHeight'],
+            'maxWidth'        => $options['maxWidth'],
+            'maxHeight'       => $options['maxHeight'],
+            'previewImages'   => $options['previewImages'],
+            'previewAsCanvas' => $options['previewAsCanvas'],
+            'previewFilter'   => $options['previewFilter'],
+            'fileType'        => $this->_checkFileType($data),
+            'novalidate'      => $options['novalidate'],
+            'multipart'       => $options['multipart'],
+            'required'        => $options['required'],
+        ));
     }
 
     /**
@@ -62,6 +66,15 @@ class SingleUploadType extends AbstractType
             'previewImages'     => true,
             'previewAsCanvas'   => true,
             'previewFilter'     => null,
+            'multipart'         => true,
+            'novalidate'        => true,
+            'required'          => false,
+        ));
+        
+        $resolver->setAllowedValues(array(
+            'multipart'   => array(true),
+            'novalidate'  => array(true),
+            'required'    => array(false),
         ));
 
         $resolver->setAllowedTypes(array(

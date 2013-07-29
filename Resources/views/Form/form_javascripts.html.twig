@@ -307,10 +307,10 @@
 
     {% block single_upload_javascript_prototype %}
         $('#{{ id }}').singleUpload({
-            maxWidth:         {{ maxWidth|e4js }},
-            maxHeight:        {{ maxHeight|e4js }},
             minWidth:         {{ minWidth|e4js }},
             minHeight:        {{ minHeight|e4js }},
+            maxWidth:         {{ maxWidth|e4js }},
+            maxHeight:        {{ maxHeight|e4js }},
             previewImages:    {{ previewImages|e4js }},
             previewAsCanvas:  {{ previewAsCanvas|e4js }},
             isEmpty:          {{ (form.vars.data is empty)|e4js }},
