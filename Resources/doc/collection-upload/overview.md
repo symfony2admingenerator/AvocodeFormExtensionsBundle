@@ -11,8 +11,8 @@
 ### 1. Overview
 
 Collection Upload adds twitter-boostrap GUI wrapper for a [collection][symfony-collectiontype]
-of entities associated with files. Entities hold a [FileType][symfony-filetype] field and must
-implement `Avocode\FormExtensionsBundle\Form\Model\UploadCollectionFileInterface`.
+of objects associated with files. Objects hold the file in `file` [FileType][symfony-filetype] 
+field and must implement `Avocode\FormExtensionsBundle\Form\Model\UploadCollectionFileInterface`.
 
 #### Features:
 
@@ -185,28 +185,31 @@ images:
     dbType:           collection
     formType:         upload
     addFormOptions:
-        nameable:         name
-        sortable:         position
-        editable:         [ description ]
+        nameable:             name
+        sortable:             position
+        editable:             [ description ]
+        #
         ### you can create your own form type
-        # type:             \Acme\DemoBundle\Form\MyFormType
+        # type:               \Acme\DemoBundle\Form\MyFormType
+        #
         ### or use admin:generate-admin command and use the admingenerated form type
-        # type:             \Acme\DemoBundle\Form\Type\Image\EditType
-        maxNumberOfFiles:           5
-        maxFileSize:                500000
-        minFileSize:                1000
-        acceptFileTypes:            /(\.|\/)(gif|jpe?g|png)$/i
-        previewSourceFileTypes:     /^image\/(gif|jpeg|png)$/
-        previewSourceMaxFileSize:   250000
-        previewMaxWidth:            100
-        previewMaxHeight:           100
-        previewAsCanvas:            true
-        prependFiles:               false
-        allow_add:        true
-        allow_delete:     true
-        error_bubbling:   false
+        # type:               \Acme\DemoBundle\Form\Type\Image\EditType
+        #
+        maxNumberOfFiles:     5
+        maxFileSize:          500000
+        minFileSize:          1000
+        acceptFileTypes:      /(\.|\/)(gif|jpe?g|png)$/i
+        loadImageFileTypes:   /^image\/(gif|jpe?g|png)$/i
+        loadImageMaxFileSize: 250000
+        previewMaxWidth:      100
+        previewMaxHeight:     100
+        previewAsCanvas:      true
+        prependFiles:         false
+        allow_add:            true
+        allow_delete:         true
+        error_bubbling:       false
         options:
-            data_class:     Acme\DemoBundle\Entity\GalleryImage
+            data_class:       Acme\DemoBundle\Entity\GalleryImage
 ```
 
 ### 4. Implementing functions
@@ -224,52 +227,24 @@ Your object must implement `UploadCollectionFileInterface` functions:
 ```php
 <?php
 // ...
-
-    /**
-     * Set file
-     *
-     * @param Symfony\Component\HttpFoundation\File\File $file
-     * @return GalleryImage
-     */
-    public function setFile(\Symfony\Component\HttpFoundation\File\File $file)
-    {
+    public function setFile(\Symfony\Component\HttpFoundation\File\File $file) {
         $this->file = $file;
         return $this;
     }
 
-    /**
-     * Get file
-     *
-     * @return Symfony\Component\HttpFoundation\File\File 
-     */
-    public function getFile()
-    {
+    public function getFile() {
         return $this->file;
     }
 
-    /**
-     * Get size
-     *
-     * @return string 
-     */
-    public function getSize()
-    {
+    public function getSize() {
         return $this->file->getFileInfo()->getSize();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function setParent($parent)
-    {
+    public function setParent($parent) {
         $this->setAlbum($parent);
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getPreview()
-    {
+    public function getPreview() {
         return (preg_match('/image\/.*/i', $this->file->getMimeType()));
     }
 ```  
@@ -282,13 +257,7 @@ other methods cannot direcly access the `file` property, becouse it would be `nu
 ```php
 <?php
 // ...
-    /**
-     * Get file
-     *
-     * @return Symfony\Component\HttpFoundation\File\File 
-     */
-    public function getFile()
-    {
+    public function getFile() {
         // inject file into property (if uploaded)
         if ($this->getAbsolutePath()) {
             return new \Symfony\Component\HttpFoundation\File\File(
@@ -299,21 +268,11 @@ other methods cannot direcly access the `file` property, becouse it would be `nu
         return null;
     }
 
-    /**
-     * Get size
-     *
-     * @return string 
-     */
-    public function getSize()
-    {
+    public function getSize() {
         return $this->getFile()->getFileInfo()->getSize();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getPreview()
-    {
+    public function getPreview() {
         return (preg_match('/image\/.*/i', $this->getFile()->getMimeType()));
     }
 ```  
@@ -396,9 +355,9 @@ If defined the regular expression for allowed file types is matched against
 either file type or file name as only browsers with support for the File API 
 report the file type.
 
-#### previewSourceFileTypes
+#### loadImageFileTypes
 
-**type:** `Regular Expression` **default:** `/^image\/(gif|jpeg|png)$/`
+**type:** `Regular Expression` **default:** `/^image\/(gif|jpe?g|png)$/i`
 
 The regular expression to define for which files a preview image is shown, 
 matched against the file type.
@@ -407,7 +366,7 @@ matched against the file type.
 the *URL* or *webkitURL* APIs or the *readAsDataURL* method of the 
 [FileReader](https://developer.mozilla.org/en/DOM/FileReader) interface.
 
-#### previewSourceMaxFileSize
+#### loadImageMaxFileSize
 
 **type:** `integer` **default:** `5000000`
 
