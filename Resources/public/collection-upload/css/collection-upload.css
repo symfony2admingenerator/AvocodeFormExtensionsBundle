@@ -36,11 +36,6 @@ tbody.files > tr > td.actions {
     padding-bottom: 0px;
 }
 
-tbody.files > tr > td > span {
-    line-height: 20px;
-    padding: 4px 0px; 
-}
-
 /* Set fallback background for files_list item */
 tbody.files > tr {
     background-color: #fff;
