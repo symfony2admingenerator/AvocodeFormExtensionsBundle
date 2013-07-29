@@ -122,7 +122,7 @@
                     {% endif %}
                     {% if editable %}
                         {% for field in editable %}
-                        {{ field|e4js }}: {{ attribute(item, field)|e4js }},
+                        {{ field|e4js }}: {{ attribute(item, field)|default('')|e4js }},
                         {% endfor %}
                     {% endif %}
                     "size": {{ item.size }},

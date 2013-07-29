@@ -114,7 +114,8 @@
                         that._onChange();
                     },
                     cancel: "a, button, img, input, textarea, select, iframe, .cke div, .cke span",
-                    start:function (event,ui) {
+                    start: function (event,ui) {
+                        // save configs for dragged instances of ckeditior and destroy them
                         that.ckeConfigs = [];
                         $('textarea', ui.item).each(function(){
                             var tagId = $(this).attr('id');
@@ -127,6 +128,7 @@
                         });
                     },
                     stop: function(event, ui) {
+                        // reinitialize dragged instances of ckeditior
                         $('textarea', ui.item).each(function(){
                             var tagId = $(this).attr('id');
                             if (that.ckeConfigs[tagId]) {
