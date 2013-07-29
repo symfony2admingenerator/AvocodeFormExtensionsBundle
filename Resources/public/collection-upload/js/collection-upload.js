@@ -6,36 +6,6 @@
  */
 // Extend fileupload plugin
 $.widget('blueimp.fileupload', $.blueimp.fileupload, {
-    options: {
-        trans: {
-            maxNumFiles:        'Maximum number of files exceeded',
-            typeNotAllowed:     'File type not allowed',
-            maxFileSize:        'File is too big',
-            minFileSize:        'File is too small',
-            confirmBatchDelete: 'Are you sure you want to delete all selected elements?'
-        },
-    },
-    _hasError: function (file) {
-        if (file.error) {
-            return file.error;
-        }
-        if (this.options.maxNumberOfFiles < 0) {
-            return this.options.trans.maxNumFiles;
-        }
-        if (!(this.options.acceptFileTypes.test(file.type) ||
-                this.options.acceptFileTypes.test(file.name))) {
-            return this.options.trans.typeNotAllowed;
-        }
-        if (this.options.maxFileSize &&
-                file.size > this.options.maxFileSize) {
-            return this.options.trans.maxFileSize;
-        }
-        if (typeof file.size === 'number' &&
-                file.size < this.options.minFileSize) {
-            return this.options.trans.minFileSize;
-        }
-        return null;
-    },
     _initButtonBarEventHandlers: function () {
         var that = this;
         var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
@@ -93,8 +63,8 @@ $.widget('blueimp.fileupload', $.blueimp.fileupload, {
             sortable:         false,
             sortable_field:   'position',
             trans: {
-                maxNumFiles:        'Maximum number of files exceeded',
-                typeNotAllowed:     'File type not allowed',
+                maxNumberOfFiles:   'Maximum number of files exceeded',
+                acceptFileTypes:    'File type not allowed',
                 maxFileSize:        'File is too big',
                 minFileSize:        'File is too small',
                 confirmBatchDelete: 'Are you sure you want to delete all selected elements?'
