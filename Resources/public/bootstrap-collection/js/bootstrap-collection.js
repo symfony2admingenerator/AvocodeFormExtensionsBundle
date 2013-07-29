@@ -61,7 +61,7 @@
             // Configure allow add
             if (this.options.allow_add) {
                 this.$new   = $('#'+ this.element.id +'_toolbar > .new');
-                this.nextId = this.$element.children(' .collection > .collection-item').length;
+                this.nextId = this.$element.children('.collection').children('.collection-item').length;
                 
                 this.$new.on('click', function(e) {
                     e.preventDefault();
