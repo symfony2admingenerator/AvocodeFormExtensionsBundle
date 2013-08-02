@@ -53,6 +53,7 @@ class CollectionUploadType extends AbstractType
             'prependFiles'              => $options['prependFiles'],
             'novalidate'                => $options['novalidate'],
             'multipart'                 => $options['multipart'],
+            'multiple'                  => $options['multiple'],
             'required'                  => $options['required'],
         ));
     }
@@ -82,14 +83,16 @@ class CollectionUploadType extends AbstractType
             'previewAsCanvas'           => true,
             'previewFilter'             => null,
             'prependFiles'              => false,
-            'multipart'                 => true,
             'novalidate'                => true,
+            'multipart'                 => true,
+            'multiple'                  => true,
             'required'                  => false,
         ));
         
         $resolver->setAllowedValues(array(
-            'multipart'   => array(true),
             'novalidate'  => array(true),
+            'multipart'   => array(true),
+            'multiple'    => array(true),
             'required'    => array(false),
         ));
 
