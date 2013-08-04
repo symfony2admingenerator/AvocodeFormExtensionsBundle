@@ -27,26 +27,29 @@ class KnobType extends AbstractType
             $style = trim($options['attr']['style'].' '.$style);
         }
         
-        $view->vars = array_merge($view->vars, array(
-            'width'           => $options['width'],
-            'height'          => $options['height'],
-            'displayInput'    => $options['displayInput'],
-            'displayPrevious' => $options['displayPrevious'],
-            'angleArc'        => $options['angleArc'],
-            'angleOffset'     => $options['angleOffset'],
-            'cursor'          => $options['cursor'],
-            'readOnly'        => $options['readOnly'],
-            'thickness'       => $options['thickness'],
-            'fgColor'         => $options['fgColor'],
-            'lineCap'         => $options['lineCap'],
-            'step'            => $options['step'],
-            'min'             => $options['min'],
-            'max'             => $options['max'],
-            'attr'            => array(
-                'class' => $class,
-                'style' => $style,
+        $view->vars = array_merge(
+            $view->vars, 
+            array(
+                'width'           => $options['width'],
+                'height'          => $options['height'],
+                'displayInput'    => $options['displayInput'],
+                'displayPrevious' => $options['displayPrevious'],
+                'angleArc'        => $options['angleArc'],
+                'angleOffset'     => $options['angleOffset'],
+                'cursor'          => $options['cursor'],
+                'readOnly'        => $options['readOnly'],
+                'thickness'       => $options['thickness'],
+                'fgColor'         => $options['fgColor'],
+                'lineCap'         => $options['lineCap'],
+                'step'            => $options['step'],
+                'min'             => $options['min'],
+                'max'             => $options['max'],
+                'attr'            => array(
+                    'class' => $class,
+                    'style' => $style,
+                )
             )
-        ));
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
