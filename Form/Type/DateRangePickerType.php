@@ -115,7 +115,7 @@ class DateRangePickerType extends AbstractType
         }
         
         $view->vars = array_merge(
-            $view->vars, 
+            $view->vars,
             array(
                 'formatSubmit'    => $options['formatSubmit'],
                 'opens'           => $options['opens'],

@@ -20,7 +20,7 @@ class MiniColorsType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_merge(
-            $view->vars, 
+            $view->vars,
             array(
                 'configs' => array(
                     'animationSpeed'  => $options['animationSpeed'],

@@ -28,7 +28,7 @@ class KnobType extends AbstractType
         }
         
         $view->vars = array_merge(
-            $view->vars, 
+            $view->vars,
             array(
                 'width'           => $options['width'],
                 'height'          => $options['height'],

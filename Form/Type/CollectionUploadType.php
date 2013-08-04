@@ -23,7 +23,7 @@ class CollectionUploadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addEventSubscriber(new CollectionUploadSubscriber(
-            $builder->getName(), 
+            $builder->getName(),
             $options
         ));
     }
@@ -34,7 +34,7 @@ class CollectionUploadType extends AbstractType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_merge(
-            $view->vars, 
+            $view->vars,
             array(
                 'primary_key'               => $options['primary_key'],
                 'nameable'                  => $options['nameable'],

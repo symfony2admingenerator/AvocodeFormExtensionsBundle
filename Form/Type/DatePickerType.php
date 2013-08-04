@@ -64,7 +64,7 @@ class DatePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_merge(
-            $view->vars, 
+            $view->vars,
             array(
                 'formatSubmit'    => $options['formatSubmit'],
                 'weekStart'       => $options['weekStart'],

@@ -21,7 +21,7 @@ class TimePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_merge(
-            $view->vars, 
+            $view->vars,
             array(
                 'minute_step'   => $options['minute_step'],
                 'second_step'   => $options['second_step'],

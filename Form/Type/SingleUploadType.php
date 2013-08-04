@@ -33,7 +33,7 @@ class SingleUploadType extends AbstractType
         $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
         
         $view->vars = array_merge(
-            $view->vars, 
+            $view->vars,
             array(
                 'nameable'        => $options['nameable'],
                 'deleteable'      => $options['deleteable'],

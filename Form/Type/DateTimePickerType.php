@@ -68,7 +68,7 @@ class DateTimePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_replace(
-            $view->vars, 
+            $view->vars,
             array(
                 'weekStart'     => $options['weekStart'],
                 'startView'     => $options['startView'],
