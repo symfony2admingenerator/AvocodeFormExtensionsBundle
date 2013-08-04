@@ -260,6 +260,36 @@
 {% endspaceless %}
 {% endblock double_list_model_javascript %}
 
+{% block knob_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $field = $('#{{ id }}');
+
+    {% block knob_javascript_prototype %}
+        $field.knob({
+            'width':            {{ width|e4js }},
+            'height':           {{ height|e4js }},
+            'displayInput':     {{ displayInput|e4js }},
+            'displayPrevious':  {{ displayPrevious|e4js }},
+            'angleArc':         {{ angleArc|e4js }},
+            'angleOffset':      {{ angleOffset|e4js }},
+            'cursor':           {{ cursor|e4js }},
+            'readOnly':         {{ readOnly|e4js }},
+            'thickness':        {{ thickness|e4js }},
+            'fgColor':          {{ fgColor|e4js }},
+            'bgColor':          {{ bgColor|e4js }},
+            'lineCap':          {{ lineCap|e4js }},
+            'step':             {{ step|e4js }},
+            'min':              {{ min|e4js }},
+            'max':              {{ max|e4js }},
+        });
+    {% endblock knob_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock knob_javascript %}
+
 {% block mini_colors_javascript %}
 {% spaceless %}
 <script type="text/javascript">

@@ -3,7 +3,6 @@
 namespace Avocode\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -20,23 +19,26 @@ class MiniColorsType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars = array_merge($view->vars, array(
-            'configs' => array(
-                'animationSpeed'  => $options['animationSpeed'],
-                'animationEasing' => $options['animationEasing'],
-                'changeDelay'     => $options['changeDelay'],
-                'control'         => $options['control'],
-                'hideSpeed'       => $options['hideSpeed'],
-                'inline'          => $options['inline'],
-                'letterCase'      => $options['letterCase'],
-                'opacity'         => $options['opacity'],
-                'position'        => $options['position'],
-                'showSpeed'       => $options['showSpeed'],
-                'swatchPosition'  => $options['swatchPosition'],
-                'textfield'       => $options['textfield'],
-                'theme'           => $options['theme'],
+        $view->vars = array_merge(
+            $view->vars,
+            array(
+                'configs' => array(
+                    'animationSpeed'  => $options['animationSpeed'],
+                    'animationEasing' => $options['animationEasing'],
+                    'changeDelay'     => $options['changeDelay'],
+                    'control'         => $options['control'],
+                    'hideSpeed'       => $options['hideSpeed'],
+                    'inline'          => $options['inline'],
+                    'letterCase'      => $options['letterCase'],
+                    'opacity'         => $options['opacity'],
+                    'position'        => $options['position'],
+                    'showSpeed'       => $options['showSpeed'],
+                    'swatchPosition'  => $options['swatchPosition'],
+                    'textfield'       => $options['textfield'],
+                    'theme'           => $options['theme'],
+                )
             )
-        ));
+        );
     }
 
     /**

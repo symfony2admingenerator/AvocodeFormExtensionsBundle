@@ -32,6 +32,10 @@
         
         <service id="avocode.form.extensions.type.double_list" class="Avocode\FormExtensionsBundle\Form\Type\DoubleListType" abstract="true" />
         
+        <service id="avocode.form.extensions.type.knob" class="Avocode\FormExtensionsBundle\Form\Type\KnobType">
+            <tag name="form.type" alias="knob" />
+        </service>
+        
         <service id="avocode.form.extensions.type.mini_colors" class="Avocode\FormExtensionsBundle\Form\Type\MiniColorsType">
             <tag name="form.type" alias="mini_colors" />
         </service>

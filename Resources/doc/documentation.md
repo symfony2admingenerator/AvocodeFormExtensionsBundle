@@ -23,9 +23,13 @@
 * `double_list_entity` [documentation](double-list/overview.md)
 * `double_list_model` [documentation](double-list/overview.md)
 
-##### Color picker:
+##### Knob:
 
-* `color_picker` [documentation](color-picker/overview.md)
+* `knob` [documentation](knob/overview.md)
+
+##### Mini Colors:
+
+* `mini_colors` [documentation](mini-colors/overview.md)
 
 ##### Select2 family:
 

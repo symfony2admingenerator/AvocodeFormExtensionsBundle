@@ -23,7 +23,7 @@ class CollectionUploadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addEventSubscriber(new CollectionUploadSubscriber(
-            $builder->getName(), 
+            $builder->getName(),
             $options
         ));
     }
@@ -33,29 +33,32 @@ class CollectionUploadType extends AbstractType
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars = array_merge($view->vars, array(
-            'primary_key'               => $options['primary_key'],
-            'nameable'                  => $options['nameable'],
-            'nameable_field'            => $options['nameable_field'],
-            'sortable'                  => $options['sortable'],
-            'sortable_field'            => $options['sortable_field'],
-            'editable'                  => $options['editable'],
-            'maxNumberOfFiles'          => $options['maxNumberOfFiles'],
-            'acceptFileTypes'           => $options['acceptFileTypes'],
-            'maxFileSize'               => $options['maxFileSize'],
-            'minFileSize'               => $options['minFileSize'],
-            'loadImageFileTypes'        => $options['loadImageFileTypes'],
-            'loadImageMaxFileSize'      => $options['loadImageMaxFileSize'],
-            'previewMaxWidth'           => $options['previewMaxWidth'],
-            'previewMaxHeight'          => $options['previewMaxHeight'],
-            'previewAsCanvas'           => $options['previewAsCanvas'],
-            'previewFilter'             => $options['previewFilter'],
-            'prependFiles'              => $options['prependFiles'],
-            'novalidate'                => $options['novalidate'],
-            'multipart'                 => $options['multipart'],
-            'multiple'                  => $options['multiple'],
-            'required'                  => $options['required'],
-        ));
+        $view->vars = array_merge(
+            $view->vars,
+            array(
+                'primary_key'               => $options['primary_key'],
+                'nameable'                  => $options['nameable'],
+                'nameable_field'            => $options['nameable_field'],
+                'sortable'                  => $options['sortable'],
+                'sortable_field'            => $options['sortable_field'],
+                'editable'                  => $options['editable'],
+                'maxNumberOfFiles'          => $options['maxNumberOfFiles'],
+                'acceptFileTypes'           => $options['acceptFileTypes'],
+                'maxFileSize'               => $options['maxFileSize'],
+                'minFileSize'               => $options['minFileSize'],
+                'loadImageFileTypes'        => $options['loadImageFileTypes'],
+                'loadImageMaxFileSize'      => $options['loadImageMaxFileSize'],
+                'previewMaxWidth'           => $options['previewMaxWidth'],
+                'previewMaxHeight'          => $options['previewMaxHeight'],
+                'previewAsCanvas'           => $options['previewAsCanvas'],
+                'previewFilter'             => $options['previewFilter'],
+                'prependFiles'              => $options['prependFiles'],
+                'novalidate'                => $options['novalidate'],
+                'multipart'                 => $options['multipart'],
+                'multiple'                  => $options['multiple'],
+                'required'                  => $options['required'],
+            )
+        );
     }
 
     /**

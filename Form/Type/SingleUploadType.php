@@ -32,21 +32,24 @@ class SingleUploadType extends AbstractType
     {
         $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
         
-        $view->vars = array_merge($view->vars, array(
-            'nameable'        => $options['nameable'],
-            'deleteable'      => $options['deleteable'],
-            'minWidth'        => $options['minWidth'],
-            'minHeight'       => $options['minHeight'],
-            'maxWidth'        => $options['maxWidth'],
-            'maxHeight'       => $options['maxHeight'],
-            'previewImages'   => $options['previewImages'],
-            'previewAsCanvas' => $options['previewAsCanvas'],
-            'previewFilter'   => $options['previewFilter'],
-            'fileType'        => $this->_checkFileType($data),
-            'novalidate'      => $options['novalidate'],
-            'multipart'       => $options['multipart'],
-            'required'        => $options['required'],
-        ));
+        $view->vars = array_merge(
+            $view->vars,
+            array(
+                'nameable'        => $options['nameable'],
+                'deleteable'      => $options['deleteable'],
+                'minWidth'        => $options['minWidth'],
+                'minHeight'       => $options['minHeight'],
+                'maxWidth'        => $options['maxWidth'],
+                'maxHeight'       => $options['maxHeight'],
+                'previewImages'   => $options['previewImages'],
+                'previewAsCanvas' => $options['previewAsCanvas'],
+                'previewFilter'   => $options['previewFilter'],
+                'fileType'        => $this->_checkFileType($data),
+                'novalidate'      => $options['novalidate'],
+                'multipart'       => $options['multipart'],
+                'required'        => $options['required'],
+            )
+        );
     }
 
     /**

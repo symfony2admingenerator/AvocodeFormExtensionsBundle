@@ -114,18 +114,21 @@ class DateRangePickerType extends AbstractType
             }
         }
         
-        $view->vars = array_merge($view->vars, array(
-            'formatSubmit'    => $options['formatSubmit'],
-            'opens'           => $options['opens'],
-            'separator'       => $options['separator'],
-            'showWeekNumbers' => $options['showWeekNumbers'],
-            'showDropdowns'   => $options['showDropdowns'],
-            'minDate'         => $options['minDate'],
-            'maxDate'         => $options['maxDate'],
-            'dateLimit'       => $options['dateLimit'],
-            'ranges'          => $ranges,
-            'locale'          => $locale,
-        ));
+        $view->vars = array_merge(
+            $view->vars,
+            array(
+                'formatSubmit'    => $options['formatSubmit'],
+                'opens'           => $options['opens'],
+                'separator'       => $options['separator'],
+                'showWeekNumbers' => $options['showWeekNumbers'],
+                'showDropdowns'   => $options['showDropdowns'],
+                'minDate'         => $options['minDate'],
+                'maxDate'         => $options['maxDate'],
+                'dateLimit'       => $options['dateLimit'],
+                'ranges'          => $ranges,
+                'locale'          => $locale,
+            )
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -22,30 +22,36 @@ class DateTimePickerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $dateOptions = array_intersect_key($options, array_flip(array(
-            'format',
-            'weekStart',
-            'calendarWeeks',
-            'startDate',
-            'endDate',
-            'disabled',
-            'autoclose',
-            'startView',
-            'minViewMode',
-            'todayButton',
-            'todayHighlight',
-            'clearButton',
-            'language',
-        )));
+        $dateOptions = array_intersect_key(
+            $options, 
+            array_flip(array(
+                'format',
+                'weekStart',
+                'calendarWeeks',
+                'startDate',
+                'endDate',
+                'disabled',
+                'autoclose',
+                'startView',
+                'minViewMode',
+                'todayButton',
+                'todayHighlight',
+                'clearButton',
+                'language',
+            ))
+        );
 
-        $timeOptions = array_intersect_key($options, array_flip(array(
-            'minute_step',
-            'with_seconds',
-            'second_step',
-            'default_time',
-            'show_meridian',
-            'disable_focus',
-        )));
+        $timeOptions = array_intersect_key(
+            $options, 
+            array_flip(array(
+                'minute_step',
+                'with_seconds',
+                'second_step',
+                'default_time',
+                'show_meridian',
+                'disable_focus',
+            ))
+        );
         
         $builder
             ->resetViewTransformers()
@@ -61,14 +67,17 @@ class DateTimePickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars = array_replace($view->vars, array(
-            'weekStart'     => $options['weekStart'],
-            'startView'     => $options['startView'],
-            'minViewMode'   => $options['minViewMode'],
-            'minute_step'   => $options['minute_step'],
-            'second_step'   => $options['second_step'],
-            'disable_focus' => $options['disable_focus'],
-        ));
+        $view->vars = array_replace(
+            $view->vars,
+            array(
+                'weekStart'     => $options['weekStart'],
+                'startView'     => $options['startView'],
+                'minViewMode'   => $options['minViewMode'],
+                'minute_step'   => $options['minute_step'],
+                'second_step'   => $options['second_step'],
+                'disable_focus' => $options['disable_focus'],
+            )
+        );
     }
 
     /**
@@ -76,7 +85,6 @@ class DateTimePickerType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-
         $resolver->setDefaults(array(
             'format'          => 'yyyy-MM-dd',
             'formatSubmit'    => 'yyyy-mm-dd',

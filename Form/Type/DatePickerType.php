@@ -51,7 +51,7 @@ class DatePickerType extends AbstractType
             $pattern
         ));
 
-        if ( $options['input'] == 'single_text' ) {
+        if ($options['input'] == 'single_text') {
             $builder->addModelTransformer(new ReversedTransformer(
                 new DateTimeToStringTransformer(null, null, 'Y-m-d')
             ));
@@ -63,25 +63,28 @@ class DatePickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars = array_merge($view->vars, array(
-            'formatSubmit'    => $options['formatSubmit'],
-            'weekStart'       => $options['weekStart'],
-            'calendarWeeks'   => $options['calendarWeeks'],
-            'startDate'       => $options['startDate'],
-            'endDate'         => $options['endDate'],
-            'disabled'        => $options['disabled'],
-            'autoclose'       => $options['autoclose'],
-            'startView'       => $options['startView'],
-            'minViewMode'     => $options['minViewMode'],
-            'todayButton'     => is_bool($options['todayButton']) 
-                                 ? json_encode($options['todayButton']) 
-                                 : $options['todayButton'],
-            'todayHighlight'  => $options['todayHighlight'],
-            'clearButton'     => $options['clearButton'],
-            'language'        => !$options['language'] 
-                                 ? $this->getLocale() 
-                                 : $options['language'],
-        ));
+        $view->vars = array_merge(
+            $view->vars,
+            array(
+                'formatSubmit'    => $options['formatSubmit'],
+                'weekStart'       => $options['weekStart'],
+                'calendarWeeks'   => $options['calendarWeeks'],
+                'startDate'       => $options['startDate'],
+                'endDate'         => $options['endDate'],
+                'disabled'        => $options['disabled'],
+                'autoclose'       => $options['autoclose'],
+                'startView'       => $options['startView'],
+                'minViewMode'     => $options['minViewMode'],
+                'todayButton'     => is_bool($options['todayButton']) 
+                                     ? json_encode($options['todayButton']) 
+                                     : $options['todayButton'],
+                'todayHighlight'  => $options['todayHighlight'],
+                'clearButton'     => $options['clearButton'],
+                'language'        => !$options['language'] 
+                                     ? $this->getLocale() 
+                                     : $options['language'],
+            )
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

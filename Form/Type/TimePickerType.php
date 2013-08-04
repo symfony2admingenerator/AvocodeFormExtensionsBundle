@@ -20,14 +20,17 @@ class TimePickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars = array_merge($view->vars, array(
-            'minute_step'   => $options['minute_step'],
-            'second_step'   => $options['second_step'],
-            'with_seconds'  => $options['with_seconds'],
-            'default_time'  => $options['default_time'],
-            'show_meridian' => $options['show_meridian'],
-            'disable_focus' => $options['disable_focus'],
-        ));
+        $view->vars = array_merge(
+            $view->vars,
+            array(
+                'minute_step'   => $options['minute_step'],
+                'second_step'   => $options['second_step'],
+                'with_seconds'  => $options['with_seconds'],
+                'default_time'  => $options['default_time'],
+                'show_meridian' => $options['show_meridian'],
+                'disable_focus' => $options['disable_focus'],
+            )
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
