@@ -267,7 +267,7 @@
         $field = $('#{{ id }}');
 
     {% block knob_javascript_prototype %}
-        $(".dial").knob({
+        $field.knob({
             'width':            {{ width|e4js }},
             'height':           {{ height|e4js }},
             'displayInput':     {{ displayInput|e4js }},
