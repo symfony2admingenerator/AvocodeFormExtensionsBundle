@@ -94,6 +94,7 @@ class DateTimePickerType extends AbstractType
             'minute_step'     => 15,
             'second_step'     => 15,
             'disable_focus'   => false,
+            'default_time'    => 'current',
             'disabled'        => array(),
             'attr'            => array(
                 'class' => 'input-small'
