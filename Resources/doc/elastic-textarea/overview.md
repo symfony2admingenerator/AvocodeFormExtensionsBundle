@@ -10,7 +10,7 @@
 
 ### Description
 
-Use [jquery-elastic] as GUI wrapper for [TextType][symfony-texttype] field
+Use [jquery-elastic] as GUI wrapper for [TextareaType][symfony-textareatype] field
 to make your textareas grow and shrink to fit it’s content.
 
 > **Note:** The css property ‘max-height’ will affect Elastic. Scrollbars will appear when the content is bigger than the set max height.
