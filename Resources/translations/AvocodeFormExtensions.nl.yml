@@ -1,0 +1,79 @@
+bootstrap_collection:
+    add:          Toevoegen
+    delete:       Verwijderen
+    confirm:
+        delete:           Weet U zeker dat U dit element wilt verwijderen?
+        batchDelete:      Weet U zeker dat U alle geselecteerde elementen wilt verwijderen?
+
+collection_upload:
+    file.add:     Bestand toevoegen...
+    error:        Fout
+    cancel:       Annuleer
+    delete:       Verwijder
+    download:     Download
+    confirm:
+        batchDelete:      Weet U zeker dat U alle geselecteerde elementen wilt wissen?
+    errors:
+        maxNumberOfFiles: Maximum aantal bestanden overschreden
+        acceptFileTypes:  Bestandstype is niet toegestaan
+        maxFileSize:      Bestand is te groot
+        minFileSize:      Bestand is te klein
+        
+date_range:
+    label:
+        apply:          Verstuur
+        clear:          Reset
+        from:           Van
+        to:             Tot
+        week:           W
+        custom_range:   Aangepast bereik
+    days:
+        sunday:         Zo
+        monday:         Ma
+        tuesday:        Di
+        wednesday:      Wo
+        thursday:       Do
+        friday:         Vr
+        saturday:       Za
+    months:
+        january:        Januari
+        february:       Februari
+        march:          Maart
+        april:          April
+        may:            Mei
+        june:           Juni
+        july:           Juli
+        august:         Augustus
+        september:      September
+        october:        Oktober
+        november:       November
+        december:       December
+    ranges:
+        today:          Vandaag
+        yesterday:      Gisteren
+        last-week:      Laatste week
+        last-month:     Laatste maand
+        last-year:      Laatste jaar
+        
+double_list:
+    selected:           Geselecteerd
+    unselected:         Gedeselecteerd
+        
+single_upload:
+    button:
+        add:              Upload bestand
+        replace:          Vervang bestand
+        cancel:           Annuleer
+        delete:           Verwijder
+    type:
+        audio:            Audio
+        archive:          Archive
+        html:             HTML
+        image:            Image
+        pdf-document:     PDF<br />Document
+        plain-text:       Plain<br />Text
+        presentation:     Presentation
+        spreadsheet:      Spreadsheet
+        text-document:    Text<br />Document
+        unknown:          Unknown<br />Filetype
+        video:            Video
