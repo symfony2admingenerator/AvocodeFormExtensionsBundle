@@ -185,8 +185,10 @@ images:
     dbType:           collection
     formType:         collection_upload
     addFormOptions:
-        nameable:             name
-        sortable:             position
+        nameable:             true
+        nameable_field:       name
+        sortable:             true
+        sortable_field:       position
         editable:             [ description ]
         #
         ### you can create your own form type
