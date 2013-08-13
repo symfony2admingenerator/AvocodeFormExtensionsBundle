@@ -183,7 +183,7 @@ Admingenerator basic configuration:
 images:
     label:            Images
     dbType:           collection
-    formType:         upload
+    formType:         collection_upload
     addFormOptions:
         nameable:             name
         sortable:             position
