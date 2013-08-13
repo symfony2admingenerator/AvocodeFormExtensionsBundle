@@ -185,6 +185,7 @@ images:
     dbType:           collection
     formType:         collection_upload
     addFormOptions:
+        primary_key:          id
         nameable:             true
         nameable_field:       name
         sortable:             true
