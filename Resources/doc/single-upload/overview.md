@@ -137,7 +137,7 @@ cover:
     formType:         single_upload
     addFormOptions:
         nameable:       avatar_name
-        deletable:      avatar_path
+        deleteable:      avatar_path
         data_class:     Symfony\Component\HttpFoundation\File\File
 ```
 
