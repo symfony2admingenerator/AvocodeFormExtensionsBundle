@@ -12,7 +12,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * See `Resources/doc/daterange-picker/overview.md` for documentation
- * 
+ *
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -66,7 +66,7 @@ class DateRangePickerType extends AbstractType
             ),
             'firstDay'          => intval($this->translator->trans($options['locale']['firstDay'], array(), $options['drp_translation_domain'])),
         );
-        
+
         $ranges = array();
         if (is_array($options['ranges'])) {
             foreach ($options['ranges'] as $key => $value) {
@@ -75,34 +75,34 @@ class DateRangePickerType extends AbstractType
                     $today = date('Y-m-d');
                     $value = array($today, $today);
                 }
-                        
+
                 if ("yesterday" === $key || "yesterday" === $value) {
                     $key = "yesterday";
                     $yesterday = date('Y-m-d', strtotime('-1 days'));
                     $value = array($yesterday, $yesterday);
                 }
-                
+
                 if ("last-week" === $key || "last-week" === $value) {
                     $key = "last-week";
                     $lastWeek = date('Y-m-d', strtotime('last week'));
                     $today = date('Y-m-d');
                     $value = array($lastWeek, $today);
                 }
-                
+
                 if ("last-month" === $key || "last-month" === $value) {
                     $key = "last-month";
                     $lastMonth = date('Y-m-d', strtotime('last month'));
                     $today = date('Y-m-d');
                     $value = array($lastMonth, $today);
                 }
-                
+
                 if ("last-year" === $key || "last-year" === $value) {
                     $key = "last-year";
-                    $ago2years = date('Y-m-d', strtotime('2 years ago'));
                     $ago1years = date('Y-m-d', strtotime('last year'));
-                    $value = array($ago2years, $ago1years);
+                    $today = date('Y-m-d');
+                    $value = array($ago1years, $today);
                 }
-                
+
                 if (in_array($key, array(
                     "today", "yesterday", "last-week", "last-month", "last-year"
                 ))) {
@@ -113,7 +113,7 @@ class DateRangePickerType extends AbstractType
                 }
             }
         }
-        
+
         $view->vars = array_merge(
             $view->vars,
             array(
@@ -154,12 +154,12 @@ class DateRangePickerType extends AbstractType
                 'weekLabel'         => 'date_range.label.week',
                 'customRangeLabel'  => 'date_range.label.custom_range',
                 'daysOfWeek'        => array(
-                    'date_range.days.sunday', 
-                    'date_range.days.monday', 
-                    'date_range.days.tuesday', 
-                    'date_range.days.wednesday', 
-                    'date_range.days.thursday', 
-                    'date_range.days.friday', 
+                    'date_range.days.sunday',
+                    'date_range.days.monday',
+                    'date_range.days.tuesday',
+                    'date_range.days.wednesday',
+                    'date_range.days.thursday',
+                    'date_range.days.friday',
                     'date_range.days.saturday',
                 ),
                 'monthNames'        => array(
