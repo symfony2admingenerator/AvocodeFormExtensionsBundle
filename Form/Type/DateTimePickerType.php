@@ -97,6 +97,10 @@ class DateTimePickerType extends AbstractType
             'disable_focus'   => false,
             'default_time'    => 'current',
             'disabled'        => array(),
+            'todayButton'     => false,
+            'todayHighlight'  => false,
+            'clearButton'     => false,
+            'language'        => false,
             'attr'            => array(
                 'class' => 'input-small'
             ),
