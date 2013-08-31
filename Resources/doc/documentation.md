@@ -31,6 +31,10 @@
 
 * `mini_colors` [documentation](mini-colors/overview.md)
 
+##### Elastic Textarea:
+
+* `elastic_textarea` [documentation](elastic-textarea/overview.md)
+
 ##### Select2 family:
 
 * `select2_choice` [documentation](select2/overview.md)

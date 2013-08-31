@@ -390,3 +390,15 @@
 {% endautoescape %}
 {% endspaceless %}
 {% endblock time_picker_javascript %}
+
+{% block elastic_textarea_javascript %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(function($) {
+    {% block elastic_textarea_javascript_prototype %}
+        $('#{{ id }}').elastic();
+    {% endblock elastic_textarea_javascript_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endblock elastic_textarea_javascript %}

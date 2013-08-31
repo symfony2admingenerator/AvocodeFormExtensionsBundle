@@ -50,6 +50,10 @@
             <tag name="form.type" alias="time_picker" />
         </service>
 
+        <service id="avocode.form.extensions.type.elastic_textarea" class="Avocode\FormExtensionsBundle\Form\Type\ElasticTextareaType">
+            <tag name="form.type" alias="elastic_textarea" />
+        </service>
+
         <!-- Form extensions -->
         <service id="form.type_extension.autocomplete" class="Avocode\FormExtensionsBundle\Form\Extension\AutocompleteExtension">
             <tag name="form.type_extension" alias="form" />
