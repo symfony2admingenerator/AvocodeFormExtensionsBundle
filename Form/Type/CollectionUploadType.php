@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * See `Resources/doc/collection-upload/overview.md` for documentation
- * 
+ *
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class CollectionUploadType extends AbstractType
@@ -91,7 +91,7 @@ class CollectionUploadType extends AbstractType
             'multiple'                  => true,
             'required'                  => false,
         ));
-        
+
         $resolver->setAllowedValues(array(
             'novalidate'  => array(true),
             'multipart'   => array(true),
@@ -102,7 +102,7 @@ class CollectionUploadType extends AbstractType
         $resolver->setAllowedTypes(array(
             'primary_key'               =>  array('string'),
             'nameable'                  =>  array('bool'),
-            'nameable_field'            =>  array('string'),
+            'nameable_field'            =>  array('string', 'null'),
             'sortable'                  =>  array('bool'),
             'sortable_field'            =>  array('string'),
             'editable'                  =>  array('array'),
