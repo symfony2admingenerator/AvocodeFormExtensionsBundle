@@ -89,6 +89,7 @@ class DateTimePickerType extends AbstractType
         $resolver->setDefaults(array(
             'format'          => 'yyyy-MM-dd',
             'formatSubmit'    => 'yyyy-mm-dd',
+            'calendarWeeks'   => false,
             'weekStart'       => 1,
             'startView'       => 'month',
             'minViewMode'     => 'days',
