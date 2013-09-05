@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * See `Resources/doc/datetime-picker/overview.md` for documentation
- * 
+ *
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -23,9 +23,10 @@ class DateTimePickerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $dateOptions = array_intersect_key(
-            $options, 
+            $options,
             array_flip(array(
                 'format',
+                'formatSubmit',
                 'weekStart',
                 'calendarWeeks',
                 'startDate',
@@ -42,7 +43,7 @@ class DateTimePickerType extends AbstractType
         );
 
         $timeOptions = array_intersect_key(
-            $options, 
+            $options,
             array_flip(array(
                 'minute_step',
                 'with_seconds',
@@ -52,7 +53,7 @@ class DateTimePickerType extends AbstractType
                 'disable_focus',
             ))
         );
-        
+
         $builder
             ->resetViewTransformers()
             ->remove('date')
@@ -88,6 +89,7 @@ class DateTimePickerType extends AbstractType
         $resolver->setDefaults(array(
             'format'          => 'yyyy-MM-dd',
             'formatSubmit'    => 'yyyy-mm-dd',
+            'calendarWeeks'   => false,
             'weekStart'       => 1,
             'startView'       => 'month',
             'minViewMode'     => 'days',
@@ -96,6 +98,10 @@ class DateTimePickerType extends AbstractType
             'disable_focus'   => false,
             'default_time'    => 'current',
             'disabled'        => array(),
+            'todayButton'     => false,
+            'todayHighlight'  => false,
+            'clearButton'     => false,
+            'language'        => false,
             'attr'            => array(
                 'class' => 'input-small'
             ),
@@ -106,7 +112,7 @@ class DateTimePickerType extends AbstractType
             'startView'   => array(0, 'month', 1, 'year', 2, 'decade'),
             'minViewMode' => array(0, 'days', 1, 'months', 2, 'years'),
         ));
-        
+
         $resolver->setAllowedTypes(array(
             'format'          => array('string'),
             'formatSubmit'    => array('string'),
