@@ -61,10 +61,10 @@ class SingleUploadSubscriber implements EventSubscriberInterface
 
     public function onSubmit(FormEvent $event)
     {
-        if (count($this->configs) > 0) {
-            $form = $event->getForm();
-            $data = $form->getData();
-            
+        $form = $event->getForm();
+        $data = $form->getData();
+
+        if ($data != null && count($this->configs) > 0) {
             foreach ($this->configs as $field => $config) {
                 if ($config['nameable'] && array_key_exists('captured_name', $config)) {
                     $getterName = 'get'.ucfirst($config['nameable']);
