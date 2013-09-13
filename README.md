@@ -39,6 +39,8 @@ public function registerBundles()
 }
 ```
 
+You have to register AvocodeFormExtensionsBundle() before a potential registering of AdmingeneratorGeneratorBundle().
+
 To make `avocode/form-extensions-bundle` forms work, you need to edit your base 
 template, and include static and dynamic stylesheets and javascripts. 
 
