@@ -29,16 +29,16 @@ class DateRangeToStringTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if ($value) {
-            $from = '';            
+            $from = '';
             if ($value->getFrom()) {
                 $from = $value->getFrom()->format('Y-m-d');
             }
-            
-            $to = '';            
+
+            $to = '';
             if ($value->getTo()) {
                 $to = $value->getTo()->format('Y-m-d');
             }
-            
+
             return sprintf(
                 '%s%s%s',
                 $from,
@@ -57,8 +57,14 @@ class DateRangeToStringTransformer implements DataTransformerInterface
     public function reverseTransform($value)
     {
         $parts = explode($this->dateSeparator, $value);
-        $from = isset($parts[0]) ? $parts[0] : null;        
+
+        if ($parts[0] === $value) {
+            $parts = array();
+        }
+
+        $from = isset($parts[0]) ? $parts[0] : null;
         $to = isset($parts[1]) ? $parts[1] : null;
-        return new DAteRange($from, $to);
+
+        return new DateRange($from, $to);
     }
 }
