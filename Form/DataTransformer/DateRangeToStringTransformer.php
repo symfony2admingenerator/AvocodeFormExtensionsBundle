@@ -39,12 +39,17 @@ class DateRangeToStringTransformer implements DataTransformerInterface
                 $to = $value->getTo()->format('Y-m-d');
             }
 
-            return sprintf(
-                '%s%s%s',
-                $from,
-                $this->dateSeparator,
-                $to
-            );
+            $result = '';
+            if (strlen($from) && strlen($to)) {
+                $result = sprintf(
+                    '%s%s%s',
+                    $from,
+                    $this->dateSeparator,
+                    $to
+                );
+            }
+
+            return $result;
         }
     }
 
