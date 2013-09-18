@@ -11,13 +11,15 @@ use Symfony\Component\Form\DataTransformerInterface;
 class DateRangeToStringTransformer implements DataTransformerInterface
 {
     protected $dateSeparator;
+    protected $format;
 
     /**
      * @param string $dateSeparator DateRange separator for the string representation
      */
-    public function __construct($dateSeparator = ' - ')
+    public function __construct($dateSeparator = ' - ', $format = 'Y-m-d')
     {
         $this->dateSeparator = $dateSeparator;
+        $this->format = $format;
     }
 
     /**
@@ -31,12 +33,12 @@ class DateRangeToStringTransformer implements DataTransformerInterface
         if ($value) {
             $from = '';
             if ($value->getFrom()) {
-                $from = $value->getFrom()->format('Y-m-d');
+                $from = $value->getFrom()->format($this->format);
             }
 
             $to = '';
             if ($value->getTo()) {
-                $to = $value->getTo()->format('Y-m-d');
+                $to = $value->getTo()->format($this->format);
             }
 
             $result = '';

@@ -28,7 +28,7 @@ class DateRangePickerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if ($options['use_daterange_entity']) {
-            $builder->addModelTransformer(new DateRangeToStringTransformer($options['separator']));
+            $builder->addModelTransformer(new DateRangeToStringTransformer($options['separator'], $options['format']));
         }
     }
 
@@ -114,10 +114,14 @@ class DateRangePickerType extends AbstractType
             }
         }
 
+//        var_dump(gettype($view->vars['format']));
+
+
         $view->vars = array_merge(
             $view->vars,
             array(
                 'formatSubmit'    => $options['formatSubmit'],
+                'format'          => $options['format'],
                 'opens'           => $options['opens'],
                 'separator'       => $options['separator'],
                 'showWeekNumbers' => $options['showWeekNumbers'],
@@ -136,8 +140,8 @@ class DateRangePickerType extends AbstractType
         $resolver->setDefaults(array(
             'drp_translation_domain'  => 'AvocodeFormExtensions',
             'use_daterange_entity'    => false,
-            'format'                  => 'yyyy-MM-dd',
-            'formatSubmit'            => 'yyyy-mm-dd',
+            'format'                  => 'Y-m-d',
+            'formatSubmit'            => 'yyyy-MM-dd',
             'opens'                   => 'right',
             'separator'               => ' - ',
             'showWeekNumbers'         => true,
