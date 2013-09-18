@@ -114,9 +114,6 @@ class DateRangePickerType extends AbstractType
             }
         }
 
-//        var_dump(gettype($view->vars['format']));
-
-
         $view->vars = array_merge(
             $view->vars,
             array(
