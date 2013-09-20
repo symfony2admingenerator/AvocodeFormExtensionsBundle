@@ -29,12 +29,12 @@ class SingleUploadSubscriber implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $post = $event->getData();
-        
+
         foreach ($form->all() as $child) {
             if ($child->getConfig()->getType()->getName() === 'single_upload') {
                 $childPost = $post[$child->getName()];
                 $options = $child->getConfig()->getOptions();
-                
+
                 $this->configs[$child->getName()] = array(
                     'nameable'   => $options['nameable'],
                     'deleteable' => $options['deleteable'],
@@ -49,12 +49,12 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                     // capture name and store it for onSubmit event
                     $this->configs[$child->getName()]['delete'] = $childPost['delete'];
                 }
-                
+
                 // remove additional data to prevent errors
                 // by overwriting them with posted file
                 $post[$child->getName()] = $childPost['file'];
             }
-        
+
             $event->setData($post);
         }
     }
@@ -76,19 +76,19 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                     // set captured name
                     $data->$setterName($config['captured_name']);
                 }
-                
-                if ($config['deleteable'] && array_key_exists('delete', $config)) {
+
+                if ($config['deleteable'] && array_key_exists('delete', $config) && $config['delete']) {
                     $getterPath = 'get'.ucfirst($config['deleteable']);
                     $setterPath = 'set'.ucfirst($config['deleteable']);
 
                     // save original file for postSubmit event
                     $config['original_path'] = $data->$getterPath();
-                    
+
                     // remove file
                     $data->$setterPath(null);
                 }
             }
-            
+
             $event->setData($data);
         }
     }
@@ -106,7 +106,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                         $setterName = 'set'.ucfirst($config['nameable']);
                         $data->$setterName($config['original_name']);
                     }
-                
+
                     if ($config['deleteable'] && array_key_exists('original_path', $config)) {
                         $setterPath = 'set'.ucfirst($config['deleteable']);
                         // revert to original name
