@@ -11,13 +11,15 @@ use Symfony\Component\Form\DataTransformerInterface;
 class DateRangeToStringTransformer implements DataTransformerInterface
 {
     protected $dateSeparator;
+    protected $format;
 
     /**
      * @param string $dateSeparator DateRange separator for the string representation
      */
-    public function __construct($dateSeparator = ' - ')
+    public function __construct($dateSeparator = ' - ', $format = 'Y-m-d')
     {
         $this->dateSeparator = $dateSeparator;
+        $this->format = $format;
     }
 
     /**
@@ -29,22 +31,27 @@ class DateRangeToStringTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if ($value) {
-            $from = '';            
+            $from = '';
             if ($value->getFrom()) {
-                $from = $value->getFrom()->format('Y-m-d');
+                $from = $value->getFrom()->format($this->format);
             }
-            
-            $to = '';            
+
+            $to = '';
             if ($value->getTo()) {
-                $to = $value->getTo()->format('Y-m-d');
+                $to = $value->getTo()->format($this->format);
             }
-            
-            return sprintf(
-                '%s%s%s',
-                $from,
-                $this->dateSeparator,
-                $to
-            );
+
+            $result = '';
+            if (strlen($from) && strlen($to)) {
+                $result = sprintf(
+                    '%s%s%s',
+                    $from,
+                    $this->dateSeparator,
+                    $to
+                );
+            }
+
+            return $result;
         }
     }
 
@@ -57,8 +64,14 @@ class DateRangeToStringTransformer implements DataTransformerInterface
     public function reverseTransform($value)
     {
         $parts = explode($this->dateSeparator, $value);
-        $from = isset($parts[0]) ? $parts[0] : null;        
+
+        if ($parts[0] === $value) {
+            $parts = array();
+        }
+
+        $from = isset($parts[0]) ? $parts[0] : null;
         $to = isset($parts[1]) ? $parts[1] : null;
-        return new DAteRange($from, $to);
+
+        return new DateRange($from, $to);
     }
 }
