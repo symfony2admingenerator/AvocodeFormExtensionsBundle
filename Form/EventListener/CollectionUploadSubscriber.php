@@ -142,7 +142,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
                 $file->setParent($data);
 
                 // if nameable field specified - set normalized name
-                if ($this->nameable_field) {
+                if ($this->nameable && $this->nameable_field) {
                     $setNameable = 'set'.ucfirst($this->nameable_field);
 
                     // this value is unsafe
