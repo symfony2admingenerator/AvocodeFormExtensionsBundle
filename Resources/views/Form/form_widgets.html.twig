@@ -65,7 +65,7 @@
 {% block collection_table_item %}
 <tr class="collection-item">
 {% if item.vars.compound %}
-    <td class="collection-item-compound">
+    <td class="collection-item-compound" id="{{ item.vars.id }}">
         <div class="accordion" id="{{ 'accordion_' ~ item.vars.id }}">
             <div class="accordion-group">
                 <div class="accordion-heading">
