@@ -3,6 +3,7 @@
 namespace Avocode\FormExtensionsBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Container;
 
 /**
  * This extension adds common twig function for various upload manager 
@@ -64,7 +65,7 @@ class ImageAssetsExtension extends \Twig_Extension
         
         // In case no upload manager is used we expect object to have
         // a special method returning file's path
-        $getter = "get".ucfirst($field)."WebPath";
+        $getter = "get".Container::Camelize($field)."WebPath";
             
         return $object->$getter();
     }
