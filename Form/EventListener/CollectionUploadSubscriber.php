@@ -81,7 +81,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FormEvents::PRE_SUBMIT => array('preSubmit', 0),
+            FormEvents::PRE_SUBMIT => array('preSubmit', 127),
             FormEvents::SUBMIT => array('onSubmit', 0),
             FormEvents::POST_SUBMIT => array('postSubmit', 0),
         );
@@ -98,7 +98,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
             // unset additional form data to prevent errors
             unset($data['uploads']);
         }
-        
+
         // save submitted primary keys for onSubmit event
         foreach ($data as $file) {
             $this->submitted_pk[] = $file[$this->primary_key];
@@ -115,7 +115,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         // save original files collection for postSubmit event
         $getter = 'get'.ucfirst($this->propertyName);
         $this->originalFiles = $data->$getter();
-        
+
         if ($this->allow_delete) {
             // remove files not present in submitted pk
             $pkGetter = 'get'.ucfirst($this->primary_key);
@@ -125,7 +125,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
                 }
             }
         }
-        
+
         if ($this->allow_add) {
             // create file entites for each file
             foreach ($this->uploads as $upload) {
@@ -164,7 +164,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $data = $form->getParent()->getData();
-        
+
         $getter = 'get'.ucfirst($this->propertyName);
         if (!$form->isValid() && $data->$getter() instanceof ArrayCollection) {
             // remove files absent in the original collection
@@ -173,7 +173,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
             foreach ($this->originalFiles as $file) {
                 $data->$getter()->add($file);
             }
-            
+
             $event->setData($data->$getter());
         }
     }
