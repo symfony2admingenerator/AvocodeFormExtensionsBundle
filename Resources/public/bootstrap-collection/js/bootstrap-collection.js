@@ -115,27 +115,31 @@
                     },
                     cancel: "a, button, img, input, textarea, select, iframe, .cke div, .cke span",
                     start: function (event,ui) {
-                        // save configs for dragged instances of ckeditior and destroy them
-                        that.ckeConfigs = [];
-                        $('textarea', ui.item).each(function(){
-                            var tagId = $(this).attr('id');
-                            if (CKEDITOR.instances[tagId]) {
-                                var ckeClone = $(this).next('.cke').clone().addClass('cloned');
-                                that.ckeConfigs[tagId] = CKEDITOR.instances[tagId].config;
-                                CKEDITOR.instances[tagId].destroy();
-                                $(this).hide().after(ckeClone);
-                            }
-                        });
+                        if (typeof CKEDITOR !== "undefined") {
+                            // save configs for dragged instances of ckeditior and destroy them
+                            that.ckeConfigs = [];
+                            $('textarea', ui.item).each(function(){
+                                var tagId = $(this).attr('id');
+                                if (CKEDITOR.instances[tagId]) {
+                                    var ckeClone = $(this).next('.cke').clone().addClass('cloned');
+                                    that.ckeConfigs[tagId] = CKEDITOR.instances[tagId].config;
+                                    CKEDITOR.instances[tagId].destroy();
+                                    $(this).hide().after(ckeClone);
+                                }
+                            });
+                        }
                     },
                     stop: function(event, ui) {
-                        // reinitialize dragged instances of ckeditior
-                        $('textarea', ui.item).each(function(){
-                            var tagId = $(this).attr('id');
-                            if (that.ckeConfigs[tagId]) {
-                                CKEDITOR.replace(tagId, that.ckeConfigs[tagId]);
-                                $(this).next('.cloned').remove();
-                            }
-                        });
+                        if (typeof CKEDITOR !== "undefined") {
+                            // reinitialize dragged instances of ckeditior
+                            $('textarea', ui.item).each(function(){
+                                var tagId = $(this).attr('id');
+                                if (that.ckeConfigs[tagId]) {
+                                    CKEDITOR.replace(tagId, that.ckeConfigs[tagId]);
+                                    $(this).next('.cloned').remove();
+                                }
+                            });
+                        }
                     }
                 });
             }
