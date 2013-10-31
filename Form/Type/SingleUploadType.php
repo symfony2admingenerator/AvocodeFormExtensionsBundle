@@ -6,10 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * See `Resources/doc/single-upload/overview.md` for documentation
- * 
+ *
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class SingleUploadType extends AbstractType
@@ -19,6 +20,12 @@ class SingleUploadType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
+
+        if($data instanceof UploadedFile && $form->getRoot()->getErrors()) {
+        	$view->vars['data'] = $data = null;
+        }
+
         $view->vars = array_replace($view->vars, array(
             'type'  => 'file',
             'value' => '',
@@ -31,7 +38,7 @@ class SingleUploadType extends AbstractType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
-        
+
         $view->vars = array_merge(
             $view->vars,
             array(
@@ -73,7 +80,7 @@ class SingleUploadType extends AbstractType
             'novalidate'        => true,
             'required'          => false,
         ));
-        
+
         $resolver->setAllowedValues(array(
             'multipart'   => array(true),
             'novalidate'  => array(true),
