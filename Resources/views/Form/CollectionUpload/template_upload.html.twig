@@ -29,6 +29,10 @@
         {% if (!i) { %}
         {% endraw %}
             <div class="btn-toolbar">
+                <button class="btn btn-primary start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>{{ 'collection_upload.start'|trans({}, 'AvocodeFormExtensions') }}</span>
+                </button>
                 <button class="btn btn-warning cancel">
                     <i class="icon-ban-circle icon-white"></i>
                     <span> {{ 'collection_upload.cancel'|trans({}, 'AvocodeFormExtensions') }}</span>

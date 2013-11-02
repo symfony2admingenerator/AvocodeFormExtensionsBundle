@@ -11,6 +11,13 @@
         var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
             filesList = this.options.filesContainer;
     
+        this._on(fileUploadButtonBar.find('.start'), {
+            click: function(e) {
+                e.preventDefault();
+                filesList.find('button.start').click();
+            }
+        });
+        
         this._on(fileUploadButtonBar.find('.cancel'), {
             click: function(e) {
                 e.preventDefault();
@@ -117,8 +124,8 @@
                 previewSourceMaxFileSize: this.options.previewSourceMaxFileSize,
                 previewMaxWidth:          this.options.previewMaxWidth,
                 previewMaxHeight:         this.options.previewMaxHeight,
-                autoUpload:				  this.options.autoUpload,
-                url:					  this.options.url,
+                autoUpload:               this.options.autoUpload,
+                url:                      this.options.url,
                 progressall: function(e, data) {
                 	if (data.total != 0) {
                 		var progress = parseInt(data.loaded / data.total * 100, 10);
