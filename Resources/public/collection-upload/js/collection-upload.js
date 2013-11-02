@@ -22,7 +22,7 @@
             click: function(e) {
                 e.preventDefault();
                 if(confirm(that.options.messages.confirmBatchDelete)) {
-                    filesList.find('.delete input:checked')
+                    filesList.find('input[name=delete]:checked')
                         .parent().siblings('button').click();
                     fileUploadButtonBar.find('.toggle')
                         .prop('checked', false);
