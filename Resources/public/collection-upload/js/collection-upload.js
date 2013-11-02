@@ -140,6 +140,15 @@
                 }
             });
             
+            // For asynchronous upload only send the file
+            // Asynchronous upload aim is only to improve submit time. Processing the file and
+            // attaching it to an entity must be on the form submit.
+            if (!this.options.autoUpload && this.options.url) {
+            	this.$widgetContainer.bind('fileuploadadd', function(e, data){
+            		data.formData = {};
+            	});
+            }
+            
             // Init sortable
             if (this.options.sortable) {
                 $('#' + this.element.id + '_files_list').sortable({
