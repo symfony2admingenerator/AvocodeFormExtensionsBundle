@@ -116,6 +116,8 @@
                 previewSourceMaxFileSize: this.options.previewSourceMaxFileSize,
                 previewMaxWidth:          this.options.previewMaxWidth,
                 previewMaxHeight:         this.options.previewMaxHeight,
+                autoUpload:				  this.options.autoUpload,
+                url:					  this.options.url
             });
             
             // Init sortable
