@@ -95,6 +95,7 @@
             this.$element = $(this.element);
             this.$widgetContainer = $('#' + this.element.id + '_widget_container');
             this.$filesContainer = $('#' + this.element.id + '_files_list');
+            this.progressBarContainer = this.$widgetContainer.find('.fileupload-progressbar');
             
             // Init fileupload
             this.$widgetContainer.fileupload({
@@ -117,7 +118,19 @@
                 previewMaxWidth:          this.options.previewMaxWidth,
                 previewMaxHeight:         this.options.previewMaxHeight,
                 autoUpload:				  this.options.autoUpload,
-                url:					  this.options.url
+                url:					  this.options.url,
+                progressall: function(e, data) {
+                	if (data.total != 0) {
+                		var progress = parseInt(data.loaded / data.total * 100, 10);
+                		that.progressBarContainer.find('.bar').css('width', progress + '%');
+                	}
+                },
+                start: function(e) {
+                	that.progressBarContainer.show();
+                },
+                stop: function(e) {
+                	that.progressBarContainer.hide();
+                }
             });
             
             // Init sortable

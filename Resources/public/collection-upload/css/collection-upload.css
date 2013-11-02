@@ -1,3 +1,10 @@
+/* Tool bar actions */
+.fileupload-progressbar{
+	display:none;
+	width: 25%;
+	float:right;
+}
+
 /* File input */
 .fileinput {
     position: relative;
