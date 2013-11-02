@@ -32,7 +32,7 @@
         
         this._on(fileUploadButtonBar.find('.toggle'), {
             change: function(e) {
-                filesList.find('.delete input').prop(
+                filesList.find('input[name=delete]').prop(
                     'checked',
                     $(e.currentTarget).is(':checked')
                 );
