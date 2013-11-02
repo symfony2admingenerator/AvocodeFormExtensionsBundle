@@ -16,3 +16,14 @@ HelpMessage extension adds `help` option to every form.
 **type**: `null|string`, **default**: `null`
 
 Specify help message string rendered next to form item.
+
+##### Usage example
+
+````
+    fields:
+        date:
+            addFormOptions:
+                help:           "Enter your help message here"
+````
+
+Requires installed & enabled `Avocode/FormExtensionsBundle`

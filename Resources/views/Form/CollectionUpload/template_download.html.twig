@@ -6,7 +6,9 @@
         {% raw %}
         {% if (file.error) { %}
         {% endraw %}
+            {% if sortable %}
             <td class="sort"><icon class="handle icon-sort icon-2x"></i></td>
+            {% endif %}
             <td></td>
             <td class="name"><span>{% raw %}{%=file.name%}{% endraw %}</span></td>
             <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
@@ -18,7 +20,9 @@
         {% raw %}
         {% } else { %}
         {% endraw %}
+            {% if sortable %}
             <td class="sort"><icon class="handle icon-sort icon-2x"></i></td>
+            {% endif %}
             <td class="preview">
             {% raw %}
             {% if (file.thumbnail_url) { %}
