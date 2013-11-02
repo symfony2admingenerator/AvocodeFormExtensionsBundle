@@ -14,7 +14,7 @@
         this._on(fileUploadButtonBar.find('.cancel'), {
             click: function(e) {
                 e.preventDefault();
-                filesList.find('.cancel button').click();
+                filesList.find('button.cancel').click();
             }
         });
         
