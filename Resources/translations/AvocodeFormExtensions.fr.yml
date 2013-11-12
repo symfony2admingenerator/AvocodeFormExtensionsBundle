@@ -6,7 +6,8 @@ bootstrap_collection:
         batchDelete:      Êtes-vous sûr de vouloir retirer tous ces éléments ?
 
 collection_upload:
-    file.add:     Ajouter un fichier...
+    file.add:     Ajouter des fichiers...
+    start:        Envoyer
     error:        Erreur
     cancel:       Annuler
     delete:       Supprimer

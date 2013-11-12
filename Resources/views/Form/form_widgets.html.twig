@@ -112,8 +112,14 @@
             <span class="btn btn-success fileinput">
                 <i class="icon-plus icon-white"></i>
                 <span> {{ 'collection_upload.file.add'|trans({}, 'AvocodeFormExtensions') }}</span>
-                <input type="file" {{ block('widget_attributes') }} multiple="true" />
+                <input type="file" {{ block('widget_attributes') }} multiple/>
             </span>
+            {% if not autoUpload and url is not empty %}
+            <button type="submit" class="btn btn-primary start">
+                <i class="icon-upload icon-white"></i>
+                <span> {{ 'collection_upload.start'|trans({}, 'AvocodeFormExtensions') }}</span>
+            </button>
+            {% endif %}
             <button type="reset" class="btn btn-warning cancel">
                 <i class="icon-ban-circle icon-white"></i>
                 <span> {{ 'collection_upload.cancel'|trans({}, 'AvocodeFormExtensions') }}</span>
@@ -125,6 +131,9 @@
             <label class="btn btn-toggle disabled input-append">
                 <input type="checkbox" class="toggle">
             </label>
+            <div class="fileupload-progressbar progress progress-striped active">
+                <div class="bar"></div>
+            </div>
         </div>
         {% include "AvocodeFormExtensionsBundle:Form/CollectionUpload:presentation_table.html.twig" %}
         {% include "AvocodeFormExtensionsBundle:Form/CollectionUpload:template_download.html.twig" %}

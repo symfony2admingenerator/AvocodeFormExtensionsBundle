@@ -37,7 +37,7 @@ class CollectionUploadType extends AbstractType
             $view->vars,
             array(
                 'acceptFileTypes'           => $options['acceptFileTypes'],
-                'autoStart'                 => $options['autoStart'],
+                'autoUpload'                => $options['autoUpload'],
                 'editable'                  => $options['editable'],
                 'loadImageFileTypes'        => $options['loadImageFileTypes'],
                 'loadImageMaxFileSize'      => $options['loadImageMaxFileSize'],
@@ -58,6 +58,7 @@ class CollectionUploadType extends AbstractType
                 'required'                  => $options['required'],
                 'sortable'                  => $options['sortable'],
                 'sortable_field'            => $options['sortable_field'],
+                'url'                       => $options['url']
             )
         );
     }
@@ -71,7 +72,7 @@ class CollectionUploadType extends AbstractType
 
         $resolver->setDefaults(array(
             'acceptFileTypes'           => '/.*$/i',
-            'autoStart'                 => true,
+            'autoUpload'                => false,
             'editable'                  => array(),
             'loadImageFileTypes'        => '/^image\/(gif|jpe?g|png)$/i',
             'loadImageMaxFileSize'      => 5000000,
@@ -92,6 +93,7 @@ class CollectionUploadType extends AbstractType
             'required'                  => false,
             'sortable'                  => false,
             'sortable_field'            => 'position',
+            'url'                       => null
         ));
 
         // This seems weird... why to we accept it as option if we force
@@ -105,7 +107,7 @@ class CollectionUploadType extends AbstractType
 
         $resolver->setAllowedTypes(array(
             'acceptFileTypes'           => array('string'),
-            'autoStart'                 => array('bool'),
+            'autoUpload'                => array('bool'),
             'editable'                  => array('array'),
             'loadImageFileTypes'        => array('string'),
             'loadImageMaxFileSize'      => array('integer'),
@@ -126,6 +128,7 @@ class CollectionUploadType extends AbstractType
             'required'                  => array('bool'),
             'sortable'                  => array('bool'),
             'sortable_field'            => array('string'),
+            'url'                       => array('string', 'null')
         ));
     }
 

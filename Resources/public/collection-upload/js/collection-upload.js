@@ -11,10 +11,17 @@
         var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
             filesList = this.options.filesContainer;
     
+        this._on(fileUploadButtonBar.find('.start'), {
+            click: function(e) {
+                e.preventDefault();
+                filesList.find('button.start').click();
+            }
+        });
+        
         this._on(fileUploadButtonBar.find('.cancel'), {
             click: function(e) {
                 e.preventDefault();
-                filesList.find('.cancel button').click();
+                filesList.find('button.cancel').click();
             }
         });
         
@@ -22,7 +29,7 @@
             click: function(e) {
                 e.preventDefault();
                 if(confirm(that.options.messages.confirmBatchDelete)) {
-                    filesList.find('.delete input:checked')
+                    filesList.find('input[name=delete]:checked')
                         .parent().siblings('button').click();
                     fileUploadButtonBar.find('.toggle')
                         .prop('checked', false);
@@ -32,7 +39,7 @@
         
         this._on(fileUploadButtonBar.find('.toggle'), {
             change: function(e) {
-                filesList.find('.delete input').prop(
+                filesList.find('input[name=delete]').prop(
                     'checked',
                     $(e.currentTarget).is(':checked')
                 );
@@ -95,6 +102,7 @@
             this.$element = $(this.element);
             this.$widgetContainer = $('#' + this.element.id + '_widget_container');
             this.$filesContainer = $('#' + this.element.id + '_files_list');
+            this.progressBarContainer = this.$widgetContainer.find('.fileupload-progressbar');
             
             // Init fileupload
             this.$widgetContainer.fileupload({
@@ -116,7 +124,30 @@
                 previewSourceMaxFileSize: this.options.previewSourceMaxFileSize,
                 previewMaxWidth:          this.options.previewMaxWidth,
                 previewMaxHeight:         this.options.previewMaxHeight,
+                autoUpload:               this.options.autoUpload,
+                url:                      this.options.url,
+                progressall: function(e, data) {
+                	if (data.total != 0) {
+                		var progress = parseInt(data.loaded / data.total * 100, 10);
+                		that.progressBarContainer.find('.bar').css('width', progress + '%');
+                	}
+                },
+                start: function(e) {
+                	that.progressBarContainer.show();
+                },
+                stop: function(e) {
+                	that.progressBarContainer.hide();
+                }
             });
+            
+            // For asynchronous upload only send the file
+            // Asynchronous upload aim is only to improve submit time. Processing the file and
+            // attaching it to an entity must be on the form submit.
+            if (!this.options.autoUpload && this.options.url) {
+            	this.$widgetContainer.bind('fileuploadadd', function(e, data){
+            		data.formData = {};
+            	});
+            }
             
             // Init sortable
             if (this.options.sortable) {

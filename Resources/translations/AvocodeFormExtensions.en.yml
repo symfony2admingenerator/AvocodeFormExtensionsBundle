@@ -6,7 +6,8 @@ bootstrap_collection:
         batchDelete:      Are you sure you want to delete all selected elements?
 
 collection_upload:
-    file.add:     Add file...
+    file.add:     Add files...
+    stat:         Start upload
     error:        Error
     cancel:       Cancel
     delete:       Delete

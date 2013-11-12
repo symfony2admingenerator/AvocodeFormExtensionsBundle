@@ -88,6 +88,8 @@
 
     {% block collection_upload_javascript_prototype %}
         $field.uploadCollection({
+            autoUpload:               {{ autoUpload|e4js }},
+            url:                      {{ url|e4js }},
             sortable:                 {{ sortable|e4js }},
             sortable_field:           {{ sortable_field|e4js }},
             maxNumberOfFiles:         {{ maxNumberOfFiles|e4js }},
