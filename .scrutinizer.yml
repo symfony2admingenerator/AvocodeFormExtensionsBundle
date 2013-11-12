@@ -1,6 +1,6 @@
 tools:
     
-    # Runs the PHP CS Fixer (http://http://cs.sensiolabs.org/).
+    # Runs the PHP CS Fixer (http://cs.sensiolabs.org/).
     php_cs_fixer:
         extensions:
 
