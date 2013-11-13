@@ -67,11 +67,16 @@
     	clonedInput.prop('value', '').insertAfter(data.fileInput);
     },
     
+    _cancelWaitingUploads: function(evt, data) {
+    	this.options.filesContainer.find('.cancel').click();
+    },
+    
     _initEventHandlers: function () {
     	this._super();
     	if (this._uploadOnSubmit()) {
     		this._on({
-    			fileuploadchange: this._duplicateInputFile
+//    			fileuploadchange: this._duplicateInputFile
+    			fileuploadchange: this._cancelWaitingUploads
     		});
     	}
     },
