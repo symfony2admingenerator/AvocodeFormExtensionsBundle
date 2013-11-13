@@ -6,6 +6,18 @@
  */
 // Extend fileupload plugin
 ;$.widget('blueimp.fileupload', $.blueimp.fileupload, {
+	_uploadOnSubmit: function() {
+		return this.options.uploadOnSubmit;
+	},
+	
+	_cleanInputsFile: function() {
+		if (this._uploadOnSubmit()) {
+			this.options.fileInput
+				.siblings('input.upload-selection').remove().end()
+				.prop('value', '');
+		}
+	},
+	
     _initButtonBarEventHandlers: function() {
         var that = this;
         var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
@@ -15,6 +27,7 @@
             click: function(e) {
                 e.preventDefault();
                 filesList.find('button.start').click();
+                that._cleanInputsFile();
             }
         });
         
@@ -22,6 +35,7 @@
             click: function(e) {
                 e.preventDefault();
                 filesList.find('button.cancel').click();
+                that._cleanInputsFile();
             }
         });
         
@@ -45,6 +59,21 @@
                 );
             }
         });
+    },
+    
+    _duplicateInputFile: function(evt, data) {
+    	var clonedInput = data.fileInput.clone(true);
+    	data.fileInput.addClass('upload-selection');
+    	clonedInput.prop('value', '').insertAfter(data.fileInput);
+    },
+    
+    _initEventHandlers: function () {
+    	this._super();
+    	if (this._uploadOnSubmit()) {
+    		this._on({
+    			fileuploadchange: this._duplicateInputFile
+    		});
+    	}
     },
 });
 // the semi-colon before function invocation is a safety net against concatenated
@@ -126,11 +155,12 @@
                 previewMaxHeight:         this.options.previewMaxHeight,
                 autoUpload:               this.options.autoUpload,
                 url:                      this.options.url,
+                uploadOnSubmit:	          !this.options.autoUpload && !this.options.url,
                 progressall: function(e, data) {
-                	if (data.total != 0) {
-                		var progress = parseInt(data.loaded / data.total * 100, 10);
-                		that.$progressBarContainer.find('.bar').css('width', progress + '%');
-                	}
+                    if (data.total != 0) {
+                        var progress = parseInt(data.loaded / data.total * 100, 10);
+                        that.$progressBarContainer.find('.bar').css('width', progress + '%');
+                    }
                 },
                 start: function(e) {
                 	that.$progressBarContainer.show();
@@ -140,13 +170,13 @@
                 }
             });
             
-            // For asynchronous upload only send the file
-            // Asynchronous upload aim is only to improve submit time. Processing the file and
-            // attaching it to an entity must be on the form submit.
             if (!this.options.autoUpload && this.options.url) {
-            	this.$widgetContainer.bind('fileuploadadd', function(e, data){
-            		data.formData = {};
-            	});
+                // For asynchronous upload only send the file
+                // Asynchronous upload aim is only to improve submit time. Processing the file and
+                // attaching it to an entity must be on the form submit.
+                this.$widgetContainer.bind('fileuploadadd', function(e, data){
+                    data.formData = {};
+                });
             }
             
             // Init sortable
