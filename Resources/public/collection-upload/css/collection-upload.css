@@ -32,6 +32,8 @@
     line-height: 30px;
 }
 
+.fileinput input.upload-selection {display:none}
+
 /* Upload presentation table styles */
 tbody.files > tr > td {
     padding-top: 10px;
