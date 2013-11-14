@@ -35,7 +35,7 @@
                     <span> {{ 'collection_upload.start'|trans({}, 'AvocodeFormExtensions') }}</span>
                 </button>
                 {% endif %}
-                <button class="btn btn-warning cancel">
+                <button class="btn btn-warning cancel"{% if not autoUpload and url is empty %}style="visibility:hidden;"{% endif %}>
                     <i class="icon-ban-circle icon-white"></i>
                     <span> {{ 'collection_upload.cancel'|trans({}, 'AvocodeFormExtensions') }}</span>
                 </button>

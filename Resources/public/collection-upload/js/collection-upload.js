@@ -13,7 +13,7 @@
 	_cleanInputsFile: function() {
 		if (this._uploadOnSubmit()) {
 			this.options.fileInput
-				.siblings('input.upload-selection').remove().end()
+//				.siblings('input.upload-selection').remove().end()
 				.prop('value', '');
 		}
 	},
@@ -61,11 +61,11 @@
         });
     },
     
-    _duplicateInputFile: function(evt, data) {
-    	var clonedInput = data.fileInput.clone(true);
-    	data.fileInput.addClass('upload-selection');
-    	clonedInput.prop('value', '').insertAfter(data.fileInput);
-    },
+//    _duplicateInputFile: function(evt, data) {
+//    	var clonedInput = data.fileInput.clone(true);
+//    	data.fileInput.addClass('upload-selection');
+//    	clonedInput.prop('value', '').insertAfter(data.fileInput);
+//    },
     
     _cancelWaitingUploads: function(evt, data) {
     	this.options.filesContainer.find('.cancel').click();
@@ -79,7 +79,7 @@
     			fileuploadchange: this._cancelWaitingUploads
     		});
     	}
-    },
+    }
 });
 // the semi-colon before function invocation is a safety net against concatenated
 // scripts and/or other plugins which may not be closed properly.
