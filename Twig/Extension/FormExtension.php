@@ -32,7 +32,7 @@ class FormExtension extends \Twig_Extension
     {
         return array(
             'afe_form_javascript' => new \Twig_Function_Method($this, 'renderJavascript', array('is_safe' => array('html'))),
-            'afe_form_stylesheet' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            'afe_form_stylesheet' => new \Twig_Function_Method($this, 'renderStylesheet', array('is_safe' => array('html'))),
         );
     }
 
@@ -109,7 +109,18 @@ class FormExtension extends \Twig_Extension
     {
         $block = $prototype ? 'javascript_prototype' : 'javascript';
 
-        return $this->renderer->searchAndRenderBlock($view, $block);
+        return $this->renderer->searchAndRenderBlock($view, 'afe_' . $block);
+    }
+
+    /**
+     * Render Function Form Stylesheet
+     * @param FormView $view
+     *
+     * @return string
+     */
+    public function renderStylesheet(FormView $view)
+    {
+        return $this->renderer->searchAndRenderBlock($view, 'afe_stylesheet');
     }
 
     /**

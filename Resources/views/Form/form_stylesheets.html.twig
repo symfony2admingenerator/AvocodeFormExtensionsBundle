@@ -1,29 +1,29 @@
-{% block afe_form_stylesheet %}
+{% block form_afe_stylesheet %}
 {% spaceless %}
     {% for child in form %}
         {{ afe_form_stylesheet(child) }}
     {% endfor %}
 {% endspaceless %}
-{% endblock afe_form_stylesheet %}
+{% endblock form_afe_stylesheet %}
 
-{% block afe_field_stylesheet "" %}
+{% block field_afe_stylesheet "" %}
 
-{% block afe_button_stylesheet "" %}
+{% block button_afe_stylesheet "" %}
 
-{% block afe_collection_fieldset_stylesheet %}
+{% block afe_collection_fieldset_afe_stylesheet %}
 {% spaceless %}
     {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:stylesheet.html.twig" %}
 {% endspaceless %}
-{% endblock afe_collection_fieldset_stylesheet %}
+{% endblock afe_collection_fieldset_afe_stylesheet %}
 
-{% block afe_collection_table_stylesheet %}
+{% block afe_collection_table_afe_stylesheet %}
 {% spaceless %}
     {% include "AvocodeFormExtensionsBundle:Form/BootstrapCollection:stylesheet.html.twig" %}
 {% endspaceless %}
-{% endblock afe_collection_table_stylesheet %}
+{% endblock afe_collection_table_afe_stylesheet %}
 
-{% block afe_collection_upload_stylesheet %}
+{% block afe_collection_upload_afe_stylesheet %}
 {% spaceless %}
     {% include "AvocodeFormExtensionsBundle:Form/CollectionUpload:stylesheet.html.twig" %}
 {% endspaceless %}
-{% endblock afe_collection_upload_stylesheet %}
+{% endblock afe_collection_upload_afe_stylesheet %}
