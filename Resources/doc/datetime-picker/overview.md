@@ -9,6 +9,10 @@
 [eternicode-datepicker]: https://github.com/eternicode/bootstrap-datepicker
 [jdewit-timepicker]: https://github.com/jdewit/bootstrap-timepicker
 
+### Form Type
+
+ `afe_datetime_picker`
+ 
 ### Description
 
 Use [eternicode/bootstrap-datepicker][eternicode-datepicker] and

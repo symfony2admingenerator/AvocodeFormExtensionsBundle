@@ -15,6 +15,17 @@
 [symfony-modeltype]: https://github.com/symfony/symfony/blob/master/src/Symfony/Bridge/Propel1/Form/Type/ModelType.php
 [ivaynberg-select2]: https://github.com/ivaynberg/select2
 
+### Form Type
+
+* `afe_select2_choice`
+* `afe_select2_language`
+* `afe_select2_country`
+* `afe_select2_timezone`
+* `afe_select2_locale`
+* `afe_select2_entity`
+* `afe_select2_document`
+* `afe_select2_model`
+
 ### Description
 
 Use [ivaynberg/select2][ivaynberg-select2] widget to GUI wrappers for:

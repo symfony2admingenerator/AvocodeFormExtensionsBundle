@@ -8,6 +8,10 @@
 [symfony-datetype]: http://symfony.com/doc/current/reference/forms/types/date.html
 [dangrossman-daterangepicker]: https://github.com/dangrossman/bootstrap-daterangepicker
 
+### Form Type
+
+ `afe_daterange_picker`
+ 
 ### Description
 
 Use [dangrossman/bootstrap-daterangepicker][dangrossman-daterangepicker] as GUI
@@ -89,7 +93,7 @@ $builder->add('demo', 'daterange_picker', array(
 Or define your own:
 
 ```php
-$builder->add('demo', 'daterange_picker', array(
+$builder->add('demo', 'afe_daterange_picker', array(
     'ranges'                    => array(
         'My custom range'   =>  array('2013-01-01', '2013-04-01'),
         'My custom range2'  =>  array('2012-09-01', '2013-02-01'),

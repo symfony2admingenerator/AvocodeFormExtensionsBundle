@@ -7,6 +7,10 @@
 
 [symfony-filetype]: http://symfony.com/doc/current/reference/forms/types/file.html
 
+### Form Type
+
+ `afe_single_upload`
+
 ### 1. Overview
 
 Single Upload adds twitter-boostrap GUI wrapper for [FileType][symfony-filetype].
@@ -134,10 +138,10 @@ Admingenerator basic configuration:
 ```yaml
 cover:
     label:            Avatar
-    formType:         single_upload
+    formType:         afe_single_upload
     addFormOptions:
         nameable:       avatar_name
-        deleteable:      avatar_path
+        deleteable:     avatar_path
         data_class:     Symfony\Component\HttpFoundation\File\File
 ```
 

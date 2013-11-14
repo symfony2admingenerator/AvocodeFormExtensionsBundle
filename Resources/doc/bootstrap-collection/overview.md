@@ -11,8 +11,8 @@
 
 Bootstral collection provides two form types: 
 
-* `collection_table`
-* `collection_fieldset`
+* `afe_collection_table`
+* `afe_collection_fieldset`
 
 Both equal in configuration and purpose, only with diffrent GUI.
 
@@ -39,6 +39,6 @@ hold sortable position.
 
 ##### new_label
 
-**type**: `string`, **default**: `collection.new_label`
+**type**: `string`, **default**: `afe_collection.new_label`
 
 New item label.
