@@ -1,11 +1,11 @@
-bootstrap_collection:
+afe_bootstrap_collection:
     add:          Toevoegen
     delete:       Verwijderen
     confirm:
         delete:           Weet U zeker dat U dit element wilt verwijderen?
         batchDelete:      Weet U zeker dat U alle geselecteerde elementen wilt verwijderen?
 
-collection_upload:
+afe_collection_upload:
     file.add:     Bestand toevoegen...
     error:        Fout
     cancel:       Annuleer
@@ -19,7 +19,7 @@ collection_upload:
         maxFileSize:      Bestand is te groot
         minFileSize:      Bestand is te klein
         
-date_range:
+afe_date_range:
     label:
         apply:          Verstuur
         clear:          Reset
@@ -55,11 +55,11 @@ date_range:
         last-month:     Laatste maand
         last-year:      Laatste jaar
         
-double_list:
+afe_double_list:
     selected:           Geselecteerd
     unselected:         Gedeselecteerd
         
-single_upload:
+afe_single_upload:
     button:
         add:              Upload bestand
         replace:          Vervang bestand

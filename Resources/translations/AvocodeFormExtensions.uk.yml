@@ -1,11 +1,11 @@
-bootstrap_collection:
+afe_bootstrap_collection:
     add:          Додати
     delete:       Видалити
     confirm:
         delete:           Ви впевнені, що хочете видалити обраний елемент?
         batchDelete:      Ви впевнені, що хочете видалити всі обрані елементи?
 
-collection_upload:
+afe_collection_upload:
     file.add:     Додати файл...
     error:        Помилка
     cancel:       Скасувати
@@ -19,7 +19,7 @@ collection_upload:
         maxFileSize:      Файл надто великий
         minFileSize:      Файл надто малий
         
-date_range:
+afe_date_range:
     label:
         apply:          Підтвердити
         clear:          Очистити
@@ -55,11 +55,11 @@ date_range:
         last-month:     Останній місяця
         last-year:      Останній рік
         
-double_list:
+afe_double_list:
     selected:           Вибрані
     unselected:         Не вибраний
         
-single_upload:
+afe_single_upload:
     button:
         add:              Завантажити файл
         replace:          Замінити файл

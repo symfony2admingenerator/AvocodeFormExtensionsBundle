@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 
 /**
  * See `Resources/doc/elastic-textarea/overview.md` for documentation
- * 
+ *
  * @author Pierrick VIGNAND <pierrick.vignand@gmail.com>
  */
 class ElasticTextareaType extends AbstractType
@@ -24,6 +24,6 @@ class ElasticTextareaType extends AbstractType
      */
     public function getName()
     {
-        return 'elastic_textarea';
+        return 'afe_elastic_textarea';
     }
 }

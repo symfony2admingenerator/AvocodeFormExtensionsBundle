@@ -14,7 +14,7 @@
         {% endraw %}
             <td class="error" colspan="2">
                 <span class="label label-important">
-                {{- 'collection_upload.error'|trans({}, 'AvocodeFormExtensions') -}}
+                {{- 'afe_collection_upload.error'|trans({}, 'AvocodeFormExtensions') -}}
                 </span> {% raw %}{%=file.error%}{% endraw %}
             </td>
         {% raw %}
@@ -32,12 +32,12 @@
                 {% if not autoUpload and url is not empty %}
                 <button class="btn btn-primary start">
                     <i class="icon-upload icon-white"></i>
-                    <span> {{ 'collection_upload.start'|trans({}, 'AvocodeFormExtensions') }}</span>
+                    <span> {{ 'afe_collection_upload.start'|trans({}, 'AvocodeFormExtensions') }}</span>
                 </button>
                 {% endif %}
                 <button class="btn btn-warning cancel"{% if not autoUpload and url is empty %}style="visibility:hidden;"{% endif %}>
                     <i class="icon-ban-circle icon-white"></i>
-                    <span> {{ 'collection_upload.cancel'|trans({}, 'AvocodeFormExtensions') }}</span>
+                    <span> {{ 'afe_collection_upload.cancel'|trans({}, 'AvocodeFormExtensions') }}</span>
                 </button>
             </div>
         {% raw %}

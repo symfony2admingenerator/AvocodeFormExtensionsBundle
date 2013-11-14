@@ -132,6 +132,6 @@ class DateTimePickerType extends AbstractType
      */
     public function getName()
     {
-        return 'datetime_picker';
+        return 'afe_datetime_picker';
     }
 }

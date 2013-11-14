@@ -145,6 +145,6 @@ class CollectionUploadType extends AbstractType
      */
     public function getName()
     {
-        return 'collection_upload';
+        return 'afe_collection_upload';
     }
 }

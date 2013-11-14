@@ -2,14 +2,14 @@
     <div class="btn-wrapper">
         <button type="reset" class="btn btn-warning cancel" style="display: none;">
             <i class="icon-ban-circle icon-white"></i>
-            <span> {{ 'single_upload.button.cancel'|trans({}, 'AvocodeFormExtensions') }}</span>
+            <span> {{ 'afe_single_upload.button.cancel'|trans({}, 'AvocodeFormExtensions') }}</span>
         </button>
     </div>
 {% if deleteable is not empty %}
     <div class="btn-wrapper">
         <button type="button" class="btn btn-danger delete" style="display: none;">
             <i class="icon-trash icon-white"></i>
-            <span> {{ 'single_upload.button.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
+            <span> {{ 'afe_single_upload.button.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
         </button>
     </div>
     <input type="hidden" id="{{ id ~ '_delete' }}" name="{{ form.parent.vars.full_name ~ '['~name~'][delete]' }}" value="0">

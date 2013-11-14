@@ -201,6 +201,6 @@ class DateRangePickerType extends AbstractType
 
     public function getName()
     {
-        return 'daterange_picker';
+        return 'afe_daterange_picker';
     }
 }

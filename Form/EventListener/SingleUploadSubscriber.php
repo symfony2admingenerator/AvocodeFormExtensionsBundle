@@ -31,7 +31,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         $post = $event->getData();
 
         foreach ($form->all() as $child) {
-            if ($child->getConfig()->getType()->getName() === 'single_upload') {
+            if ($child->getConfig()->getType()->getName() === 'afe_single_upload') {
                 $childPost = $post[$child->getName()];
                 $options = $child->getConfig()->getOptions();
 
