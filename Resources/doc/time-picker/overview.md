@@ -8,6 +8,10 @@
 [symfony-timetype]: http://symfony.com/doc/current/reference/forms/types/time.html
 [jdewit-timepicker]: https://github.com/jdewit/bootstrap-timepicker
 
+### Form Type
+
+ `afe_time_picker`
+
 ### Description
 
 Use [jdewit/bootstrap-timepicker][jdewit-timepicker] as GUI wrapper for

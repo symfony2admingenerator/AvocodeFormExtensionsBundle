@@ -65,7 +65,7 @@ class Select2Type extends AbstractType
             'minimumInputLength' => 0,
             'width'              => 'element',
         );
-        
+
         $resolver
             ->setDefaults(array(
                 'hidden'        => false,
@@ -93,6 +93,6 @@ class Select2Type extends AbstractType
      */
     public function getName()
     {
-        return 'select2_' . $this->widget;
+        return 'afe_select2_' . $this->widget;
     }
 }

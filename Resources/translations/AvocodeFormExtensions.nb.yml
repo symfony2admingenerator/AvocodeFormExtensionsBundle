@@ -1,11 +1,11 @@
-bootstrap_collection:
+afe_bootstrap_collection:
     add:          Legg til
     delete:       Slett
     confirm:
         delete:           Er du sikker på at du vil slette dette elementet?
         batchDelete:      Er du sikker på at du vil slette alle merkede elementer?
 
-collection_upload:
+afe_collection_upload:
     file.add:     Legg til fil...
     error:        Feil
     cancel:       Avbryt
@@ -19,7 +19,7 @@ collection_upload:
         maxFileSize:      Filen er for stor
         minFileSize:      Filen er for liten
         
-date_range:
+afe_date_range:
     label:
         apply:          Ferdig
         clear:          Tøm
@@ -55,11 +55,11 @@ date_range:
         last-month:     Forrige måned
         last-year:      Forrige år
         
-double_list:
+afe_double_list:
     selected:           Valgt
     unselected:         Ikke valgt
         
-single_upload:
+afe_single_upload:
     button:
         add:              Last opp fil
         replace:          Erstatt fil

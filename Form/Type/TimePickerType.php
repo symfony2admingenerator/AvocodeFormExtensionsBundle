@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * See `Resources/doc/time-picker/overview.md` for documentation
- * 
+ *
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -63,6 +63,6 @@ class TimePickerType extends AbstractType
 
     public function getName()
     {
-        return 'time_picker';
+        return 'afe_time_picker';
     }
 }

@@ -7,7 +7,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * See `Resources/doc/double-list/overview.md` for documentation
- * 
+ *
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class DoubleListType extends AbstractType
@@ -18,7 +18,7 @@ class DoubleListType extends AbstractType
     {
         $this->widget = $widget;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -45,6 +45,6 @@ class DoubleListType extends AbstractType
      */
     public function getName()
     {
-        return 'double_list_' . $this->widget;
+        return 'afe_double_list_' . $this->widget;
     }
 }

@@ -15,7 +15,7 @@
                     {{- 'min-width:'  ~ minWidth   ~'px;' -}}
                     {{- 'min-height:' ~ minHeight  ~'px;' -}}" />
     {% else %}
-        <div class="fileicon {{ fileType }}">{{ ('single_upload.type.'~fileType)|trans({}, 'AvocodeFormExtensions')|raw }}</div>
+        <div class="fileicon {{ fileType }}">{{ ('afe_single_upload.type.'~fileType)|trans({}, 'AvocodeFormExtensions')|raw }}</div>
     {% endif %}
     {% if nameable is not empty %}
     <div class="row-fluid">

@@ -1,17 +1,17 @@
-{% block form_javascript %}
+{% block form_afe_javascript %}
 {% spaceless %}
     {% for child in form %}
-        {{ form_javascript(child) }}
+        {{ afe_form_javascript(child) }}
     {% endfor %}
-    {% block form_javascript_prototype %}{% endblock form_javascript_prototype %}
+    {% block form_afe_javascript_prototype %}{% endblock form_afe_javascript_prototype %}
 {% endspaceless %}
-{% endblock form_javascript %}
+{% endblock form_afe_javascript %}
 
-{% block field_javascript "" %}
+{% block field_afe_javascript "" %}
 
-{% block button_javascript "" %}
+{% block button_afe_javascript "" %}
 
-{% block bootstrap_collection_javascript_prototype %}
+{% block afe_bootstrap_collection_afe_javascript_prototype %}
 {% spaceless %}
 {% autoescape false %}
     $field.bootstrapCollection({
@@ -22,71 +22,71 @@
         prototype_name:   {{ prototype_name|e4js }},
         trans: {
             new_label:      {{ new_label|trans({}, translation_domain)|e4js }},
-            confirm:        {{ 'bootstrap_collection.confirm.delete'|trans({}, 'AvocodeFormExtensions')|e4js }},
-            confirm_batch:  {{ 'bootstrap_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions')|e4js }}
+            confirm:        {{ 'afe_bootstrap_collection.confirm.delete'|trans({}, 'AvocodeFormExtensions')|e4js }},
+            confirm_batch:  {{ 'afe_bootstrap_collection.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions')|e4js }}
         },
         javascript: function(id) {
         {% if prototype is defined %}
             {% if prototype.vars.compound %}
                 {% for child in prototype %}
                     $field = $('#' + id + '_{{ child.vars.name }}');
-                    {{ form_javascript(child, true) }}
+                    {{ afe_form_javascript(child, true) }}
                 {% endfor %}
             {% else %}
                 $field = $('#' + id);
-                {{ form_javascript(prototype, true) }}
+                {{ afe_form_javascript(prototype, true) }}
             {% endif %}
         {% endif %}
         }
     });
 {% endautoescape %}
 {% endspaceless %}
-{% endblock bootstrap_collection_javascript_prototype %}
+{% endblock afe_bootstrap_collection_afe_javascript_prototype %}
 
-{% block collection_fieldset_javascript %}
+{% block afe_collection_fieldset_afe_javascript %}
 {% spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
 
-    {% block collection_fieldset_javascript_prototype %}
-        {{ block('bootstrap_collection_javascript_prototype') }}
-    {% endblock collection_fieldset_javascript_prototype %}
+    {% block afe_collection_fieldset_afe_javascript_prototype %}
+        {{ block('afe_bootstrap_collection_afe_javascript_prototype') }}
+    {% endblock afe_collection_fieldset_afe_javascript_prototype %}
     });
 </script>
 
 {% for child in form %}
-    {{ form_javascript(child) }}
+    {{ afe_form_javascript(child) }}
 {% endfor %}
 {% endspaceless %}
-{% endblock collection_fieldset_javascript %}
+{% endblock afe_collection_fieldset_afe_javascript %}
 
-{% block collection_table_javascript %}
+{% block afe_collection_table_afe_javascript %}
 {% spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
 
-    {% block collection_table_javascript_prototype %}
-        {{ block('bootstrap_collection_javascript_prototype') }}
-    {% endblock collection_table_javascript_prototype %}
+    {% block afe_collection_table_afe_javascript_prototype %}
+        {{ block('afe_bootstrap_collection_afe_javascript_prototype') }}
+    {% endblock afe_collection_table_afe_javascript_prototype %}
     });
 </script>
 
 {% for child in form %}
-    {{ form_javascript(child) }}
+    {{ afe_form_javascript(child) }}
 {% endfor %}
 {% endspaceless %}
-{% endblock collection_table_javascript %}
+{% endblock afe_collection_table_afe_javascript %}
 
-{% block collection_upload_javascript %}
+{% block afe_collection_upload_afe_javascript %}
 {% spaceless %}
 {% autoescape false %}
 <script type="text/javascript">
     $(document).ready(function(){
         var $field = $('#{{ id }}');
 
-    {% block collection_upload_javascript_prototype %}
+    {% block afe_collection_upload_afe_javascript_prototype %}
         $field.uploadCollection({
             autoUpload:               {{ autoUpload|e4js }},
             url:                      {{ url|e4js }},
@@ -103,14 +103,14 @@
             previewMaxWidth:          {{ previewMaxWidth|e4js }},
             previewMaxHeight:         {{ previewMaxHeight|e4js }},
             messages: {
-                maxNumberOfFiles:   '{{ 'collection_upload.errors.maxNumberOfFiles'|trans({}, 'AvocodeFormExtensions') }}',
-                acceptFileTypes:    '{{ 'collection_upload.errors.acceptFileTypes'|trans({}, 'AvocodeFormExtensions') }}',
-                maxFileSize:        '{{ 'collection_upload.errors.maxFileSize'|trans({}, 'AvocodeFormExtensions') }}',
-                minFileSize:        '{{ 'collection_upload.errors.minFileSize'|trans({}, 'AvocodeFormExtensions') }}',
-                confirmBatchDelete: '{{ 'collection_upload.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
+                maxNumberOfFiles:   '{{ 'afe_collection_upload.errors.maxNumberOfFiles'|trans({}, 'AvocodeFormExtensions') }}',
+                acceptFileTypes:    '{{ 'afe_collection_upload.errors.acceptFileTypes'|trans({}, 'AvocodeFormExtensions') }}',
+                maxFileSize:        '{{ 'afe_collection_upload.errors.maxFileSize'|trans({}, 'AvocodeFormExtensions') }}',
+                minFileSize:        '{{ 'afe_collection_upload.errors.minFileSize'|trans({}, 'AvocodeFormExtensions') }}',
+                confirmBatchDelete: '{{ 'afe_collection_upload.confirm.batchDelete'|trans({}, 'AvocodeFormExtensions') }}'
             }
         });
-    {% endblock collection_upload_javascript_prototype %}
+    {% endblock afe_collection_upload_afe_javascript_prototype %}
 
         // Create JSON array for existing files
         var files = {
@@ -149,16 +149,16 @@
 </script>
 {% endautoescape %}
 {% endspaceless %}
-{% endblock collection_upload_javascript %}
+{% endblock afe_collection_upload_afe_javascript %}
 
-{% block date_picker_javascript %}
+{% block afe_date_picker_afe_javascript %}
 {% spaceless %}
 {% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
 
-    {% block date_picker_javascript_prototype %}
+    {% block afe_date_picker_afe_javascript_prototype %}
         $field.datepicker({
             format:               {{ formatSubmit|e4js }},
             weekStart:            {{ weekStart|e4js }},
@@ -174,21 +174,21 @@
             startDate:            new Date({{ startDate|e4js }}),
             endDate:              new Date({{ endDate|e4js }}),
         });
-    {% endblock date_picker_javascript_prototype %}
+    {% endblock afe_date_picker_afe_javascript_prototype %}
     });
 </script>
 {% endautoescape %}
 {% endspaceless %}
-{% endblock date_picker_javascript %}
+{% endblock afe_date_picker_afe_javascript %}
 
-{% block daterange_picker_javascript %}
+{% block afe_daterange_picker_afe_javascript %}
 {% spaceless %}
 {% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
 
-    {% block daterange_picker_javascript_prototype %}
+    {% block afe_daterange_picker_afe_javascript_prototype %}
         $field.daterangepicker({
             format:           {{ formatSubmit|e4js }},
             opens:            {{ opens|e4js }},
@@ -207,70 +207,70 @@
             ranges:           {{ ranges|e4js }},
         {% endif %}
         });
-    {% endblock daterange_picker_javascript_prototype %}
+    {% endblock afe_daterange_picker_afe_javascript_prototype %}
     });
 </script>
 {% endautoescape %}
 {% endspaceless %}
-{% endblock daterange_picker_javascript %}
+{% endblock afe_daterange_picker_afe_javascript %}
 
-{% block double_list_javascript_prototype %}
+{% block afe_double_list_afe_javascript_prototype %}
 {% spaceless %}
 {% autoescape false %}
     $field.doubleList();
 {% endautoescape %}
 {% endspaceless %}
-{% endblock double_list_javascript_prototype %}
+{% endblock afe_double_list_afe_javascript_prototype %}
 
-{% block double_list_document_javascript %}
+{% block afe_double_list_document_afe_javascript %}
 {% spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
 
-    {% block double_list_document_javascript_prototype %}
-        {{ block('double_list_javascript_prototype') }}
-    {% endblock double_list_document_javascript_prototype %}
+    {% block afe_double_list_document_afe_javascript_prototype %}
+        {{ block('afe_double_list_afe_javascript_prototype') }}
+    {% endblock afe_double_list_document_afe_javascript_prototype %}
     });
 </script>
 {% endspaceless %}
-{% endblock double_list_document_javascript %}
+{% endblock afe_double_list_document_afe_javascript %}
 
-{% block double_list_entity_javascript %}
+{% block afe_double_list_entity_afe_javascript %}
 {% spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
 
-    {% block double_list_entity_javascript_prototype %}
-        {{ block('double_list_javascript_prototype') }}
-    {% endblock double_list_entity_javascript_prototype %}
+    {% block afe_double_list_entity_afe_javascript_prototype %}
+        {{ block('afe_double_list_afe_javascript_prototype') }}
+    {% endblock afe_double_list_entity_afe_javascript_prototype %}
     });
 </script>
 {% endspaceless %}
-{% endblock double_list_entity_javascript %}
+{% endblock afe_double_list_entity_afe_javascript %}
 
-{% block double_list_model_javascript %}
+{% block afe_double_list_model_afe_javascript %}
 {% spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
 
-    {% block double_list_model_javascript_prototype %}
-        {{ block('double_list_javascript_prototype') }}
-    {% endblock double_list_model_javascript_prototype %}
+    {% block afe_double_list_model_afe_javascript_prototype %}
+        {{ block('afe_double_list_afe_javascript_prototype') }}
+    {% endblock afe_double_list_model_afe_javascript_prototype %}
     });
 </script>
 {% endspaceless %}
-{% endblock double_list_model_javascript %}
+{% endblock afe_double_list_model_afe_javascript %}
 
-{% block knob_javascript %}
+{% block afe_knob_afe_javascript %}
 {% spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
 
-    {% block knob_javascript_prototype %}
+    {% block afe_knob_afe_javascript_prototype %}
         $field.knob({
             'width':            {{ width|e4js }},
             'height':           {{ height|e4js }},
@@ -288,17 +288,17 @@
             'min':              {{ min|e4js }},
             'max':              {{ max|e4js }},
         });
-    {% endblock knob_javascript_prototype %}
+    {% endblock afe_knob_afe_javascript_prototype %}
     });
 </script>
 {% endspaceless %}
-{% endblock knob_javascript %}
+{% endblock afe_knob_afe_javascript %}
 
-{% block mini_colors_javascript %}
+{% block afe_mini_colors_afe_javascript %}
 {% spaceless %}
 <script type="text/javascript">
     jQuery(function($) {
-    {% block mini_colors_javascript_prototype %}
+    {% block afe_mini_colors_afe_javascript_prototype %}
         var $field = $('#{{ id }}');
         var $configs = $.extend({
             defaultValue: $field.val(),
@@ -310,36 +310,36 @@
         }, {{ configs|e4js|raw }});
 
         $field.minicolors($configs);
-    {% endblock mini_colors_javascript_prototype %}
+    {% endblock afe_mini_colors_afe_javascript_prototype %}
     });
 </script>
 {% endspaceless %}
-{% endblock mini_colors_javascript %}
+{% endblock afe_mini_colors_afe_javascript %}
 
-{% block select2_javascript %}
+{% block afe_select2_afe_javascript %}
 {% spaceless %}
 {% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
 
-    {% block select2_javascript_prototype %}
+    {% block afe_select2_afe_javascript_prototype %}
         $field.select2({{ configs|e4js }});
-    {% endblock select2_javascript_prototype %}
+    {% endblock afe_select2_afe_javascript_prototype %}
     });
 </script>
 {% endautoescape %}
 {% endspaceless %}
-{% endblock select2_javascript %}
+{% endblock afe_select2_afe_javascript %}
 
-{% block single_upload_javascript %}
+{% block afe_single_upload_afe_javascript %}
 {% spaceless %}
 {% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
 
-    {% block single_upload_javascript_prototype %}
+    {% block afe_single_upload_afe_javascript_prototype %}
         $('#{{ id }}').singleUpload({
             minWidth:         {{ minWidth|e4js }},
             minHeight:        {{ minHeight|e4js }},
@@ -352,34 +352,34 @@
             deleteable:       {{ deleteable|e4js }},
             widget_name:      {{ (form.parent.vars.full_name ~ '['~name~']')|e4js }},
             filetypes:  {
-                'audio':            {{ 'single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'archive':          {{ 'single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'html':             {{ 'single_upload.type.html'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'image':            {{ 'single_upload.type.image'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'pdf-document':     {{ 'single_upload.type.pdf-document'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'plain-text':       {{ 'single_upload.type.plain-text'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'presentation':     {{ 'single_upload.type.presentation'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'spreadsheet':      {{ 'single_upload.type.spreadsheet'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'text-document':    {{ 'single_upload.type.text-document'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'unknown':          {{ 'single_upload.type.unknown'|trans({}, 'AvocodeFormExtensions')|e4js }},
-                'video':            {{ 'single_upload.type.video'|trans({}, 'AvocodeFormExtensions')|e4js }}
+                'audio':            {{ 'afe_single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'archive':          {{ 'afe_single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'html':             {{ 'afe_single_upload.type.html'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'image':            {{ 'afe_single_upload.type.image'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'pdf-document':     {{ 'afe_single_upload.type.pdf-document'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'plain-text':       {{ 'afe_single_upload.type.plain-text'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'presentation':     {{ 'afe_single_upload.type.presentation'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'spreadsheet':      {{ 'afe_single_upload.type.spreadsheet'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'text-document':    {{ 'afe_single_upload.type.text-document'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'unknown':          {{ 'afe_single_upload.type.unknown'|trans({}, 'AvocodeFormExtensions')|e4js }},
+                'video':            {{ 'afe_single_upload.type.video'|trans({}, 'AvocodeFormExtensions')|e4js }}
             }
         });
-    {% endblock single_upload_javascript_prototype %}
+    {% endblock afe_single_upload_afe_javascript_prototype %}
     });
 </script>
 {% endautoescape %}
 {% endspaceless %}
-{% endblock single_upload_javascript %}
+{% endblock afe_single_upload_afe_javascript %}
 
-{% block time_picker_javascript %}
+{% block afe_time_picker_afe_javascript %}
 {% spaceless %}
 {% autoescape false %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
 
-    {% block time_picker_javascript_prototype %}
+    {% block afe_time_picker_afe_javascript_prototype %}
         $field.timepicker({
             minuteStep:     {{ minute_step|e4js }},
             showSeconds:    {{ with_seconds|e4js }},
@@ -388,21 +388,21 @@
             showMeridian:   {{ show_meridian|e4js }},
             disableFocus:   {{ disable_focus|e4js }},
         });
-    {% endblock time_picker_javascript_prototype %}
+    {% endblock afe_time_picker_afe_javascript_prototype %}
     });
 </script>
 {% endautoescape %}
 {% endspaceless %}
-{% endblock time_picker_javascript %}
+{% endblock afe_time_picker_afe_javascript %}
 
-{% block elastic_textarea_javascript %}
+{% block afe_elastic_textarea_afe_javascript %}
 {% spaceless %}
 <script type="text/javascript">
     jQuery(function($) {
-    {% block elastic_textarea_javascript_prototype %}
+    {% block afe_elastic_textarea_afe_javascript_prototype %}
         $('#{{ id }}').elastic();
-    {% endblock elastic_textarea_javascript_prototype %}
+    {% endblock afe_elastic_textarea_afe_javascript_prototype %}
     });
 </script>
 {% endspaceless %}
-{% endblock elastic_textarea_javascript %}
+{% endblock afe_elastic_textarea_afe_javascript %}

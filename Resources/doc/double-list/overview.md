@@ -9,6 +9,10 @@
 [symfony-entitytype]: http://symfony.com/doc/current/reference/forms/types/entity.html
 [symfony-modeltype]: https://github.com/symfony/symfony/blob/master/src/Symfony/Bridge/Propel1/Form/Type/ModelType.php
 
+### Form Type
+
+ `afe_double_list`
+ 
 ### Description
 
 Double List family adds twitter-boostrap GUI wrappers for:

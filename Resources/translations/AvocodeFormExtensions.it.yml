@@ -1,11 +1,11 @@
-bootstrap_collection:
+afe_bootstrap_collection:
     add:          Aggiungi
     delete:       Cancella
     confirm:
         delete:           Sei sicuro di voler cancellare questo elemento?
         batchDelete:      Sei sicuro di voler cancellare gli elementi selezionati?
 
-collection_upload:
+afe_collection_upload:
     file.add:     Aggiungi file...
     error:        Errore
     cancel:       Cancella
@@ -19,7 +19,7 @@ collection_upload:
         maxFileSize:      Il file è troppo grande
         minFileSize:      Il file è troppo piccolo
         
-date_range:
+afe_date_range:
     label:
         apply:          Invia
         clear:          Clear
@@ -55,11 +55,11 @@ date_range:
         last-month:     Ultimo mese
         last-year:      Ultimo anno
         
-double_list:
+afe_double_list:
     selected:           Selezionati
     unselected:         Non selezionati
         
-single_upload:
+afe_single_upload:
     button:
         add:              Upload file
         replace:          Sostituisci file

@@ -9,49 +9,49 @@
         <service id="avocode.form.extensions.type.bootstrap_collection" class="Avocode\FormExtensionsBundle\Form\Type\BootstrapCollectionType" abstract="true" />
 
         <service id="avocode.form.extensions.type.collection_upload" class="Avocode\FormExtensionsBundle\Form\Type\CollectionUploadType">
-            <tag name="form.type" alias="collection_upload" />
+            <tag name="form.type" alias="afe_collection_upload" />
         </service>
         
         <service id="avocode.form.extensions.type.date_picker" class="Avocode\FormExtensionsBundle\Form\Type\DatePickerType">
-            <tag name="form.type" alias="date_picker" />
+            <tag name="form.type" alias="afe_date_picker" />
             <call method="setLocale">
                 <argument>%locale%</argument>
             </call>
         </service>
         
         <service id="avocode.form.extensions.type.daterange_picker" class="Avocode\FormExtensionsBundle\Form\Type\DateRangePickerType">
-            <tag name="form.type" alias="daterange_picker" />
+            <tag name="form.type" alias="afe_daterange_picker" />
             <call method="setTranslator">
                 <argument type="service" id="translator" />
             </call>
         </service>
         
         <service id="avocode.form.extensions.type.datetime_picker" class="Avocode\FormExtensionsBundle\Form\Type\DateTimePickerType">
-            <tag name="form.type" alias="datetime_picker" />
+            <tag name="form.type" alias="afe_datetime_picker" />
         </service>
         
         <service id="avocode.form.extensions.type.double_list" class="Avocode\FormExtensionsBundle\Form\Type\DoubleListType" abstract="true" />
         
         <service id="avocode.form.extensions.type.knob" class="Avocode\FormExtensionsBundle\Form\Type\KnobType">
-            <tag name="form.type" alias="knob" />
+            <tag name="form.type" alias="afe_knob" />
         </service>
         
         <service id="avocode.form.extensions.type.mini_colors" class="Avocode\FormExtensionsBundle\Form\Type\MiniColorsType">
-            <tag name="form.type" alias="mini_colors" />
+            <tag name="form.type" alias="afe_mini_colors" />
         </service>
 
         <service id="avocode.form.extensions.type.select2" class="Avocode\FormExtensionsBundle\Form\Type\Select2Type" abstract="true" />
         
         <service id="avocode.form.extensions.type.single_upload" class="Avocode\FormExtensionsBundle\Form\Type\SingleUploadType">
-            <tag name="form.type" alias="single_upload" />
+            <tag name="form.type" alias="afe_single_upload" />
         </service>
         
         <service id="avocode.form.extensions.type.time_picker" class="Avocode\FormExtensionsBundle\Form\Type\TimePickerType">
-            <tag name="form.type" alias="time_picker" />
+            <tag name="form.type" alias="afe_time_picker" />
         </service>
 
         <service id="avocode.form.extensions.type.elastic_textarea" class="Avocode\FormExtensionsBundle\Form\Type\ElasticTextareaType">
-            <tag name="form.type" alias="elastic_textarea" />
+            <tag name="form.type" alias="afe_elastic_textarea" />
         </service>
 
         <!-- Form extensions -->

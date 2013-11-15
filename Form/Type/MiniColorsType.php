@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * See `Resources/doc/mini-colors/overview.md` for documentation
- * 
+ *
  * @author Escandell Stéphane <stephane.escandell@gmail.com>
  */
 class MiniColorsType extends AbstractType
@@ -95,6 +95,6 @@ class MiniColorsType extends AbstractType
      */
     public function getName()
     {
-        return 'mini_colors';
+        return 'afe_mini_colors';
     }
 }

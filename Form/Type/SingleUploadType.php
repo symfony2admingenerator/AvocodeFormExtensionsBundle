@@ -113,7 +113,7 @@ class SingleUploadType extends AbstractType
      */
     public function getName()
     {
-        return 'single_upload';
+        return 'afe_single_upload';
     }
 
     /**

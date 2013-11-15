@@ -40,7 +40,7 @@ class BootstrapCollectionType extends AbstractType
         $resolver->setDefaults(array(
             'sortable'        => false,
             'sortable_field'  => 'position',
-            'new_label'       => 'collection.new_label'
+            'new_label'       => 'afe_collection.new_label'
         ));
 
         $resolver->setAllowedTypes(array(
@@ -63,6 +63,6 @@ class BootstrapCollectionType extends AbstractType
      */
     public function getName()
     {
-        return 'collection_' . $this->widget;
+        return 'afe_collection_' . $this->widget;
     }
 }

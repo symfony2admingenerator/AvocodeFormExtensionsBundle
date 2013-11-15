@@ -8,6 +8,10 @@
 [symfony-datetype]: http://symfony.com/doc/current/reference/forms/types/date.html
 [eternicode-datepicker]: https://github.com/eternicode/bootstrap-datepicker
 
+### Form Type
+
+ `afe_date_picker`
+ 
 ### Description
 
 Use [eternicode/bootstrap-datepicker][eternicode-datepicker] as GUI wrapper for

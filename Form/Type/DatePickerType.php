@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * See `Resources/doc/date-picker/overview.md` for documentation
- * 
+ *
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -27,7 +27,7 @@ class DatePickerType extends AbstractType
         \IntlDateFormatter::MEDIUM,
         \IntlDateFormatter::SHORT,
     );
-    
+
     /**
      * {@inheritdoc}
      */
@@ -75,13 +75,13 @@ class DatePickerType extends AbstractType
                 'autoclose'       => $options['autoclose'],
                 'startView'       => $options['startView'],
                 'minViewMode'     => $options['minViewMode'],
-                'todayButton'     => is_bool($options['todayButton']) 
-                                     ? json_encode($options['todayButton']) 
+                'todayButton'     => is_bool($options['todayButton'])
+                                     ? json_encode($options['todayButton'])
                                      : $options['todayButton'],
                 'todayHighlight'  => $options['todayHighlight'],
                 'clearButton'     => $options['clearButton'],
-                'language'        => !$options['language'] 
-                                     ? $this->getLocale() 
+                'language'        => !$options['language']
+                                     ? $this->getLocale()
                                      : $options['language'],
             )
         );
@@ -135,29 +135,29 @@ class DatePickerType extends AbstractType
 
     public function getName()
     {
-        return 'date_picker';
+        return 'afe_date_picker';
     }
 
     /**
      * Gets Locale
-     * 
+     *
      * @return string
      */
     public function getLocale()
     {
         return $this->locale;
     }
-    
+
     /**
      * Sets Locale
-     * 
+     *
      * @param string $locale Locale
      * @return string
      */
     public function setLocale($locale)
     {
         $this->locale = $locale;
-        
+
         return $this;
     }
 }

@@ -8,6 +8,10 @@
 [jquery-minicolors]: http://labs.abeautifulsite.net/jquery-miniColors/
 [symfony-texttype]: http://symfony.com/doc/current/reference/forms/types/text.html
 
+### Form Type
+
+ `afe_mini_colors`
+
 ### Description
 
 Use [jquery-miniColors][jquery-minicolors] as GUI wrapper for

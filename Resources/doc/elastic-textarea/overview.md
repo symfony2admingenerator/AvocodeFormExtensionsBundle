@@ -8,6 +8,10 @@
 [jquery-elastic]: http://unwrongest.com/projects/elastic/
 [symfony-textareatype]: http://symfony.com/doc/current/reference/forms/types/textarea.html
 
+### Form Type
+
+ `afe_elastic_textarea`
+
 ### Description
 
 Use [jquery-elastic] as GUI wrapper for [TextareaType][symfony-textareatype] field

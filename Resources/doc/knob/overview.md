@@ -8,6 +8,10 @@
 [symfony-numbertype]: http://symfony.com/doc/current/reference/forms/types/number.html
 [aterrien-knob]: https://github.com/aterrien/jQuery-Knob
 
+### Form Type
+
+ `afe_knob`
+
 ### Description
 
 Use [aterrien/jQuery-Knob][aterrien-knob] as GUI wrapper for

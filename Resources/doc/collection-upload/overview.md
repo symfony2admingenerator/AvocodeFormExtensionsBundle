@@ -8,6 +8,11 @@
 [symfony-collectiontype]: http://symfony.com/doc/current/reference/forms/types/collection.html
 [symfony-filetype]: http://symfony.com/doc/current/reference/forms/types/file.html
 
+### Form Type
+
+ `afe_collection_upload`
+ 
+ 
 ### 1. Overview
 
 Collection Upload adds twitter-boostrap GUI wrapper for a [collection][symfony-collectiontype]
@@ -183,7 +188,7 @@ Admingenerator basic configuration:
 images:
     label:            Images
     dbType:           collection
-    formType:         collection_upload
+    formType:         afe_collection_upload
     addFormOptions:
         primary_key:          id
         nameable:             true

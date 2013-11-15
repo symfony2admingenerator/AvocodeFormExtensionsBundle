@@ -50,7 +50,7 @@ template, and include static and dynamic stylesheets and javascripts.
 
     {% include 'AvocodeFormExtensionsBundle::stylesheets.html.twig' %}
     {% if form is defined %}
-        {{ form_stylesheet(form) }}
+        {{ afe_form_stylesheet(form) }}
     {% endif %}
 {% endblock %}
 
@@ -59,7 +59,7 @@ template, and include static and dynamic stylesheets and javascripts.
 
     {% include 'AvocodeFormExtensionsBundle::javascripts.html.twig' %}
     {% if form is defined %}
-        {{ form_javascript(form) }}
+        {{ afe_form_javascript(form) }}
     {% endif %}
 {% endblock %}
 ```

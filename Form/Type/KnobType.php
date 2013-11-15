@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormView;
 
 /**
  * See `Resources/doc/knob/overview.md` for documentation
- * 
+ *
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -21,12 +21,12 @@ class KnobType extends AbstractType
         if (array_key_exists('attr', $options) && array_key_exists('class', $options['attr'])) {
             $class = $options['attr']['class'].' '.$class;
         }
-        
+
         $style = $options['hide_box_shadow'] ? 'box-shadow:none;' : '';
         if (array_key_exists('attr', $options) && array_key_exists('style', $options['attr'])) {
             $style = trim($options['attr']['style'].' '.$style);
         }
-        
+
         $view->vars = array_merge(
             $view->vars,
             array(
@@ -72,7 +72,7 @@ class KnobType extends AbstractType
             'max'             => 100,
             'hide_box_shadow' => true,
         ));
-        
+
         $resolver->setAllowedTypes(array(
             'width'           => array('integer'),
             'height'          => array('integer'),
@@ -105,6 +105,6 @@ class KnobType extends AbstractType
 
     public function getName()
     {
-        return 'knob';
+        return 'afe_knob';
     }
 }

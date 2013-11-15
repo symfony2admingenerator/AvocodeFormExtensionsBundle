@@ -45,7 +45,7 @@ class AvocodeFormExtensionsExtension extends Extension
             $typeDef = new DefinitionDecorator($serviceId);
             $typeDef
                 ->addArgument($type)
-                ->addTag('form.type', array('alias' => 'collection_'.$type))
+                ->addTag('form.type', array('alias' => 'afe_collection_'.$type))
             ;
 
             $container->setDefinition($serviceId.'.'.$type, $typeDef);
@@ -64,7 +64,7 @@ class AvocodeFormExtensionsExtension extends Extension
             $typeDef = new DefinitionDecorator($serviceId);
             $typeDef
                 ->addArgument($type)
-                ->addTag('form.type', array('alias' => 'double_list_'.$type))
+                ->addTag('form.type', array('alias' => 'afe_double_list_'.$type))
             ;
 
             $container->setDefinition($serviceId.'.'.$type, $typeDef);
@@ -84,7 +84,7 @@ class AvocodeFormExtensionsExtension extends Extension
             $typeDef = new DefinitionDecorator($serviceId);
             $typeDef
                 ->addArgument($type)
-                ->addTag('form.type', array('alias' => 'select2_'.$type))
+                ->addTag('form.type', array('alias' => 'afe_select2_'.$type))
             ;
 
             $container->setDefinition($serviceId.'.'.$type, $typeDef);
