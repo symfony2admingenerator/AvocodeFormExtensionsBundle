@@ -26,6 +26,13 @@ class CollectionUploadType extends AbstractType
             $builder->getName(),
             $options
         ));
+
+        if (!$builder->hasAttribute('prototype')) {
+            $prototype = $builder->create($options['prototype_name'], $options['type'], array_replace(array(
+                    'label' => $options['prototype_name'].'label__',
+            ), $options['options']));
+            $builder->setAttribute('prototype', $prototype->getForm());
+        }
     }
 
     /**

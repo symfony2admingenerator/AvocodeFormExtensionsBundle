@@ -108,22 +108,28 @@
 {% spaceless %}
     {% set full_name = full_name ~ '[uploads][]' %}
     <div id="{{ id ~ '_widget_container' }}">
+        {% if allow_add or allow_delete %}
         <div class="btn-toolbar form-actions form-actions-condensed fileupload-buttonbar">
+            {% if allow_add %}
             <span class="btn btn-success fileinput">
                 <i class="icon-plus icon-white"></i>
                 <span> {{ 'afe_collection_upload.file.add'|trans({}, 'AvocodeFormExtensions') }}</span>
                 <input type="file" {{ block('widget_attributes') }} multiple/>
             </span>
+            {% endif %}
             {% if not autoUpload and url is not empty %}
             <button type="submit" class="btn btn-primary start">
                 <i class="icon-upload icon-white"></i>
                 <span> {{ 'afe_collection_upload.start'|trans({}, 'AvocodeFormExtensions') }}</span>
             </button>
             {% endif %}
+            {% if allow_add %}
             <button type="reset" class="btn btn-warning cancel">
                 <i class="icon-ban-circle icon-white"></i>
                 <span> {{ 'afe_collection_upload.cancel'|trans({}, 'AvocodeFormExtensions') }}</span>
             </button>
+            {% endif %}
+            {% if allow_delete %}
             <button type="button" class="btn btn-danger delete">
                 <i class="icon-trash icon-white"></i>
                 <span> {{ 'afe_collection_upload.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
@@ -131,13 +137,17 @@
             <label class="btn btn-toggle disabled input-append">
                 <input type="checkbox" class="toggle">
             </label>
+            {% endif %}
             <div class="fileupload-progressbar progress progress-striped active">
                 <div class="bar"></div>
             </div>
         </div>
+        {% endif %}
         {% include "AvocodeFormExtensionsBundle:Form/CollectionUpload:presentation_table.html.twig" %}
         {% include "AvocodeFormExtensionsBundle:Form/CollectionUpload:template_download.html.twig" %}
-        {% include "AvocodeFormExtensionsBundle:Form/CollectionUpload:template_upload.html.twig" %}
+        {% if allow_add %}
+            {% include "AvocodeFormExtensionsBundle:Form/CollectionUpload:template_upload.html.twig" %}
+        {% endif %}
     </div>
 {% endspaceless %}
 {% endblock afe_collection_upload_widget %}

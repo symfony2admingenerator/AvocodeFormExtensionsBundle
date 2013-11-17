@@ -68,6 +68,7 @@
                     <i class="icon-download icon-white"></i>
                     <span> {{ 'afe_collection_upload.download'|trans({}, 'AvocodeFormExtensions') }}</span>
                 </a>
+                {% if allow_delete %}
                 <button class="btn btn-danger delete">
                     <i class="icon-trash icon-white"></i>
                     <span> {{ 'afe_collection_upload.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
@@ -75,6 +76,7 @@
                 <span class="btn btn-toggle disabled input-append">
                     <input class="toggle" type="checkbox" name="delete" value="1">
                 </span>
+                {% endif %}
             </div>
         </td>
     </tr>
