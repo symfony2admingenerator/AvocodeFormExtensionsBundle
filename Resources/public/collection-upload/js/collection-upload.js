@@ -159,8 +159,8 @@
                 previewMaxWidth:          this.options.previewMaxWidth,
                 previewMaxHeight:         this.options.previewMaxHeight,
                 autoUpload:               this.options.autoUpload,
-                url:                      this.options.url,
-                uploadOnSubmit:	          !this.options.autoUpload && !this.options.url,
+                url:                      this.options.urlUpload,
+                uploadOnSubmit:	          !this.options.autoUpload && !this.options.urlUpload,
                 progressall: function(e, data) {
                     if (data.total != 0) {
                         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -175,12 +175,12 @@
                 }
             });
             
-            if (!this.options.autoUpload && this.options.url) {
+            if (!this.options.autoUpload && this.options.urlUpload) {
                 // For asynchronous upload only send the file
                 // Asynchronous upload aim is only to improve submit time. Processing the file and
                 // attaching it to an entity must be on the form submit.
                 this.$widgetContainer.bind('fileuploadadd', function(e, data){
-                    data.formData = {};
+                    data.formData = {propertyPath: data.paramName};
                 });
             }
             

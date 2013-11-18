@@ -30,6 +30,13 @@ class Configuration implements ConfigurationInterface
                         ->booleanNode('use_form_resources')->defaultTrue()->end()
                     ->end()
                 ->end()
+                ->arrayNode('collection_upload')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('async_listener_enabled')->defaultFalse()->end()
+                        ->scalarNode('async_route_name')->end() // TODO: add dynamic validation: if async_listener_enabled: true, this parameter should not be empty
+                        ->scalarNode('file_storage')->defaultValue('avocode.form.file_storage.local')->end() // TODO: add dynamic validation
+                    ->end()
             ->end()
         ;
 

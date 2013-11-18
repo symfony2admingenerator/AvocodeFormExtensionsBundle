@@ -8,6 +8,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @author Piotr Gołębiewski <loostro@gmail.com>
@@ -65,7 +66,13 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
      */
     protected $allow_delete;
 
-    public function __construct($propertyName, $options)
+    /**
+     * Default constructor
+     *
+     * @param string $propertyName
+     * @param array $options
+     */
+    public function __construct($propertyName, array $options)
     {
         $this->propertyName     = $propertyName;
         $this->dataClass        = $options['options']['data_class'];

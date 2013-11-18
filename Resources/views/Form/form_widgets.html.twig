@@ -117,7 +117,7 @@
                 <input type="file" {{ block('widget_attributes') }} multiple/>
             </span>
             {% endif %}
-            {% if not autoUpload and url is not empty %}
+            {% if not autoUpload and uploadRouteName is not empty %}
             <button type="submit" class="btn btn-primary start">
                 <i class="icon-upload icon-white"></i>
                 <span> {{ 'afe_collection_upload.start'|trans({}, 'AvocodeFormExtensions') }}</span>
