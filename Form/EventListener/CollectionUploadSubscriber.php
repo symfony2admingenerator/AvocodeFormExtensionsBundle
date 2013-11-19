@@ -9,6 +9,7 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Avocode\FormExtensionsBundle\Storage\FileStorageInterface;
 
 /**
  * @author Piotr Gołębiewski <loostro@gmail.com>
@@ -67,12 +68,17 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     protected $allow_delete;
 
     /**
+     * @var FileStorageInterface
+     */
+    protected $storage;
+
+    /**
      * Default constructor
      *
      * @param string $propertyName
      * @param array $options
      */
-    public function __construct($propertyName, array $options)
+    public function __construct($propertyName, array $options, FileStorageInterface $storage = null)
     {
         $this->propertyName     = $propertyName;
         $this->dataClass        = $options['options']['data_class'];
@@ -83,6 +89,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         $this->submitted_pk     = array();
         $this->allow_add        = $options['allow_add'];
         $this->allow_delete     = $options['allow_delete'];
+        $this->storage          = $storage;
     }
 
     public static function getSubscribedEvents()

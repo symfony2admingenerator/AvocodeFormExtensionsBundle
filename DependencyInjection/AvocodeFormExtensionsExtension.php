@@ -116,6 +116,8 @@ class AvocodeFormExtensionsExtension extends Extension
             ));
             $collectionUploadListenerDefinition->addTag('kernel.event_subscriber');
             $container->setDefinition('avocode.form.collection_upload_listener', $collectionUploadListenerDefinition);
+
+            $container->getDefinition('avocode.form.extensions.type.collection_upload')->addMethodCall('setFileStorage', array(new Reference($config['file_storage'])));
         }
     }
 }

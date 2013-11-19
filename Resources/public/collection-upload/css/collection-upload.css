@@ -50,6 +50,10 @@ tbody.files > tr {
     background-color: #fff;
 }
 
+tbody.files > tr.template-download .form input[type=checkbox].remove {
+	display:none;
+}
+
 /* Hide the handle by default */
 tbody.files.sortable > tr.template-download .sort .handle {
     color: rgba(153, 153, 153, 0);

@@ -106,6 +106,7 @@
 
 {% block afe_collection_upload_widget %}
 {% spaceless %}
+    {% set original_full_name = full_name %}
     {% set full_name = full_name ~ '[uploads][]' %}
     <div id="{{ id ~ '_widget_container' }}">
         {% if allow_add or allow_delete %}

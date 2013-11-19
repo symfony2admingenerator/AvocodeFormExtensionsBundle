@@ -6,7 +6,6 @@
 
     <parameters>
         <parameter key="avocode.form.collection_upload_listener.class">Avocode\FormExtensionsBundle\EventListener\CollectionUploadListener</parameter>
-        <parameter key="avocode.form.file_storage">avocode.form.file_storage.local</parameter>
     </parameters>
     <services>
         <!-- Form types -->
