@@ -209,7 +209,7 @@
                 		return;
                 	}
                 	
-                	that.$element.prop('value', '');
+                	that.$element.remove();
                 });
             }
             

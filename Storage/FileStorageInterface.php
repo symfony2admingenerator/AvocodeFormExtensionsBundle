@@ -8,4 +8,10 @@ interface FileStorageInterface
      * @return array
      */
     public function storeFiles(array $files);
+
+    /**
+     * @param string $fileId
+     * @return UploadedFile|null
+     */
+    public function getFile($fileId = null);
 }
