@@ -106,11 +106,24 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         $form = $event->getForm();
         $data = $event->getData();
 
+        $data = $data ?: array();
         if (array_key_exists('uploads', $data)) {
             // capture uploads and store them for onSubmit event
             $this->uploads = $data['uploads'];
             // unset additional form data to prevent errors
             unset($data['uploads']);
+        }
+
+        if (array_key_exists('delete_uploads', $data)) {
+            foreach ($data['delete_uploads'] as $fileId) {
+                $file = $this->storage->getFile($fileId);
+
+                if (!is_null($file)) {
+                    unlink($file);
+                }
+            }
+
+            unset($data['delete_uploads']);
         }
 
         // save submitted primary keys for onSubmit event
