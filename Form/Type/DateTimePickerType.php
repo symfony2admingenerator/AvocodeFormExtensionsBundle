@@ -59,8 +59,8 @@ class DateTimePickerType extends AbstractType
             ->remove('date')
             ->remove('time')
             ->addViewTransformer(new DateTimeToPartsTransformer())
-            ->add('date', 'date_picker', $dateOptions)
-            ->add('time', 'time_picker', $timeOptions);
+            ->add('date', 'afe_date_picker', $dateOptions)
+            ->add('time', 'afe_time_picker', $timeOptions);
     }
 
     /**
