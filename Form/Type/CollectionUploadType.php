@@ -9,6 +9,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Avocode\FormExtensionsBundle\Storage\FileStorageInterface;
 
 /**
  * See `Resources/doc/collection-upload/overview.md` for documentation
@@ -18,18 +20,32 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class CollectionUploadType extends AbstractType
 {
     /**
+     * @var FileStorageInterface
+     */
+    protected $storage = null;
+
+    /**
+     * @param FileStorageInterface $fileStorage
+     */
+    public function setFileStorage(FileStorageInterface $storage)
+    {
+        $this->storage = $storage;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addEventSubscriber(new CollectionUploadSubscriber(
             $builder->getName(),
-            $options
+            $options,
+            $this->storage
         ));
 
         if (!$builder->hasAttribute('prototype')) {
             $prototype = $builder->create($options['prototype_name'], $options['type'], array_replace(array(
-                    'label' => $options['prototype_name'].'label__',
+                'label' => $options['prototype_name'].'label__',
             ), $options['options']));
             $builder->setAttribute('prototype', $prototype->getForm());
         }
@@ -65,7 +81,8 @@ class CollectionUploadType extends AbstractType
                 'required'                  => $options['required'],
                 'sortable'                  => $options['sortable'],
                 'sortable_field'            => $options['sortable_field'],
-                'url'                       => $options['url']
+                'uploadRouteName'           => $options['uploadRouteName'],
+                'uploadRouteParameters'     => $options['uploadRouteParameters']
             )
         );
     }
@@ -100,7 +117,8 @@ class CollectionUploadType extends AbstractType
             'required'                  => false,
             'sortable'                  => false,
             'sortable_field'            => 'position',
-            'url'                       => null
+            'uploadRouteName'           => null,
+            'uploadRouteParameters'     => array()
         ));
 
         // This seems weird... why to we accept it as option if we force
@@ -135,7 +153,8 @@ class CollectionUploadType extends AbstractType
             'required'                  => array('bool'),
             'sortable'                  => array('bool'),
             'sortable_field'            => array('string'),
-            'url'                       => array('string', 'null')
+            'uploadRouteName'           => array('string', 'null'),
+            'uploadRouteParameters'     => array('array')
         ));
     }
 

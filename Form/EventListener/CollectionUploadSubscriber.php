@@ -8,6 +8,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Avocode\FormExtensionsBundle\Storage\FileStorageInterface;
 
 /**
  * @author Piotr Gołębiewski <loostro@gmail.com>
@@ -65,7 +67,18 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
      */
     protected $allow_delete;
 
-    public function __construct($propertyName, $options)
+    /**
+     * @var FileStorageInterface
+     */
+    protected $storage;
+
+    /**
+     * Default constructor
+     *
+     * @param string $propertyName
+     * @param array $options
+     */
+    public function __construct($propertyName, array $options, FileStorageInterface $storage = null)
     {
         $this->propertyName     = $propertyName;
         $this->dataClass        = $options['options']['data_class'];
@@ -76,6 +89,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         $this->submitted_pk     = array();
         $this->allow_add        = $options['allow_add'];
         $this->allow_delete     = $options['allow_delete'];
+        $this->storage          = $storage;
     }
 
     public static function getSubscribedEvents()
@@ -92,11 +106,24 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         $form = $event->getForm();
         $data = $event->getData();
 
+        $data = $data ?: array();
         if (array_key_exists('uploads', $data)) {
             // capture uploads and store them for onSubmit event
             $this->uploads = $data['uploads'];
             // unset additional form data to prevent errors
             unset($data['uploads']);
+        }
+
+        if (array_key_exists('delete_uploads', $data)) {
+            foreach ($data['delete_uploads'] as $fileId) {
+                $file = $this->storage->getFile($fileId);
+
+                if (!is_null($file)) {
+                    unlink($file);
+                }
+            }
+
+            unset($data['delete_uploads']);
         }
 
         // save submitted primary keys for onSubmit event
@@ -129,6 +156,10 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         if ($this->allow_add) {
             // create file entites for each file
             foreach ($this->uploads as $upload) {
+                if (!is_object($upload)) {
+                    $upload = $this->storage->getFile($upload);
+                }
+
                 if ($upload === null) {
                     continue;
                 }

@@ -6,15 +6,9 @@
  */
 // Extend fileupload plugin
 ;$.widget('blueimp.fileupload', $.blueimp.fileupload, {
-	_uploadOnSubmit: function() {
-		return this.options.uploadOnSubmit;
-	},
-	
 	_cleanInputsFile: function() {
-		if (this._uploadOnSubmit()) {
-			this.options.fileInput
-//				.siblings('input.upload-selection').remove().end()
-				.prop('value', '');
+		if (this.options.uploadOnSubmit) {
+			this.options.fileInput.prop('value', '');
 		}
 	},
 	
@@ -61,22 +55,31 @@
         });
     },
     
-//    _duplicateInputFile: function(evt, data) {
-//    	var clonedInput = data.fileInput.clone(true);
-//    	data.fileInput.addClass('upload-selection');
-//    	clonedInput.prop('value', '').insertAfter(data.fileInput);
-//    },
-    
     _cancelWaitingUploads: function(evt, data) {
     	this.options.filesContainer.find('.cancel').click();
     },
     
+    _uploadCompleted: function(evt, data){
+    	if (data.files) {
+    		this._renderPreviews(data);
+    		data.context.find('button.remove').on('click', function(e){
+            	e.preventDefault();
+            	data.context
+            			.find('.form input[type=checkbox].remove').prop('checked', true).end()
+            			.hide();
+            });
+    	}
+    },
+    
     _initEventHandlers: function () {
     	this._super();
-    	if (this._uploadOnSubmit()) {
+    	if (this.options.uploadOnSubmit) {
     		this._on({
-//    			fileuploadchange: this._duplicateInputFile
     			fileuploadchange: this._cancelWaitingUploads
+    		});
+    	} else {
+    		this._on({
+    			fileuploadcompleted: this._uploadCompleted,
     		});
     	}
     }
@@ -137,6 +140,8 @@
             this.$widgetContainer = $('#' + this.element.id + '_widget_container');
             this.$filesContainer = $('#' + this.element.id + '_files_list');
             this.$progressBarContainer = this.$widgetContainer.find('.fileupload-progressbar');
+            this.waitingToUpload = 0;
+            this.submitOnFinish = false;
             
             // Init fileupload
             this.$widgetContainer.fileupload({
@@ -159,8 +164,8 @@
                 previewMaxWidth:          this.options.previewMaxWidth,
                 previewMaxHeight:         this.options.previewMaxHeight,
                 autoUpload:               this.options.autoUpload,
-                url:                      this.options.url,
-                uploadOnSubmit:	          !this.options.autoUpload && !this.options.url,
+                url:                      this.options.urlUpload,
+                uploadOnSubmit:	          !this.options.autoUpload && !this.options.urlUpload,
                 progressall: function(e, data) {
                     if (data.total != 0) {
                         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -175,12 +180,36 @@
                 }
             });
             
-            if (!this.options.autoUpload && this.options.url) {
+            if (!this.options.autoUpload && this.options.urlUpload) {
                 // For asynchronous upload only send the file
                 // Asynchronous upload aim is only to improve submit time. Processing the file and
                 // attaching it to an entity must be on the form submit.
-                this.$widgetContainer.bind('fileuploadadd', function(e, data){
-                    data.formData = {};
+                this.$widgetContainer
+                	.bind('fileuploadadd', function(e, data){
+	                    data.formData = {propertyPath: data.paramName};
+	                    that.waitingToUpload += 1;
+	                })
+	                .bind('fileuploadcompleted', function(e, data){
+	                	that.waitingToUpload -= 1;
+	                })
+	                .bind('fileuploadfailed', function(e, data){
+	                	that.waitingToUpload -= 1;
+	                })
+	                .bind('fileuploadfinished', function(e, data){
+	                	if (0==that.waitingToUpload && that.submitOnFinish){
+	                		that.$element.parents('form').submit();
+	                	}
+	                });
+                this.$element.parents('form').on('submit', function(e){
+                	if (that.waitingToUpload > 0) {
+                		that.submitOnFinish = true;
+                		that.$element.parents('form').find('.fileupload-buttonbar .start').click();
+                		e.preventDefault();
+
+                		return;
+                	}
+                	
+                	that.$element.remove();
                 });
             }
             

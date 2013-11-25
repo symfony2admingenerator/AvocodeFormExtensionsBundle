@@ -7,6 +7,7 @@
 
 [symfony-collectiontype]: http://symfony.com/doc/current/reference/forms/types/collection.html
 [symfony-filetype]: http://symfony.com/doc/current/reference/forms/types/file.html
+[collectioupload-async-mode]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/collection-upload/async-mode.md
 
 ### Form Type
 
@@ -31,6 +32,7 @@ field and must implement `Avocode\FormExtensionsBundle\Form\Model\UploadCollecti
 * Display uploaded images thumbnails
 * Sort uploaded files
 * Edit additional object fields (like name, description, etc)
+* Asynchronous upload
 
 ### 2. Asset provider
 
@@ -422,7 +424,52 @@ Set this option to true, to prepend files instead.
 considered safe (javascript is client-side). Always validate form input 
 data server-side!
 
-### 6. Special thanks
+#### autoUpload
+
+**type:** `boolean` **default:** `false`
+
+Does added files must be automatically uploaded?
+See [use CollectionUploadType in asynchronous mode] documentation.
+
+#### uploadRouteName
+
+**type:** `string` **default:** `null`
+
+Route name used for asynchronous upload. See [use CollectionUploadType in asynchronous mode] documentation.
+
+#### uploadRouteParameters
+
+**type:** `array` **default:** `array()`
+
+Parameters for route used for asynchronous upload. See [use CollectionUploadType in asynchronous mode][collectioupload-async-mode] documentation.
+
+### 6. Async mode vs. Sync mode
+
+You can use the collection upload type in two different modes:
+ 1- files are uploaded on form submission (synchronous mode)
+ 2- files are uploaded before form is submit.
+ 
+ These two modes have their own advantages and drawbacks. User experience may also change a little:
+ 
+ - Synchronous mode:
+ 
+    - Select only files from the same folder
+    
+    - No unnecesary disk usage
+    
+ - Asynchronous mode:
+ 
+    - Select files from different folders
+    
+    - Get "progress bar" visual
+    
+    - Start buttons available
+    
+    - May require a cron to clean temporary upload directory
+
+ See [use CollectionUploadType in asynchronous mode][collectioupload-async-mode] documentation for more informations.
+
+### 7. Special thanks
 
 Special thanks to [Sebastian Tschan](https://github.com/blueimp) for 
 `jQuery-File-Upload` licensed under [MIT License]

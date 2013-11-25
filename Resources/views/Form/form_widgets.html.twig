@@ -106,6 +106,7 @@
 
 {% block afe_collection_upload_widget %}
 {% spaceless %}
+    {% set original_full_name = full_name %}
     {% set full_name = full_name ~ '[uploads][]' %}
     <div id="{{ id ~ '_widget_container' }}">
         {% if allow_add or allow_delete %}
@@ -117,7 +118,7 @@
                 <input type="file" {{ block('widget_attributes') }} multiple/>
             </span>
             {% endif %}
-            {% if not autoUpload and url is not empty %}
+            {% if not autoUpload and uploadRouteName is not empty %}
             <button type="submit" class="btn btn-primary start">
                 <i class="icon-upload icon-white"></i>
                 <span> {{ 'afe_collection_upload.start'|trans({}, 'AvocodeFormExtensions') }}</span>

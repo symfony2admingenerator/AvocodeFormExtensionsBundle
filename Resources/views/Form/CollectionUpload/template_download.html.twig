@@ -23,40 +23,55 @@
             {% if sortable %}
             <td class="sort"><icon class="handle icon-sort icon-2x"></i></td>
             {% endif %}
-            <td class="preview">
             {% raw %}
-            {% if (file.thumbnail_url) { %}
+            {% if (file.uid) { %}
             {% endraw %}
-            {% if previewFilter %}
+                <td class="preview">
+                </td>
+                <td class="form">
+                    <input type="hidden" name="{{ full_name }}" value="{% raw %}{%=file.uid%}{% endraw %}" />
+                    <input type="checkbox" name="{{ original_full_name ~ '[delete_uploads][]'}}" value="{% raw %}{%=file.uid%}{% endraw %}" class="remove"/>
+                </td>
+            {% raw %}
+            {% } else { %}
+            {% endraw %}
+                <td class="preview">
                 {% raw %}
-                <a href="{%=file.url%}" target="_blank"><img src="{%=file.thumbnail_url%}" /></a>
+                {% if (file.thumbnail_url) { %}
                 {% endraw %}
-            {% else %}
+                {% if previewFilter %}
+                    {% raw %}
+                    <a href="{%=file.url%}" target="_blank"><img src="{%=file.thumbnail_url%}" /></a>
+                    {% endraw %}
+                {% else %}
+                    {% raw %}
+                    <a href="{%=file.url%}" target="_blank">
+                    {% endraw %}
+                        <img src="{% raw %}{%=file.thumbnail_url%}{% endraw %}"
+                             width="{{ previewMaxWidth }}" height="{{ previewMaxHeight }}" />
+                    </a>
+                {% endif %}
                 {% raw %}
-                <a href="{%=file.url%}" target="_blank">
+                {% } %}
                 {% endraw %}
-                    <img src="{% raw %}{%=file.thumbnail_url%}{% endraw %}"
-                         width="{{ previewMaxWidth }}" height="{{ previewMaxHeight }}" />
-                </a>
-            {% endif %}
+                </td>
+                <td class="form">
+                {{ form_row(prototype[primary_key],{'value': '{%=file.'~primary_key~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                {% if nameable %}
+                    {{ form_row(prototype[nameable_field],{'value': '{%=file.'~nameable_field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                {% endif %}
+                {% if sortable %}
+                    {{ form_row(prototype[sortable_field],{'value': '{%=file.'~sortable_field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                {% endif %}
+                {% if editable %}
+                {% for field in editable %}
+                    {{ form_row(prototype[field],{'value': '{%=file.'~field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                {% endfor %}
+                {% endif %}
+                </td>
             {% raw %}
             {% } %}
             {% endraw %}
-            </td>
-            <td class="form">
-            {{ form_row(prototype[primary_key],{'value': '{%=file.'~primary_key~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
-            {% if nameable %}
-                {{ form_row(prototype[nameable_field],{'value': '{%=file.'~nameable_field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
-            {% endif %}
-            {% if sortable %}
-                {{ form_row(prototype[sortable_field],{'value': '{%=file.'~sortable_field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
-            {% endif %}
-            {% if editable %}
-            {% for field in editable %}
-                {{ form_row(prototype[field],{'value': '{%=file.'~field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
-            {% endfor %}
-            {% endif %}
-            </td>
             <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
             <td colspan="2"></td>
         {% raw %}
@@ -64,19 +79,32 @@
         {% endraw %}
         <td class="actions">
             <div class="btn-toolbar">
-                <a class="btn btn-info" target="_blank" {% raw %}href="{%=file.url%}"{% endraw %}>
-                    <i class="icon-download icon-white"></i>
-                    <span> {{ 'afe_collection_upload.download'|trans({}, 'AvocodeFormExtensions') }}</span>
-                </a>
-                {% if allow_delete %}
-                <button class="btn btn-danger delete">
-                    <i class="icon-trash icon-white"></i>
-                    <span> {{ 'afe_collection_upload.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
-                </button>
-                <span class="btn btn-toggle disabled input-append">
-                    <input class="toggle" type="checkbox" name="delete" value="1">
-                </span>
-                {% endif %}
+                {% raw %}
+                {% if (file.uid) { %}
+                {% endraw %}
+                    <button class="btn btn-warning remove">
+                        <i class="icon-trash icon-white"></i>
+                        <span> {{ 'afe_collection_upload.remove'|trans({}, 'AvocodeFormExtensions') }}</span>
+                    </button>
+                {% raw %}
+                {% } else { %}
+                {% endraw %}
+                    <a class="btn btn-info" target="_blank" {% raw %}href="{%=file.url%}"{% endraw %}>
+                        <i class="icon-download icon-white"></i>
+                        <span> {{ 'afe_collection_upload.download'|trans({}, 'AvocodeFormExtensions') }}</span>
+                    </a>
+                    {% if allow_delete %}
+                    <button class="btn btn-danger delete">
+                        <i class="icon-trash icon-white"></i>
+                        <span> {{ 'afe_collection_upload.delete'|trans({}, 'AvocodeFormExtensions') }}</span>
+                    </button>
+                    <span class="btn btn-toggle disabled input-append">
+                        <input class="toggle" type="checkbox" name="delete" value="1">
+                    </span>
+                    {% endif %}
+                {% raw %}
+                {% } %}
+                {% endraw %}
             </div>
         </td>
     </tr>
