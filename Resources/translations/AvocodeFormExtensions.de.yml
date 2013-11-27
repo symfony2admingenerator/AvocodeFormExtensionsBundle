@@ -75,6 +75,6 @@ afe_single_upload:
         plain-text:       normaler<br />Text
         presentation:     Präsentation
         spreadsheet:      Tabellen-<br />dokument
-        text-document:    Text-<br />Dokument
+        text-document:    Text-<br />dokument
         unknown:          Unbekannter<br />Dateityp
         video:            Video
