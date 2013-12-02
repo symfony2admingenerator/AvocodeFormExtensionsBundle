@@ -1,0 +1,80 @@
+afe_bootstrap_collection:
+    add:          Hinzufügen
+    delete:       Löschen
+    confirm:
+        delete:           Wollen Sie wirklich dieses Element löschen?
+        batchDelete:      Wollen Sie wirklich alle ausgewählten Elemente löschen?
+
+afe_collection_upload:
+    file.add:     Dateien hinzufügen...
+    stat:         Hochladen beginnen
+    error:        Fehler
+    cancel:       Abbrechen
+    delete:       Löschen
+    download:     Herunterladen
+    confirm:
+        batchDelete:      Wollen Sie wirklich alle ausgewählten Elemente löschen?
+    errors:
+        maxNumberOfFiles: Maximale Anzahl von Elementen erreicht
+        acceptFileTypes:  Dateityp ist nicht erlaubt
+        maxFileSize:      Datei ist zu groß
+        minFileSize:      Datei ist zu klein
+
+afe_date_range:
+    label:
+        apply:          Senden
+        clear:          Zurücksetzen
+        from:           Von
+        to:             Bis
+        week:           W
+        custom_range:   Definierter Zeitraum
+    days:
+        sunday:         So
+        monday:         Mo
+        tuesday:        Di
+        wednesday:      Mi
+        thursday:       Do
+        friday:         Fr
+        saturday:       Sa
+    months:
+        january:        Januar
+        february:       Februar
+        march:          März
+        april:          April
+        may:            Mai
+        june:           Juni
+        july:           Juli
+        august:         August
+        september:      September
+        october:        Oktober
+        november:       November
+        december:       Dezember
+    ranges:
+        today:          Heute
+        yesterday:      Gestern
+        last-week:      Letzte Woche
+        last-month:     Letzter Monat
+        last-year:      Letztes Jahr
+
+afe_double_list:
+    selected:           Ausgewählt
+    unselected:         Abgewählt
+
+afe_single_upload:
+    button:
+        add:              Datei hochladen
+        replace:          Datei ersetzen
+        cancel:           Abbrechen
+        delete:           Löschen
+    type:
+        audio:            Audio
+        archive:          Archiv
+        html:             HTML
+        image:            Bild
+        pdf-document:     PDF-<br />Dokument
+        plain-text:       normaler<br />Text
+        presentation:     Präsentation
+        spreadsheet:      Tabellen-<br />dokument
+        text-document:    Text-<br />dokument
+        unknown:          Unbekannter<br />Dateityp
+        video:            Video
