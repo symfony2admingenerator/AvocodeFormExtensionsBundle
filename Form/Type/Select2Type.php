@@ -50,7 +50,7 @@ class Select2Type extends AbstractType
             $view->vars['block_prefixes'],
             array_search($this->getName(), $view->vars['block_prefixes']),
             0,
-            'select2'
+            'afe_select2'
         );
     }
 
