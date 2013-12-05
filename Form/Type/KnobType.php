@@ -40,6 +40,7 @@ class KnobType extends AbstractType
                 'readOnly'        => $options['readOnly'],
                 'thickness'       => $options['thickness'],
                 'fgColor'         => $options['fgColor'],
+                'bgColor'         => $options['bgColor'],
                 'lineCap'         => $options['lineCap'],
                 'step'            => $options['step'],
                 'min'             => $options['min'],
