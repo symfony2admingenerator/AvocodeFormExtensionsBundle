@@ -1,6 +1,7 @@
 {
     "name": "avocode/form-extensions-bundle",
     "type": "symfony-bundle",
+    "description": "Forms additional types for symfony2",
     "license": "MIT and Apache-2.0",
     "authors": [
         {
