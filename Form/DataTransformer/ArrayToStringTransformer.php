@@ -9,9 +9,31 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
  * {@inheritdoc}
  *
  * @author Bilal Amarni <bilal.amarni@gmail.com>
+ * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
 class ArrayToStringTransformer implements DataTransformerInterface
 {
+    /**
+     * @var string
+     */
+    private $separator;
+
+    /**
+     * @var array
+     */
+    private $keys;
+
+    /**
+     * Default constructor
+     *
+     * @param string $glue
+     */
+    public function __construct($separator = ',', array $keys = array())
+    {
+        $this->separator = $separator;
+        $this->keys = $keys;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -21,7 +43,7 @@ class ArrayToStringTransformer implements DataTransformerInterface
             return '';
         }
 
-        return implode(',', $array);
+        return implode($this->separator, $array);
     }
 
     /**
@@ -33,6 +55,12 @@ class ArrayToStringTransformer implements DataTransformerInterface
             return $string;
         }
 
-        return explode(',', $string);
+        $transformedString = explode($this->separator, $string);
+
+        if (!empty($this->keys)) {
+            return array_combine($this->keys, $transformedString);
+        }
+
+        return $transformedString;
     }
 }

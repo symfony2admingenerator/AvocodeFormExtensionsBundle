@@ -2,7 +2,8 @@
 
 namespace Avocode\FormExtensionsBundle\Form\Type;
 
-use Avocode\FormExtensionsBundle\Form\DataTransformer\DateRangeToStringTransformer;
+use Avocode\FormExtensionsBundle\Form\DataTransformer\DateRangeToArrayTransformer;
+use Avocode\FormExtensionsBundle\Form\DataTransformer\ArrayToStringTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -15,23 +16,40 @@ use Symfony\Component\Translation\TranslatorInterface;
  *
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  * @author Piotr Gołębiewski <loostro@gmail.com>
+ * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
 class DateRangePickerType extends AbstractType
 {
+    /**
+     * @var TranslatorInterface
+     */
     protected $translator;
 
+    /**
+     * DI
+     *
+     * @param TranslatorInterface $translator
+     */
     public function setTranslator(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->addViewTransformer(new ArrayToStringTransformer($options['separator'], array('from', 'to')));
+
         if ($options['use_daterange_entity']) {
-            $builder->addModelTransformer(new DateRangeToStringTransformer($options['separator'], $options['format']));
+            $builder->addModelTransformer(new DateRangeToArrayTransformer($options['format']));
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $locale = array(
@@ -132,6 +150,9 @@ class DateRangePickerType extends AbstractType
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -194,11 +215,17 @@ class DateRangePickerType extends AbstractType
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getParent()
     {
         return 'text';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'afe_daterange_picker';
