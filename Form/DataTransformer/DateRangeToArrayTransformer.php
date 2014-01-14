@@ -30,7 +30,7 @@ class DateRangeToArrayTransformer implements DataTransformerInterface
     {
         $result = array('from' => null, 'to' => null);
 
-        if ($value) {
+        if ($value instanceof DateRange) {
             if ($value->getFrom()) {
                 $result['from'] = $value->getFrom()->format($this->format);
             }
