@@ -354,6 +354,7 @@
             deleteable:       {{ deleteable|e4js }},
             widget_name:      {{ (form.parent.vars.full_name ~ '['~name~']')|e4js }},
             filetypes:  {
+                'inexistent':       {{ 'afe_single_upload.type.inexistent'|trans({}, 'AvocodeFormExtensions')|e4js }},
                 'audio':            {{ 'afe_single_upload.type.audio'|trans({}, 'AvocodeFormExtensions')|e4js }},
                 'archive':          {{ 'afe_single_upload.type.archive'|trans({}, 'AvocodeFormExtensions')|e4js }},
                 'html':             {{ 'afe_single_upload.type.html'|trans({}, 'AvocodeFormExtensions')|e4js }},

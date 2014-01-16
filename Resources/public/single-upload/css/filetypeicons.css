@@ -23,6 +23,7 @@
     text-shadow:  1px 1px 0px #fff;
 }
 
+.fileicon.inexistent      { background: url('../img/inexistent.png') no-repeat top center; }
 .fileicon.audio           { background: url('../img/audio.png') no-repeat top center; }
 .fileicon.archive         { background: url('../img/archive.png') no-repeat top center; }
 .fileicon.html            { background: url('../img/html.png') no-repeat top center; }
