@@ -3,7 +3,6 @@
 {% set file = form.vars.data %}
 {% set object = form.parent.vars.value %}
 {% set field = form.vars.name %}
-
 <div class="{{ id ~ '_preview_image' }} download active">
 {% if file|default is not empty %}
     {% if previewImages and fileType == 'image' %}
@@ -26,6 +25,6 @@
     {% else %}
         <div class="row-fluid">{{ file.filename }}</div>
     {% endif %}
-    <div class="row-fluid">{{ macros.bytesToSize(file.size) }}</div>
+    {% if fileType != "inexistent" %}<div class="row-fluid">{{ macros.bytesToSize(file.size) }}</div>{% endif %}
 {% endif %}
 </div>

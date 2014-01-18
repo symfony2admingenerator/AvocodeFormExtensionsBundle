@@ -54,7 +54,7 @@ class SingleUploadType extends AbstractType
                 'fileType'        => $this->_checkFileType($data),
                 'novalidate'      => $options['novalidate'],
                 'multipart'       => $options['multipart'],
-                'required'        => $options['required'],
+                'required'        => $options['required']
             )
         );
     }
@@ -117,13 +117,22 @@ class SingleUploadType extends AbstractType
     }
 
     /**
+     * @param $file
+     * @return bool
+     */
+    public function _doesFileExist($file) {
+        if(is_null($file)) return false;
+        return file_exists($file->getPathName());
+    }
+
+    /**
      * Private functions
      */
     private function _checkFileType($file)
     {
         // sanity check
-        if(is_null($file)) return null;
 
+        if (!$this->_doesFileExist($file)) return 'inexistent';
         if ($this->_isAudio($file))        return 'audio';
         if ($this->_isArchive($file))      return 'archive';
         if ($this->_isHTML($file))         return 'html';
