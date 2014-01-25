@@ -66,14 +66,15 @@ afe_single_upload:
         cancel:           Annuleer
         delete:           Verwijder
     type:
+        inexistent:       Geen<br />bestand
         audio:            Audio
-        archive:          Archive
+        archive:          Archief
         html:             HTML
-        image:            Image
-        pdf-document:     PDF<br />Document
-        plain-text:       Plain<br />Text
-        presentation:     Presentation
+        image:            Afbeelding
+        pdf-document:     PDF<br />bestand
+        plain-text:       Platte<br />tekst
+        presentation:     Presentatie
         spreadsheet:      Spreadsheet
-        text-document:    Text<br />Document
-        unknown:          Unknown<br />Filetype
+        text-document:    Text<br />document
+        unknown:          Onbekend<br />bestandstype
         video:            Video

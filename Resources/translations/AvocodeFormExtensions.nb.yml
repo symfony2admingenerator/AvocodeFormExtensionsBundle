@@ -66,6 +66,7 @@ afe_single_upload:
         cancel:           Avbryt
         delete:           Slett
     type:
+        inexistent:       Ingen<br />Fil
         audio:            Lyd
         archive:          Arkiv
         html:             HTML
