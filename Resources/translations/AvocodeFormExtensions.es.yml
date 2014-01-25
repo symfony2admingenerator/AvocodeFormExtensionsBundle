@@ -66,6 +66,7 @@ afe_single_upload:
         cancel:           Cancelar
         delete:           Borrar
     type:
+        inexistent:       Ningún<br />archivo
         audio:            Audio
         archive:          Archivo
         html:             HTML

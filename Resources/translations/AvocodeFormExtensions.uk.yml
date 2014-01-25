@@ -66,6 +66,7 @@ afe_single_upload:
         cancel:           Скасувати
         delete:           Видалити
     type:
+        inexistent:       Ні<br />файлу
         audio:            Аудіор
         archive:          Архів
         html:             HTML
