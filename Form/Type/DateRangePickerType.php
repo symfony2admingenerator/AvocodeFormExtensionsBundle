@@ -124,7 +124,7 @@ class DateRangePickerType extends AbstractType
                 if (in_array($key, array(
                     "today", "yesterday", "last-week", "last-month", "last-year"
                 ))) {
-                    $key_tr = $this->translator->trans('date_range.ranges.'.$key, array(), $options['drp_translation_domain']);
+                    $key_tr = $this->translator->trans('afe_date_range.ranges.'.$key, array(), $options['drp_translation_domain']);
                     $ranges[$key_tr] = $value;
                 } else {
                     $ranges[$key] = $value;
