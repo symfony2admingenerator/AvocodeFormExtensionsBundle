@@ -112,7 +112,12 @@
         },
 
         _onChange: function() {
-            var file = this.element.files[0]; 
+            var file = this.element.files[0];
+
+            if (!file) {
+                this._onCancel();
+                return;
+            }
             
             // show cancel button
             this.$cancelButton.removeClass('disabled').show(
@@ -349,67 +354,71 @@
         },
         
         _isAudio: function(file) {
-            return (file.type.match('audio/.*'));
+            return this._isFileType(file, 'audio/.*');
         },
         
         _isArchive: function(file) {
             return (
-                file.type.match('application/.*compress.*') || 
-                file.type.match('application/.*archive.*') || 
-                file.type.match('application/.*zip.*') || 
-                file.type.match('application/.*tar.*') || 
-                file.type.match('application/x\-ace') || 
-                file.type.match('application/x\-bz2') || 
-                file.type.match('gzip/document')
+                this._isFileType(file, 'application/.*compress.*') || 
+                this._isFileType(file, 'application/.*archive.*') || 
+                this._isFileType(file, 'application/.*zip.*') || 
+                this._isFileType(file, 'application/.*tar.*') || 
+                this._isFileType(file, 'application/x\-ace') || 
+                this._isFileType(file, 'application/x\-bz2') || 
+                this._isFileType(file, 'gzip/document')
             );
         },
         
         _isHTML: function(file) {
-            return (file.type.match('text/html'));
+            return this._isFileType(file, 'text/html');
         }, 
         
         _isImage: function(file) {
-            return (file.type.match('image/.*'));
+            return this._isFileType(file, 'image/.*');
         },
         
         _isPDFDocument: function(file) {
             return (
-                file.type.match('application/acrobat') || 
-                file.type.match('applications?/.*pdf.*') || 
-                file.type.match('text/.*pdf.*')
+                this._isFileType(file, 'application/acrobat') || 
+                this._isFileType(file, 'applications?/.*pdf.*') || 
+                this._isFileType(file, 'text/.*pdf.*')
             );
         }, 
         
         _isPlainText: function(file) {
-            return (file.type.match('text/plain'));
+            return this._isFileType(file, 'text/plain');
         },
         
         _isPresentation: function(file) {
             return (
-                file.type.match('application/.*ms\-powerpoint.*') || 
-                file.type.match('application/.*officedocument\.presentationml.*') || 
-                file.type.match('application/.*opendocument\.presentation.*')
+                this._isFileType(file, 'application/.*ms\-powerpoint.*') || 
+                this._isFileType(file, 'application/.*officedocument\.presentationml.*') || 
+                this._isFileType(file, 'application/.*opendocument\.presentation.*')
             );
         },
         
         _isSpreadsheet: function(file) {
             return (
-                file.type.match('application/.*ms\-excel.*') || 
-                file.type.match('application/.*officedocument\.spreadsheetml.*') || 
-                file.type.match('application/.*opendocument\.spreadsheet.*')
+                this._isFileType(file, 'application/.*ms\-excel.*') || 
+                this._isFileType(file, 'application/.*officedocument\.spreadsheetml.*') || 
+                this._isFileType(file, 'application/.*opendocument\.spreadsheet.*')
             );
         },
         
         _isTextDocument: function(file) {
             return (
-                file.type.match('application/.*ms\-?word.*') || 
-                file.type.match('application/.*officedocument\.wordprocessingml.*') || 
-                file.type.match('application/.*opendocument\.text.*')
+                this._isFileType(file, 'application/.*ms\-?word.*') || 
+                this._isFileType(file, 'application/.*officedocument\.wordprocessingml.*') || 
+                this._isFileType(file, 'application/.*opendocument\.text.*')
             );
         },
         
         _isVideo: function(file) {
-            return (file.type.match('video/.*'));
+            return this._isFileType(file, 'video/.*');
+        },
+
+        _isFileType: function(file, type) {
+            return file && file.type.match(type);
         },
         
         _resetInput: function() {
