@@ -120,7 +120,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         if (count($this->configs) > 0) {
             $form = $event->getForm();
             $data = $event->getData();
-            
+
             if (!$form->isValid()) {
                 foreach ($this->configs as $field => $config) {
                     if ($config['nameable'] && array_key_exists('original_name', $config)) {
