@@ -15,6 +15,8 @@ class SingleUploadSubscriber implements EventSubscriberInterface
      * @var string Single upload field configs
      */
     protected $configs = array();
+    
+    protected $files = array();
 
     public static function getSubscribedEvents()
     {
@@ -22,7 +24,21 @@ class SingleUploadSubscriber implements EventSubscriberInterface
             FormEvents::PRE_SUBMIT => array('preSubmit', 0),
             FormEvents::SUBMIT => array('onSubmit', 0),
             FormEvents::POST_SUBMIT => array('postSubmit', 0),
+            FormEvents::PRE_SET_DATA => array('preSetData', 0),
         );
+    }
+    
+    public function preSetData(FormEvent $event)
+    {
+        $form = $event->getForm();
+        $obj = $event->getData();
+        foreach ($form->all() as $child) {
+            if ($child->getConfig()->getType()->getName() === 'afe_single_upload') {
+                $name = $child->getName();
+                $getterName = 'get'.ucfirst($name);
+                $this->files[$name] = $obj->$getterName();
+            }
+        }
     }
 
     public function preSubmit(FormEvent $event)
@@ -86,6 +102,10 @@ class SingleUploadSubscriber implements EventSubscriberInterface
 
                     // remove file
                     $data->$setterPath(null);
+                }
+                if(!array_key_exists('delete', $config) || $config['delete'] == false){
+                    $setter = 'set'.ucfirst($field);
+                    $data->$setter($this->files[$field]);
                 }
             }
 
