@@ -105,7 +105,9 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                 }
                 if(!array_key_exists('delete', $config) || $config['delete'] == false){
                     $setter = 'set'.ucfirst($field);
-                    $data->$setter($this->files[$field]);
+                    $getter = 'get'.ucfirst($field);
+                    if($data->$getter() === null)
+                        $data->$setter($this->files[$field]);
                 }
             }
 
@@ -118,7 +120,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         if (count($this->configs) > 0) {
             $form = $event->getForm();
             $data = $event->getData();
-
+            
             if (!$form->isValid()) {
                 foreach ($this->configs as $field => $config) {
                     if ($config['nameable'] && array_key_exists('original_name', $config)) {
