@@ -31,7 +31,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         $post = $event->getData();
 
         foreach ($form->all() as $child) {
-            if ($child->getConfig()->getType()->getName() === 'afe_single_upload') {
+            if ($this->isFieldSingleUpload($child->getConfig()->getType())) {
                 $childPost = $post[$child->getName()];
                 $options = $child->getConfig()->getOptions();
 
@@ -117,5 +117,13 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                 $event->setData($data);
             }
         }
+    }
+    
+    private function isFieldSingleUpload(ResolvedFormTypeInterface $formTypeInterface = null)
+    {
+        if($formTypeInterface == null) return false;
+        if($formTypeInterface->getName() == 'afe_single_upload') return true;
+
+        return $this->isFieldSingleUpload($formTypeInterface->getParent());
     }
 }
