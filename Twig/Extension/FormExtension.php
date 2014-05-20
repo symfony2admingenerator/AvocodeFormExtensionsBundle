@@ -71,7 +71,7 @@ class FormExtension extends \Twig_Extension
         }
 
         if (is_string($var) && !preg_match($functionPattern, $var) && !preg_match($jsonPattern, $var) && !preg_match($arrayPattern, $var)) {
-            return '"'.$var.'"';
+            return '"'.str_replace('"', '&quot;', $var).'"';
         }
 
         if (is_array($var)) {
