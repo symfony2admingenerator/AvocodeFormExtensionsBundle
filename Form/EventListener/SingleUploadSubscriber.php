@@ -5,6 +5,7 @@ namespace Avocode\FormExtensionsBundle\Form\EventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\ResolvedFormTypeInterface;
 
 /**
  * @author Piotr Gołębiewski <loostro@gmail.com>
