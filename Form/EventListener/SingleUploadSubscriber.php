@@ -33,8 +33,14 @@ class SingleUploadSubscriber implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $obj = $event->getData();
+        
+        //can be null if prototype in collection
+        if($obj == null) {
+            return;
+        }
+        
         foreach ($form->all() as $child) {
-            if ($child->getConfig()->getType()->getName() === 'afe_single_upload') {
+            if ($this->isFieldSingleUpload($child->getConfig()->getType())) {
                 $name = $child->getName();
                 $getterName = 'get'.ucfirst($name);
                 $this->files[$name] = $obj->$getterName();
