@@ -172,7 +172,7 @@
             clearBtn:             {{ clearButton|e4js }},
             language:             {{ language|e4js }},
             startDate:            new Date({{ startDate|e4js }}),
-            endDate:              new Date({{ endDate|e4js }}),
+            endDate:              new Date({{ endDate|e4js }})
         });
     {% endblock afe_date_picker_afe_javascript_prototype %}
     });
@@ -196,15 +196,15 @@
             showWeekNumbers:  {{ showWeekNumbers|e4js }},
             showDropdowns:    {{ showDropdowns|e4js }},
             dateLimit:        {{ dateLimit|e4js }},
-            locale:           {{ locale|e4js }},
+            locale:           {{ locale|e4js }}
         {% if minDate is not empty %}
-            minDate:          {{ minDate|e4js }},
+            ,minDate:          {{ minDate|e4js }}
         {% endif %}
         {% if maxDate is not empty %}
-            maxDate:          {{ maxDate|e4js }},
+            ,maxDate:          {{ maxDate|e4js }}
         {% endif %}
         {% if ranges %}
-            ranges:           {{ ranges|e4js }},
+            ,ranges:           {{ ranges|e4js }}
         {% endif %}
         });
     {% endblock afe_daterange_picker_afe_javascript_prototype %}
@@ -287,7 +287,7 @@
             'lineCap':          {{ lineCap|e4js }},
             'step':             {{ step|e4js }},
             'min':              {{ min|e4js }},
-            'max':              {{ max|e4js }},
+            'max':              {{ max|e4js }}
         });
     {% endblock afe_knob_afe_javascript_prototype %}
     });
@@ -389,7 +389,7 @@
             secondStep:     {{ second_step|e4js }},
             defaultTime:    {{ default_time|e4js }},
             showMeridian:   {{ show_meridian|e4js }},
-            disableFocus:   {{ disable_focus|e4js }},
+            disableFocus:   {{ disable_focus|e4js }}
         });
     {% endblock afe_time_picker_afe_javascript_prototype %}
     });
