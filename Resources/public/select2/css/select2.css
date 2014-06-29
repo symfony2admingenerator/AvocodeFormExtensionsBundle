@@ -12,6 +12,7 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
     height: 34px;
     /* force no padding */
     padding: 0 !important;
+    border: 0px; /* twbs3 fix */
 }
 
 .select2-container,
