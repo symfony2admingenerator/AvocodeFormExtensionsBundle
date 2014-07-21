@@ -11,6 +11,7 @@ afe_collection_upload:
     cancel:       Cancelar
     delete:       Borrar
     download:     Descargar
+    remove:       Eliminar
     confirm:
         batchDelete:      ¿Estás seguro que quieres borrar todos los elementos seleccionados?
     errors:
