@@ -10,9 +10,11 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Avocode\FormExtensionsBundle\Storage\FileStorageInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @author Piotr Gołębiewski <loostro@gmail.com>
+ * @author Escandell Stéphane <stephane.escandell@gmail.com>
  */
 class CollectionUploadSubscriber implements EventSubscriberInterface
 {
@@ -50,12 +52,22 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     /**
      * @var array Captured upload
      */
-    protected $uploads;
+    protected $uploads = array();
 
     /**
-     * @var array Submitted primary keys
+     * @var array
      */
-    protected $submitted_pk;
+    protected $additionalContentUploads = array();
+
+    /**
+     * @var boolean
+     */
+    protected $editable = array();
+
+   /**
+    * @var array Submitted primary keys
+    */
+    protected $submitted_pk = array();
 
     /**
      * @var boolean
@@ -85,8 +97,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         $this->primary_key      = $options['primary_key'];
         $this->nameable         = $options['nameable'];
         $this->nameable_field   = $options['nameable_field'];
-        $this->uploads          = array();
-        $this->submitted_pk     = array();
+        $this->editable         = $options['editable'];
         $this->allow_add        = $options['allow_add'];
         $this->allow_delete     = $options['allow_delete'];
         $this->storage          = $storage;
@@ -112,6 +123,16 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
             $this->uploads = $data['uploads'];
             // unset additional form data to prevent errors
             unset($data['uploads']);
+
+            if ($this->nameable || $this->editable) {
+                // Handle additional uploaded data on AsyncUpload
+                foreach ($this->uploads as $uploadKey) {
+                    if (array_key_exists($uploadKey, $data)) {
+                        $this->additionalContentUploads[$uploadKey] = $data[$uploadKey];
+                        unset($data[$uploadKey]);
+                    }
+                }
+            }
         }
 
         if (array_key_exists('delete_uploads', $data)) {
@@ -140,23 +161,32 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         $data = $form->getParent()->getData();
 
         // save original files collection for postSubmit event
+        // TODO: use PropertyPath
         $getter = 'get'.ucfirst($this->propertyName);
         $this->originalFiles = $data->$getter();
 
         if ($this->allow_delete) {
             // remove files not present in submitted pk
             $pkGetter = 'get'.ucfirst($this->primary_key);
-            foreach ($data->$getter() as $file) {
+            $keysToRemove = array();
+            $dataFiles = $data->$getter();
+            foreach ($dataFiles as $key => $file) {
                 if (!in_array($file->$pkGetter(), $this->submitted_pk)) {
-                    $data->$getter()->removeElement($file);
+                    $keysToRemove[] = $key;
                 }
+            }
+
+            foreach($keysToRemove as $key) {
+                $dataFiles->remove($key);
             }
         }
 
         if ($this->allow_add) {
             // create file entites for each file
             foreach ($this->uploads as $upload) {
+                $loadAdditionalContentUid = null;
                 if (!is_object($upload) && !is_null($this->storage)) {
+                    $loadAdditionalContentUid = $upload;
                     $upload = $this->storage->getFile($upload);
                 }
 
@@ -164,16 +194,17 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
                     continue;
                 }
 
-                $file = new $this->dataClass();
-                if (!$file instanceof UploadCollectionFileInterface) {
-                    throw new UnexpectedTypeException($file, '\Avocode\FormExtensionsBundle\Form\Model\UploadCollectionFileInterface');
+                $fileOwner = new $this->dataClass();
+                if (!$fileOwner instanceof UploadCollectionFileInterface) {
+                    throw new UnexpectedTypeException($fileOwner, '\Avocode\FormExtensionsBundle\Form\Model\UploadCollectionFileInterface');
                 }
 
-                $file->setFile($upload);
-                $file->setParent($data);
+                $fileOwner->setFile($upload);
+                $fileOwner->setParent($data);
 
                 // if nameable field specified - set normalized name
                 if ($this->nameable && $this->nameable_field) {
+                    // TODO: use PropertyPath
                     $setNameable = 'set'.ucfirst($this->nameable_field);
 
                     // this value is unsafe
@@ -181,10 +212,12 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
                     // normalize string
                     $safeName = $this->normalizeUtf8String($name);
 
-                    $file->$setNameable($safeName);
+                    $fileOwner->$setNameable($safeName);
                 }
 
-                $data->$getter()->add($file);
+                $this->loadAdditionalContent($loadAdditionalContentUid, $fileOwner);
+
+                $data->$getter()->add($fileOwner);
             }
         }
 
@@ -206,6 +239,33 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
             }
 
             $event->setData($data->$getter());
+        }
+    }
+
+    /**
+     * @param string $fileUid
+     * @param $fileOwner
+     */
+    private function loadAdditionalContent($fileUid, $fileOwner)
+    {
+        if (is_null($fileUid)) {
+            return;
+        }
+
+        if (!$this->editable) {
+            return;
+        }
+
+        if (!array_key_exists($fileUid, $this->additionalContentUploads)) {
+            return;
+        }
+
+        foreach ($this->editable as $editable) {
+            if (array_key_exists($editable, $this->additionalContentUploads[$fileUid])) {
+                // TODO: use PropertyPath
+                $setter = 'set'.ucfirst($editable);
+                $fileOwner->$setter($this->additionalContentUploads[$fileUid][$editable]);
+            }
         }
     }
 

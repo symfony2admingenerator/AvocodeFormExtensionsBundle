@@ -20,59 +20,77 @@
         {% raw %}
         {% } else { %}
         {% endraw %}
-            {% if sortable %}
-            <td class="sort"><icon class="handle icon-sort icon-2x"></i></td>
-            {% endif %}
             {% raw %}
-            {% if (file.uid) { %}
+            {% if (!file.uid) { %}
             {% endraw %}
-                <td class="preview">
-                </td>
-                <td class="form">
-                    <input type="hidden" name="{{ full_name }}" value="{% raw %}{%=file.uid%}{% endraw %}" />
-                    <input type="checkbox" name="{{ original_full_name ~ '[delete_uploads][]'}}" value="{% raw %}{%=file.uid%}{% endraw %}" class="remove"/>
-                </td>
-            {% raw %}
-            {% } else { %}
-            {% endraw %}
-                <td class="preview">
-                {% raw %}
-                {% if (file.thumbnail_url) { %}
-                {% endraw %}
-                {% if previewFilter %}
-                    {% raw %}
-                    <a href="{%=file.url%}" target="_blank"><img src="{%=file.thumbnail_url%}" /></a>
-                    {% endraw %}
-                {% else %}
-                    {% raw %}
-                    <a href="{%=file.url%}" target="_blank">
-                    {% endraw %}
-                        <img src="{% raw %}{%=file.thumbnail_url%}{% endraw %}"
-                             width="{{ previewMaxWidth }}" height="{{ previewMaxHeight }}" />
-                    </a>
+                {% if sortable %}
+                <td class="sort"><icon class="handle icon-sort icon-2x"></i></td>
                 {% endif %}
+            {% raw %}
+            {% } %}
+            {% endraw %}
+                <td class="preview">
                 {% raw %}
+                {% if (!file.uid) { %}
+                    {% if (file.thumbnail_url) { %}
+                {% endraw %}
+                    {% if previewFilter %}
+                        {% raw %}
+                        <a href="{%=file.url%}" target="_blank"><img src="{%=file.thumbnail_url%}" /></a>
+                        {% endraw %}
+                    {% else %}
+                        {% raw %}
+                        <a href="{%=file.url%}" target="_blank">
+                        {% endraw %}
+                            <img src="{% raw %}{%=file.thumbnail_url%}{% endraw %}"
+                                 width="{{ previewMaxWidth }}" height="{{ previewMaxHeight }}" />
+                        </a>
+                    {% endif %}
+                {% raw %}
+                    {% } %}
                 {% } %}
                 {% endraw %}
                 </td>
                 <td class="form">
-                {{ form_row(prototype[primary_key],{'value': '{%=file.'~primary_key~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                {% raw %}
+                {% if (file.uid) { %}
+                {% endraw %}
+                    <input type="hidden" name="{{ full_name }}" value="{% raw %}{%=file.uid%}{% endraw %}" />
+                    <input type="checkbox" name="{{ original_full_name ~ '[delete_uploads][]'}}" value="{% raw %}{%=file.uid%}{% endraw %}" class="remove"/>
+                {% raw %}
+                {% } else { %}
+                {% endraw %}
+                    {{ form_row(prototype[primary_key],{'value': '{%=file.'~primary_key~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                {% raw %}
+                {% } %}
+                {% endraw %}
+
                 {% if nameable %}
-                    {{ form_row(prototype[nameable_field],{'value': '{%=file.'~nameable_field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                    {{ form_row(prototype[nameable_field],{'value': '{% if (file.uid) { %}{% } else { %}{%=file.'~nameable_field~'%}{% } %}'})|replace({'__name__':  '{% if (file.uid) { %}{%=file.uid%}{% } else { %}{%=file.count%}{% } %}'})|raw }}
                 {% endif %}
-                {% if sortable %}
-                    {{ form_row(prototype[sortable_field],{'value': '{%=file.'~sortable_field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
-                {% endif %}
+
+                {% raw %}
+                {% if (!file.uid) { %}
+                {% endraw %}
+                    {% if sortable %}
+                        {{ form_row(prototype[sortable_field],{'value': '{%=file.'~sortable_field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                    {% endif %}
+                {% raw %}
+                {% } %}
+                {% endraw %}
                 {% if editable %}
                 {% for field in editable %}
-                    {{ form_row(prototype[field],{'value': '{%=file.'~field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                    {{ form_row(prototype[field],{'value': '{% if (file.uid) { %}{% } else { %}{%=file.'~field~'%}{% } %}'})|replace({'__name__':  '{% if (file.uid) { %}{%=file.uid%}{% } else { %}{%=file.count%}{% } %}'})|raw }}
                 {% endfor %}
                 {% endif %}
+
                 </td>
+            <td class="size"><span>
             {% raw %}
-            {% } %}
-            {% endraw %}
-            <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
+                {% if (file.size) { %}
+                    {%=o.formatFileSize(file.size)%}
+                {% } %}
+            {% endraw %}</span></td>
             <td colspan="2"></td>
         {% raw %}
         {% } %}

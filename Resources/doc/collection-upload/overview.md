@@ -179,7 +179,7 @@ class GalleryImage implements UploadCollectionFileInterface
 }
 ```
 
-> **Note:** The name the second method must be `get FIELD WebPath`, in this example 
+> **Note:** The second method's name must be `get FIELD WebPath`, in this example 
 our field name is `file` so method name is `getFileWebPath`.
 
 ### 3. Configuration
