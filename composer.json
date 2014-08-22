@@ -27,7 +27,8 @@
     },
     "suggest": {
         "cedriclombardot/admingenerator-generator-bundle": "The missing symfony2 admin generator",
-        "liip/imagine-bundle": "Apply filters on preview images"
+        "liip/imagine-bundle": "Apply filters on preview images",
+        "vich/uploader-bundle": "(>= 0.10.0) Bundle to ease file uploads with ORM entities and ODM documents"
     },
     "autoload": {
         "psr-0": {
