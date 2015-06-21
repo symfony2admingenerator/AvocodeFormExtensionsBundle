@@ -1,0 +1,82 @@
+afe_bootstrap_collection:
+    add:          Ekle
+    delete:       Sil
+    confirm:
+        delete:           Bunu silmek istediginizden emin misiniz?
+        batchDelete:      Secili tum ogeleri silmek istediginizden emin misiniz?
+
+afe_collection_upload:
+    file.add:     Dosya ekle...
+    stat:         Gondermeye basla
+    error:        Hata
+    cancel:       Iptal
+    delete:       Sil
+    download:     Indir
+    remove:       Kaldir
+    confirm:
+        batchDelete:      Secili ogeleri silmek istediginizden emin misiniz?
+    errors:
+        maxNumberOfFiles: Maksimum dosya limiti asildi
+        acceptFileTypes:  Dosya turu desteklenmiyor
+        maxFileSize:      Dosya cok buyuk
+        minFileSize:      Dosya cok kucuk
+        
+afe_date_range:
+    label:
+        apply:          Gonder
+        clear:          Temizle
+        from:           den
+        to:             a
+        week:           H
+        custom_range:   Aralik tercihi
+    days:
+        sunday:         Pz
+        monday:         Pa
+        tuesday:        Sl
+        wednesday:      Cr
+        thursday:       Ps
+        friday:         Cm
+        saturday:       Cmt
+    months:
+        january:        Ocak
+        february:       Subat
+        march:          Mart
+        april:          Nisan
+        may:            Mayis
+        june:           Haziran
+        july:           Temmuz
+        august:         Agustos
+        september:      Eylul
+        october:        Ekim
+        november:       Kasim
+        december:       Aralik
+    ranges:
+        today:          Bugun
+        yesterday:      Dun
+        last-week:      Gecen Hafta
+        last-month:     Gecen Ay
+        last-year:      Gecen Yil
+        
+afe_double_list:
+    selected:           Secili
+    unselected:         Secili degil
+        
+afe_single_upload:
+    button:
+        add:              Dosya gonder
+        replace:          Dosya degistir
+        cancel:           Iptal
+        delete:           Sil
+    type:
+        inexistent:       No<br />Dosya
+        audio:            Ses
+        archive:          Arsiv
+        html:             HTML
+        image:            Imaj
+        pdf-document:     PDF<br />Dokuman
+        plain-text:       Sade<br />Yazi
+        presentation:     Sunum
+        spreadsheet:      Hesap tablosu
+        text-document:    Yazi<br />Dokuman
+        unknown:          Bilinmeyen<br />Dosya turu
+        video:            Video
